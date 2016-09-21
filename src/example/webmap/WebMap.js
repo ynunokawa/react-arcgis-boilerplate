@@ -19,45 +19,44 @@
 // THE SOFTWARE.
 
 import React from 'react';
-import {} from 'react-bootstrap';
+import { Grid, Row } from 'react-bootstrap';
 
-import L from 'leaflet';
-import {} from 'esri-leaflet';
-
-class Map extends React.Component {
+class ArcGISWebMap extends React.Component {
   constructor (props) {
       super(props);
-      this.state = {
-
-      };
+      this.state = {};
   }
 
   componentDidMount () {
-    const map = L.map(this.props.divid, {
-      center: this.props.center,
-      zoom: this.props.zoom
-    });
+    L.esri.webMap(this.props.mapid, { map: L.map('react-arcgis-boilerplate-map') });
   }
 
   render () {
     return (
-
+        <Grid>
+            <Row>
+                <style type="text/css">{`
+                    #react-arcgis-boilerplate-map {
+                        position: relative;
+                        height: 300px;
+                        width: 100%;
+                    }
+                `}</style>
+                <div id='react-arcgis-boilerplate-map'></div>
+            </Row>
+        </Grid>
     );
   }
 }
 
-Map.propTypes = {
-  divid: React.PropTypes.string,
-  center: React.PropTypes.array,
-  zoom: React.PropTypes.number
+ArcGISWebMap.propTypes = {
+  mapid: React.PropTypes.string
 };
 
-Map.defaultProps = {
-  divid: 'map',
-  center: [39, 135],
-  zoom: 6
+ArcGISWebMap.defaultProps = {
+  mapid: '55e02e777274468c90745fde6641faf4'
 };
 
-Map.displayName = 'Map';
+ArcGISWebMap.displayName = 'ArcGISWebMap';
 
-export default WebMap;
+export default ArcGISWebMap;

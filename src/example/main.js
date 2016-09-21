@@ -23,6 +23,7 @@ import ReactDOM from 'react-dom';
 import { Navbar, Nav, NavItem, Grid, Row, Col } from 'react-bootstrap';
 import document from 'global/document';
 
+import ArcGISWebMap from './webmap/WebMap';
 import List from './list/List';
 import { isReactDOMSupported } from '../lib/utils/react-utils';
 
@@ -46,11 +47,12 @@ const examples = (
         <article id="map-components">
           <h1>Esri Leaflet Map Components</h1>
           <section>
-            <h3>FeatureLayer</h3>
-            <p>Comming soon...</p>
+            <h3>WebMap</h3>
+            <p>Display <a href="http://www.arcgis.com/home/webmap/viewer.html?webmap=55e02e777274468c90745fde6641faf4" target="_brank">ArcGIS Web Map</a> on Leaflet Map</p>
+            <ArcGISWebMap />
           </section>
           <section>
-            <h3>WebMap</h3>
+            <h3>FeatureLayer</h3>
             <p>Comming soon...</p>
           </section>
         </article>
