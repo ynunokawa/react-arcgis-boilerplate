@@ -23,8 +23,9 @@ import ReactDOM from 'react-dom';
 import { Navbar, Nav, NavItem, Grid, Row, Col } from 'react-bootstrap';
 import document from 'global/document';
 
-import ArcGISWebMap from './webmap/WebMap';
-import List from './list/List';
+import ArcGISWebMap from './map/ArcGISWebMap';
+import DonutChart from './viz/DonutChart';
+import ItemList from './ui/list/ItemList';
 import { isReactDOMSupported } from '../lib/utils/react-utils';
 
 const examples = (
@@ -38,34 +39,35 @@ const examples = (
     </Navbar.Header>
     <Nav>
       <NavItem eventKey={1} href="#map-components">Map</NavItem>
-      <NavItem eventKey={2} href="#ui-components">UI</NavItem>
+      <NavItem eventKey={2} href="#viz-components">Viz</NavItem>
+      <NavItem eventKey={3} href="#ui-components">UI</NavItem>
     </Nav>
   </Navbar>
   <Grid>
     <Row>
       <Col xs={12} md={12}>
         <article id="map-components">
-          <h1>Esri Leaflet Map Components</h1>
+          <h1>Map Components</h1>
           <section>
-            <h3>WebMap</h3>
+            <h3><code>&lt;ArcGISWebMap /&gt;</code></h3>
             <p>Display <a href="http://www.arcgis.com/home/webmap/viewer.html?webmap=55e02e777274468c90745fde6641faf4" target="_brank">ArcGIS Web Map</a> on Leaflet Map</p>
             <ArcGISWebMap />
           </section>
+        </article>
+        <article id="viz-components">
+          <h1>Viz Components</h1>
           <section>
-            <h3>FeatureLayer</h3>
-            <p>Comming soon...</p>
+            <h3><code>&lt;DonutChart /&gt;</code></h3>
+            <p>Display percentage in the total for a property with Query API of ArcGIS Feature Service</p>
+            <DonutChart />
           </section>
         </article>
         <article id="ui-components">
           <h1>UI Components</h1>
           <section>
-            <h3>List</h3>
-            <p>Access to ArcGIS Feature Service</p>
-            <List />
-          </section>
-          <section>
-            <h3>Comming soon...</h3>
-            <p>Comming soon...</p>
+            <h3><code>&lt;ItemList /&gt;</code></h3>
+            <p>Display properties with Query API of ArcGIS Feature Service</p>
+            <ItemList />
           </section>
         </article>
       </Col>

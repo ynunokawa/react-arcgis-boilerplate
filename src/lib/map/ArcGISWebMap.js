@@ -28,7 +28,8 @@ class ArcGISWebMap extends React.Component {
   }
 
   componentDidMount () {
-    L.esri.webMap(this.props.mapid, { map: L.map('react-arcgis-boilerplate-map') });
+    const map = L.map('react-arcgis-boilerplate-map');
+    const webmap = L.esri.webMap(this.props.mapid, { map: map });
   }
 
   render () {

@@ -1,6 +1,213 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactBootstrap = require('react-bootstrap');
+
+var _document = require('global/document');
+
+var _document2 = _interopRequireDefault(_document);
+
+var _ArcGISWebMap = require('./map/ArcGISWebMap');
+
+var _ArcGISWebMap2 = _interopRequireDefault(_ArcGISWebMap);
+
+var _DonutChart = require('./viz/DonutChart');
+
+var _DonutChart2 = _interopRequireDefault(_DonutChart);
+
+var _ItemList = require('./ui/list/ItemList');
+
+var _ItemList2 = _interopRequireDefault(_ItemList);
+
+var _reactUtils = require('../lib/utils/react-utils');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Copyright (c) 2016 Yusuke Nunokawa (https://ynunokawa.github.io)
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var examples = _react2.default.createElement(
+  'main',
+  null,
+  _react2.default.createElement(
+    'a',
+    { href: 'https://github.com/ynunokawa/react-arcgis-boilerplate' },
+    _react2.default.createElement('img', { style: { position: 'absolute', top: 0, right: 0, border: 0, zIndex: 1 }, src: 'https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67', alt: 'Fork me on GitHub', 'data-canonical-src': 'https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png' })
+  ),
+  _react2.default.createElement(
+    _reactBootstrap.Navbar,
+    null,
+    _react2.default.createElement(
+      _reactBootstrap.Navbar.Header,
+      null,
+      _react2.default.createElement(
+        _reactBootstrap.Navbar.Brand,
+        null,
+        _react2.default.createElement(
+          'a',
+          { href: '#' },
+          'React ArcGIS Boilerplate'
+        )
+      )
+    ),
+    _react2.default.createElement(
+      _reactBootstrap.Nav,
+      null,
+      _react2.default.createElement(
+        _reactBootstrap.NavItem,
+        { eventKey: 1, href: '#map-components' },
+        'Map'
+      ),
+      _react2.default.createElement(
+        _reactBootstrap.NavItem,
+        { eventKey: 2, href: '#viz-components' },
+        'Viz'
+      ),
+      _react2.default.createElement(
+        _reactBootstrap.NavItem,
+        { eventKey: 3, href: '#ui-components' },
+        'UI'
+      )
+    )
+  ),
+  _react2.default.createElement(
+    _reactBootstrap.Grid,
+    null,
+    _react2.default.createElement(
+      _reactBootstrap.Row,
+      null,
+      _react2.default.createElement(
+        _reactBootstrap.Col,
+        { xs: 12, md: 12 },
+        _react2.default.createElement(
+          'article',
+          { id: 'map-components' },
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Map Components'
+          ),
+          _react2.default.createElement(
+            'section',
+            null,
+            _react2.default.createElement(
+              'h3',
+              null,
+              _react2.default.createElement(
+                'code',
+                null,
+                '<ArcGISWebMap />'
+              )
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Display ',
+              _react2.default.createElement(
+                'a',
+                { href: 'http://www.arcgis.com/home/webmap/viewer.html?webmap=55e02e777274468c90745fde6641faf4', target: '_brank' },
+                'ArcGIS Web Map'
+              ),
+              ' on Leaflet Map'
+            ),
+            _react2.default.createElement(_ArcGISWebMap2.default, null)
+          )
+        ),
+        _react2.default.createElement(
+          'article',
+          { id: 'viz-components' },
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Viz Components'
+          ),
+          _react2.default.createElement(
+            'section',
+            null,
+            _react2.default.createElement(
+              'h3',
+              null,
+              _react2.default.createElement(
+                'code',
+                null,
+                '<DonutChart />'
+              )
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Display percentage in the total for a property with Query API of ArcGIS Feature Service'
+            ),
+            _react2.default.createElement(_DonutChart2.default, null)
+          )
+        ),
+        _react2.default.createElement(
+          'article',
+          { id: 'ui-components' },
+          _react2.default.createElement(
+            'h1',
+            null,
+            'UI Components'
+          ),
+          _react2.default.createElement(
+            'section',
+            null,
+            _react2.default.createElement(
+              'h3',
+              null,
+              _react2.default.createElement(
+                'code',
+                null,
+                '<ItemList />'
+              )
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Display properties with Query API of ArcGIS Feature Service'
+            ),
+            _react2.default.createElement(_ItemList2.default, null)
+          )
+        )
+      )
+    )
+  )
+);
+
+// Cannot render to body anymore: react is throwing warnings.
+// Adding new element instead.
+var el = _document2.default.createElement('div');
+var render = (0, _reactUtils.isReactDOMSupported)() ? _reactDom2.default.render : _react2.default.render;
+_document2.default.body.appendChild(el);
+render(examples, el);
+},{"../lib/utils/react-utils":5,"./map/ArcGISWebMap":2,"./ui/list/ItemList":3,"./viz/DonutChart":4,"global/document":177,"react":502,"react-bootstrap":271,"react-dom":283}],2:[function(require,module,exports){
+'use strict';
+
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -39,13 +246,106 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-var List = function (_React$Component) {
-    _inherits(List, _React$Component);
+var ArcGISWebMap = function (_React$Component) {
+    _inherits(ArcGISWebMap, _React$Component);
 
-    function List(props) {
-        _classCallCheck(this, List);
+    function ArcGISWebMap(props) {
+        _classCallCheck(this, ArcGISWebMap);
 
-        var _this = _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (ArcGISWebMap.__proto__ || Object.getPrototypeOf(ArcGISWebMap)).call(this, props));
+
+        _this.state = {};
+        return _this;
+    }
+
+    _createClass(ArcGISWebMap, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var map = L.map('react-arcgis-boilerplate-map');
+            var webmap = L.esri.webMap(this.props.mapid, { map: map });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                _reactBootstrap.Grid,
+                null,
+                _react2.default.createElement(
+                    _reactBootstrap.Row,
+                    null,
+                    _react2.default.createElement(
+                        'style',
+                        { type: 'text/css' },
+                        '\n                    #react-arcgis-boilerplate-map {\n                        position: relative;\n                        height: 300px;\n                        width: 100%;\n                    }\n                '
+                    ),
+                    _react2.default.createElement('div', { id: 'react-arcgis-boilerplate-map' })
+                )
+            );
+        }
+    }]);
+
+    return ArcGISWebMap;
+}(_react2.default.Component);
+
+ArcGISWebMap.propTypes = {
+    mapid: _react2.default.PropTypes.string
+};
+
+ArcGISWebMap.defaultProps = {
+    mapid: '55e02e777274468c90745fde6641faf4'
+};
+
+ArcGISWebMap.displayName = 'ArcGISWebMap';
+
+exports.default = ArcGISWebMap;
+},{"react":502,"react-bootstrap":271}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactBootstrap = require('react-bootstrap');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Yusuke Nunokawa (https://ynunokawa.github.io)
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var ItemList = function (_React$Component) {
+    _inherits(ItemList, _React$Component);
+
+    function ItemList(props) {
+        _classCallCheck(this, ItemList);
+
+        var _this = _possibleConstructorReturn(this, (ItemList.__proto__ || Object.getPrototypeOf(ItemList)).call(this, props));
 
         _this.state = {
             data: [],
@@ -58,7 +358,7 @@ var List = function (_React$Component) {
         return _this;
     }
 
-    _createClass(List, [{
+    _createClass(ItemList, [{
         key: 'updateData',
         value: function updateData(nextParams) {
             console.log('update!');
@@ -293,10 +593,10 @@ var List = function (_React$Component) {
         }
     }]);
 
-    return List;
+    return ItemList;
 }(_react2.default.Component);
 
-List.propTypes = {
+ItemList.propTypes = {
     serviceUrl: _react2.default.PropTypes.string, // https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E4%BF%9D%E8%82%B2%E5%9C%9223%E5%8C%BA/FeatureServer/0
     headerField: _react2.default.PropTypes.string, // '施設名'
     typeLabelField: _react2.default.PropTypes.string, // '種別'
@@ -307,7 +607,7 @@ List.propTypes = {
     mapUrl: _react2.default.PropTypes.string
 };
 
-List.defaultProps = {
+ItemList.defaultProps = {
     serviceUrl: 'https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E4%BF%9D%E8%82%B2%E5%9C%9223%E5%8C%BA/FeatureServer/0',
     headerField: '施設名',
     typeLabelField: '種別',
@@ -318,200 +618,10 @@ List.defaultProps = {
     mapUrl: 'https://bl.ocks.org/ynunokawa/raw/43ab2f03c4d2f29e3d5ebd3dadb1932d/'
 };
 
-List.displayName = 'List';
+ItemList.displayName = 'ItemList';
 
-exports.default = List;
-},{"react":428,"react-bootstrap":252}],2:[function(require,module,exports){
-'use strict';
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = require('react-dom');
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactBootstrap = require('react-bootstrap');
-
-var _document = require('global/document');
-
-var _document2 = _interopRequireDefault(_document);
-
-var _WebMap = require('./webmap/WebMap');
-
-var _WebMap2 = _interopRequireDefault(_WebMap);
-
-var _List = require('./list/List');
-
-var _List2 = _interopRequireDefault(_List);
-
-var _reactUtils = require('../lib/utils/react-utils');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var examples = _react2.default.createElement(
-  'main',
-  null,
-  _react2.default.createElement(
-    'a',
-    { href: 'https://github.com/ynunokawa/react-arcgis-boilerplate' },
-    _react2.default.createElement('img', { style: { position: 'absolute', top: 0, right: 0, border: 0, zIndex: 1 }, src: 'https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67', alt: 'Fork me on GitHub', 'data-canonical-src': 'https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png' })
-  ),
-  _react2.default.createElement(
-    _reactBootstrap.Navbar,
-    null,
-    _react2.default.createElement(
-      _reactBootstrap.Navbar.Header,
-      null,
-      _react2.default.createElement(
-        _reactBootstrap.Navbar.Brand,
-        null,
-        _react2.default.createElement(
-          'a',
-          { href: '#' },
-          'React ArcGIS Boilerplate'
-        )
-      )
-    ),
-    _react2.default.createElement(
-      _reactBootstrap.Nav,
-      null,
-      _react2.default.createElement(
-        _reactBootstrap.NavItem,
-        { eventKey: 1, href: '#map-components' },
-        'Map'
-      ),
-      _react2.default.createElement(
-        _reactBootstrap.NavItem,
-        { eventKey: 2, href: '#ui-components' },
-        'UI'
-      )
-    )
-  ),
-  _react2.default.createElement(
-    _reactBootstrap.Grid,
-    null,
-    _react2.default.createElement(
-      _reactBootstrap.Row,
-      null,
-      _react2.default.createElement(
-        _reactBootstrap.Col,
-        { xs: 12, md: 12 },
-        _react2.default.createElement(
-          'article',
-          { id: 'map-components' },
-          _react2.default.createElement(
-            'h1',
-            null,
-            'Esri Leaflet Map Components'
-          ),
-          _react2.default.createElement(
-            'section',
-            null,
-            _react2.default.createElement(
-              'h3',
-              null,
-              'WebMap'
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              'Display ',
-              _react2.default.createElement(
-                'a',
-                { href: 'http://www.arcgis.com/home/webmap/viewer.html?webmap=55e02e777274468c90745fde6641faf4', target: '_brank' },
-                'ArcGIS Web Map'
-              ),
-              ' on Leaflet Map'
-            ),
-            _react2.default.createElement(_WebMap2.default, null)
-          ),
-          _react2.default.createElement(
-            'section',
-            null,
-            _react2.default.createElement(
-              'h3',
-              null,
-              'FeatureLayer'
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              'Comming soon...'
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'article',
-          { id: 'ui-components' },
-          _react2.default.createElement(
-            'h1',
-            null,
-            'UI Components'
-          ),
-          _react2.default.createElement(
-            'section',
-            null,
-            _react2.default.createElement(
-              'h3',
-              null,
-              'List'
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              'Access to ArcGIS Feature Service'
-            ),
-            _react2.default.createElement(_List2.default, null)
-          ),
-          _react2.default.createElement(
-            'section',
-            null,
-            _react2.default.createElement(
-              'h3',
-              null,
-              'Comming soon...'
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              'Comming soon...'
-            )
-          )
-        )
-      )
-    )
-  )
-);
-
-// Cannot render to body anymore: react is throwing warnings.
-// Adding new element instead.
-// Copyright (c) 2016 Yusuke Nunokawa (https://ynunokawa.github.io)
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-
-var el = _document2.default.createElement('div');
-var render = (0, _reactUtils.isReactDOMSupported)() ? _reactDom2.default.render : _react2.default.render;
-_document2.default.body.appendChild(el);
-render(examples, el);
-},{"../lib/utils/react-utils":4,"./list/List":1,"./webmap/WebMap":3,"global/document":162,"react":428,"react-bootstrap":252,"react-dom":264}],3:[function(require,module,exports){
+exports.default = ItemList;
+},{"react":502,"react-bootstrap":271}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -525,6 +635,8 @@ var _react = require('react');
 var _react2 = _interopRequireDefault(_react);
 
 var _reactBootstrap = require('react-bootstrap');
+
+var _reactVis = require('react-vis');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -552,58 +664,132 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-var ArcGISWebMap = function (_React$Component) {
-    _inherits(ArcGISWebMap, _React$Component);
+var DonutChart = function (_React$Component) {
+    _inherits(DonutChart, _React$Component);
 
-    function ArcGISWebMap(props) {
-        _classCallCheck(this, ArcGISWebMap);
+    function DonutChart(props) {
+        _classCallCheck(this, DonutChart);
 
-        var _this = _possibleConstructorReturn(this, (ArcGISWebMap.__proto__ || Object.getPrototypeOf(ArcGISWebMap)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (DonutChart.__proto__ || Object.getPrototypeOf(DonutChart)).call(this, props));
 
-        _this.state = {};
+        _this.state = {
+            data: [],
+            relationship: 0, // 0: none, 1: within, 2: contains, 3: intersects, 4: overlap, 5: nearby
+            geometry: null, // for Spatial Query
+            latlng: [], // for Spatial Query (only nearby)
+            distance: null, // for Spatial Query (only nearby)
+            where: '1=0',
+            field: '',
+            chartData: {}
+        };
         return _this;
     }
 
-    _createClass(ArcGISWebMap, [{
+    _createClass(DonutChart, [{
+        key: 'updateData',
+        value: function updateData(nextParams) {
+            console.log('update!');
+            var params = this.state;
+            if (nextParams) {
+                params = nextParams;
+            }
+            var query = L.esri.query({ url: this.props.serviceUrl });
+            switch (String(params.relationship)) {
+                case '0':
+                    break;
+                case '1':
+                    query.within(params.geometry);
+                    break;
+                case '2':
+                    query.contains(params.geometry);
+                    break;
+                case '3':
+                    query.intersects(params.geometry);
+                    break;
+                case '4':
+                    query.overlap(params.geometry);
+                    break;
+                case '5':
+                    query.nearby(params.latlng, params.distance);
+                    break;
+            }
+            query.where(params.where);
+            query.run(function (error, featureCollection, response) {
+                params.data = featureCollection.features;
+                params.data.map(function (f) {
+                    if (!params.chartData[f.properties[params.field]]) {
+                        params.chartData[f.properties[params.field]] = 0;
+                    }
+                    params.chartData[f.properties[params.field]] += 1;
+                });
+                console.log(params.chartData);
+                this.setState(params);
+            }, this);
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
-            L.esri.webMap(this.props.mapid, { map: L.map('react-arcgis-boilerplate-map') });
+            this.updateData();
+
+            // Demo Script
+            var demoParams = {
+                data: [],
+                relationship: 0, // 0: none, 1: within, 2: contains, 3: intersects, 4: overlap, 5: nearby
+                geometry: null, // for Spatial Query
+                latlng: null, // for Spatial Query (only nearby)
+                distance: null, // for Spatial Query (only nearby)
+                where: "市区町村='練馬区'",
+                field: '種別',
+                chartData: {}
+            };
+            this.updateData(demoParams);
         }
     }, {
         key: 'render',
         value: function render() {
+            var chartData = [];
+            var total = 0;
+            for (var key in this.state.chartData) {
+                console.log(this.state.chartData[key]);
+                chartData.push({ angle: this.state.chartData[key] });
+                total += this.state.chartData[key];
+            }
+            chartData.map(function (d) {
+                d = d / total * 14;
+            });
+            var chart = _react2.default.createElement(_reactVis.RadialChart, {
+                innerRadius: 100,
+                radius: 140,
+                data: chartData,
+                width: 300,
+                height: 300 });
             return _react2.default.createElement(
                 _reactBootstrap.Grid,
                 null,
                 _react2.default.createElement(
                     _reactBootstrap.Row,
                     null,
-                    _react2.default.createElement(
-                        'style',
-                        { type: 'text/css' },
-                        '\n                    #react-arcgis-boilerplate-map {\n                        position: relative;\n                        height: 300px;\n                        width: 100%;\n                    }\n                '
-                    ),
-                    _react2.default.createElement('div', { id: 'react-arcgis-boilerplate-map' })
+                    chart
                 )
             );
         }
     }]);
 
-    return ArcGISWebMap;
+    return DonutChart;
 }(_react2.default.Component);
 
-ArcGISWebMap.propTypes = {
-    mapid: _react2.default.PropTypes.string
+DonutChart.propTypes = {
+    serviceUrl: _react2.default.PropTypes.string
 };
 
-ArcGISWebMap.defaultProps = {
-    mapid: '55e02e777274468c90745fde6641faf4'
+DonutChart.defaultProps = {
+    serviceUrl: 'https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E4%BF%9D%E8%82%B2%E5%9C%9223%E5%8C%BA/FeatureServer/0'
 };
 
-ArcGISWebMap.displayName = 'ArcGISWebMap';
+DonutChart.displayName = 'DonutChart';
 
-exports.default = ArcGISWebMap;
-},{"react":428,"react-bootstrap":252}],4:[function(require,module,exports){
+exports.default = DonutChart;
+},{"react":502,"react-bootstrap":271,"react-vis":358}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -664,23 +850,23 @@ function getDOMNode(ref) {
 function isReactDOMSupported() {
   return versionHigherThanThirteen;
 }
-},{"react":428}],5:[function(require,module,exports){
+},{"react":502}],6:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/array/from"), __esModule: true };
-},{"core-js/library/fn/array/from":22}],6:[function(require,module,exports){
+},{"core-js/library/fn/array/from":23}],7:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/object/assign"), __esModule: true };
-},{"core-js/library/fn/object/assign":23}],7:[function(require,module,exports){
+},{"core-js/library/fn/object/assign":24}],8:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/object/create"), __esModule: true };
-},{"core-js/library/fn/object/create":24}],8:[function(require,module,exports){
+},{"core-js/library/fn/object/create":25}],9:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/object/entries"), __esModule: true };
-},{"core-js/library/fn/object/entries":25}],9:[function(require,module,exports){
+},{"core-js/library/fn/object/entries":26}],10:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/object/set-prototype-of"), __esModule: true };
-},{"core-js/library/fn/object/set-prototype-of":26}],10:[function(require,module,exports){
+},{"core-js/library/fn/object/set-prototype-of":27}],11:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/object/values"), __esModule: true };
-},{"core-js/library/fn/object/values":27}],11:[function(require,module,exports){
+},{"core-js/library/fn/object/values":28}],12:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/symbol"), __esModule: true };
-},{"core-js/library/fn/symbol":28}],12:[function(require,module,exports){
+},{"core-js/library/fn/symbol":29}],13:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/symbol/iterator"), __esModule: true };
-},{"core-js/library/fn/symbol/iterator":29}],13:[function(require,module,exports){
+},{"core-js/library/fn/symbol/iterator":30}],14:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -690,7 +876,7 @@ exports.default = function (instance, Constructor) {
     throw new TypeError("Cannot call a class as a function");
   }
 };
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -714,7 +900,7 @@ exports.default = _assign2.default || function (target) {
 
   return target;
 };
-},{"../core-js/object/assign":6}],15:[function(require,module,exports){
+},{"../core-js/object/assign":7}],16:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -748,7 +934,7 @@ exports.default = function (subClass, superClass) {
   });
   if (superClass) _setPrototypeOf2.default ? (0, _setPrototypeOf2.default)(subClass, superClass) : subClass.__proto__ = superClass;
 };
-},{"../core-js/object/create":7,"../core-js/object/set-prototype-of":9,"../helpers/typeof":18}],16:[function(require,module,exports){
+},{"../core-js/object/create":8,"../core-js/object/set-prototype-of":10,"../helpers/typeof":19}],17:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -764,7 +950,7 @@ exports.default = function (obj, keys) {
 
   return target;
 };
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -782,7 +968,7 @@ exports.default = function (self, call) {
 
   return call && ((typeof call === "undefined" ? "undefined" : (0, _typeof3.default)(call)) === "object" || typeof call === "function") ? call : self;
 };
-},{"../helpers/typeof":18}],18:[function(require,module,exports){
+},{"../helpers/typeof":19}],19:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -804,9 +990,9 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 } : function (obj) {
   return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
 };
-},{"../core-js/symbol":11,"../core-js/symbol/iterator":12}],19:[function(require,module,exports){
+},{"../core-js/symbol":12,"../core-js/symbol/iterator":13}],20:[function(require,module,exports){
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -988,7 +1174,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 /*!
   Copyright (c) 2016 Jed Watson.
   Licensed under the MIT License (MIT), see
@@ -1038,52 +1224,52 @@ process.umask = function() { return 0; };
 	}
 }());
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 require('../../modules/es6.string.iterator');
 require('../../modules/es6.array.from');
 module.exports = require('../../modules/_core').Array.from;
-},{"../../modules/_core":36,"../../modules/es6.array.from":95,"../../modules/es6.string.iterator":101}],23:[function(require,module,exports){
+},{"../../modules/_core":37,"../../modules/es6.array.from":96,"../../modules/es6.string.iterator":102}],24:[function(require,module,exports){
 require('../../modules/es6.object.assign');
 module.exports = require('../../modules/_core').Object.assign;
-},{"../../modules/_core":36,"../../modules/es6.object.assign":97}],24:[function(require,module,exports){
+},{"../../modules/_core":37,"../../modules/es6.object.assign":98}],25:[function(require,module,exports){
 require('../../modules/es6.object.create');
 var $Object = require('../../modules/_core').Object;
 module.exports = function create(P, D){
   return $Object.create(P, D);
 };
-},{"../../modules/_core":36,"../../modules/es6.object.create":98}],25:[function(require,module,exports){
+},{"../../modules/_core":37,"../../modules/es6.object.create":99}],26:[function(require,module,exports){
 require('../../modules/es7.object.entries');
 module.exports = require('../../modules/_core').Object.entries;
-},{"../../modules/_core":36,"../../modules/es7.object.entries":103}],26:[function(require,module,exports){
+},{"../../modules/_core":37,"../../modules/es7.object.entries":104}],27:[function(require,module,exports){
 require('../../modules/es6.object.set-prototype-of');
 module.exports = require('../../modules/_core').Object.setPrototypeOf;
-},{"../../modules/_core":36,"../../modules/es6.object.set-prototype-of":99}],27:[function(require,module,exports){
+},{"../../modules/_core":37,"../../modules/es6.object.set-prototype-of":100}],28:[function(require,module,exports){
 require('../../modules/es7.object.values');
 module.exports = require('../../modules/_core').Object.values;
-},{"../../modules/_core":36,"../../modules/es7.object.values":104}],28:[function(require,module,exports){
+},{"../../modules/_core":37,"../../modules/es7.object.values":105}],29:[function(require,module,exports){
 require('../../modules/es6.symbol');
 require('../../modules/es6.object.to-string');
 require('../../modules/es7.symbol.async-iterator');
 require('../../modules/es7.symbol.observable');
 module.exports = require('../../modules/_core').Symbol;
-},{"../../modules/_core":36,"../../modules/es6.object.to-string":100,"../../modules/es6.symbol":102,"../../modules/es7.symbol.async-iterator":105,"../../modules/es7.symbol.observable":106}],29:[function(require,module,exports){
+},{"../../modules/_core":37,"../../modules/es6.object.to-string":101,"../../modules/es6.symbol":103,"../../modules/es7.symbol.async-iterator":106,"../../modules/es7.symbol.observable":107}],30:[function(require,module,exports){
 require('../../modules/es6.string.iterator');
 require('../../modules/web.dom.iterable');
 module.exports = require('../../modules/_wks-ext').f('iterator');
-},{"../../modules/_wks-ext":92,"../../modules/es6.string.iterator":101,"../../modules/web.dom.iterable":107}],30:[function(require,module,exports){
+},{"../../modules/_wks-ext":93,"../../modules/es6.string.iterator":102,"../../modules/web.dom.iterable":108}],31:[function(require,module,exports){
 module.exports = function(it){
   if(typeof it != 'function')throw TypeError(it + ' is not a function!');
   return it;
 };
-},{}],31:[function(require,module,exports){
-module.exports = function(){ /* empty */ };
 },{}],32:[function(require,module,exports){
+module.exports = function(){ /* empty */ };
+},{}],33:[function(require,module,exports){
 var isObject = require('./_is-object');
 module.exports = function(it){
   if(!isObject(it))throw TypeError(it + ' is not an object!');
   return it;
 };
-},{"./_is-object":54}],33:[function(require,module,exports){
+},{"./_is-object":55}],34:[function(require,module,exports){
 // false -> Array#indexOf
 // true  -> Array#includes
 var toIObject = require('./_to-iobject')
@@ -1105,7 +1291,7 @@ module.exports = function(IS_INCLUDES){
     } return !IS_INCLUDES && -1;
   };
 };
-},{"./_to-index":84,"./_to-iobject":86,"./_to-length":87}],34:[function(require,module,exports){
+},{"./_to-index":85,"./_to-iobject":87,"./_to-length":88}],35:[function(require,module,exports){
 // getting tag from 19.1.3.6 Object.prototype.toString()
 var cof = require('./_cof')
   , TAG = require('./_wks')('toStringTag')
@@ -1129,16 +1315,16 @@ module.exports = function(it){
     // ES3 arguments fallback
     : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
 };
-},{"./_cof":35,"./_wks":93}],35:[function(require,module,exports){
+},{"./_cof":36,"./_wks":94}],36:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = function(it){
   return toString.call(it).slice(8, -1);
 };
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 var core = module.exports = {version: '2.4.0'};
 if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 'use strict';
 var $defineProperty = require('./_object-dp')
   , createDesc      = require('./_property-desc');
@@ -1147,7 +1333,7 @@ module.exports = function(object, index, value){
   if(index in object)$defineProperty.f(object, index, createDesc(0, value));
   else object[index] = value;
 };
-},{"./_object-dp":66,"./_property-desc":77}],38:[function(require,module,exports){
+},{"./_object-dp":67,"./_property-desc":78}],39:[function(require,module,exports){
 // optional / simple context binding
 var aFunction = require('./_a-function');
 module.exports = function(fn, that, length){
@@ -1168,18 +1354,18 @@ module.exports = function(fn, that, length){
     return fn.apply(that, arguments);
   };
 };
-},{"./_a-function":30}],39:[function(require,module,exports){
+},{"./_a-function":31}],40:[function(require,module,exports){
 // 7.2.1 RequireObjectCoercible(argument)
 module.exports = function(it){
   if(it == undefined)throw TypeError("Can't call method on  " + it);
   return it;
 };
-},{}],40:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 // Thank's IE8 for his funny defineProperty
 module.exports = !require('./_fails')(function(){
   return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
 });
-},{"./_fails":45}],41:[function(require,module,exports){
+},{"./_fails":46}],42:[function(require,module,exports){
 var isObject = require('./_is-object')
   , document = require('./_global').document
   // in old IE typeof document.createElement is 'object'
@@ -1187,12 +1373,12 @@ var isObject = require('./_is-object')
 module.exports = function(it){
   return is ? document.createElement(it) : {};
 };
-},{"./_global":46,"./_is-object":54}],42:[function(require,module,exports){
+},{"./_global":47,"./_is-object":55}],43:[function(require,module,exports){
 // IE 8- don't enum bug keys
 module.exports = (
   'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
 ).split(',');
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 // all enumerable object keys, includes symbols
 var getKeys = require('./_object-keys')
   , gOPS    = require('./_object-gops')
@@ -1208,7 +1394,7 @@ module.exports = function(it){
     while(symbols.length > i)if(isEnum.call(it, key = symbols[i++]))result.push(key);
   } return result;
 };
-},{"./_object-gops":71,"./_object-keys":74,"./_object-pie":75}],44:[function(require,module,exports){
+},{"./_object-gops":72,"./_object-keys":75,"./_object-pie":76}],45:[function(require,module,exports){
 var global    = require('./_global')
   , core      = require('./_core')
   , ctx       = require('./_ctx')
@@ -1270,7 +1456,7 @@ $export.W = 32;  // wrap
 $export.U = 64;  // safe
 $export.R = 128; // real proto method for `library` 
 module.exports = $export;
-},{"./_core":36,"./_ctx":38,"./_global":46,"./_hide":48}],45:[function(require,module,exports){
+},{"./_core":37,"./_ctx":39,"./_global":47,"./_hide":49}],46:[function(require,module,exports){
 module.exports = function(exec){
   try {
     return !!exec();
@@ -1278,17 +1464,17 @@ module.exports = function(exec){
     return true;
   }
 };
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 var global = module.exports = typeof window != 'undefined' && window.Math == Math
   ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
 if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 var hasOwnProperty = {}.hasOwnProperty;
 module.exports = function(it, key){
   return hasOwnProperty.call(it, key);
 };
-},{}],48:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 var dP         = require('./_object-dp')
   , createDesc = require('./_property-desc');
 module.exports = require('./_descriptors') ? function(object, key, value){
@@ -1297,19 +1483,19 @@ module.exports = require('./_descriptors') ? function(object, key, value){
   object[key] = value;
   return object;
 };
-},{"./_descriptors":40,"./_object-dp":66,"./_property-desc":77}],49:[function(require,module,exports){
+},{"./_descriptors":41,"./_object-dp":67,"./_property-desc":78}],50:[function(require,module,exports){
 module.exports = require('./_global').document && document.documentElement;
-},{"./_global":46}],50:[function(require,module,exports){
+},{"./_global":47}],51:[function(require,module,exports){
 module.exports = !require('./_descriptors') && !require('./_fails')(function(){
   return Object.defineProperty(require('./_dom-create')('div'), 'a', {get: function(){ return 7; }}).a != 7;
 });
-},{"./_descriptors":40,"./_dom-create":41,"./_fails":45}],51:[function(require,module,exports){
+},{"./_descriptors":41,"./_dom-create":42,"./_fails":46}],52:[function(require,module,exports){
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
 var cof = require('./_cof');
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
   return cof(it) == 'String' ? it.split('') : Object(it);
 };
-},{"./_cof":35}],52:[function(require,module,exports){
+},{"./_cof":36}],53:[function(require,module,exports){
 // check on default Array iterator
 var Iterators  = require('./_iterators')
   , ITERATOR   = require('./_wks')('iterator')
@@ -1318,17 +1504,17 @@ var Iterators  = require('./_iterators')
 module.exports = function(it){
   return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
 };
-},{"./_iterators":60,"./_wks":93}],53:[function(require,module,exports){
+},{"./_iterators":61,"./_wks":94}],54:[function(require,module,exports){
 // 7.2.2 IsArray(argument)
 var cof = require('./_cof');
 module.exports = Array.isArray || function isArray(arg){
   return cof(arg) == 'Array';
 };
-},{"./_cof":35}],54:[function(require,module,exports){
+},{"./_cof":36}],55:[function(require,module,exports){
 module.exports = function(it){
   return typeof it === 'object' ? it !== null : typeof it === 'function';
 };
-},{}],55:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 // call something on iterator step with safe closing on error
 var anObject = require('./_an-object');
 module.exports = function(iterator, fn, value, entries){
@@ -1341,7 +1527,7 @@ module.exports = function(iterator, fn, value, entries){
     throw e;
   }
 };
-},{"./_an-object":32}],56:[function(require,module,exports){
+},{"./_an-object":33}],57:[function(require,module,exports){
 'use strict';
 var create         = require('./_object-create')
   , descriptor     = require('./_property-desc')
@@ -1355,7 +1541,7 @@ module.exports = function(Constructor, NAME, next){
   Constructor.prototype = create(IteratorPrototype, {next: descriptor(1, next)});
   setToStringTag(Constructor, NAME + ' Iterator');
 };
-},{"./_hide":48,"./_object-create":65,"./_property-desc":77,"./_set-to-string-tag":80,"./_wks":93}],57:[function(require,module,exports){
+},{"./_hide":49,"./_object-create":66,"./_property-desc":78,"./_set-to-string-tag":81,"./_wks":94}],58:[function(require,module,exports){
 'use strict';
 var LIBRARY        = require('./_library')
   , $export        = require('./_export')
@@ -1426,7 +1612,7 @@ module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED
   }
   return methods;
 };
-},{"./_export":44,"./_has":47,"./_hide":48,"./_iter-create":56,"./_iterators":60,"./_library":62,"./_object-gpo":72,"./_redefine":78,"./_set-to-string-tag":80,"./_wks":93}],58:[function(require,module,exports){
+},{"./_export":45,"./_has":48,"./_hide":49,"./_iter-create":57,"./_iterators":61,"./_library":63,"./_object-gpo":73,"./_redefine":79,"./_set-to-string-tag":81,"./_wks":94}],59:[function(require,module,exports){
 var ITERATOR     = require('./_wks')('iterator')
   , SAFE_CLOSING = false;
 
@@ -1448,13 +1634,13 @@ module.exports = function(exec, skipClosing){
   } catch(e){ /* empty */ }
   return safe;
 };
-},{"./_wks":93}],59:[function(require,module,exports){
+},{"./_wks":94}],60:[function(require,module,exports){
 module.exports = function(done, value){
   return {value: value, done: !!done};
 };
-},{}],60:[function(require,module,exports){
-module.exports = {};
 },{}],61:[function(require,module,exports){
+module.exports = {};
+},{}],62:[function(require,module,exports){
 var getKeys   = require('./_object-keys')
   , toIObject = require('./_to-iobject');
 module.exports = function(object, el){
@@ -1465,9 +1651,9 @@ module.exports = function(object, el){
     , key;
   while(length > index)if(O[key = keys[index++]] === el)return key;
 };
-},{"./_object-keys":74,"./_to-iobject":86}],62:[function(require,module,exports){
+},{"./_object-keys":75,"./_to-iobject":87}],63:[function(require,module,exports){
 module.exports = true;
-},{}],63:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 var META     = require('./_uid')('meta')
   , isObject = require('./_is-object')
   , has      = require('./_has')
@@ -1521,7 +1707,7 @@ var meta = module.exports = {
   getWeak:  getWeak,
   onFreeze: onFreeze
 };
-},{"./_fails":45,"./_has":47,"./_is-object":54,"./_object-dp":66,"./_uid":90}],64:[function(require,module,exports){
+},{"./_fails":46,"./_has":48,"./_is-object":55,"./_object-dp":67,"./_uid":91}],65:[function(require,module,exports){
 'use strict';
 // 19.1.2.1 Object.assign(target, source, ...)
 var getKeys  = require('./_object-keys')
@@ -1555,7 +1741,7 @@ module.exports = !$assign || require('./_fails')(function(){
     while(length > j)if(isEnum.call(S, key = keys[j++]))T[key] = S[key];
   } return T;
 } : $assign;
-},{"./_fails":45,"./_iobject":51,"./_object-gops":71,"./_object-keys":74,"./_object-pie":75,"./_to-object":88}],65:[function(require,module,exports){
+},{"./_fails":46,"./_iobject":52,"./_object-gops":72,"./_object-keys":75,"./_object-pie":76,"./_to-object":89}],66:[function(require,module,exports){
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 var anObject    = require('./_an-object')
   , dPs         = require('./_object-dps')
@@ -1598,7 +1784,7 @@ module.exports = Object.create || function create(O, Properties){
   return Properties === undefined ? result : dPs(result, Properties);
 };
 
-},{"./_an-object":32,"./_dom-create":41,"./_enum-bug-keys":42,"./_html":49,"./_object-dps":67,"./_shared-key":81}],66:[function(require,module,exports){
+},{"./_an-object":33,"./_dom-create":42,"./_enum-bug-keys":43,"./_html":50,"./_object-dps":68,"./_shared-key":82}],67:[function(require,module,exports){
 var anObject       = require('./_an-object')
   , IE8_DOM_DEFINE = require('./_ie8-dom-define')
   , toPrimitive    = require('./_to-primitive')
@@ -1615,7 +1801,7 @@ exports.f = require('./_descriptors') ? Object.defineProperty : function defineP
   if('value' in Attributes)O[P] = Attributes.value;
   return O;
 };
-},{"./_an-object":32,"./_descriptors":40,"./_ie8-dom-define":50,"./_to-primitive":89}],67:[function(require,module,exports){
+},{"./_an-object":33,"./_descriptors":41,"./_ie8-dom-define":51,"./_to-primitive":90}],68:[function(require,module,exports){
 var dP       = require('./_object-dp')
   , anObject = require('./_an-object')
   , getKeys  = require('./_object-keys');
@@ -1629,7 +1815,7 @@ module.exports = require('./_descriptors') ? Object.defineProperties : function 
   while(length > i)dP.f(O, P = keys[i++], Properties[P]);
   return O;
 };
-},{"./_an-object":32,"./_descriptors":40,"./_object-dp":66,"./_object-keys":74}],68:[function(require,module,exports){
+},{"./_an-object":33,"./_descriptors":41,"./_object-dp":67,"./_object-keys":75}],69:[function(require,module,exports){
 var pIE            = require('./_object-pie')
   , createDesc     = require('./_property-desc')
   , toIObject      = require('./_to-iobject')
@@ -1646,7 +1832,7 @@ exports.f = require('./_descriptors') ? gOPD : function getOwnPropertyDescriptor
   } catch(e){ /* empty */ }
   if(has(O, P))return createDesc(!pIE.f.call(O, P), O[P]);
 };
-},{"./_descriptors":40,"./_has":47,"./_ie8-dom-define":50,"./_object-pie":75,"./_property-desc":77,"./_to-iobject":86,"./_to-primitive":89}],69:[function(require,module,exports){
+},{"./_descriptors":41,"./_has":48,"./_ie8-dom-define":51,"./_object-pie":76,"./_property-desc":78,"./_to-iobject":87,"./_to-primitive":90}],70:[function(require,module,exports){
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
 var toIObject = require('./_to-iobject')
   , gOPN      = require('./_object-gopn').f
@@ -1667,7 +1853,7 @@ module.exports.f = function getOwnPropertyNames(it){
   return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(toIObject(it));
 };
 
-},{"./_object-gopn":70,"./_to-iobject":86}],70:[function(require,module,exports){
+},{"./_object-gopn":71,"./_to-iobject":87}],71:[function(require,module,exports){
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
 var $keys      = require('./_object-keys-internal')
   , hiddenKeys = require('./_enum-bug-keys').concat('length', 'prototype');
@@ -1675,9 +1861,9 @@ var $keys      = require('./_object-keys-internal')
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
   return $keys(O, hiddenKeys);
 };
-},{"./_enum-bug-keys":42,"./_object-keys-internal":73}],71:[function(require,module,exports){
+},{"./_enum-bug-keys":43,"./_object-keys-internal":74}],72:[function(require,module,exports){
 exports.f = Object.getOwnPropertySymbols;
-},{}],72:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 var has         = require('./_has')
   , toObject    = require('./_to-object')
@@ -1691,7 +1877,7 @@ module.exports = Object.getPrototypeOf || function(O){
     return O.constructor.prototype;
   } return O instanceof Object ? ObjectProto : null;
 };
-},{"./_has":47,"./_shared-key":81,"./_to-object":88}],73:[function(require,module,exports){
+},{"./_has":48,"./_shared-key":82,"./_to-object":89}],74:[function(require,module,exports){
 var has          = require('./_has')
   , toIObject    = require('./_to-iobject')
   , arrayIndexOf = require('./_array-includes')(false)
@@ -1709,7 +1895,7 @@ module.exports = function(object, names){
   }
   return result;
 };
-},{"./_array-includes":33,"./_has":47,"./_shared-key":81,"./_to-iobject":86}],74:[function(require,module,exports){
+},{"./_array-includes":34,"./_has":48,"./_shared-key":82,"./_to-iobject":87}],75:[function(require,module,exports){
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
 var $keys       = require('./_object-keys-internal')
   , enumBugKeys = require('./_enum-bug-keys');
@@ -1717,9 +1903,9 @@ var $keys       = require('./_object-keys-internal')
 module.exports = Object.keys || function keys(O){
   return $keys(O, enumBugKeys);
 };
-},{"./_enum-bug-keys":42,"./_object-keys-internal":73}],75:[function(require,module,exports){
+},{"./_enum-bug-keys":43,"./_object-keys-internal":74}],76:[function(require,module,exports){
 exports.f = {}.propertyIsEnumerable;
-},{}],76:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 var getKeys   = require('./_object-keys')
   , toIObject = require('./_to-iobject')
   , isEnum    = require('./_object-pie').f;
@@ -1736,7 +1922,7 @@ module.exports = function(isEntries){
     } return result;
   };
 };
-},{"./_object-keys":74,"./_object-pie":75,"./_to-iobject":86}],77:[function(require,module,exports){
+},{"./_object-keys":75,"./_object-pie":76,"./_to-iobject":87}],78:[function(require,module,exports){
 module.exports = function(bitmap, value){
   return {
     enumerable  : !(bitmap & 1),
@@ -1745,9 +1931,9 @@ module.exports = function(bitmap, value){
     value       : value
   };
 };
-},{}],78:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 module.exports = require('./_hide');
-},{"./_hide":48}],79:[function(require,module,exports){
+},{"./_hide":49}],80:[function(require,module,exports){
 // Works with __proto__ only. Old v8 can't work with null proto objects.
 /* eslint-disable no-proto */
 var isObject = require('./_is-object')
@@ -1773,7 +1959,7 @@ module.exports = {
     }({}, false) : undefined),
   check: check
 };
-},{"./_an-object":32,"./_ctx":38,"./_is-object":54,"./_object-gopd":68}],80:[function(require,module,exports){
+},{"./_an-object":33,"./_ctx":39,"./_is-object":55,"./_object-gopd":69}],81:[function(require,module,exports){
 var def = require('./_object-dp').f
   , has = require('./_has')
   , TAG = require('./_wks')('toStringTag');
@@ -1781,20 +1967,20 @@ var def = require('./_object-dp').f
 module.exports = function(it, tag, stat){
   if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
 };
-},{"./_has":47,"./_object-dp":66,"./_wks":93}],81:[function(require,module,exports){
+},{"./_has":48,"./_object-dp":67,"./_wks":94}],82:[function(require,module,exports){
 var shared = require('./_shared')('keys')
   , uid    = require('./_uid');
 module.exports = function(key){
   return shared[key] || (shared[key] = uid(key));
 };
-},{"./_shared":82,"./_uid":90}],82:[function(require,module,exports){
+},{"./_shared":83,"./_uid":91}],83:[function(require,module,exports){
 var global = require('./_global')
   , SHARED = '__core-js_shared__'
   , store  = global[SHARED] || (global[SHARED] = {});
 module.exports = function(key){
   return store[key] || (store[key] = {});
 };
-},{"./_global":46}],83:[function(require,module,exports){
+},{"./_global":47}],84:[function(require,module,exports){
 var toInteger = require('./_to-integer')
   , defined   = require('./_defined');
 // true  -> String#at
@@ -1812,7 +1998,7 @@ module.exports = function(TO_STRING){
       : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
   };
 };
-},{"./_defined":39,"./_to-integer":85}],84:[function(require,module,exports){
+},{"./_defined":40,"./_to-integer":86}],85:[function(require,module,exports){
 var toInteger = require('./_to-integer')
   , max       = Math.max
   , min       = Math.min;
@@ -1820,34 +2006,34 @@ module.exports = function(index, length){
   index = toInteger(index);
   return index < 0 ? max(index + length, 0) : min(index, length);
 };
-},{"./_to-integer":85}],85:[function(require,module,exports){
+},{"./_to-integer":86}],86:[function(require,module,exports){
 // 7.1.4 ToInteger
 var ceil  = Math.ceil
   , floor = Math.floor;
 module.exports = function(it){
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
-},{}],86:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 // to indexed object, toObject with fallback for non-array-like ES3 strings
 var IObject = require('./_iobject')
   , defined = require('./_defined');
 module.exports = function(it){
   return IObject(defined(it));
 };
-},{"./_defined":39,"./_iobject":51}],87:[function(require,module,exports){
+},{"./_defined":40,"./_iobject":52}],88:[function(require,module,exports){
 // 7.1.15 ToLength
 var toInteger = require('./_to-integer')
   , min       = Math.min;
 module.exports = function(it){
   return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
-},{"./_to-integer":85}],88:[function(require,module,exports){
+},{"./_to-integer":86}],89:[function(require,module,exports){
 // 7.1.13 ToObject(argument)
 var defined = require('./_defined');
 module.exports = function(it){
   return Object(defined(it));
 };
-},{"./_defined":39}],89:[function(require,module,exports){
+},{"./_defined":40}],90:[function(require,module,exports){
 // 7.1.1 ToPrimitive(input [, PreferredType])
 var isObject = require('./_is-object');
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
@@ -1860,13 +2046,13 @@ module.exports = function(it, S){
   if(!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
   throw TypeError("Can't convert object to primitive value");
 };
-},{"./_is-object":54}],90:[function(require,module,exports){
+},{"./_is-object":55}],91:[function(require,module,exports){
 var id = 0
   , px = Math.random();
 module.exports = function(key){
   return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 };
-},{}],91:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 var global         = require('./_global')
   , core           = require('./_core')
   , LIBRARY        = require('./_library')
@@ -1876,9 +2062,9 @@ module.exports = function(name){
   var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
   if(name.charAt(0) != '_' && !(name in $Symbol))defineProperty($Symbol, name, {value: wksExt.f(name)});
 };
-},{"./_core":36,"./_global":46,"./_library":62,"./_object-dp":66,"./_wks-ext":92}],92:[function(require,module,exports){
+},{"./_core":37,"./_global":47,"./_library":63,"./_object-dp":67,"./_wks-ext":93}],93:[function(require,module,exports){
 exports.f = require('./_wks');
-},{"./_wks":93}],93:[function(require,module,exports){
+},{"./_wks":94}],94:[function(require,module,exports){
 var store      = require('./_shared')('wks')
   , uid        = require('./_uid')
   , Symbol     = require('./_global').Symbol
@@ -1890,7 +2076,7 @@ var $exports = module.exports = function(name){
 };
 
 $exports.store = store;
-},{"./_global":46,"./_shared":82,"./_uid":90}],94:[function(require,module,exports){
+},{"./_global":47,"./_shared":83,"./_uid":91}],95:[function(require,module,exports){
 var classof   = require('./_classof')
   , ITERATOR  = require('./_wks')('iterator')
   , Iterators = require('./_iterators');
@@ -1899,7 +2085,7 @@ module.exports = require('./_core').getIteratorMethod = function(it){
     || it['@@iterator']
     || Iterators[classof(it)];
 };
-},{"./_classof":34,"./_core":36,"./_iterators":60,"./_wks":93}],95:[function(require,module,exports){
+},{"./_classof":35,"./_core":37,"./_iterators":61,"./_wks":94}],96:[function(require,module,exports){
 'use strict';
 var ctx            = require('./_ctx')
   , $export        = require('./_export')
@@ -1938,7 +2124,7 @@ $export($export.S + $export.F * !require('./_iter-detect')(function(iter){ Array
   }
 });
 
-},{"./_create-property":37,"./_ctx":38,"./_export":44,"./_is-array-iter":52,"./_iter-call":55,"./_iter-detect":58,"./_to-length":87,"./_to-object":88,"./core.get-iterator-method":94}],96:[function(require,module,exports){
+},{"./_create-property":38,"./_ctx":39,"./_export":45,"./_is-array-iter":53,"./_iter-call":56,"./_iter-detect":59,"./_to-length":88,"./_to-object":89,"./core.get-iterator-method":95}],97:[function(require,module,exports){
 'use strict';
 var addToUnscopables = require('./_add-to-unscopables')
   , step             = require('./_iter-step')
@@ -1973,22 +2159,22 @@ Iterators.Arguments = Iterators.Array;
 addToUnscopables('keys');
 addToUnscopables('values');
 addToUnscopables('entries');
-},{"./_add-to-unscopables":31,"./_iter-define":57,"./_iter-step":59,"./_iterators":60,"./_to-iobject":86}],97:[function(require,module,exports){
+},{"./_add-to-unscopables":32,"./_iter-define":58,"./_iter-step":60,"./_iterators":61,"./_to-iobject":87}],98:[function(require,module,exports){
 // 19.1.3.1 Object.assign(target, source)
 var $export = require('./_export');
 
 $export($export.S + $export.F, 'Object', {assign: require('./_object-assign')});
-},{"./_export":44,"./_object-assign":64}],98:[function(require,module,exports){
+},{"./_export":45,"./_object-assign":65}],99:[function(require,module,exports){
 var $export = require('./_export')
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 $export($export.S, 'Object', {create: require('./_object-create')});
-},{"./_export":44,"./_object-create":65}],99:[function(require,module,exports){
+},{"./_export":45,"./_object-create":66}],100:[function(require,module,exports){
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 var $export = require('./_export');
 $export($export.S, 'Object', {setPrototypeOf: require('./_set-proto').set});
-},{"./_export":44,"./_set-proto":79}],100:[function(require,module,exports){
-arguments[4][19][0].apply(exports,arguments)
-},{"dup":19}],101:[function(require,module,exports){
+},{"./_export":45,"./_set-proto":80}],101:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"dup":20}],102:[function(require,module,exports){
 'use strict';
 var $at  = require('./_string-at')(true);
 
@@ -2006,7 +2192,7 @@ require('./_iter-define')(String, 'String', function(iterated){
   this._i += point.length;
   return {value: point, done: false};
 });
-},{"./_iter-define":57,"./_string-at":83}],102:[function(require,module,exports){
+},{"./_iter-define":58,"./_string-at":84}],103:[function(require,module,exports){
 'use strict';
 // ECMAScript 6 symbols shim
 var global         = require('./_global')
@@ -2242,7 +2428,7 @@ setToStringTag($Symbol, 'Symbol');
 setToStringTag(Math, 'Math', true);
 // 24.3.3 JSON[@@toStringTag]
 setToStringTag(global.JSON, 'JSON', true);
-},{"./_an-object":32,"./_descriptors":40,"./_enum-keys":43,"./_export":44,"./_fails":45,"./_global":46,"./_has":47,"./_hide":48,"./_is-array":53,"./_keyof":61,"./_library":62,"./_meta":63,"./_object-create":65,"./_object-dp":66,"./_object-gopd":68,"./_object-gopn":70,"./_object-gopn-ext":69,"./_object-gops":71,"./_object-keys":74,"./_object-pie":75,"./_property-desc":77,"./_redefine":78,"./_set-to-string-tag":80,"./_shared":82,"./_to-iobject":86,"./_to-primitive":89,"./_uid":90,"./_wks":93,"./_wks-define":91,"./_wks-ext":92}],103:[function(require,module,exports){
+},{"./_an-object":33,"./_descriptors":41,"./_enum-keys":44,"./_export":45,"./_fails":46,"./_global":47,"./_has":48,"./_hide":49,"./_is-array":54,"./_keyof":62,"./_library":63,"./_meta":64,"./_object-create":66,"./_object-dp":67,"./_object-gopd":69,"./_object-gopn":71,"./_object-gopn-ext":70,"./_object-gops":72,"./_object-keys":75,"./_object-pie":76,"./_property-desc":78,"./_redefine":79,"./_set-to-string-tag":81,"./_shared":83,"./_to-iobject":87,"./_to-primitive":90,"./_uid":91,"./_wks":94,"./_wks-define":92,"./_wks-ext":93}],104:[function(require,module,exports){
 // https://github.com/tc39/proposal-object-values-entries
 var $export  = require('./_export')
   , $entries = require('./_object-to-array')(true);
@@ -2252,7 +2438,7 @@ $export($export.S, 'Object', {
     return $entries(it);
   }
 });
-},{"./_export":44,"./_object-to-array":76}],104:[function(require,module,exports){
+},{"./_export":45,"./_object-to-array":77}],105:[function(require,module,exports){
 // https://github.com/tc39/proposal-object-values-entries
 var $export = require('./_export')
   , $values = require('./_object-to-array')(false);
@@ -2262,11 +2448,11 @@ $export($export.S, 'Object', {
     return $values(it);
   }
 });
-},{"./_export":44,"./_object-to-array":76}],105:[function(require,module,exports){
+},{"./_export":45,"./_object-to-array":77}],106:[function(require,module,exports){
 require('./_wks-define')('asyncIterator');
-},{"./_wks-define":91}],106:[function(require,module,exports){
+},{"./_wks-define":92}],107:[function(require,module,exports){
 require('./_wks-define')('observable');
-},{"./_wks-define":91}],107:[function(require,module,exports){
+},{"./_wks-define":92}],108:[function(require,module,exports){
 require('./es6.array.iterator');
 var global        = require('./_global')
   , hide          = require('./_hide')
@@ -2280,7 +2466,7327 @@ for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList'
   if(proto && !proto[TO_STRING_TAG])hide(proto, TO_STRING_TAG, NAME);
   Iterators[NAME] = Iterators.Array;
 }
-},{"./_global":46,"./_hide":48,"./_iterators":60,"./_wks":93,"./es6.array.iterator":96}],108:[function(require,module,exports){
+},{"./_global":47,"./_hide":49,"./_iterators":61,"./_wks":94,"./es6.array.iterator":97}],109:[function(require,module,exports){
+// https://d3js.org/d3-array/ Version 1.0.1. Copyright 2016 Mike Bostock.
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (factory((global.d3 = global.d3 || {})));
+}(this, function (exports) { 'use strict';
+
+  function ascending(a, b) {
+    return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
+  }
+
+  function bisector(compare) {
+    if (compare.length === 1) compare = ascendingComparator(compare);
+    return {
+      left: function(a, x, lo, hi) {
+        if (lo == null) lo = 0;
+        if (hi == null) hi = a.length;
+        while (lo < hi) {
+          var mid = lo + hi >>> 1;
+          if (compare(a[mid], x) < 0) lo = mid + 1;
+          else hi = mid;
+        }
+        return lo;
+      },
+      right: function(a, x, lo, hi) {
+        if (lo == null) lo = 0;
+        if (hi == null) hi = a.length;
+        while (lo < hi) {
+          var mid = lo + hi >>> 1;
+          if (compare(a[mid], x) > 0) hi = mid;
+          else lo = mid + 1;
+        }
+        return lo;
+      }
+    };
+  }
+
+  function ascendingComparator(f) {
+    return function(d, x) {
+      return ascending(f(d), x);
+    };
+  }
+
+  var ascendingBisect = bisector(ascending);
+  var bisectRight = ascendingBisect.right;
+  var bisectLeft = ascendingBisect.left;
+
+  function descending(a, b) {
+    return b < a ? -1 : b > a ? 1 : b >= a ? 0 : NaN;
+  }
+
+  function number(x) {
+    return x === null ? NaN : +x;
+  }
+
+  function variance(array, f) {
+    var n = array.length,
+        m = 0,
+        a,
+        d,
+        s = 0,
+        i = -1,
+        j = 0;
+
+    if (f == null) {
+      while (++i < n) {
+        if (!isNaN(a = number(array[i]))) {
+          d = a - m;
+          m += d / ++j;
+          s += d * (a - m);
+        }
+      }
+    }
+
+    else {
+      while (++i < n) {
+        if (!isNaN(a = number(f(array[i], i, array)))) {
+          d = a - m;
+          m += d / ++j;
+          s += d * (a - m);
+        }
+      }
+    }
+
+    if (j > 1) return s / (j - 1);
+  }
+
+  function deviation(array, f) {
+    var v = variance(array, f);
+    return v ? Math.sqrt(v) : v;
+  }
+
+  function extent(array, f) {
+    var i = -1,
+        n = array.length,
+        a,
+        b,
+        c;
+
+    if (f == null) {
+      while (++i < n) if ((b = array[i]) != null && b >= b) { a = c = b; break; }
+      while (++i < n) if ((b = array[i]) != null) {
+        if (a > b) a = b;
+        if (c < b) c = b;
+      }
+    }
+
+    else {
+      while (++i < n) if ((b = f(array[i], i, array)) != null && b >= b) { a = c = b; break; }
+      while (++i < n) if ((b = f(array[i], i, array)) != null) {
+        if (a > b) a = b;
+        if (c < b) c = b;
+      }
+    }
+
+    return [a, c];
+  }
+
+  var array = Array.prototype;
+
+  var slice = array.slice;
+  var map = array.map;
+
+  function constant(x) {
+    return function() {
+      return x;
+    };
+  }
+
+  function identity(x) {
+    return x;
+  }
+
+  function range(start, stop, step) {
+    start = +start, stop = +stop, step = (n = arguments.length) < 2 ? (stop = start, start = 0, 1) : n < 3 ? 1 : +step;
+
+    var i = -1,
+        n = Math.max(0, Math.ceil((stop - start) / step)) | 0,
+        range = new Array(n);
+
+    while (++i < n) {
+      range[i] = start + i * step;
+    }
+
+    return range;
+  }
+
+  var e10 = Math.sqrt(50);
+  var e5 = Math.sqrt(10);
+  var e2 = Math.sqrt(2);
+  function ticks(start, stop, count) {
+    var step = tickStep(start, stop, count);
+    return range(
+      Math.ceil(start / step) * step,
+      Math.floor(stop / step) * step + step / 2, // inclusive
+      step
+    );
+  }
+
+  function tickStep(start, stop, count) {
+    var step0 = Math.abs(stop - start) / Math.max(0, count),
+        step1 = Math.pow(10, Math.floor(Math.log(step0) / Math.LN10)),
+        error = step0 / step1;
+    if (error >= e10) step1 *= 10;
+    else if (error >= e5) step1 *= 5;
+    else if (error >= e2) step1 *= 2;
+    return stop < start ? -step1 : step1;
+  }
+
+  function sturges(values) {
+    return Math.ceil(Math.log(values.length) / Math.LN2) + 1;
+  }
+
+  function histogram() {
+    var value = identity,
+        domain = extent,
+        threshold = sturges;
+
+    function histogram(data) {
+      var i,
+          n = data.length,
+          x,
+          values = new Array(n);
+
+      for (i = 0; i < n; ++i) {
+        values[i] = value(data[i], i, data);
+      }
+
+      var xz = domain(values),
+          x0 = xz[0],
+          x1 = xz[1],
+          tz = threshold(values, x0, x1);
+
+      // Convert number of thresholds into uniform thresholds.
+      if (!Array.isArray(tz)) tz = ticks(x0, x1, tz);
+
+      // Remove any thresholds outside the domain.
+      var m = tz.length;
+      while (tz[0] <= x0) tz.shift(), --m;
+      while (tz[m - 1] >= x1) tz.pop(), --m;
+
+      var bins = new Array(m + 1),
+          bin;
+
+      // Initialize bins.
+      for (i = 0; i <= m; ++i) {
+        bin = bins[i] = [];
+        bin.x0 = i > 0 ? tz[i - 1] : x0;
+        bin.x1 = i < m ? tz[i] : x1;
+      }
+
+      // Assign data to bins by value, ignoring any outside the domain.
+      for (i = 0; i < n; ++i) {
+        x = values[i];
+        if (x0 <= x && x <= x1) {
+          bins[bisectRight(tz, x, 0, m)].push(data[i]);
+        }
+      }
+
+      return bins;
+    }
+
+    histogram.value = function(_) {
+      return arguments.length ? (value = typeof _ === "function" ? _ : constant(_), histogram) : value;
+    };
+
+    histogram.domain = function(_) {
+      return arguments.length ? (domain = typeof _ === "function" ? _ : constant([_[0], _[1]]), histogram) : domain;
+    };
+
+    histogram.thresholds = function(_) {
+      return arguments.length ? (threshold = typeof _ === "function" ? _ : Array.isArray(_) ? constant(slice.call(_)) : constant(_), histogram) : threshold;
+    };
+
+    return histogram;
+  }
+
+  function quantile(array, p, f) {
+    if (f == null) f = number;
+    if (!(n = array.length)) return;
+    if ((p = +p) <= 0 || n < 2) return +f(array[0], 0, array);
+    if (p >= 1) return +f(array[n - 1], n - 1, array);
+    var n,
+        h = (n - 1) * p,
+        i = Math.floor(h),
+        a = +f(array[i], i, array),
+        b = +f(array[i + 1], i + 1, array);
+    return a + (b - a) * (h - i);
+  }
+
+  function freedmanDiaconis(values, min, max) {
+    values = map.call(values, number).sort(ascending);
+    return Math.ceil((max - min) / (2 * (quantile(values, 0.75) - quantile(values, 0.25)) * Math.pow(values.length, -1 / 3)));
+  }
+
+  function scott(values, min, max) {
+    return Math.ceil((max - min) / (3.5 * deviation(values) * Math.pow(values.length, -1 / 3)));
+  }
+
+  function max(array, f) {
+    var i = -1,
+        n = array.length,
+        a,
+        b;
+
+    if (f == null) {
+      while (++i < n) if ((b = array[i]) != null && b >= b) { a = b; break; }
+      while (++i < n) if ((b = array[i]) != null && b > a) a = b;
+    }
+
+    else {
+      while (++i < n) if ((b = f(array[i], i, array)) != null && b >= b) { a = b; break; }
+      while (++i < n) if ((b = f(array[i], i, array)) != null && b > a) a = b;
+    }
+
+    return a;
+  }
+
+  function mean(array, f) {
+    var s = 0,
+        n = array.length,
+        a,
+        i = -1,
+        j = n;
+
+    if (f == null) {
+      while (++i < n) if (!isNaN(a = number(array[i]))) s += a; else --j;
+    }
+
+    else {
+      while (++i < n) if (!isNaN(a = number(f(array[i], i, array)))) s += a; else --j;
+    }
+
+    if (j) return s / j;
+  }
+
+  function median(array, f) {
+    var numbers = [],
+        n = array.length,
+        a,
+        i = -1;
+
+    if (f == null) {
+      while (++i < n) if (!isNaN(a = number(array[i]))) numbers.push(a);
+    }
+
+    else {
+      while (++i < n) if (!isNaN(a = number(f(array[i], i, array)))) numbers.push(a);
+    }
+
+    return quantile(numbers.sort(ascending), 0.5);
+  }
+
+  function merge(arrays) {
+    var n = arrays.length,
+        m,
+        i = -1,
+        j = 0,
+        merged,
+        array;
+
+    while (++i < n) j += arrays[i].length;
+    merged = new Array(j);
+
+    while (--n >= 0) {
+      array = arrays[n];
+      m = array.length;
+      while (--m >= 0) {
+        merged[--j] = array[m];
+      }
+    }
+
+    return merged;
+  }
+
+  function min(array, f) {
+    var i = -1,
+        n = array.length,
+        a,
+        b;
+
+    if (f == null) {
+      while (++i < n) if ((b = array[i]) != null && b >= b) { a = b; break; }
+      while (++i < n) if ((b = array[i]) != null && a > b) a = b;
+    }
+
+    else {
+      while (++i < n) if ((b = f(array[i], i, array)) != null && b >= b) { a = b; break; }
+      while (++i < n) if ((b = f(array[i], i, array)) != null && a > b) a = b;
+    }
+
+    return a;
+  }
+
+  function pairs(array) {
+    var i = 0, n = array.length - 1, p = array[0], pairs = new Array(n < 0 ? 0 : n);
+    while (i < n) pairs[i] = [p, p = array[++i]];
+    return pairs;
+  }
+
+  function permute(array, indexes) {
+    var i = indexes.length, permutes = new Array(i);
+    while (i--) permutes[i] = array[indexes[i]];
+    return permutes;
+  }
+
+  function scan(array, compare) {
+    if (!(n = array.length)) return;
+    var i = 0,
+        n,
+        j = 0,
+        xi,
+        xj = array[j];
+
+    if (!compare) compare = ascending;
+
+    while (++i < n) if (compare(xi = array[i], xj) < 0 || compare(xj, xj) !== 0) xj = xi, j = i;
+
+    if (compare(xj, xj) === 0) return j;
+  }
+
+  function shuffle(array, i0, i1) {
+    var m = (i1 == null ? array.length : i1) - (i0 = i0 == null ? 0 : +i0),
+        t,
+        i;
+
+    while (m) {
+      i = Math.random() * m-- | 0;
+      t = array[m + i0];
+      array[m + i0] = array[i + i0];
+      array[i + i0] = t;
+    }
+
+    return array;
+  }
+
+  function sum(array, f) {
+    var s = 0,
+        n = array.length,
+        a,
+        i = -1;
+
+    if (f == null) {
+      while (++i < n) if (a = +array[i]) s += a; // Note: zero and null are equivalent.
+    }
+
+    else {
+      while (++i < n) if (a = +f(array[i], i, array)) s += a;
+    }
+
+    return s;
+  }
+
+  function transpose(matrix) {
+    if (!(n = matrix.length)) return [];
+    for (var i = -1, m = min(matrix, length), transpose = new Array(m); ++i < m;) {
+      for (var j = -1, n, row = transpose[i] = new Array(n); ++j < n;) {
+        row[j] = matrix[j][i];
+      }
+    }
+    return transpose;
+  }
+
+  function length(d) {
+    return d.length;
+  }
+
+  function zip() {
+    return transpose(arguments);
+  }
+
+  exports.bisect = bisectRight;
+  exports.bisectRight = bisectRight;
+  exports.bisectLeft = bisectLeft;
+  exports.ascending = ascending;
+  exports.bisector = bisector;
+  exports.descending = descending;
+  exports.deviation = deviation;
+  exports.extent = extent;
+  exports.histogram = histogram;
+  exports.thresholdFreedmanDiaconis = freedmanDiaconis;
+  exports.thresholdScott = scott;
+  exports.thresholdSturges = sturges;
+  exports.max = max;
+  exports.mean = mean;
+  exports.median = median;
+  exports.merge = merge;
+  exports.min = min;
+  exports.pairs = pairs;
+  exports.permute = permute;
+  exports.quantile = quantile;
+  exports.range = range;
+  exports.scan = scan;
+  exports.shuffle = shuffle;
+  exports.sum = sum;
+  exports.ticks = ticks;
+  exports.tickStep = tickStep;
+  exports.transpose = transpose;
+  exports.variance = variance;
+  exports.zip = zip;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
+
+}));
+},{}],110:[function(require,module,exports){
+// https://d3js.org/d3-collection/ Version 1.0.1. Copyright 2016 Mike Bostock.
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (factory((global.d3 = global.d3 || {})));
+}(this, function (exports) { 'use strict';
+
+  var prefix = "$";
+
+  function Map() {}
+
+  Map.prototype = map.prototype = {
+    constructor: Map,
+    has: function(key) {
+      return (prefix + key) in this;
+    },
+    get: function(key) {
+      return this[prefix + key];
+    },
+    set: function(key, value) {
+      this[prefix + key] = value;
+      return this;
+    },
+    remove: function(key) {
+      var property = prefix + key;
+      return property in this && delete this[property];
+    },
+    clear: function() {
+      for (var property in this) if (property[0] === prefix) delete this[property];
+    },
+    keys: function() {
+      var keys = [];
+      for (var property in this) if (property[0] === prefix) keys.push(property.slice(1));
+      return keys;
+    },
+    values: function() {
+      var values = [];
+      for (var property in this) if (property[0] === prefix) values.push(this[property]);
+      return values;
+    },
+    entries: function() {
+      var entries = [];
+      for (var property in this) if (property[0] === prefix) entries.push({key: property.slice(1), value: this[property]});
+      return entries;
+    },
+    size: function() {
+      var size = 0;
+      for (var property in this) if (property[0] === prefix) ++size;
+      return size;
+    },
+    empty: function() {
+      for (var property in this) if (property[0] === prefix) return false;
+      return true;
+    },
+    each: function(f) {
+      for (var property in this) if (property[0] === prefix) f(this[property], property.slice(1), this);
+    }
+  };
+
+  function map(object, f) {
+    var map = new Map;
+
+    // Copy constructor.
+    if (object instanceof Map) object.each(function(value, key) { map.set(key, value); });
+
+    // Index array by numeric index or specified key function.
+    else if (Array.isArray(object)) {
+      var i = -1,
+          n = object.length,
+          o;
+
+      if (f == null) while (++i < n) map.set(i, object[i]);
+      else while (++i < n) map.set(f(o = object[i], i, object), o);
+    }
+
+    // Convert object to map.
+    else if (object) for (var key in object) map.set(key, object[key]);
+
+    return map;
+  }
+
+  function nest() {
+    var keys = [],
+        sortKeys = [],
+        sortValues,
+        rollup,
+        nest;
+
+    function apply(array, depth, createResult, setResult) {
+      if (depth >= keys.length) return rollup != null
+          ? rollup(array) : (sortValues != null
+          ? array.sort(sortValues)
+          : array);
+
+      var i = -1,
+          n = array.length,
+          key = keys[depth++],
+          keyValue,
+          value,
+          valuesByKey = map(),
+          values,
+          result = createResult();
+
+      while (++i < n) {
+        if (values = valuesByKey.get(keyValue = key(value = array[i]) + "")) {
+          values.push(value);
+        } else {
+          valuesByKey.set(keyValue, [value]);
+        }
+      }
+
+      valuesByKey.each(function(values, key) {
+        setResult(result, key, apply(values, depth, createResult, setResult));
+      });
+
+      return result;
+    }
+
+    function entries(map, depth) {
+      if (++depth > keys.length) return map;
+      var array, sortKey = sortKeys[depth - 1];
+      if (rollup != null && depth >= keys.length) array = map.entries();
+      else array = [], map.each(function(v, k) { array.push({key: k, values: entries(v, depth)}); });
+      return sortKey != null ? array.sort(function(a, b) { return sortKey(a.key, b.key); }) : array;
+    }
+
+    return nest = {
+      object: function(array) { return apply(array, 0, createObject, setObject); },
+      map: function(array) { return apply(array, 0, createMap, setMap); },
+      entries: function(array) { return entries(apply(array, 0, createMap, setMap), 0); },
+      key: function(d) { keys.push(d); return nest; },
+      sortKeys: function(order) { sortKeys[keys.length - 1] = order; return nest; },
+      sortValues: function(order) { sortValues = order; return nest; },
+      rollup: function(f) { rollup = f; return nest; }
+    };
+  }
+
+  function createObject() {
+    return {};
+  }
+
+  function setObject(object, key, value) {
+    object[key] = value;
+  }
+
+  function createMap() {
+    return map();
+  }
+
+  function setMap(map, key, value) {
+    map.set(key, value);
+  }
+
+  function Set() {}
+
+  var proto = map.prototype;
+
+  Set.prototype = set.prototype = {
+    constructor: Set,
+    has: proto.has,
+    add: function(value) {
+      value += "";
+      this[prefix + value] = value;
+      return this;
+    },
+    remove: proto.remove,
+    clear: proto.clear,
+    values: proto.keys,
+    size: proto.size,
+    empty: proto.empty,
+    each: proto.each
+  };
+
+  function set(object, f) {
+    var set = new Set;
+
+    // Copy constructor.
+    if (object instanceof Set) object.each(function(value) { set.add(value); });
+
+    // Otherwise, assume it’s an array.
+    else if (object) {
+      var i = -1, n = object.length;
+      if (f == null) while (++i < n) set.add(object[i]);
+      else while (++i < n) set.add(f(object[i], i, object));
+    }
+
+    return set;
+  }
+
+  function keys(map) {
+    var keys = [];
+    for (var key in map) keys.push(key);
+    return keys;
+  }
+
+  function values(map) {
+    var values = [];
+    for (var key in map) values.push(map[key]);
+    return values;
+  }
+
+  function entries(map) {
+    var entries = [];
+    for (var key in map) entries.push({key: key, value: map[key]});
+    return entries;
+  }
+
+  exports.nest = nest;
+  exports.set = set;
+  exports.map = map;
+  exports.keys = keys;
+  exports.values = values;
+  exports.entries = entries;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
+
+}));
+},{}],111:[function(require,module,exports){
+// https://d3js.org/d3-color/ Version 1.0.1. Copyright 2016 Mike Bostock.
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (factory((global.d3 = global.d3 || {})));
+}(this, function (exports) { 'use strict';
+
+  function define(constructor, factory, prototype) {
+    constructor.prototype = factory.prototype = prototype;
+    prototype.constructor = constructor;
+  }
+
+  function extend(parent, definition) {
+    var prototype = Object.create(parent.prototype);
+    for (var key in definition) prototype[key] = definition[key];
+    return prototype;
+  }
+
+  function Color() {}
+
+  var darker = 0.7;
+  var brighter = 1 / darker;
+
+  var reHex3 = /^#([0-9a-f]{3})$/;
+  var reHex6 = /^#([0-9a-f]{6})$/;
+  var reRgbInteger = /^rgb\(\s*([-+]?\d+)\s*,\s*([-+]?\d+)\s*,\s*([-+]?\d+)\s*\)$/;
+  var reRgbPercent = /^rgb\(\s*([-+]?\d+(?:\.\d+)?)%\s*,\s*([-+]?\d+(?:\.\d+)?)%\s*,\s*([-+]?\d+(?:\.\d+)?)%\s*\)$/;
+  var reRgbaInteger = /^rgba\(\s*([-+]?\d+)\s*,\s*([-+]?\d+)\s*,\s*([-+]?\d+)\s*,\s*([-+]?\d+(?:\.\d+)?)\s*\)$/;
+  var reRgbaPercent = /^rgba\(\s*([-+]?\d+(?:\.\d+)?)%\s*,\s*([-+]?\d+(?:\.\d+)?)%\s*,\s*([-+]?\d+(?:\.\d+)?)%\s*,\s*([-+]?\d+(?:\.\d+)?)\s*\)$/;
+  var reHslPercent = /^hsl\(\s*([-+]?\d+(?:\.\d+)?)\s*,\s*([-+]?\d+(?:\.\d+)?)%\s*,\s*([-+]?\d+(?:\.\d+)?)%\s*\)$/;
+  var reHslaPercent = /^hsla\(\s*([-+]?\d+(?:\.\d+)?)\s*,\s*([-+]?\d+(?:\.\d+)?)%\s*,\s*([-+]?\d+(?:\.\d+)?)%\s*,\s*([-+]?\d+(?:\.\d+)?)\s*\)$/;
+  var named = {
+    aliceblue: 0xf0f8ff,
+    antiquewhite: 0xfaebd7,
+    aqua: 0x00ffff,
+    aquamarine: 0x7fffd4,
+    azure: 0xf0ffff,
+    beige: 0xf5f5dc,
+    bisque: 0xffe4c4,
+    black: 0x000000,
+    blanchedalmond: 0xffebcd,
+    blue: 0x0000ff,
+    blueviolet: 0x8a2be2,
+    brown: 0xa52a2a,
+    burlywood: 0xdeb887,
+    cadetblue: 0x5f9ea0,
+    chartreuse: 0x7fff00,
+    chocolate: 0xd2691e,
+    coral: 0xff7f50,
+    cornflowerblue: 0x6495ed,
+    cornsilk: 0xfff8dc,
+    crimson: 0xdc143c,
+    cyan: 0x00ffff,
+    darkblue: 0x00008b,
+    darkcyan: 0x008b8b,
+    darkgoldenrod: 0xb8860b,
+    darkgray: 0xa9a9a9,
+    darkgreen: 0x006400,
+    darkgrey: 0xa9a9a9,
+    darkkhaki: 0xbdb76b,
+    darkmagenta: 0x8b008b,
+    darkolivegreen: 0x556b2f,
+    darkorange: 0xff8c00,
+    darkorchid: 0x9932cc,
+    darkred: 0x8b0000,
+    darksalmon: 0xe9967a,
+    darkseagreen: 0x8fbc8f,
+    darkslateblue: 0x483d8b,
+    darkslategray: 0x2f4f4f,
+    darkslategrey: 0x2f4f4f,
+    darkturquoise: 0x00ced1,
+    darkviolet: 0x9400d3,
+    deeppink: 0xff1493,
+    deepskyblue: 0x00bfff,
+    dimgray: 0x696969,
+    dimgrey: 0x696969,
+    dodgerblue: 0x1e90ff,
+    firebrick: 0xb22222,
+    floralwhite: 0xfffaf0,
+    forestgreen: 0x228b22,
+    fuchsia: 0xff00ff,
+    gainsboro: 0xdcdcdc,
+    ghostwhite: 0xf8f8ff,
+    gold: 0xffd700,
+    goldenrod: 0xdaa520,
+    gray: 0x808080,
+    green: 0x008000,
+    greenyellow: 0xadff2f,
+    grey: 0x808080,
+    honeydew: 0xf0fff0,
+    hotpink: 0xff69b4,
+    indianred: 0xcd5c5c,
+    indigo: 0x4b0082,
+    ivory: 0xfffff0,
+    khaki: 0xf0e68c,
+    lavender: 0xe6e6fa,
+    lavenderblush: 0xfff0f5,
+    lawngreen: 0x7cfc00,
+    lemonchiffon: 0xfffacd,
+    lightblue: 0xadd8e6,
+    lightcoral: 0xf08080,
+    lightcyan: 0xe0ffff,
+    lightgoldenrodyellow: 0xfafad2,
+    lightgray: 0xd3d3d3,
+    lightgreen: 0x90ee90,
+    lightgrey: 0xd3d3d3,
+    lightpink: 0xffb6c1,
+    lightsalmon: 0xffa07a,
+    lightseagreen: 0x20b2aa,
+    lightskyblue: 0x87cefa,
+    lightslategray: 0x778899,
+    lightslategrey: 0x778899,
+    lightsteelblue: 0xb0c4de,
+    lightyellow: 0xffffe0,
+    lime: 0x00ff00,
+    limegreen: 0x32cd32,
+    linen: 0xfaf0e6,
+    magenta: 0xff00ff,
+    maroon: 0x800000,
+    mediumaquamarine: 0x66cdaa,
+    mediumblue: 0x0000cd,
+    mediumorchid: 0xba55d3,
+    mediumpurple: 0x9370db,
+    mediumseagreen: 0x3cb371,
+    mediumslateblue: 0x7b68ee,
+    mediumspringgreen: 0x00fa9a,
+    mediumturquoise: 0x48d1cc,
+    mediumvioletred: 0xc71585,
+    midnightblue: 0x191970,
+    mintcream: 0xf5fffa,
+    mistyrose: 0xffe4e1,
+    moccasin: 0xffe4b5,
+    navajowhite: 0xffdead,
+    navy: 0x000080,
+    oldlace: 0xfdf5e6,
+    olive: 0x808000,
+    olivedrab: 0x6b8e23,
+    orange: 0xffa500,
+    orangered: 0xff4500,
+    orchid: 0xda70d6,
+    palegoldenrod: 0xeee8aa,
+    palegreen: 0x98fb98,
+    paleturquoise: 0xafeeee,
+    palevioletred: 0xdb7093,
+    papayawhip: 0xffefd5,
+    peachpuff: 0xffdab9,
+    peru: 0xcd853f,
+    pink: 0xffc0cb,
+    plum: 0xdda0dd,
+    powderblue: 0xb0e0e6,
+    purple: 0x800080,
+    rebeccapurple: 0x663399,
+    red: 0xff0000,
+    rosybrown: 0xbc8f8f,
+    royalblue: 0x4169e1,
+    saddlebrown: 0x8b4513,
+    salmon: 0xfa8072,
+    sandybrown: 0xf4a460,
+    seagreen: 0x2e8b57,
+    seashell: 0xfff5ee,
+    sienna: 0xa0522d,
+    silver: 0xc0c0c0,
+    skyblue: 0x87ceeb,
+    slateblue: 0x6a5acd,
+    slategray: 0x708090,
+    slategrey: 0x708090,
+    snow: 0xfffafa,
+    springgreen: 0x00ff7f,
+    steelblue: 0x4682b4,
+    tan: 0xd2b48c,
+    teal: 0x008080,
+    thistle: 0xd8bfd8,
+    tomato: 0xff6347,
+    turquoise: 0x40e0d0,
+    violet: 0xee82ee,
+    wheat: 0xf5deb3,
+    white: 0xffffff,
+    whitesmoke: 0xf5f5f5,
+    yellow: 0xffff00,
+    yellowgreen: 0x9acd32
+  };
+
+  define(Color, color, {
+    displayable: function() {
+      return this.rgb().displayable();
+    },
+    toString: function() {
+      return this.rgb() + "";
+    }
+  });
+
+  function color(format) {
+    var m;
+    format = (format + "").trim().toLowerCase();
+    return (m = reHex3.exec(format)) ? (m = parseInt(m[1], 16), new Rgb((m >> 8 & 0xf) | (m >> 4 & 0x0f0), (m >> 4 & 0xf) | (m & 0xf0), ((m & 0xf) << 4) | (m & 0xf), 1)) // #f00
+        : (m = reHex6.exec(format)) ? rgbn(parseInt(m[1], 16)) // #ff0000
+        : (m = reRgbInteger.exec(format)) ? new Rgb(m[1], m[2], m[3], 1) // rgb(255, 0, 0)
+        : (m = reRgbPercent.exec(format)) ? new Rgb(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, 1) // rgb(100%, 0%, 0%)
+        : (m = reRgbaInteger.exec(format)) ? rgba(m[1], m[2], m[3], m[4]) // rgba(255, 0, 0, 1)
+        : (m = reRgbaPercent.exec(format)) ? rgba(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, m[4]) // rgb(100%, 0%, 0%, 1)
+        : (m = reHslPercent.exec(format)) ? hsla(m[1], m[2] / 100, m[3] / 100, 1) // hsl(120, 50%, 50%)
+        : (m = reHslaPercent.exec(format)) ? hsla(m[1], m[2] / 100, m[3] / 100, m[4]) // hsla(120, 50%, 50%, 1)
+        : named.hasOwnProperty(format) ? rgbn(named[format])
+        : format === "transparent" ? new Rgb(NaN, NaN, NaN, 0)
+        : null;
+  }
+
+  function rgbn(n) {
+    return new Rgb(n >> 16 & 0xff, n >> 8 & 0xff, n & 0xff, 1);
+  }
+
+  function rgba(r, g, b, a) {
+    if (a <= 0) r = g = b = NaN;
+    return new Rgb(r, g, b, a);
+  }
+
+  function rgbConvert(o) {
+    if (!(o instanceof Color)) o = color(o);
+    if (!o) return new Rgb;
+    o = o.rgb();
+    return new Rgb(o.r, o.g, o.b, o.opacity);
+  }
+
+  function rgb(r, g, b, opacity) {
+    return arguments.length === 1 ? rgbConvert(r) : new Rgb(r, g, b, opacity == null ? 1 : opacity);
+  }
+
+  function Rgb(r, g, b, opacity) {
+    this.r = +r;
+    this.g = +g;
+    this.b = +b;
+    this.opacity = +opacity;
+  }
+
+  define(Rgb, rgb, extend(Color, {
+    brighter: function(k) {
+      k = k == null ? brighter : Math.pow(brighter, k);
+      return new Rgb(this.r * k, this.g * k, this.b * k, this.opacity);
+    },
+    darker: function(k) {
+      k = k == null ? darker : Math.pow(darker, k);
+      return new Rgb(this.r * k, this.g * k, this.b * k, this.opacity);
+    },
+    rgb: function() {
+      return this;
+    },
+    displayable: function() {
+      return (0 <= this.r && this.r <= 255)
+          && (0 <= this.g && this.g <= 255)
+          && (0 <= this.b && this.b <= 255)
+          && (0 <= this.opacity && this.opacity <= 1);
+    },
+    toString: function() {
+      var a = this.opacity; a = isNaN(a) ? 1 : Math.max(0, Math.min(1, a));
+      return (a === 1 ? "rgb(" : "rgba(")
+          + Math.max(0, Math.min(255, Math.round(this.r) || 0)) + ", "
+          + Math.max(0, Math.min(255, Math.round(this.g) || 0)) + ", "
+          + Math.max(0, Math.min(255, Math.round(this.b) || 0))
+          + (a === 1 ? ")" : ", " + a + ")");
+    }
+  }));
+
+  function hsla(h, s, l, a) {
+    if (a <= 0) h = s = l = NaN;
+    else if (l <= 0 || l >= 1) h = s = NaN;
+    else if (s <= 0) h = NaN;
+    return new Hsl(h, s, l, a);
+  }
+
+  function hslConvert(o) {
+    if (o instanceof Hsl) return new Hsl(o.h, o.s, o.l, o.opacity);
+    if (!(o instanceof Color)) o = color(o);
+    if (!o) return new Hsl;
+    if (o instanceof Hsl) return o;
+    o = o.rgb();
+    var r = o.r / 255,
+        g = o.g / 255,
+        b = o.b / 255,
+        min = Math.min(r, g, b),
+        max = Math.max(r, g, b),
+        h = NaN,
+        s = max - min,
+        l = (max + min) / 2;
+    if (s) {
+      if (r === max) h = (g - b) / s + (g < b) * 6;
+      else if (g === max) h = (b - r) / s + 2;
+      else h = (r - g) / s + 4;
+      s /= l < 0.5 ? max + min : 2 - max - min;
+      h *= 60;
+    } else {
+      s = l > 0 && l < 1 ? 0 : h;
+    }
+    return new Hsl(h, s, l, o.opacity);
+  }
+
+  function hsl(h, s, l, opacity) {
+    return arguments.length === 1 ? hslConvert(h) : new Hsl(h, s, l, opacity == null ? 1 : opacity);
+  }
+
+  function Hsl(h, s, l, opacity) {
+    this.h = +h;
+    this.s = +s;
+    this.l = +l;
+    this.opacity = +opacity;
+  }
+
+  define(Hsl, hsl, extend(Color, {
+    brighter: function(k) {
+      k = k == null ? brighter : Math.pow(brighter, k);
+      return new Hsl(this.h, this.s, this.l * k, this.opacity);
+    },
+    darker: function(k) {
+      k = k == null ? darker : Math.pow(darker, k);
+      return new Hsl(this.h, this.s, this.l * k, this.opacity);
+    },
+    rgb: function() {
+      var h = this.h % 360 + (this.h < 0) * 360,
+          s = isNaN(h) || isNaN(this.s) ? 0 : this.s,
+          l = this.l,
+          m2 = l + (l < 0.5 ? l : 1 - l) * s,
+          m1 = 2 * l - m2;
+      return new Rgb(
+        hsl2rgb(h >= 240 ? h - 240 : h + 120, m1, m2),
+        hsl2rgb(h, m1, m2),
+        hsl2rgb(h < 120 ? h + 240 : h - 120, m1, m2),
+        this.opacity
+      );
+    },
+    displayable: function() {
+      return (0 <= this.s && this.s <= 1 || isNaN(this.s))
+          && (0 <= this.l && this.l <= 1)
+          && (0 <= this.opacity && this.opacity <= 1);
+    }
+  }));
+
+  /* From FvD 13.37, CSS Color Module Level 3 */
+  function hsl2rgb(h, m1, m2) {
+    return (h < 60 ? m1 + (m2 - m1) * h / 60
+        : h < 180 ? m2
+        : h < 240 ? m1 + (m2 - m1) * (240 - h) / 60
+        : m1) * 255;
+  }
+
+  var deg2rad = Math.PI / 180;
+  var rad2deg = 180 / Math.PI;
+
+  var Kn = 18;
+  var Xn = 0.950470;
+  var Yn = 1;
+  var Zn = 1.088830;
+  var t0 = 4 / 29;
+  var t1 = 6 / 29;
+  var t2 = 3 * t1 * t1;
+  var t3 = t1 * t1 * t1;
+  function labConvert(o) {
+    if (o instanceof Lab) return new Lab(o.l, o.a, o.b, o.opacity);
+    if (o instanceof Hcl) {
+      var h = o.h * deg2rad;
+      return new Lab(o.l, Math.cos(h) * o.c, Math.sin(h) * o.c, o.opacity);
+    }
+    if (!(o instanceof Rgb)) o = rgbConvert(o);
+    var b = rgb2xyz(o.r),
+        a = rgb2xyz(o.g),
+        l = rgb2xyz(o.b),
+        x = xyz2lab((0.4124564 * b + 0.3575761 * a + 0.1804375 * l) / Xn),
+        y = xyz2lab((0.2126729 * b + 0.7151522 * a + 0.0721750 * l) / Yn),
+        z = xyz2lab((0.0193339 * b + 0.1191920 * a + 0.9503041 * l) / Zn);
+    return new Lab(116 * y - 16, 500 * (x - y), 200 * (y - z), o.opacity);
+  }
+
+  function lab(l, a, b, opacity) {
+    return arguments.length === 1 ? labConvert(l) : new Lab(l, a, b, opacity == null ? 1 : opacity);
+  }
+
+  function Lab(l, a, b, opacity) {
+    this.l = +l;
+    this.a = +a;
+    this.b = +b;
+    this.opacity = +opacity;
+  }
+
+  define(Lab, lab, extend(Color, {
+    brighter: function(k) {
+      return new Lab(this.l + Kn * (k == null ? 1 : k), this.a, this.b, this.opacity);
+    },
+    darker: function(k) {
+      return new Lab(this.l - Kn * (k == null ? 1 : k), this.a, this.b, this.opacity);
+    },
+    rgb: function() {
+      var y = (this.l + 16) / 116,
+          x = isNaN(this.a) ? y : y + this.a / 500,
+          z = isNaN(this.b) ? y : y - this.b / 200;
+      y = Yn * lab2xyz(y);
+      x = Xn * lab2xyz(x);
+      z = Zn * lab2xyz(z);
+      return new Rgb(
+        xyz2rgb( 3.2404542 * x - 1.5371385 * y - 0.4985314 * z), // D65 -> sRGB
+        xyz2rgb(-0.9692660 * x + 1.8760108 * y + 0.0415560 * z),
+        xyz2rgb( 0.0556434 * x - 0.2040259 * y + 1.0572252 * z),
+        this.opacity
+      );
+    }
+  }));
+
+  function xyz2lab(t) {
+    return t > t3 ? Math.pow(t, 1 / 3) : t / t2 + t0;
+  }
+
+  function lab2xyz(t) {
+    return t > t1 ? t * t * t : t2 * (t - t0);
+  }
+
+  function xyz2rgb(x) {
+    return 255 * (x <= 0.0031308 ? 12.92 * x : 1.055 * Math.pow(x, 1 / 2.4) - 0.055);
+  }
+
+  function rgb2xyz(x) {
+    return (x /= 255) <= 0.04045 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4);
+  }
+
+  function hclConvert(o) {
+    if (o instanceof Hcl) return new Hcl(o.h, o.c, o.l, o.opacity);
+    if (!(o instanceof Lab)) o = labConvert(o);
+    var h = Math.atan2(o.b, o.a) * rad2deg;
+    return new Hcl(h < 0 ? h + 360 : h, Math.sqrt(o.a * o.a + o.b * o.b), o.l, o.opacity);
+  }
+
+  function hcl(h, c, l, opacity) {
+    return arguments.length === 1 ? hclConvert(h) : new Hcl(h, c, l, opacity == null ? 1 : opacity);
+  }
+
+  function Hcl(h, c, l, opacity) {
+    this.h = +h;
+    this.c = +c;
+    this.l = +l;
+    this.opacity = +opacity;
+  }
+
+  define(Hcl, hcl, extend(Color, {
+    brighter: function(k) {
+      return new Hcl(this.h, this.c, this.l + Kn * (k == null ? 1 : k), this.opacity);
+    },
+    darker: function(k) {
+      return new Hcl(this.h, this.c, this.l - Kn * (k == null ? 1 : k), this.opacity);
+    },
+    rgb: function() {
+      return labConvert(this).rgb();
+    }
+  }));
+
+  var A = -0.14861;
+  var B = +1.78277;
+  var C = -0.29227;
+  var D = -0.90649;
+  var E = +1.97294;
+  var ED = E * D;
+  var EB = E * B;
+  var BC_DA = B * C - D * A;
+  function cubehelixConvert(o) {
+    if (o instanceof Cubehelix) return new Cubehelix(o.h, o.s, o.l, o.opacity);
+    if (!(o instanceof Rgb)) o = rgbConvert(o);
+    var r = o.r / 255,
+        g = o.g / 255,
+        b = o.b / 255,
+        l = (BC_DA * b + ED * r - EB * g) / (BC_DA + ED - EB),
+        bl = b - l,
+        k = (E * (g - l) - C * bl) / D,
+        s = Math.sqrt(k * k + bl * bl) / (E * l * (1 - l)), // NaN if l=0 or l=1
+        h = s ? Math.atan2(k, bl) * rad2deg - 120 : NaN;
+    return new Cubehelix(h < 0 ? h + 360 : h, s, l, o.opacity);
+  }
+
+  function cubehelix(h, s, l, opacity) {
+    return arguments.length === 1 ? cubehelixConvert(h) : new Cubehelix(h, s, l, opacity == null ? 1 : opacity);
+  }
+
+  function Cubehelix(h, s, l, opacity) {
+    this.h = +h;
+    this.s = +s;
+    this.l = +l;
+    this.opacity = +opacity;
+  }
+
+  define(Cubehelix, cubehelix, extend(Color, {
+    brighter: function(k) {
+      k = k == null ? brighter : Math.pow(brighter, k);
+      return new Cubehelix(this.h, this.s, this.l * k, this.opacity);
+    },
+    darker: function(k) {
+      k = k == null ? darker : Math.pow(darker, k);
+      return new Cubehelix(this.h, this.s, this.l * k, this.opacity);
+    },
+    rgb: function() {
+      var h = isNaN(this.h) ? 0 : (this.h + 120) * deg2rad,
+          l = +this.l,
+          a = isNaN(this.s) ? 0 : this.s * l * (1 - l),
+          cosh = Math.cos(h),
+          sinh = Math.sin(h);
+      return new Rgb(
+        255 * (l + a * (A * cosh + B * sinh)),
+        255 * (l + a * (C * cosh + D * sinh)),
+        255 * (l + a * (E * cosh)),
+        this.opacity
+      );
+    }
+  }));
+
+  exports.color = color;
+  exports.rgb = rgb;
+  exports.hsl = hsl;
+  exports.lab = lab;
+  exports.hcl = hcl;
+  exports.cubehelix = cubehelix;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
+
+}));
+},{}],112:[function(require,module,exports){
+// https://d3js.org/d3-format/ Version 1.0.2. Copyright 2016 Mike Bostock.
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (factory((global.d3 = global.d3 || {})));
+}(this, function (exports) { 'use strict';
+
+  // Computes the decimal coefficient and exponent of the specified number x with
+  // significant digits p, where x is positive and p is in [1, 21] or undefined.
+  // For example, formatDecimal(1.23) returns ["123", 0].
+  function formatDecimal(x, p) {
+    if ((i = (x = p ? x.toExponential(p - 1) : x.toExponential()).indexOf("e")) < 0) return null; // NaN, ±Infinity
+    var i, coefficient = x.slice(0, i);
+
+    // The string returned by toExponential either has the form \d\.\d+e[-+]\d+
+    // (e.g., 1.2e+3) or the form \de[-+]\d+ (e.g., 1e+3).
+    return [
+      coefficient.length > 1 ? coefficient[0] + coefficient.slice(2) : coefficient,
+      +x.slice(i + 1)
+    ];
+  }
+
+  function exponent(x) {
+    return x = formatDecimal(Math.abs(x)), x ? x[1] : NaN;
+  }
+
+  function formatGroup(grouping, thousands) {
+    return function(value, width) {
+      var i = value.length,
+          t = [],
+          j = 0,
+          g = grouping[0],
+          length = 0;
+
+      while (i > 0 && g > 0) {
+        if (length + g + 1 > width) g = Math.max(1, width - length);
+        t.push(value.substring(i -= g, i + g));
+        if ((length += g + 1) > width) break;
+        g = grouping[j = (j + 1) % grouping.length];
+      }
+
+      return t.reverse().join(thousands);
+    };
+  }
+
+  function formatDefault(x, p) {
+    x = x.toPrecision(p);
+
+    out: for (var n = x.length, i = 1, i0 = -1, i1; i < n; ++i) {
+      switch (x[i]) {
+        case ".": i0 = i1 = i; break;
+        case "0": if (i0 === 0) i0 = i; i1 = i; break;
+        case "e": break out;
+        default: if (i0 > 0) i0 = 0; break;
+      }
+    }
+
+    return i0 > 0 ? x.slice(0, i0) + x.slice(i1 + 1) : x;
+  }
+
+  var prefixExponent;
+
+  function formatPrefixAuto(x, p) {
+    var d = formatDecimal(x, p);
+    if (!d) return x + "";
+    var coefficient = d[0],
+        exponent = d[1],
+        i = exponent - (prefixExponent = Math.max(-8, Math.min(8, Math.floor(exponent / 3))) * 3) + 1,
+        n = coefficient.length;
+    return i === n ? coefficient
+        : i > n ? coefficient + new Array(i - n + 1).join("0")
+        : i > 0 ? coefficient.slice(0, i) + "." + coefficient.slice(i)
+        : "0." + new Array(1 - i).join("0") + formatDecimal(x, Math.max(0, p + i - 1))[0]; // less than 1y!
+  }
+
+  function formatRounded(x, p) {
+    var d = formatDecimal(x, p);
+    if (!d) return x + "";
+    var coefficient = d[0],
+        exponent = d[1];
+    return exponent < 0 ? "0." + new Array(-exponent).join("0") + coefficient
+        : coefficient.length > exponent + 1 ? coefficient.slice(0, exponent + 1) + "." + coefficient.slice(exponent + 1)
+        : coefficient + new Array(exponent - coefficient.length + 2).join("0");
+  }
+
+  var formatTypes = {
+    "": formatDefault,
+    "%": function(x, p) { return (x * 100).toFixed(p); },
+    "b": function(x) { return Math.round(x).toString(2); },
+    "c": function(x) { return x + ""; },
+    "d": function(x) { return Math.round(x).toString(10); },
+    "e": function(x, p) { return x.toExponential(p); },
+    "f": function(x, p) { return x.toFixed(p); },
+    "g": function(x, p) { return x.toPrecision(p); },
+    "o": function(x) { return Math.round(x).toString(8); },
+    "p": function(x, p) { return formatRounded(x * 100, p); },
+    "r": formatRounded,
+    "s": formatPrefixAuto,
+    "X": function(x) { return Math.round(x).toString(16).toUpperCase(); },
+    "x": function(x) { return Math.round(x).toString(16); }
+  };
+
+  // [[fill]align][sign][symbol][0][width][,][.precision][type]
+  var re = /^(?:(.)?([<>=^]))?([+\-\( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?([a-z%])?$/i;
+
+  function formatSpecifier(specifier) {
+    return new FormatSpecifier(specifier);
+  }
+
+  function FormatSpecifier(specifier) {
+    if (!(match = re.exec(specifier))) throw new Error("invalid format: " + specifier);
+
+    var match,
+        fill = match[1] || " ",
+        align = match[2] || ">",
+        sign = match[3] || "-",
+        symbol = match[4] || "",
+        zero = !!match[5],
+        width = match[6] && +match[6],
+        comma = !!match[7],
+        precision = match[8] && +match[8].slice(1),
+        type = match[9] || "";
+
+    // The "n" type is an alias for ",g".
+    if (type === "n") comma = true, type = "g";
+
+    // Map invalid types to the default format.
+    else if (!formatTypes[type]) type = "";
+
+    // If zero fill is specified, padding goes after sign and before digits.
+    if (zero || (fill === "0" && align === "=")) zero = true, fill = "0", align = "=";
+
+    this.fill = fill;
+    this.align = align;
+    this.sign = sign;
+    this.symbol = symbol;
+    this.zero = zero;
+    this.width = width;
+    this.comma = comma;
+    this.precision = precision;
+    this.type = type;
+  }
+
+  FormatSpecifier.prototype.toString = function() {
+    return this.fill
+        + this.align
+        + this.sign
+        + this.symbol
+        + (this.zero ? "0" : "")
+        + (this.width == null ? "" : Math.max(1, this.width | 0))
+        + (this.comma ? "," : "")
+        + (this.precision == null ? "" : "." + Math.max(0, this.precision | 0))
+        + this.type;
+  };
+
+  var prefixes = ["y","z","a","f","p","n","µ","m","","k","M","G","T","P","E","Z","Y"];
+
+  function identity(x) {
+    return x;
+  }
+
+  function formatLocale(locale) {
+    var group = locale.grouping && locale.thousands ? formatGroup(locale.grouping, locale.thousands) : identity,
+        currency = locale.currency,
+        decimal = locale.decimal;
+
+    function newFormat(specifier) {
+      specifier = formatSpecifier(specifier);
+
+      var fill = specifier.fill,
+          align = specifier.align,
+          sign = specifier.sign,
+          symbol = specifier.symbol,
+          zero = specifier.zero,
+          width = specifier.width,
+          comma = specifier.comma,
+          precision = specifier.precision,
+          type = specifier.type;
+
+      // Compute the prefix and suffix.
+      // For SI-prefix, the suffix is lazily computed.
+      var prefix = symbol === "$" ? currency[0] : symbol === "#" && /[boxX]/.test(type) ? "0" + type.toLowerCase() : "",
+          suffix = symbol === "$" ? currency[1] : /[%p]/.test(type) ? "%" : "";
+
+      // What format function should we use?
+      // Is this an integer type?
+      // Can this type generate exponential notation?
+      var formatType = formatTypes[type],
+          maybeSuffix = !type || /[defgprs%]/.test(type);
+
+      // Set the default precision if not specified,
+      // or clamp the specified precision to the supported range.
+      // For significant precision, it must be in [1, 21].
+      // For fixed precision, it must be in [0, 20].
+      precision = precision == null ? (type ? 6 : 12)
+          : /[gprs]/.test(type) ? Math.max(1, Math.min(21, precision))
+          : Math.max(0, Math.min(20, precision));
+
+      function format(value) {
+        var valuePrefix = prefix,
+            valueSuffix = suffix,
+            i, n, c;
+
+        if (type === "c") {
+          valueSuffix = formatType(value) + valueSuffix;
+          value = "";
+        } else {
+          value = +value;
+
+          // Convert negative to positive, and compute the prefix.
+          // Note that -0 is not less than 0, but 1 / -0 is!
+          var valueNegative = (value < 0 || 1 / value < 0) && (value *= -1, true);
+
+          // Perform the initial formatting.
+          value = formatType(value, precision);
+
+          // If the original value was negative, it may be rounded to zero during
+          // formatting; treat this as (positive) zero.
+          if (valueNegative) {
+            i = -1, n = value.length;
+            valueNegative = false;
+            while (++i < n) {
+              if (c = value.charCodeAt(i), (48 < c && c < 58)
+                  || (type === "x" && 96 < c && c < 103)
+                  || (type === "X" && 64 < c && c < 71)) {
+                valueNegative = true;
+                break;
+              }
+            }
+          }
+
+          // Compute the prefix and suffix.
+          valuePrefix = (valueNegative ? (sign === "(" ? sign : "-") : sign === "-" || sign === "(" ? "" : sign) + valuePrefix;
+          valueSuffix = valueSuffix + (type === "s" ? prefixes[8 + prefixExponent / 3] : "") + (valueNegative && sign === "(" ? ")" : "");
+
+          // Break the formatted value into the integer “value” part that can be
+          // grouped, and fractional or exponential “suffix” part that is not.
+          if (maybeSuffix) {
+            i = -1, n = value.length;
+            while (++i < n) {
+              if (c = value.charCodeAt(i), 48 > c || c > 57) {
+                valueSuffix = (c === 46 ? decimal + value.slice(i + 1) : value.slice(i)) + valueSuffix;
+                value = value.slice(0, i);
+                break;
+              }
+            }
+          }
+        }
+
+        // If the fill character is not "0", grouping is applied before padding.
+        if (comma && !zero) value = group(value, Infinity);
+
+        // Compute the padding.
+        var length = valuePrefix.length + value.length + valueSuffix.length,
+            padding = length < width ? new Array(width - length + 1).join(fill) : "";
+
+        // If the fill character is "0", grouping is applied after padding.
+        if (comma && zero) value = group(padding + value, padding.length ? width - valueSuffix.length : Infinity), padding = "";
+
+        // Reconstruct the final output based on the desired alignment.
+        switch (align) {
+          case "<": return valuePrefix + value + valueSuffix + padding;
+          case "=": return valuePrefix + padding + value + valueSuffix;
+          case "^": return padding.slice(0, length = padding.length >> 1) + valuePrefix + value + valueSuffix + padding.slice(length);
+        }
+        return padding + valuePrefix + value + valueSuffix;
+      }
+
+      format.toString = function() {
+        return specifier + "";
+      };
+
+      return format;
+    }
+
+    function formatPrefix(specifier, value) {
+      var f = newFormat((specifier = formatSpecifier(specifier), specifier.type = "f", specifier)),
+          e = Math.max(-8, Math.min(8, Math.floor(exponent(value) / 3))) * 3,
+          k = Math.pow(10, -e),
+          prefix = prefixes[8 + e / 3];
+      return function(value) {
+        return f(k * value) + prefix;
+      };
+    }
+
+    return {
+      format: newFormat,
+      formatPrefix: formatPrefix
+    };
+  }
+
+  var locale;
+  defaultLocale({
+    decimal: ".",
+    thousands: ",",
+    grouping: [3],
+    currency: ["$", ""]
+  });
+
+  function defaultLocale(definition) {
+    locale = formatLocale(definition);
+    exports.format = locale.format;
+    exports.formatPrefix = locale.formatPrefix;
+    return locale;
+  }
+
+  function precisionFixed(step) {
+    return Math.max(0, -exponent(Math.abs(step)));
+  }
+
+  function precisionPrefix(step, value) {
+    return Math.max(0, Math.max(-8, Math.min(8, Math.floor(exponent(value) / 3))) * 3 - exponent(Math.abs(step)));
+  }
+
+  function precisionRound(step, max) {
+    step = Math.abs(step), max = Math.abs(max) - step;
+    return Math.max(0, exponent(max) - exponent(step)) + 1;
+  }
+
+  exports.formatDefaultLocale = defaultLocale;
+  exports.formatLocale = formatLocale;
+  exports.formatSpecifier = formatSpecifier;
+  exports.precisionFixed = precisionFixed;
+  exports.precisionPrefix = precisionPrefix;
+  exports.precisionRound = precisionRound;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
+
+}));
+},{}],113:[function(require,module,exports){
+// https://d3js.org/d3-hierarchy/ Version 1.0.2. Copyright 2016 Mike Bostock.
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (factory((global.d3 = global.d3 || {})));
+}(this, function (exports) { 'use strict';
+
+  function defaultSeparation(a, b) {
+    return a.parent === b.parent ? 1 : 2;
+  }
+
+  function meanX(children) {
+    return children.reduce(meanXReduce, 0) / children.length;
+  }
+
+  function meanXReduce(x, c) {
+    return x + c.x;
+  }
+
+  function maxY(children) {
+    return 1 + children.reduce(maxYReduce, 0);
+  }
+
+  function maxYReduce(y, c) {
+    return Math.max(y, c.y);
+  }
+
+  function leafLeft(node) {
+    var children;
+    while (children = node.children) node = children[0];
+    return node;
+  }
+
+  function leafRight(node) {
+    var children;
+    while (children = node.children) node = children[children.length - 1];
+    return node;
+  }
+
+  function cluster() {
+    var separation = defaultSeparation,
+        dx = 1,
+        dy = 1,
+        nodeSize = false;
+
+    function cluster(root) {
+      var previousNode,
+          x = 0;
+
+      // First walk, computing the initial x & y values.
+      root.eachAfter(function(node) {
+        var children = node.children;
+        if (children) {
+          node.x = meanX(children);
+          node.y = maxY(children);
+        } else {
+          node.x = previousNode ? x += separation(node, previousNode) : 0;
+          node.y = 0;
+          previousNode = node;
+        }
+      });
+
+      var left = leafLeft(root),
+          right = leafRight(root),
+          x0 = left.x - separation(left, right) / 2,
+          x1 = right.x + separation(right, left) / 2;
+
+      // Second walk, normalizing x & y to the desired size.
+      return root.eachAfter(nodeSize ? function(node) {
+        node.x = (node.x - root.x) * dx;
+        node.y = (root.y - node.y) * dy;
+      } : function(node) {
+        node.x = (node.x - x0) / (x1 - x0) * dx;
+        node.y = (1 - (root.y ? node.y / root.y : 1)) * dy;
+      });
+    }
+
+    cluster.separation = function(x) {
+      return arguments.length ? (separation = x, cluster) : separation;
+    };
+
+    cluster.size = function(x) {
+      return arguments.length ? (nodeSize = false, dx = +x[0], dy = +x[1], cluster) : (nodeSize ? null : [dx, dy]);
+    };
+
+    cluster.nodeSize = function(x) {
+      return arguments.length ? (nodeSize = true, dx = +x[0], dy = +x[1], cluster) : (nodeSize ? [dx, dy] : null);
+    };
+
+    return cluster;
+  }
+
+  function node_each(callback) {
+    var node = this, current, next = [node], children, i, n;
+    do {
+      current = next.reverse(), next = [];
+      while (node = current.pop()) {
+        callback(node), children = node.children;
+        if (children) for (i = 0, n = children.length; i < n; ++i) {
+          next.push(children[i]);
+        }
+      }
+    } while (next.length);
+    return this;
+  }
+
+  function node_eachBefore(callback) {
+    var node = this, nodes = [node], children, i;
+    while (node = nodes.pop()) {
+      callback(node), children = node.children;
+      if (children) for (i = children.length - 1; i >= 0; --i) {
+        nodes.push(children[i]);
+      }
+    }
+    return this;
+  }
+
+  function node_eachAfter(callback) {
+    var node = this, nodes = [node], next = [], children, i, n;
+    while (node = nodes.pop()) {
+      next.push(node), children = node.children;
+      if (children) for (i = 0, n = children.length; i < n; ++i) {
+        nodes.push(children[i]);
+      }
+    }
+    while (node = next.pop()) {
+      callback(node);
+    }
+    return this;
+  }
+
+  function node_sum(value) {
+    return this.eachAfter(function(node) {
+      var sum = +value(node.data) || 0,
+          children = node.children,
+          i = children && children.length;
+      while (--i >= 0) sum += children[i].value;
+      node.value = sum;
+    });
+  }
+
+  function node_sort(compare) {
+    return this.eachBefore(function(node) {
+      if (node.children) {
+        node.children.sort(compare);
+      }
+    });
+  }
+
+  function node_path(end) {
+    var start = this,
+        ancestor = leastCommonAncestor(start, end),
+        nodes = [start];
+    while (start !== ancestor) {
+      start = start.parent;
+      nodes.push(start);
+    }
+    var k = nodes.length;
+    while (end !== ancestor) {
+      nodes.splice(k, 0, end);
+      end = end.parent;
+    }
+    return nodes;
+  }
+
+  function leastCommonAncestor(a, b) {
+    if (a === b) return a;
+    var aNodes = a.ancestors(),
+        bNodes = b.ancestors(),
+        c = null;
+    a = aNodes.pop();
+    b = bNodes.pop();
+    while (a === b) {
+      c = a;
+      a = aNodes.pop();
+      b = bNodes.pop();
+    }
+    return c;
+  }
+
+  function node_ancestors() {
+    var node = this, nodes = [node];
+    while (node = node.parent) {
+      nodes.push(node);
+    }
+    return nodes;
+  }
+
+  function node_descendants() {
+    var nodes = [];
+    this.each(function(node) {
+      nodes.push(node);
+    });
+    return nodes;
+  }
+
+  function node_leaves() {
+    var leaves = [];
+    this.eachBefore(function(node) {
+      if (!node.children) {
+        leaves.push(node);
+      }
+    });
+    return leaves;
+  }
+
+  function node_links() {
+    var root = this, links = [];
+    root.each(function(node) {
+      if (node !== root) { // Don’t include the root’s parent, if any.
+        links.push({source: node.parent, target: node});
+      }
+    });
+    return links;
+  }
+
+  function hierarchy(data, children) {
+    var root = new Node(data),
+        valued = +data.value && (root.value = data.value),
+        node,
+        nodes = [root],
+        child,
+        childs,
+        i,
+        n;
+
+    if (children == null) children = defaultChildren;
+
+    while (node = nodes.pop()) {
+      if (valued) node.value = +node.data.value;
+      if ((childs = children(node.data)) && (n = childs.length)) {
+        node.children = new Array(n);
+        for (i = n - 1; i >= 0; --i) {
+          nodes.push(child = node.children[i] = new Node(childs[i]));
+          child.parent = node;
+          child.depth = node.depth + 1;
+        }
+      }
+    }
+
+    return root.eachBefore(computeHeight);
+  }
+
+  function node_copy() {
+    return hierarchy(this).eachBefore(copyData);
+  }
+
+  function defaultChildren(d) {
+    return d.children;
+  }
+
+  function copyData(node) {
+    node.data = node.data.data;
+  }
+
+  function computeHeight(node) {
+    var height = 0;
+    do node.height = height;
+    while ((node = node.parent) && (node.height < ++height));
+  }
+
+  function Node(data) {
+    this.data = data;
+    this.depth =
+    this.height = 0;
+    this.parent = null;
+  }
+
+  Node.prototype = hierarchy.prototype = {
+    constructor: Node,
+    each: node_each,
+    eachAfter: node_eachAfter,
+    eachBefore: node_eachBefore,
+    sum: node_sum,
+    sort: node_sort,
+    path: node_path,
+    ancestors: node_ancestors,
+    descendants: node_descendants,
+    leaves: node_leaves,
+    links: node_links,
+    copy: node_copy
+  };
+
+  function Node$2(value) {
+    this._ = value;
+    this.next = null;
+  }
+
+  function shuffle(array) {
+    var i,
+        n = (array = array.slice()).length,
+        head = null,
+        node = head;
+
+    while (n) {
+      var next = new Node$2(array[n - 1]);
+      if (node) node = node.next = next;
+      else node = head = next;
+      array[i] = array[--n];
+    }
+
+    return {
+      head: head,
+      tail: node
+    };
+  }
+
+  function enclose(circles) {
+    return encloseN(shuffle(circles), []);
+  }
+
+  function encloses(a, b) {
+    var dx = b.x - a.x,
+        dy = b.y - a.y,
+        dr = a.r - b.r;
+    return dr * dr + 1e-6 > dx * dx + dy * dy;
+  }
+
+  // Returns the smallest circle that contains circles L and intersects circles B.
+  function encloseN(L, B) {
+    var circle,
+        l0 = null,
+        l1 = L.head,
+        l2,
+        p1;
+
+    switch (B.length) {
+      case 1: circle = enclose1(B[0]); break;
+      case 2: circle = enclose2(B[0], B[1]); break;
+      case 3: circle = enclose3(B[0], B[1], B[2]); break;
+    }
+
+    while (l1) {
+      p1 = l1._, l2 = l1.next;
+      if (!circle || !encloses(circle, p1)) {
+
+        // Temporarily truncate L before l1.
+        if (l0) L.tail = l0, l0.next = null;
+        else L.head = L.tail = null;
+
+        B.push(p1);
+        circle = encloseN(L, B); // Note: reorders L!
+        B.pop();
+
+        // Move l1 to the front of L and reconnect the truncated list L.
+        if (L.head) l1.next = L.head, L.head = l1;
+        else l1.next = null, L.head = L.tail = l1;
+        l0 = L.tail, l0.next = l2;
+
+      } else {
+        l0 = l1;
+      }
+      l1 = l2;
+    }
+
+    L.tail = l0;
+    return circle;
+  }
+
+  function enclose1(a) {
+    return {
+      x: a.x,
+      y: a.y,
+      r: a.r
+    };
+  }
+
+  function enclose2(a, b) {
+    var x1 = a.x, y1 = a.y, r1 = a.r,
+        x2 = b.x, y2 = b.y, r2 = b.r,
+        x21 = x2 - x1, y21 = y2 - y1, r21 = r2 - r1,
+        l = Math.sqrt(x21 * x21 + y21 * y21);
+    return {
+      x: (x1 + x2 + x21 / l * r21) / 2,
+      y: (y1 + y2 + y21 / l * r21) / 2,
+      r: (l + r1 + r2) / 2
+    };
+  }
+
+  function enclose3(a, b, c) {
+    var x1 = a.x, y1 = a.y, r1 = a.r,
+        x2 = b.x, y2 = b.y, r2 = b.r,
+        x3 = c.x, y3 = c.y, r3 = c.r,
+        a2 = 2 * (x1 - x2),
+        b2 = 2 * (y1 - y2),
+        c2 = 2 * (r2 - r1),
+        d2 = x1 * x1 + y1 * y1 - r1 * r1 - x2 * x2 - y2 * y2 + r2 * r2,
+        a3 = 2 * (x1 - x3),
+        b3 = 2 * (y1 - y3),
+        c3 = 2 * (r3 - r1),
+        d3 = x1 * x1 + y1 * y1 - r1 * r1 - x3 * x3 - y3 * y3 + r3 * r3,
+        ab = a3 * b2 - a2 * b3,
+        xa = (b2 * d3 - b3 * d2) / ab - x1,
+        xb = (b3 * c2 - b2 * c3) / ab,
+        ya = (a3 * d2 - a2 * d3) / ab - y1,
+        yb = (a2 * c3 - a3 * c2) / ab,
+        A = xb * xb + yb * yb - 1,
+        B = 2 * (xa * xb + ya * yb + r1),
+        C = xa * xa + ya * ya - r1 * r1,
+        r = (-B - Math.sqrt(B * B - 4 * A * C)) / (2 * A);
+    return {
+      x: xa + xb * r + x1,
+      y: ya + yb * r + y1,
+      r: r
+    };
+  }
+
+  function place(a, b, c) {
+    var ax = a.x,
+        ay = a.y,
+        da = b.r + c.r,
+        db = a.r + c.r,
+        dx = b.x - ax,
+        dy = b.y - ay,
+        dc = dx * dx + dy * dy;
+    if (dc) {
+      var x = 0.5 + ((db *= db) - (da *= da)) / (2 * dc),
+          y = Math.sqrt(Math.max(0, 2 * da * (db + dc) - (db -= dc) * db - da * da)) / (2 * dc);
+      c.x = ax + x * dx + y * dy;
+      c.y = ay + x * dy - y * dx;
+    } else {
+      c.x = ax + db;
+      c.y = ay;
+    }
+  }
+
+  function intersects(a, b) {
+    var dx = b.x - a.x,
+        dy = b.y - a.y,
+        dr = a.r + b.r;
+    return dr * dr > dx * dx + dy * dy;
+  }
+
+  function distance2(circle, x, y) {
+    var dx = circle.x - x,
+        dy = circle.y - y;
+    return dx * dx + dy * dy;
+  }
+
+  function Node$1(circle) {
+    this._ = circle;
+    this.next = null;
+    this.previous = null;
+  }
+
+  function packEnclose(circles) {
+    if (!(n = circles.length)) return 0;
+
+    var a, b, c, n;
+
+    // Place the first circle.
+    a = circles[0], a.x = 0, a.y = 0;
+    if (!(n > 1)) return a.r;
+
+    // Place the second circle.
+    b = circles[1], a.x = -b.r, b.x = a.r, b.y = 0;
+    if (!(n > 2)) return a.r + b.r;
+
+    // Place the third circle.
+    place(b, a, c = circles[2]);
+
+    // Initialize the weighted centroid.
+    var aa = a.r * a.r,
+        ba = b.r * b.r,
+        ca = c.r * c.r,
+        oa = aa + ba + ca,
+        ox = aa * a.x + ba * b.x + ca * c.x,
+        oy = aa * a.y + ba * b.y + ca * c.y,
+        cx, cy, i, j, k, sj, sk;
+
+    // Initialize the front-chain using the first three circles a, b and c.
+    a = new Node$1(a), b = new Node$1(b), c = new Node$1(c);
+    a.next = c.previous = b;
+    b.next = a.previous = c;
+    c.next = b.previous = a;
+
+    // Attempt to place each remaining circle…
+    pack: for (i = 3; i < n; ++i) {
+      place(a._, b._, c = circles[i]), c = new Node$1(c);
+
+      // If there are only three elements in the front-chain…
+      if ((k = a.previous) === (j = b.next)) {
+        // If the new circle intersects the third circle,
+        // rotate the front chain to try the next position.
+        if (intersects(j._, c._)) {
+          a = b, b = j, --i;
+          continue pack;
+        }
+      }
+
+      // Find the closest intersecting circle on the front-chain, if any.
+      else {
+        sj = j._.r, sk = k._.r;
+        do {
+          if (sj <= sk) {
+            if (intersects(j._, c._)) {
+              b = j, a.next = b, b.previous = a, --i;
+              continue pack;
+            }
+            j = j.next, sj += j._.r;
+          } else {
+            if (intersects(k._, c._)) {
+              a = k, a.next = b, b.previous = a, --i;
+              continue pack;
+            }
+            k = k.previous, sk += k._.r;
+          }
+        } while (j !== k.next);
+      }
+
+      // Success! Insert the new circle c between a and b.
+      c.previous = a, c.next = b, a.next = b.previous = b = c;
+
+      // Update the weighted centroid.
+      oa += ca = c._.r * c._.r;
+      ox += ca * c._.x;
+      oy += ca * c._.y;
+
+      // Compute the new closest circle a to centroid.
+      aa = distance2(a._, cx = ox / oa, cy = oy / oa);
+      while ((c = c.next) !== b) {
+        if ((ca = distance2(c._, cx, cy)) < aa) {
+          a = c, aa = ca;
+        }
+      }
+      b = a.next;
+    }
+
+    // Compute the enclosing circle of the front chain.
+    a = [b._], c = b; while ((c = c.next) !== b) a.push(c._); c = enclose(a);
+
+    // Translate the circles to put the enclosing circle around the origin.
+    for (i = 0; i < n; ++i) a = circles[i], a.x -= c.x, a.y -= c.y;
+
+    return c.r;
+  }
+
+  function siblings(circles) {
+    packEnclose(circles);
+    return circles;
+  }
+
+  function optional(f) {
+    return f == null ? null : required(f);
+  }
+
+  function required(f) {
+    if (typeof f !== "function") throw new Error;
+    return f;
+  }
+
+  function constantZero() {
+    return 0;
+  }
+
+  function constant(x) {
+    return function() {
+      return x;
+    };
+  }
+
+  function defaultRadius(d) {
+    return Math.sqrt(d.value);
+  }
+
+  function index() {
+    var radius = null,
+        dx = 1,
+        dy = 1,
+        padding = constantZero;
+
+    function pack(root) {
+      root.x = dx / 2, root.y = dy / 2;
+      if (radius) {
+        root.eachBefore(radiusLeaf(radius))
+            .eachAfter(packChildren(padding, 0.5))
+            .eachBefore(translateChild(1));
+      } else {
+        root.eachBefore(radiusLeaf(defaultRadius))
+            .eachAfter(packChildren(constantZero, 1))
+            .eachAfter(packChildren(padding, root.r / Math.min(dx, dy)))
+            .eachBefore(translateChild(Math.min(dx, dy) / (2 * root.r)));
+      }
+      return root;
+    }
+
+    pack.radius = function(x) {
+      return arguments.length ? (radius = optional(x), pack) : radius;
+    };
+
+    pack.size = function(x) {
+      return arguments.length ? (dx = +x[0], dy = +x[1], pack) : [dx, dy];
+    };
+
+    pack.padding = function(x) {
+      return arguments.length ? (padding = typeof x === "function" ? x : constant(+x), pack) : padding;
+    };
+
+    return pack;
+  }
+
+  function radiusLeaf(radius) {
+    return function(node) {
+      if (!node.children) {
+        node.r = Math.max(0, +radius(node) || 0);
+      }
+    };
+  }
+
+  function packChildren(padding, k) {
+    return function(node) {
+      if (children = node.children) {
+        var children,
+            i,
+            n = children.length,
+            r = padding(node) * k || 0,
+            e;
+
+        if (r) for (i = 0; i < n; ++i) children[i].r += r;
+        e = packEnclose(children);
+        if (r) for (i = 0; i < n; ++i) children[i].r -= r;
+        node.r = e + r;
+      }
+    };
+  }
+
+  function translateChild(k) {
+    return function(node) {
+      var parent = node.parent;
+      node.r *= k;
+      if (parent) {
+        node.x = parent.x + k * node.x;
+        node.y = parent.y + k * node.y;
+      }
+    };
+  }
+
+  function roundNode(node) {
+    node.x0 = Math.round(node.x0);
+    node.y0 = Math.round(node.y0);
+    node.x1 = Math.round(node.x1);
+    node.y1 = Math.round(node.y1);
+  }
+
+  function treemapDice(parent, x0, y0, x1, y1) {
+    var nodes = parent.children,
+        node,
+        i = -1,
+        n = nodes.length,
+        k = parent.value && (x1 - x0) / parent.value;
+
+    while (++i < n) {
+      node = nodes[i], node.y0 = y0, node.y1 = y1;
+      node.x0 = x0, node.x1 = x0 += node.value * k;
+    }
+  }
+
+  function partition() {
+    var dx = 1,
+        dy = 1,
+        padding = 0,
+        round = false;
+
+    function partition(root) {
+      var n = root.height + 1;
+      root.x0 =
+      root.y0 = padding;
+      root.x1 = dx;
+      root.y1 = dy / n;
+      root.eachBefore(positionNode(dy, n));
+      if (round) root.eachBefore(roundNode);
+      return root;
+    }
+
+    function positionNode(dy, n) {
+      return function(node) {
+        if (node.children) {
+          treemapDice(node, node.x0, dy * (node.depth + 1) / n, node.x1, dy * (node.depth + 2) / n);
+        }
+        var x0 = node.x0,
+            y0 = node.y0,
+            x1 = node.x1 - padding,
+            y1 = node.y1 - padding;
+        if (x1 < x0) x0 = x1 = (x0 + x1) / 2;
+        if (y1 < y0) y0 = y1 = (y0 + y1) / 2;
+        node.x0 = x0;
+        node.y0 = y0;
+        node.x1 = x1;
+        node.y1 = y1;
+      };
+    }
+
+    partition.round = function(x) {
+      return arguments.length ? (round = !!x, partition) : round;
+    };
+
+    partition.size = function(x) {
+      return arguments.length ? (dx = +x[0], dy = +x[1], partition) : [dx, dy];
+    };
+
+    partition.padding = function(x) {
+      return arguments.length ? (padding = +x, partition) : padding;
+    };
+
+    return partition;
+  }
+
+  var keyPrefix = "$";
+  var preroot = {depth: -1};
+  var ambiguous = {};
+  function defaultId(d) {
+    return d.id;
+  }
+
+  function defaultParentId(d) {
+    return d.parentId;
+  }
+
+  function stratify() {
+    var id = defaultId,
+        parentId = defaultParentId;
+
+    function stratify(data) {
+      var d,
+          i,
+          n = data.length,
+          root,
+          parent,
+          node,
+          nodes = new Array(n),
+          nodeId,
+          nodeKey,
+          nodeByKey = {};
+
+      for (i = 0; i < n; ++i) {
+        d = data[i], node = nodes[i] = new Node(d);
+        if ((nodeId = id(d, i, data)) != null && (nodeId += "")) {
+          nodeKey = keyPrefix + (node.id = nodeId);
+          nodeByKey[nodeKey] = nodeKey in nodeByKey ? ambiguous : node;
+        }
+      }
+
+      for (i = 0; i < n; ++i) {
+        node = nodes[i], nodeId = parentId(data[i], i, data);
+        if (nodeId == null || !(nodeId += "")) {
+          if (root) throw new Error("multiple roots");
+          root = node;
+        } else {
+          parent = nodeByKey[keyPrefix + nodeId];
+          if (!parent) throw new Error("missing: " + nodeId);
+          if (parent === ambiguous) throw new Error("ambiguous: " + nodeId);
+          if (parent.children) parent.children.push(node);
+          else parent.children = [node];
+          node.parent = parent;
+        }
+      }
+
+      if (!root) throw new Error("no root");
+      root.parent = preroot;
+      root.eachBefore(function(node) { node.depth = node.parent.depth + 1; --n; }).eachBefore(computeHeight);
+      root.parent = null;
+      if (n > 0) throw new Error("cycle");
+
+      return root;
+    }
+
+    stratify.id = function(x) {
+      return arguments.length ? (id = required(x), stratify) : id;
+    };
+
+    stratify.parentId = function(x) {
+      return arguments.length ? (parentId = required(x), stratify) : parentId;
+    };
+
+    return stratify;
+  }
+
+  function defaultSeparation$1(a, b) {
+    return a.parent === b.parent ? 1 : 2;
+  }
+
+  // function radialSeparation(a, b) {
+  //   return (a.parent === b.parent ? 1 : 2) / a.depth;
+  // }
+
+  // This function is used to traverse the left contour of a subtree (or
+  // subforest). It returns the successor of v on this contour. This successor is
+  // either given by the leftmost child of v or by the thread of v. The function
+  // returns null if and only if v is on the highest level of its subtree.
+  function nextLeft(v) {
+    var children = v.children;
+    return children ? children[0] : v.t;
+  }
+
+  // This function works analogously to nextLeft.
+  function nextRight(v) {
+    var children = v.children;
+    return children ? children[children.length - 1] : v.t;
+  }
+
+  // Shifts the current subtree rooted at w+. This is done by increasing
+  // prelim(w+) and mod(w+) by shift.
+  function moveSubtree(wm, wp, shift) {
+    var change = shift / (wp.i - wm.i);
+    wp.c -= change;
+    wp.s += shift;
+    wm.c += change;
+    wp.z += shift;
+    wp.m += shift;
+  }
+
+  // All other shifts, applied to the smaller subtrees between w- and w+, are
+  // performed by this function. To prepare the shifts, we have to adjust
+  // change(w+), shift(w+), and change(w-).
+  function executeShifts(v) {
+    var shift = 0,
+        change = 0,
+        children = v.children,
+        i = children.length,
+        w;
+    while (--i >= 0) {
+      w = children[i];
+      w.z += shift;
+      w.m += shift;
+      shift += w.s + (change += w.c);
+    }
+  }
+
+  // If vi-’s ancestor is a sibling of v, returns vi-’s ancestor. Otherwise,
+  // returns the specified (default) ancestor.
+  function nextAncestor(vim, v, ancestor) {
+    return vim.a.parent === v.parent ? vim.a : ancestor;
+  }
+
+  function TreeNode(node, i) {
+    this._ = node;
+    this.parent = null;
+    this.children = null;
+    this.A = null; // default ancestor
+    this.a = this; // ancestor
+    this.z = 0; // prelim
+    this.m = 0; // mod
+    this.c = 0; // change
+    this.s = 0; // shift
+    this.t = null; // thread
+    this.i = i; // number
+  }
+
+  TreeNode.prototype = Object.create(Node.prototype);
+
+  function treeRoot(root) {
+    var tree = new TreeNode(root, 0),
+        node,
+        nodes = [tree],
+        child,
+        children,
+        i,
+        n;
+
+    while (node = nodes.pop()) {
+      if (children = node._.children) {
+        node.children = new Array(n = children.length);
+        for (i = n - 1; i >= 0; --i) {
+          nodes.push(child = node.children[i] = new TreeNode(children[i], i));
+          child.parent = node;
+        }
+      }
+    }
+
+    (tree.parent = new TreeNode(null, 0)).children = [tree];
+    return tree;
+  }
+
+  // Node-link tree diagram using the Reingold-Tilford "tidy" algorithm
+  function tree() {
+    var separation = defaultSeparation$1,
+        dx = 1,
+        dy = 1,
+        nodeSize = null;
+
+    function tree(root) {
+      var t = treeRoot(root);
+
+      // Compute the layout using Buchheim et al.’s algorithm.
+      t.eachAfter(firstWalk), t.parent.m = -t.z;
+      t.eachBefore(secondWalk);
+
+      // If a fixed node size is specified, scale x and y.
+      if (nodeSize) root.eachBefore(sizeNode);
+
+      // If a fixed tree size is specified, scale x and y based on the extent.
+      // Compute the left-most, right-most, and depth-most nodes for extents.
+      else {
+        var left = root,
+            right = root,
+            bottom = root;
+        root.eachBefore(function(node) {
+          if (node.x < left.x) left = node;
+          if (node.x > right.x) right = node;
+          if (node.depth > bottom.depth) bottom = node;
+        });
+        var s = left === right ? 1 : separation(left, right) / 2,
+            tx = s - left.x,
+            kx = dx / (right.x + s + tx),
+            ky = dy / (bottom.depth || 1);
+        root.eachBefore(function(node) {
+          node.x = (node.x + tx) * kx;
+          node.y = node.depth * ky;
+        });
+      }
+
+      return root;
+    }
+
+    // Computes a preliminary x-coordinate for v. Before that, FIRST WALK is
+    // applied recursively to the children of v, as well as the function
+    // APPORTION. After spacing out the children by calling EXECUTE SHIFTS, the
+    // node v is placed to the midpoint of its outermost children.
+    function firstWalk(v) {
+      var children = v.children,
+          siblings = v.parent.children,
+          w = v.i ? siblings[v.i - 1] : null;
+      if (children) {
+        executeShifts(v);
+        var midpoint = (children[0].z + children[children.length - 1].z) / 2;
+        if (w) {
+          v.z = w.z + separation(v._, w._);
+          v.m = v.z - midpoint;
+        } else {
+          v.z = midpoint;
+        }
+      } else if (w) {
+        v.z = w.z + separation(v._, w._);
+      }
+      v.parent.A = apportion(v, w, v.parent.A || siblings[0]);
+    }
+
+    // Computes all real x-coordinates by summing up the modifiers recursively.
+    function secondWalk(v) {
+      v._.x = v.z + v.parent.m;
+      v.m += v.parent.m;
+    }
+
+    // The core of the algorithm. Here, a new subtree is combined with the
+    // previous subtrees. Threads are used to traverse the inside and outside
+    // contours of the left and right subtree up to the highest common level. The
+    // vertices used for the traversals are vi+, vi-, vo-, and vo+, where the
+    // superscript o means outside and i means inside, the subscript - means left
+    // subtree and + means right subtree. For summing up the modifiers along the
+    // contour, we use respective variables si+, si-, so-, and so+. Whenever two
+    // nodes of the inside contours conflict, we compute the left one of the
+    // greatest uncommon ancestors using the function ANCESTOR and call MOVE
+    // SUBTREE to shift the subtree and prepare the shifts of smaller subtrees.
+    // Finally, we add a new thread (if necessary).
+    function apportion(v, w, ancestor) {
+      if (w) {
+        var vip = v,
+            vop = v,
+            vim = w,
+            vom = vip.parent.children[0],
+            sip = vip.m,
+            sop = vop.m,
+            sim = vim.m,
+            som = vom.m,
+            shift;
+        while (vim = nextRight(vim), vip = nextLeft(vip), vim && vip) {
+          vom = nextLeft(vom);
+          vop = nextRight(vop);
+          vop.a = v;
+          shift = vim.z + sim - vip.z - sip + separation(vim._, vip._);
+          if (shift > 0) {
+            moveSubtree(nextAncestor(vim, v, ancestor), v, shift);
+            sip += shift;
+            sop += shift;
+          }
+          sim += vim.m;
+          sip += vip.m;
+          som += vom.m;
+          sop += vop.m;
+        }
+        if (vim && !nextRight(vop)) {
+          vop.t = vim;
+          vop.m += sim - sop;
+        }
+        if (vip && !nextLeft(vom)) {
+          vom.t = vip;
+          vom.m += sip - som;
+          ancestor = v;
+        }
+      }
+      return ancestor;
+    }
+
+    function sizeNode(node) {
+      node.x *= dx;
+      node.y = node.depth * dy;
+    }
+
+    tree.separation = function(x) {
+      return arguments.length ? (separation = x, tree) : separation;
+    };
+
+    tree.size = function(x) {
+      return arguments.length ? (nodeSize = false, dx = +x[0], dy = +x[1], tree) : (nodeSize ? null : [dx, dy]);
+    };
+
+    tree.nodeSize = function(x) {
+      return arguments.length ? (nodeSize = true, dx = +x[0], dy = +x[1], tree) : (nodeSize ? [dx, dy] : null);
+    };
+
+    return tree;
+  }
+
+  function treemapSlice(parent, x0, y0, x1, y1) {
+    var nodes = parent.children,
+        node,
+        i = -1,
+        n = nodes.length,
+        k = parent.value && (y1 - y0) / parent.value;
+
+    while (++i < n) {
+      node = nodes[i], node.x0 = x0, node.x1 = x1;
+      node.y0 = y0, node.y1 = y0 += node.value * k;
+    }
+  }
+
+  var phi = (1 + Math.sqrt(5)) / 2;
+
+  function squarifyRatio(ratio, parent, x0, y0, x1, y1) {
+    var rows = [],
+        nodes = parent.children,
+        row,
+        nodeValue,
+        i0 = 0,
+        i1,
+        n = nodes.length,
+        dx, dy,
+        value = parent.value,
+        sumValue,
+        minValue,
+        maxValue,
+        newRatio,
+        minRatio,
+        alpha,
+        beta;
+
+    while (i0 < n) {
+      dx = x1 - x0, dy = y1 - y0;
+      minValue = maxValue = sumValue = nodes[i0].value;
+      alpha = Math.max(dy / dx, dx / dy) / (value * ratio);
+      beta = sumValue * sumValue * alpha;
+      minRatio = Math.max(maxValue / beta, beta / minValue);
+
+      // Keep adding nodes while the aspect ratio maintains or improves.
+      for (i1 = i0 + 1; i1 < n; ++i1) {
+        sumValue += nodeValue = nodes[i1].value;
+        if (nodeValue < minValue) minValue = nodeValue;
+        if (nodeValue > maxValue) maxValue = nodeValue;
+        beta = sumValue * sumValue * alpha;
+        newRatio = Math.max(maxValue / beta, beta / minValue);
+        if (newRatio > minRatio) { sumValue -= nodeValue; break; }
+        minRatio = newRatio;
+      }
+
+      // Position and record the row orientation.
+      rows.push(row = {value: sumValue, dice: dx < dy, children: nodes.slice(i0, i1)});
+      if (row.dice) treemapDice(row, x0, y0, x1, value ? y0 += dy * sumValue / value : y1);
+      else treemapSlice(row, x0, y0, value ? x0 += dx * sumValue / value : x1, y1);
+      value -= sumValue, i0 = i1;
+    }
+
+    return rows;
+  }
+
+  var squarify = (function custom(ratio) {
+
+    function squarify(parent, x0, y0, x1, y1) {
+      squarifyRatio(ratio, parent, x0, y0, x1, y1);
+    }
+
+    squarify.ratio = function(x) {
+      return custom((x = +x) > 1 ? x : 1);
+    };
+
+    return squarify;
+  })(phi);
+
+  function index$1() {
+    var tile = squarify,
+        round = false,
+        dx = 1,
+        dy = 1,
+        paddingStack = [0],
+        paddingInner = constantZero,
+        paddingTop = constantZero,
+        paddingRight = constantZero,
+        paddingBottom = constantZero,
+        paddingLeft = constantZero;
+
+    function treemap(root) {
+      root.x0 =
+      root.y0 = 0;
+      root.x1 = dx;
+      root.y1 = dy;
+      root.eachBefore(positionNode);
+      paddingStack = [0];
+      if (round) root.eachBefore(roundNode);
+      return root;
+    }
+
+    function positionNode(node) {
+      var p = paddingStack[node.depth],
+          x0 = node.x0 + p,
+          y0 = node.y0 + p,
+          x1 = node.x1 - p,
+          y1 = node.y1 - p;
+      if (x1 < x0) x0 = x1 = (x0 + x1) / 2;
+      if (y1 < y0) y0 = y1 = (y0 + y1) / 2;
+      node.x0 = x0;
+      node.y0 = y0;
+      node.x1 = x1;
+      node.y1 = y1;
+      if (node.children) {
+        p = paddingStack[node.depth + 1] = paddingInner(node) / 2;
+        x0 += paddingLeft(node) - p;
+        y0 += paddingTop(node) - p;
+        x1 -= paddingRight(node) - p;
+        y1 -= paddingBottom(node) - p;
+        if (x1 < x0) x0 = x1 = (x0 + x1) / 2;
+        if (y1 < y0) y0 = y1 = (y0 + y1) / 2;
+        tile(node, x0, y0, x1, y1);
+      }
+    }
+
+    treemap.round = function(x) {
+      return arguments.length ? (round = !!x, treemap) : round;
+    };
+
+    treemap.size = function(x) {
+      return arguments.length ? (dx = +x[0], dy = +x[1], treemap) : [dx, dy];
+    };
+
+    treemap.tile = function(x) {
+      return arguments.length ? (tile = required(x), treemap) : tile;
+    };
+
+    treemap.padding = function(x) {
+      return arguments.length ? treemap.paddingInner(x).paddingOuter(x) : treemap.paddingInner();
+    };
+
+    treemap.paddingInner = function(x) {
+      return arguments.length ? (paddingInner = typeof x === "function" ? x : constant(+x), treemap) : paddingInner;
+    };
+
+    treemap.paddingOuter = function(x) {
+      return arguments.length ? treemap.paddingTop(x).paddingRight(x).paddingBottom(x).paddingLeft(x) : treemap.paddingTop();
+    };
+
+    treemap.paddingTop = function(x) {
+      return arguments.length ? (paddingTop = typeof x === "function" ? x : constant(+x), treemap) : paddingTop;
+    };
+
+    treemap.paddingRight = function(x) {
+      return arguments.length ? (paddingRight = typeof x === "function" ? x : constant(+x), treemap) : paddingRight;
+    };
+
+    treemap.paddingBottom = function(x) {
+      return arguments.length ? (paddingBottom = typeof x === "function" ? x : constant(+x), treemap) : paddingBottom;
+    };
+
+    treemap.paddingLeft = function(x) {
+      return arguments.length ? (paddingLeft = typeof x === "function" ? x : constant(+x), treemap) : paddingLeft;
+    };
+
+    return treemap;
+  }
+
+  function binary(parent, x0, y0, x1, y1) {
+    var nodes = parent.children,
+        i, n = nodes.length,
+        sum, sums = new Array(n + 1);
+
+    for (sums[0] = sum = i = 0; i < n; ++i) {
+      sums[i + 1] = sum += nodes[i].value;
+    }
+
+    partition(0, n, parent.value, x0, y0, x1, y1);
+
+    function partition(i, j, value, x0, y0, x1, y1) {
+      if (i >= j - 1) {
+        var node = nodes[i];
+        node.x0 = x0, node.y0 = y0;
+        node.x1 = x1, node.y1 = y1;
+        return;
+      }
+
+      var valueOffset = sums[i],
+          valueTarget = (value / 2) + valueOffset,
+          k = i + 1,
+          hi = j - 1;
+
+      while (k < hi) {
+        var mid = k + hi >>> 1;
+        if (sums[mid] < valueTarget) k = mid + 1;
+        else hi = mid;
+      }
+
+      var valueLeft = sums[k] - valueOffset,
+          valueRight = value - valueLeft;
+
+      if ((y1 - y0) > (x1 - x0)) {
+        var yk = (y0 * valueRight + y1 * valueLeft) / value;
+        partition(i, k, valueLeft, x0, y0, x1, yk);
+        partition(k, j, valueRight, x0, yk, x1, y1);
+      } else {
+        var xk = (x0 * valueRight + x1 * valueLeft) / value;
+        partition(i, k, valueLeft, x0, y0, xk, y1);
+        partition(k, j, valueRight, xk, y0, x1, y1);
+      }
+    }
+  }
+
+  function sliceDice(parent, x0, y0, x1, y1) {
+    (parent.depth & 1 ? treemapSlice : treemapDice)(parent, x0, y0, x1, y1);
+  }
+
+  var resquarify = (function custom(ratio) {
+
+    function resquarify(parent, x0, y0, x1, y1) {
+      if ((rows = parent._squarify) && (rows.ratio === ratio)) {
+        var rows,
+            row,
+            nodes,
+            i,
+            j = -1,
+            n,
+            m = rows.length,
+            value = parent.value;
+
+        while (++j < m) {
+          row = rows[j], nodes = row.children;
+          for (i = row.value = 0, n = nodes.length; i < n; ++i) row.value += nodes[i].value;
+          if (row.dice) treemapDice(row, x0, y0, x1, y0 += (y1 - y0) * row.value / value);
+          else treemapSlice(row, x0, y0, x0 += (x1 - x0) * row.value / value, y1);
+          value -= row.value;
+        }
+      } else {
+        parent._squarify = rows = squarifyRatio(ratio, parent, x0, y0, x1, y1);
+        rows.ratio = ratio;
+      }
+    }
+
+    resquarify.ratio = function(x) {
+      return custom((x = +x) > 1 ? x : 1);
+    };
+
+    return resquarify;
+  })(phi);
+
+  exports.cluster = cluster;
+  exports.hierarchy = hierarchy;
+  exports.pack = index;
+  exports.packSiblings = siblings;
+  exports.packEnclose = enclose;
+  exports.partition = partition;
+  exports.stratify = stratify;
+  exports.tree = tree;
+  exports.treemap = index$1;
+  exports.treemapBinary = binary;
+  exports.treemapDice = treemapDice;
+  exports.treemapSlice = treemapSlice;
+  exports.treemapSliceDice = sliceDice;
+  exports.treemapSquarify = squarify;
+  exports.treemapResquarify = resquarify;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
+
+}));
+},{}],114:[function(require,module,exports){
+// https://d3js.org/d3-interpolate/ Version 1.1.1. Copyright 2016 Mike Bostock.
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-color')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'd3-color'], factory) :
+  (factory((global.d3 = global.d3 || {}),global.d3));
+}(this, function (exports,d3Color) { 'use strict';
+
+  function basis(t1, v0, v1, v2, v3) {
+    var t2 = t1 * t1, t3 = t2 * t1;
+    return ((1 - 3 * t1 + 3 * t2 - t3) * v0
+        + (4 - 6 * t2 + 3 * t3) * v1
+        + (1 + 3 * t1 + 3 * t2 - 3 * t3) * v2
+        + t3 * v3) / 6;
+  }
+
+  function basis$1(values) {
+    var n = values.length - 1;
+    return function(t) {
+      var i = t <= 0 ? (t = 0) : t >= 1 ? (t = 1, n - 1) : Math.floor(t * n),
+          v1 = values[i],
+          v2 = values[i + 1],
+          v0 = i > 0 ? values[i - 1] : 2 * v1 - v2,
+          v3 = i < n - 1 ? values[i + 2] : 2 * v2 - v1;
+      return basis((t - i / n) * n, v0, v1, v2, v3);
+    };
+  }
+
+  function basisClosed(values) {
+    var n = values.length;
+    return function(t) {
+      var i = Math.floor(((t %= 1) < 0 ? ++t : t) * n),
+          v0 = values[(i + n - 1) % n],
+          v1 = values[i % n],
+          v2 = values[(i + 1) % n],
+          v3 = values[(i + 2) % n];
+      return basis((t - i / n) * n, v0, v1, v2, v3);
+    };
+  }
+
+  function constant(x) {
+    return function() {
+      return x;
+    };
+  }
+
+  function linear(a, d) {
+    return function(t) {
+      return a + t * d;
+    };
+  }
+
+  function exponential(a, b, y) {
+    return a = Math.pow(a, y), b = Math.pow(b, y) - a, y = 1 / y, function(t) {
+      return Math.pow(a + t * b, y);
+    };
+  }
+
+  function hue(a, b) {
+    var d = b - a;
+    return d ? linear(a, d > 180 || d < -180 ? d - 360 * Math.round(d / 360) : d) : constant(isNaN(a) ? b : a);
+  }
+
+  function gamma(y) {
+    return (y = +y) === 1 ? nogamma : function(a, b) {
+      return b - a ? exponential(a, b, y) : constant(isNaN(a) ? b : a);
+    };
+  }
+
+  function nogamma(a, b) {
+    var d = b - a;
+    return d ? linear(a, d) : constant(isNaN(a) ? b : a);
+  }
+
+  var rgb$1 = (function rgbGamma(y) {
+    var color = gamma(y);
+
+    function rgb(start, end) {
+      var r = color((start = d3Color.rgb(start)).r, (end = d3Color.rgb(end)).r),
+          g = color(start.g, end.g),
+          b = color(start.b, end.b),
+          opacity = color(start.opacity, end.opacity);
+      return function(t) {
+        start.r = r(t);
+        start.g = g(t);
+        start.b = b(t);
+        start.opacity = opacity(t);
+        return start + "";
+      };
+    }
+
+    rgb.gamma = rgbGamma;
+
+    return rgb;
+  })(1);
+
+  function rgbSpline(spline) {
+    return function(colors) {
+      var n = colors.length,
+          r = new Array(n),
+          g = new Array(n),
+          b = new Array(n),
+          i, color;
+      for (i = 0; i < n; ++i) {
+        color = d3Color.rgb(colors[i]);
+        r[i] = color.r || 0;
+        g[i] = color.g || 0;
+        b[i] = color.b || 0;
+      }
+      r = spline(r);
+      g = spline(g);
+      b = spline(b);
+      color.opacity = 1;
+      return function(t) {
+        color.r = r(t);
+        color.g = g(t);
+        color.b = b(t);
+        return color + "";
+      };
+    };
+  }
+
+  var rgbBasis = rgbSpline(basis$1);
+  var rgbBasisClosed = rgbSpline(basisClosed);
+
+  function array(a, b) {
+    var nb = b ? b.length : 0,
+        na = a ? Math.min(nb, a.length) : 0,
+        x = new Array(nb),
+        c = new Array(nb),
+        i;
+
+    for (i = 0; i < na; ++i) x[i] = value(a[i], b[i]);
+    for (; i < nb; ++i) c[i] = b[i];
+
+    return function(t) {
+      for (i = 0; i < na; ++i) c[i] = x[i](t);
+      return c;
+    };
+  }
+
+  function date(a, b) {
+    var d = new Date;
+    return a = +a, b -= a, function(t) {
+      return d.setTime(a + b * t), d;
+    };
+  }
+
+  function number(a, b) {
+    return a = +a, b -= a, function(t) {
+      return a + b * t;
+    };
+  }
+
+  function object(a, b) {
+    var i = {},
+        c = {},
+        k;
+
+    if (a === null || typeof a !== "object") a = {};
+    if (b === null || typeof b !== "object") b = {};
+
+    for (k in b) {
+      if (k in a) {
+        i[k] = value(a[k], b[k]);
+      } else {
+        c[k] = b[k];
+      }
+    }
+
+    return function(t) {
+      for (k in i) c[k] = i[k](t);
+      return c;
+    };
+  }
+
+  var reA = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g;
+  var reB = new RegExp(reA.source, "g");
+  function zero(b) {
+    return function() {
+      return b;
+    };
+  }
+
+  function one(b) {
+    return function(t) {
+      return b(t) + "";
+    };
+  }
+
+  function string(a, b) {
+    var bi = reA.lastIndex = reB.lastIndex = 0, // scan index for next number in b
+        am, // current match in a
+        bm, // current match in b
+        bs, // string preceding current number in b, if any
+        i = -1, // index in s
+        s = [], // string constants and placeholders
+        q = []; // number interpolators
+
+    // Coerce inputs to strings.
+    a = a + "", b = b + "";
+
+    // Interpolate pairs of numbers in a & b.
+    while ((am = reA.exec(a))
+        && (bm = reB.exec(b))) {
+      if ((bs = bm.index) > bi) { // a string precedes the next number in b
+        bs = b.slice(bi, bs);
+        if (s[i]) s[i] += bs; // coalesce with previous string
+        else s[++i] = bs;
+      }
+      if ((am = am[0]) === (bm = bm[0])) { // numbers in a & b match
+        if (s[i]) s[i] += bm; // coalesce with previous string
+        else s[++i] = bm;
+      } else { // interpolate non-matching numbers
+        s[++i] = null;
+        q.push({i: i, x: number(am, bm)});
+      }
+      bi = reB.lastIndex;
+    }
+
+    // Add remains of b.
+    if (bi < b.length) {
+      bs = b.slice(bi);
+      if (s[i]) s[i] += bs; // coalesce with previous string
+      else s[++i] = bs;
+    }
+
+    // Special optimization for only a single match.
+    // Otherwise, interpolate each of the numbers and rejoin the string.
+    return s.length < 2 ? (q[0]
+        ? one(q[0].x)
+        : zero(b))
+        : (b = q.length, function(t) {
+            for (var i = 0, o; i < b; ++i) s[(o = q[i]).i] = o.x(t);
+            return s.join("");
+          });
+  }
+
+  function value(a, b) {
+    var t = typeof b, c;
+    return b == null || t === "boolean" ? constant(b)
+        : (t === "number" ? number
+        : t === "string" ? ((c = d3Color.color(b)) ? (b = c, rgb$1) : string)
+        : b instanceof d3Color.color ? rgb$1
+        : b instanceof Date ? date
+        : Array.isArray(b) ? array
+        : isNaN(b) ? object
+        : number)(a, b);
+  }
+
+  function round(a, b) {
+    return a = +a, b -= a, function(t) {
+      return Math.round(a + b * t);
+    };
+  }
+
+  var degrees = 180 / Math.PI;
+
+  var identity = {
+    translateX: 0,
+    translateY: 0,
+    rotate: 0,
+    skewX: 0,
+    scaleX: 1,
+    scaleY: 1
+  };
+
+  function decompose(a, b, c, d, e, f) {
+    var scaleX, scaleY, skewX;
+    if (scaleX = Math.sqrt(a * a + b * b)) a /= scaleX, b /= scaleX;
+    if (skewX = a * c + b * d) c -= a * skewX, d -= b * skewX;
+    if (scaleY = Math.sqrt(c * c + d * d)) c /= scaleY, d /= scaleY, skewX /= scaleY;
+    if (a * d < b * c) a = -a, b = -b, skewX = -skewX, scaleX = -scaleX;
+    return {
+      translateX: e,
+      translateY: f,
+      rotate: Math.atan2(b, a) * degrees,
+      skewX: Math.atan(skewX) * degrees,
+      scaleX: scaleX,
+      scaleY: scaleY
+    };
+  }
+
+  var cssNode;
+  var cssRoot;
+  var cssView;
+  var svgNode;
+  function parseCss(value) {
+    if (value === "none") return identity;
+    if (!cssNode) cssNode = document.createElement("DIV"), cssRoot = document.documentElement, cssView = document.defaultView;
+    cssNode.style.transform = value;
+    value = cssView.getComputedStyle(cssRoot.appendChild(cssNode), null).getPropertyValue("transform");
+    cssRoot.removeChild(cssNode);
+    value = value.slice(7, -1).split(",");
+    return decompose(+value[0], +value[1], +value[2], +value[3], +value[4], +value[5]);
+  }
+
+  function parseSvg(value) {
+    if (value == null) return identity;
+    if (!svgNode) svgNode = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    svgNode.setAttribute("transform", value);
+    if (!(value = svgNode.transform.baseVal.consolidate())) return identity;
+    value = value.matrix;
+    return decompose(value.a, value.b, value.c, value.d, value.e, value.f);
+  }
+
+  function interpolateTransform(parse, pxComma, pxParen, degParen) {
+
+    function pop(s) {
+      return s.length ? s.pop() + " " : "";
+    }
+
+    function translate(xa, ya, xb, yb, s, q) {
+      if (xa !== xb || ya !== yb) {
+        var i = s.push("translate(", null, pxComma, null, pxParen);
+        q.push({i: i - 4, x: number(xa, xb)}, {i: i - 2, x: number(ya, yb)});
+      } else if (xb || yb) {
+        s.push("translate(" + xb + pxComma + yb + pxParen);
+      }
+    }
+
+    function rotate(a, b, s, q) {
+      if (a !== b) {
+        if (a - b > 180) b += 360; else if (b - a > 180) a += 360; // shortest path
+        q.push({i: s.push(pop(s) + "rotate(", null, degParen) - 2, x: number(a, b)});
+      } else if (b) {
+        s.push(pop(s) + "rotate(" + b + degParen);
+      }
+    }
+
+    function skewX(a, b, s, q) {
+      if (a !== b) {
+        q.push({i: s.push(pop(s) + "skewX(", null, degParen) - 2, x: number(a, b)});
+      } else if (b) {
+        s.push(pop(s) + "skewX(" + b + degParen);
+      }
+    }
+
+    function scale(xa, ya, xb, yb, s, q) {
+      if (xa !== xb || ya !== yb) {
+        var i = s.push(pop(s) + "scale(", null, ",", null, ")");
+        q.push({i: i - 4, x: number(xa, xb)}, {i: i - 2, x: number(ya, yb)});
+      } else if (xb !== 1 || yb !== 1) {
+        s.push(pop(s) + "scale(" + xb + "," + yb + ")");
+      }
+    }
+
+    return function(a, b) {
+      var s = [], // string constants and placeholders
+          q = []; // number interpolators
+      a = parse(a), b = parse(b);
+      translate(a.translateX, a.translateY, b.translateX, b.translateY, s, q);
+      rotate(a.rotate, b.rotate, s, q);
+      skewX(a.skewX, b.skewX, s, q);
+      scale(a.scaleX, a.scaleY, b.scaleX, b.scaleY, s, q);
+      a = b = null; // gc
+      return function(t) {
+        var i = -1, n = q.length, o;
+        while (++i < n) s[(o = q[i]).i] = o.x(t);
+        return s.join("");
+      };
+    };
+  }
+
+  var interpolateTransformCss = interpolateTransform(parseCss, "px, ", "px)", "deg)");
+  var interpolateTransformSvg = interpolateTransform(parseSvg, ", ", ")", ")");
+
+  var rho = Math.SQRT2;
+  var rho2 = 2;
+  var rho4 = 4;
+  var epsilon2 = 1e-12;
+  function cosh(x) {
+    return ((x = Math.exp(x)) + 1 / x) / 2;
+  }
+
+  function sinh(x) {
+    return ((x = Math.exp(x)) - 1 / x) / 2;
+  }
+
+  function tanh(x) {
+    return ((x = Math.exp(2 * x)) - 1) / (x + 1);
+  }
+
+  // p0 = [ux0, uy0, w0]
+  // p1 = [ux1, uy1, w1]
+  function zoom(p0, p1) {
+    var ux0 = p0[0], uy0 = p0[1], w0 = p0[2],
+        ux1 = p1[0], uy1 = p1[1], w1 = p1[2],
+        dx = ux1 - ux0,
+        dy = uy1 - uy0,
+        d2 = dx * dx + dy * dy,
+        i,
+        S;
+
+    // Special case for u0 ≅ u1.
+    if (d2 < epsilon2) {
+      S = Math.log(w1 / w0) / rho;
+      i = function(t) {
+        return [
+          ux0 + t * dx,
+          uy0 + t * dy,
+          w0 * Math.exp(rho * t * S)
+        ];
+      }
+    }
+
+    // General case.
+    else {
+      var d1 = Math.sqrt(d2),
+          b0 = (w1 * w1 - w0 * w0 + rho4 * d2) / (2 * w0 * rho2 * d1),
+          b1 = (w1 * w1 - w0 * w0 - rho4 * d2) / (2 * w1 * rho2 * d1),
+          r0 = Math.log(Math.sqrt(b0 * b0 + 1) - b0),
+          r1 = Math.log(Math.sqrt(b1 * b1 + 1) - b1);
+      S = (r1 - r0) / rho;
+      i = function(t) {
+        var s = t * S,
+            coshr0 = cosh(r0),
+            u = w0 / (rho2 * d1) * (coshr0 * tanh(rho * s + r0) - sinh(r0));
+        return [
+          ux0 + u * dx,
+          uy0 + u * dy,
+          w0 * coshr0 / cosh(rho * s + r0)
+        ];
+      }
+    }
+
+    i.duration = S * 1000;
+
+    return i;
+  }
+
+  function hsl$1(hue) {
+    return function(start, end) {
+      var h = hue((start = d3Color.hsl(start)).h, (end = d3Color.hsl(end)).h),
+          s = nogamma(start.s, end.s),
+          l = nogamma(start.l, end.l),
+          opacity = nogamma(start.opacity, end.opacity);
+      return function(t) {
+        start.h = h(t);
+        start.s = s(t);
+        start.l = l(t);
+        start.opacity = opacity(t);
+        return start + "";
+      };
+    }
+  }
+
+  var hsl$2 = hsl$1(hue);
+  var hslLong = hsl$1(nogamma);
+
+  function lab$1(start, end) {
+    var l = nogamma((start = d3Color.lab(start)).l, (end = d3Color.lab(end)).l),
+        a = nogamma(start.a, end.a),
+        b = nogamma(start.b, end.b),
+        opacity = nogamma(start.opacity, end.opacity);
+    return function(t) {
+      start.l = l(t);
+      start.a = a(t);
+      start.b = b(t);
+      start.opacity = opacity(t);
+      return start + "";
+    };
+  }
+
+  function hcl$1(hue) {
+    return function(start, end) {
+      var h = hue((start = d3Color.hcl(start)).h, (end = d3Color.hcl(end)).h),
+          c = nogamma(start.c, end.c),
+          l = nogamma(start.l, end.l),
+          opacity = nogamma(start.opacity, end.opacity);
+      return function(t) {
+        start.h = h(t);
+        start.c = c(t);
+        start.l = l(t);
+        start.opacity = opacity(t);
+        return start + "";
+      };
+    }
+  }
+
+  var hcl$2 = hcl$1(hue);
+  var hclLong = hcl$1(nogamma);
+
+  function cubehelix$1(hue) {
+    return (function cubehelixGamma(y) {
+      y = +y;
+
+      function cubehelix(start, end) {
+        var h = hue((start = d3Color.cubehelix(start)).h, (end = d3Color.cubehelix(end)).h),
+            s = nogamma(start.s, end.s),
+            l = nogamma(start.l, end.l),
+            opacity = nogamma(start.opacity, end.opacity);
+        return function(t) {
+          start.h = h(t);
+          start.s = s(t);
+          start.l = l(Math.pow(t, y));
+          start.opacity = opacity(t);
+          return start + "";
+        };
+      }
+
+      cubehelix.gamma = cubehelixGamma;
+
+      return cubehelix;
+    })(1);
+  }
+
+  var cubehelix$2 = cubehelix$1(hue);
+  var cubehelixLong = cubehelix$1(nogamma);
+
+  function quantize(interpolator, n) {
+    var samples = new Array(n);
+    for (var i = 0; i < n; ++i) samples[i] = interpolator(i / (n - 1));
+    return samples;
+  }
+
+  exports.interpolate = value;
+  exports.interpolateArray = array;
+  exports.interpolateBasis = basis$1;
+  exports.interpolateBasisClosed = basisClosed;
+  exports.interpolateDate = date;
+  exports.interpolateNumber = number;
+  exports.interpolateObject = object;
+  exports.interpolateRound = round;
+  exports.interpolateString = string;
+  exports.interpolateTransformCss = interpolateTransformCss;
+  exports.interpolateTransformSvg = interpolateTransformSvg;
+  exports.interpolateZoom = zoom;
+  exports.interpolateRgb = rgb$1;
+  exports.interpolateRgbBasis = rgbBasis;
+  exports.interpolateRgbBasisClosed = rgbBasisClosed;
+  exports.interpolateHsl = hsl$2;
+  exports.interpolateHslLong = hslLong;
+  exports.interpolateLab = lab$1;
+  exports.interpolateHcl = hcl$2;
+  exports.interpolateHclLong = hclLong;
+  exports.interpolateCubehelix = cubehelix$2;
+  exports.interpolateCubehelixLong = cubehelixLong;
+  exports.quantize = quantize;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
+
+}));
+},{"d3-color":111}],115:[function(require,module,exports){
+// https://d3js.org/d3-path/ Version 1.0.2. Copyright 2016 Mike Bostock.
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (factory((global.d3 = global.d3 || {})));
+}(this, (function (exports) { 'use strict';
+
+var pi = Math.PI;
+var tau = 2 * pi;
+var epsilon = 1e-6;
+var tauEpsilon = tau - epsilon;
+
+function Path() {
+  this._x0 = this._y0 = // start of current subpath
+  this._x1 = this._y1 = null; // end of current subpath
+  this._ = [];
+}
+
+function path() {
+  return new Path;
+}
+
+Path.prototype = path.prototype = {
+  constructor: Path,
+  moveTo: function(x, y) {
+    this._.push("M", this._x0 = this._x1 = +x, ",", this._y0 = this._y1 = +y);
+  },
+  closePath: function() {
+    if (this._x1 !== null) {
+      this._x1 = this._x0, this._y1 = this._y0;
+      this._.push("Z");
+    }
+  },
+  lineTo: function(x, y) {
+    this._.push("L", this._x1 = +x, ",", this._y1 = +y);
+  },
+  quadraticCurveTo: function(x1, y1, x, y) {
+    this._.push("Q", +x1, ",", +y1, ",", this._x1 = +x, ",", this._y1 = +y);
+  },
+  bezierCurveTo: function(x1, y1, x2, y2, x, y) {
+    this._.push("C", +x1, ",", +y1, ",", +x2, ",", +y2, ",", this._x1 = +x, ",", this._y1 = +y);
+  },
+  arcTo: function(x1, y1, x2, y2, r) {
+    x1 = +x1, y1 = +y1, x2 = +x2, y2 = +y2, r = +r;
+    var x0 = this._x1,
+        y0 = this._y1,
+        x21 = x2 - x1,
+        y21 = y2 - y1,
+        x01 = x0 - x1,
+        y01 = y0 - y1,
+        l01_2 = x01 * x01 + y01 * y01;
+
+    // Is the radius negative? Error.
+    if (r < 0) throw new Error("negative radius: " + r);
+
+    // Is this path empty? Move to (x1,y1).
+    if (this._x1 === null) {
+      this._.push(
+        "M", this._x1 = x1, ",", this._y1 = y1
+      );
+    }
+
+    // Or, is (x1,y1) coincident with (x0,y0)? Do nothing.
+    else if (!(l01_2 > epsilon)) {}
+
+    // Or, are (x0,y0), (x1,y1) and (x2,y2) collinear?
+    // Equivalently, is (x1,y1) coincident with (x2,y2)?
+    // Or, is the radius zero? Line to (x1,y1).
+    else if (!(Math.abs(y01 * x21 - y21 * x01) > epsilon) || !r) {
+      this._.push(
+        "L", this._x1 = x1, ",", this._y1 = y1
+      );
+    }
+
+    // Otherwise, draw an arc!
+    else {
+      var x20 = x2 - x0,
+          y20 = y2 - y0,
+          l21_2 = x21 * x21 + y21 * y21,
+          l20_2 = x20 * x20 + y20 * y20,
+          l21 = Math.sqrt(l21_2),
+          l01 = Math.sqrt(l01_2),
+          l = r * Math.tan((pi - Math.acos((l21_2 + l01_2 - l20_2) / (2 * l21 * l01))) / 2),
+          t01 = l / l01,
+          t21 = l / l21;
+
+      // If the start tangent is not coincident with (x0,y0), line to.
+      if (Math.abs(t01 - 1) > epsilon) {
+        this._.push(
+          "L", x1 + t01 * x01, ",", y1 + t01 * y01
+        );
+      }
+
+      this._.push(
+        "A", r, ",", r, ",0,0,", +(y01 * x20 > x01 * y20), ",", this._x1 = x1 + t21 * x21, ",", this._y1 = y1 + t21 * y21
+      );
+    }
+  },
+  arc: function(x, y, r, a0, a1, ccw) {
+    x = +x, y = +y, r = +r;
+    var dx = r * Math.cos(a0),
+        dy = r * Math.sin(a0),
+        x0 = x + dx,
+        y0 = y + dy,
+        cw = 1 ^ ccw,
+        da = ccw ? a0 - a1 : a1 - a0;
+
+    // Is the radius negative? Error.
+    if (r < 0) throw new Error("negative radius: " + r);
+
+    // Is this path empty? Move to (x0,y0).
+    if (this._x1 === null) {
+      this._.push(
+        "M", x0, ",", y0
+      );
+    }
+
+    // Or, is (x0,y0) not coincident with the previous point? Line to (x0,y0).
+    else if (Math.abs(this._x1 - x0) > epsilon || Math.abs(this._y1 - y0) > epsilon) {
+      this._.push(
+        "L", x0, ",", y0
+      );
+    }
+
+    // Is this arc empty? We’re done.
+    if (!r) return;
+
+    // Is this a complete circle? Draw two arcs to complete the circle.
+    if (da > tauEpsilon) {
+      this._.push(
+        "A", r, ",", r, ",0,1,", cw, ",", x - dx, ",", y - dy,
+        "A", r, ",", r, ",0,1,", cw, ",", this._x1 = x0, ",", this._y1 = y0
+      );
+    }
+
+    // Otherwise, draw an arc!
+    else {
+      if (da < 0) da = da % tau + tau;
+      this._.push(
+        "A", r, ",", r, ",0,", +(da >= pi), ",", cw, ",", this._x1 = x + r * Math.cos(a1), ",", this._y1 = y + r * Math.sin(a1)
+      );
+    }
+  },
+  rect: function(x, y, w, h) {
+    this._.push("M", this._x0 = this._x1 = +x, ",", this._y0 = this._y1 = +y, "h", +w, "v", +h, "h", -w, "Z");
+  },
+  toString: function() {
+    return this._.join("");
+  }
+};
+
+exports.path = path;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+},{}],116:[function(require,module,exports){
+// https://d3js.org/d3-scale/ Version 1.0.3. Copyright 2016 Mike Bostock.
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-array'), require('d3-collection'), require('d3-interpolate'), require('d3-format'), require('d3-time'), require('d3-time-format'), require('d3-color')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'd3-array', 'd3-collection', 'd3-interpolate', 'd3-format', 'd3-time', 'd3-time-format', 'd3-color'], factory) :
+  (factory((global.d3 = global.d3 || {}),global.d3,global.d3,global.d3,global.d3,global.d3,global.d3,global.d3));
+}(this, function (exports,d3Array,d3Collection,d3Interpolate,d3Format,d3Time,d3TimeFormat,d3Color) { 'use strict';
+
+  var array = Array.prototype;
+
+  var map$1 = array.map;
+  var slice = array.slice;
+
+  var implicit = {name: "implicit"};
+
+  function ordinal(range) {
+    var index = d3Collection.map(),
+        domain = [],
+        unknown = implicit;
+
+    range = range == null ? [] : slice.call(range);
+
+    function scale(d) {
+      var key = d + "", i = index.get(key);
+      if (!i) {
+        if (unknown !== implicit) return unknown;
+        index.set(key, i = domain.push(d));
+      }
+      return range[(i - 1) % range.length];
+    }
+
+    scale.domain = function(_) {
+      if (!arguments.length) return domain.slice();
+      domain = [], index = d3Collection.map();
+      var i = -1, n = _.length, d, key;
+      while (++i < n) if (!index.has(key = (d = _[i]) + "")) index.set(key, domain.push(d));
+      return scale;
+    };
+
+    scale.range = function(_) {
+      return arguments.length ? (range = slice.call(_), scale) : range.slice();
+    };
+
+    scale.unknown = function(_) {
+      return arguments.length ? (unknown = _, scale) : unknown;
+    };
+
+    scale.copy = function() {
+      return ordinal()
+          .domain(domain)
+          .range(range)
+          .unknown(unknown);
+    };
+
+    return scale;
+  }
+
+  function band() {
+    var scale = ordinal().unknown(undefined),
+        domain = scale.domain,
+        ordinalRange = scale.range,
+        range = [0, 1],
+        step,
+        bandwidth,
+        round = false,
+        paddingInner = 0,
+        paddingOuter = 0,
+        align = 0.5;
+
+    delete scale.unknown;
+
+    function rescale() {
+      var n = domain().length,
+          reverse = range[1] < range[0],
+          start = range[reverse - 0],
+          stop = range[1 - reverse];
+      step = (stop - start) / Math.max(1, n - paddingInner + paddingOuter * 2);
+      if (round) step = Math.floor(step);
+      start += (stop - start - step * (n - paddingInner)) * align;
+      bandwidth = step * (1 - paddingInner);
+      if (round) start = Math.round(start), bandwidth = Math.round(bandwidth);
+      var values = d3Array.range(n).map(function(i) { return start + step * i; });
+      return ordinalRange(reverse ? values.reverse() : values);
+    }
+
+    scale.domain = function(_) {
+      return arguments.length ? (domain(_), rescale()) : domain();
+    };
+
+    scale.range = function(_) {
+      return arguments.length ? (range = [+_[0], +_[1]], rescale()) : range.slice();
+    };
+
+    scale.rangeRound = function(_) {
+      return range = [+_[0], +_[1]], round = true, rescale();
+    };
+
+    scale.bandwidth = function() {
+      return bandwidth;
+    };
+
+    scale.step = function() {
+      return step;
+    };
+
+    scale.round = function(_) {
+      return arguments.length ? (round = !!_, rescale()) : round;
+    };
+
+    scale.padding = function(_) {
+      return arguments.length ? (paddingInner = paddingOuter = Math.max(0, Math.min(1, _)), rescale()) : paddingInner;
+    };
+
+    scale.paddingInner = function(_) {
+      return arguments.length ? (paddingInner = Math.max(0, Math.min(1, _)), rescale()) : paddingInner;
+    };
+
+    scale.paddingOuter = function(_) {
+      return arguments.length ? (paddingOuter = Math.max(0, Math.min(1, _)), rescale()) : paddingOuter;
+    };
+
+    scale.align = function(_) {
+      return arguments.length ? (align = Math.max(0, Math.min(1, _)), rescale()) : align;
+    };
+
+    scale.copy = function() {
+      return band()
+          .domain(domain())
+          .range(range)
+          .round(round)
+          .paddingInner(paddingInner)
+          .paddingOuter(paddingOuter)
+          .align(align);
+    };
+
+    return rescale();
+  }
+
+  function pointish(scale) {
+    var copy = scale.copy;
+
+    scale.padding = scale.paddingOuter;
+    delete scale.paddingInner;
+    delete scale.paddingOuter;
+
+    scale.copy = function() {
+      return pointish(copy());
+    };
+
+    return scale;
+  }
+
+  function point() {
+    return pointish(band().paddingInner(1));
+  }
+
+  function constant(x) {
+    return function() {
+      return x;
+    };
+  }
+
+  function number(x) {
+    return +x;
+  }
+
+  var unit = [0, 1];
+
+  function deinterpolate(a, b) {
+    return (b -= (a = +a))
+        ? function(x) { return (x - a) / b; }
+        : constant(b);
+  }
+
+  function deinterpolateClamp(deinterpolate) {
+    return function(a, b) {
+      var d = deinterpolate(a = +a, b = +b);
+      return function(x) { return x <= a ? 0 : x >= b ? 1 : d(x); };
+    };
+  }
+
+  function reinterpolateClamp(reinterpolate) {
+    return function(a, b) {
+      var r = reinterpolate(a = +a, b = +b);
+      return function(t) { return t <= 0 ? a : t >= 1 ? b : r(t); };
+    };
+  }
+
+  function bimap(domain, range, deinterpolate, reinterpolate) {
+    var d0 = domain[0], d1 = domain[1], r0 = range[0], r1 = range[1];
+    if (d1 < d0) d0 = deinterpolate(d1, d0), r0 = reinterpolate(r1, r0);
+    else d0 = deinterpolate(d0, d1), r0 = reinterpolate(r0, r1);
+    return function(x) { return r0(d0(x)); };
+  }
+
+  function polymap(domain, range, deinterpolate, reinterpolate) {
+    var j = Math.min(domain.length, range.length) - 1,
+        d = new Array(j),
+        r = new Array(j),
+        i = -1;
+
+    // Reverse descending domains.
+    if (domain[j] < domain[0]) {
+      domain = domain.slice().reverse();
+      range = range.slice().reverse();
+    }
+
+    while (++i < j) {
+      d[i] = deinterpolate(domain[i], domain[i + 1]);
+      r[i] = reinterpolate(range[i], range[i + 1]);
+    }
+
+    return function(x) {
+      var i = d3Array.bisect(domain, x, 1, j) - 1;
+      return r[i](d[i](x));
+    };
+  }
+
+  function copy(source, target) {
+    return target
+        .domain(source.domain())
+        .range(source.range())
+        .interpolate(source.interpolate())
+        .clamp(source.clamp());
+  }
+
+  // deinterpolate(a, b)(x) takes a domain value x in [a,b] and returns the corresponding parameter t in [0,1].
+  // reinterpolate(a, b)(t) takes a parameter t in [0,1] and returns the corresponding domain value x in [a,b].
+  function continuous(deinterpolate$$, reinterpolate) {
+    var domain = unit,
+        range = unit,
+        interpolate = d3Interpolate.interpolate,
+        clamp = false,
+        piecewise,
+        output,
+        input;
+
+    function rescale() {
+      piecewise = Math.min(domain.length, range.length) > 2 ? polymap : bimap;
+      output = input = null;
+      return scale;
+    }
+
+    function scale(x) {
+      return (output || (output = piecewise(domain, range, clamp ? deinterpolateClamp(deinterpolate$$) : deinterpolate$$, interpolate)))(+x);
+    }
+
+    scale.invert = function(y) {
+      return (input || (input = piecewise(range, domain, deinterpolate, clamp ? reinterpolateClamp(reinterpolate) : reinterpolate)))(+y);
+    };
+
+    scale.domain = function(_) {
+      return arguments.length ? (domain = map$1.call(_, number), rescale()) : domain.slice();
+    };
+
+    scale.range = function(_) {
+      return arguments.length ? (range = slice.call(_), rescale()) : range.slice();
+    };
+
+    scale.rangeRound = function(_) {
+      return range = slice.call(_), interpolate = d3Interpolate.interpolateRound, rescale();
+    };
+
+    scale.clamp = function(_) {
+      return arguments.length ? (clamp = !!_, rescale()) : clamp;
+    };
+
+    scale.interpolate = function(_) {
+      return arguments.length ? (interpolate = _, rescale()) : interpolate;
+    };
+
+    return rescale();
+  }
+
+  function tickFormat(domain, count, specifier) {
+    var start = domain[0],
+        stop = domain[domain.length - 1],
+        step = d3Array.tickStep(start, stop, count == null ? 10 : count),
+        precision;
+    specifier = d3Format.formatSpecifier(specifier == null ? ",f" : specifier);
+    switch (specifier.type) {
+      case "s": {
+        var value = Math.max(Math.abs(start), Math.abs(stop));
+        if (specifier.precision == null && !isNaN(precision = d3Format.precisionPrefix(step, value))) specifier.precision = precision;
+        return d3Format.formatPrefix(specifier, value);
+      }
+      case "":
+      case "e":
+      case "g":
+      case "p":
+      case "r": {
+        if (specifier.precision == null && !isNaN(precision = d3Format.precisionRound(step, Math.max(Math.abs(start), Math.abs(stop))))) specifier.precision = precision - (specifier.type === "e");
+        break;
+      }
+      case "f":
+      case "%": {
+        if (specifier.precision == null && !isNaN(precision = d3Format.precisionFixed(step))) specifier.precision = precision - (specifier.type === "%") * 2;
+        break;
+      }
+    }
+    return d3Format.format(specifier);
+  }
+
+  function linearish(scale) {
+    var domain = scale.domain;
+
+    scale.ticks = function(count) {
+      var d = domain();
+      return d3Array.ticks(d[0], d[d.length - 1], count == null ? 10 : count);
+    };
+
+    scale.tickFormat = function(count, specifier) {
+      return tickFormat(domain(), count, specifier);
+    };
+
+    scale.nice = function(count) {
+      var d = domain(),
+          i = d.length - 1,
+          n = count == null ? 10 : count,
+          start = d[0],
+          stop = d[i],
+          step = d3Array.tickStep(start, stop, n);
+
+      if (step) {
+        step = d3Array.tickStep(Math.floor(start / step) * step, Math.ceil(stop / step) * step, n);
+        d[0] = Math.floor(start / step) * step;
+        d[i] = Math.ceil(stop / step) * step;
+        domain(d);
+      }
+
+      return scale;
+    };
+
+    return scale;
+  }
+
+  function linear() {
+    var scale = continuous(deinterpolate, d3Interpolate.interpolateNumber);
+
+    scale.copy = function() {
+      return copy(scale, linear());
+    };
+
+    return linearish(scale);
+  }
+
+  function identity() {
+    var domain = [0, 1];
+
+    function scale(x) {
+      return +x;
+    }
+
+    scale.invert = scale;
+
+    scale.domain = scale.range = function(_) {
+      return arguments.length ? (domain = map$1.call(_, number), scale) : domain.slice();
+    };
+
+    scale.copy = function() {
+      return identity().domain(domain);
+    };
+
+    return linearish(scale);
+  }
+
+  function nice(domain, interval) {
+    domain = domain.slice();
+
+    var i0 = 0,
+        i1 = domain.length - 1,
+        x0 = domain[i0],
+        x1 = domain[i1],
+        t;
+
+    if (x1 < x0) {
+      t = i0, i0 = i1, i1 = t;
+      t = x0, x0 = x1, x1 = t;
+    }
+
+    domain[i0] = interval.floor(x0);
+    domain[i1] = interval.ceil(x1);
+    return domain;
+  }
+
+  function deinterpolate$1(a, b) {
+    return (b = Math.log(b / a))
+        ? function(x) { return Math.log(x / a) / b; }
+        : constant(b);
+  }
+
+  function reinterpolate(a, b) {
+    return a < 0
+        ? function(t) { return -Math.pow(-b, t) * Math.pow(-a, 1 - t); }
+        : function(t) { return Math.pow(b, t) * Math.pow(a, 1 - t); };
+  }
+
+  function pow10(x) {
+    return isFinite(x) ? +("1e" + x) : x < 0 ? 0 : x;
+  }
+
+  function powp(base) {
+    return base === 10 ? pow10
+        : base === Math.E ? Math.exp
+        : function(x) { return Math.pow(base, x); };
+  }
+
+  function logp(base) {
+    return base === Math.E ? Math.log
+        : base === 10 && Math.log10
+        || base === 2 && Math.log2
+        || (base = Math.log(base), function(x) { return Math.log(x) / base; });
+  }
+
+  function reflect(f) {
+    return function(x) {
+      return -f(-x);
+    };
+  }
+
+  function log() {
+    var scale = continuous(deinterpolate$1, reinterpolate).domain([1, 10]),
+        domain = scale.domain,
+        base = 10,
+        logs = logp(10),
+        pows = powp(10);
+
+    function rescale() {
+      logs = logp(base), pows = powp(base);
+      if (domain()[0] < 0) logs = reflect(logs), pows = reflect(pows);
+      return scale;
+    }
+
+    scale.base = function(_) {
+      return arguments.length ? (base = +_, rescale()) : base;
+    };
+
+    scale.domain = function(_) {
+      return arguments.length ? (domain(_), rescale()) : domain();
+    };
+
+    scale.ticks = function(count) {
+      var d = domain(),
+          u = d[0],
+          v = d[d.length - 1],
+          r;
+
+      if (r = v < u) i = u, u = v, v = i;
+
+      var i = logs(u),
+          j = logs(v),
+          p,
+          k,
+          t,
+          n = count == null ? 10 : +count,
+          z = [];
+
+      if (!(base % 1) && j - i < n) {
+        i = Math.round(i) - 1, j = Math.round(j) + 1;
+        if (u > 0) for (; i < j; ++i) {
+          for (k = 1, p = pows(i); k < base; ++k) {
+            t = p * k;
+            if (t < u) continue;
+            if (t > v) break;
+            z.push(t);
+          }
+        } else for (; i < j; ++i) {
+          for (k = base - 1, p = pows(i); k >= 1; --k) {
+            t = p * k;
+            if (t < u) continue;
+            if (t > v) break;
+            z.push(t);
+          }
+        }
+      } else {
+        z = d3Array.ticks(i, j, Math.min(j - i, n)).map(pows);
+      }
+
+      return r ? z.reverse() : z;
+    };
+
+    scale.tickFormat = function(count, specifier) {
+      if (specifier == null) specifier = base === 10 ? ".0e" : ",";
+      if (typeof specifier !== "function") specifier = d3Format.format(specifier);
+      if (count === Infinity) return specifier;
+      if (count == null) count = 10;
+      var k = Math.max(1, base * count / scale.ticks().length); // TODO fast estimate?
+      return function(d) {
+        var i = d / pows(Math.round(logs(d)));
+        if (i * base < base - 0.5) i *= base;
+        return i <= k ? specifier(d) : "";
+      };
+    };
+
+    scale.nice = function() {
+      return domain(nice(domain(), {
+        floor: function(x) { return pows(Math.floor(logs(x))); },
+        ceil: function(x) { return pows(Math.ceil(logs(x))); }
+      }));
+    };
+
+    scale.copy = function() {
+      return copy(scale, log().base(base));
+    };
+
+    return scale;
+  }
+
+  function raise(x, exponent) {
+    return x < 0 ? -Math.pow(-x, exponent) : Math.pow(x, exponent);
+  }
+
+  function pow() {
+    var exponent = 1,
+        scale = continuous(deinterpolate, reinterpolate),
+        domain = scale.domain;
+
+    function deinterpolate(a, b) {
+      return (b = raise(b, exponent) - (a = raise(a, exponent)))
+          ? function(x) { return (raise(x, exponent) - a) / b; }
+          : constant(b);
+    }
+
+    function reinterpolate(a, b) {
+      b = raise(b, exponent) - (a = raise(a, exponent));
+      return function(t) { return raise(a + b * t, 1 / exponent); };
+    }
+
+    scale.exponent = function(_) {
+      return arguments.length ? (exponent = +_, domain(domain())) : exponent;
+    };
+
+    scale.copy = function() {
+      return copy(scale, pow().exponent(exponent));
+    };
+
+    return linearish(scale);
+  }
+
+  function sqrt() {
+    return pow().exponent(0.5);
+  }
+
+  function quantile$1() {
+    var domain = [],
+        range = [],
+        thresholds = [];
+
+    function rescale() {
+      var i = 0, n = Math.max(1, range.length);
+      thresholds = new Array(n - 1);
+      while (++i < n) thresholds[i - 1] = d3Array.quantile(domain, i / n);
+      return scale;
+    }
+
+    function scale(x) {
+      if (!isNaN(x = +x)) return range[d3Array.bisect(thresholds, x)];
+    }
+
+    scale.invertExtent = function(y) {
+      var i = range.indexOf(y);
+      return i < 0 ? [NaN, NaN] : [
+        i > 0 ? thresholds[i - 1] : domain[0],
+        i < thresholds.length ? thresholds[i] : domain[domain.length - 1]
+      ];
+    };
+
+    scale.domain = function(_) {
+      if (!arguments.length) return domain.slice();
+      domain = [];
+      for (var i = 0, n = _.length, d; i < n; ++i) if (d = _[i], d != null && !isNaN(d = +d)) domain.push(d);
+      domain.sort(d3Array.ascending);
+      return rescale();
+    };
+
+    scale.range = function(_) {
+      return arguments.length ? (range = slice.call(_), rescale()) : range.slice();
+    };
+
+    scale.quantiles = function() {
+      return thresholds.slice();
+    };
+
+    scale.copy = function() {
+      return quantile$1()
+          .domain(domain)
+          .range(range);
+    };
+
+    return scale;
+  }
+
+  function quantize() {
+    var x0 = 0,
+        x1 = 1,
+        n = 1,
+        domain = [0.5],
+        range = [0, 1];
+
+    function scale(x) {
+      if (x <= x) return range[d3Array.bisect(domain, x, 0, n)];
+    }
+
+    function rescale() {
+      var i = -1;
+      domain = new Array(n);
+      while (++i < n) domain[i] = ((i + 1) * x1 - (i - n) * x0) / (n + 1);
+      return scale;
+    }
+
+    scale.domain = function(_) {
+      return arguments.length ? (x0 = +_[0], x1 = +_[1], rescale()) : [x0, x1];
+    };
+
+    scale.range = function(_) {
+      return arguments.length ? (n = (range = slice.call(_)).length - 1, rescale()) : range.slice();
+    };
+
+    scale.invertExtent = function(y) {
+      var i = range.indexOf(y);
+      return i < 0 ? [NaN, NaN]
+          : i < 1 ? [x0, domain[0]]
+          : i >= n ? [domain[n - 1], x1]
+          : [domain[i - 1], domain[i]];
+    };
+
+    scale.copy = function() {
+      return quantize()
+          .domain([x0, x1])
+          .range(range);
+    };
+
+    return linearish(scale);
+  }
+
+  function threshold() {
+    var domain = [0.5],
+        range = [0, 1],
+        n = 1;
+
+    function scale(x) {
+      if (x <= x) return range[d3Array.bisect(domain, x, 0, n)];
+    }
+
+    scale.domain = function(_) {
+      return arguments.length ? (domain = slice.call(_), n = Math.min(domain.length, range.length - 1), scale) : domain.slice();
+    };
+
+    scale.range = function(_) {
+      return arguments.length ? (range = slice.call(_), n = Math.min(domain.length, range.length - 1), scale) : range.slice();
+    };
+
+    scale.invertExtent = function(y) {
+      var i = range.indexOf(y);
+      return [domain[i - 1], domain[i]];
+    };
+
+    scale.copy = function() {
+      return threshold()
+          .domain(domain)
+          .range(range);
+    };
+
+    return scale;
+  }
+
+  var durationSecond = 1000;
+  var durationMinute = durationSecond * 60;
+  var durationHour = durationMinute * 60;
+  var durationDay = durationHour * 24;
+  var durationWeek = durationDay * 7;
+  var durationMonth = durationDay * 30;
+  var durationYear = durationDay * 365;
+  function date(t) {
+    return new Date(t);
+  }
+
+  function number$1(t) {
+    return t instanceof Date ? +t : +new Date(+t);
+  }
+
+  function calendar(year, month, week, day, hour, minute, second, millisecond, format) {
+    var scale = continuous(deinterpolate, d3Interpolate.interpolateNumber),
+        invert = scale.invert,
+        domain = scale.domain;
+
+    var formatMillisecond = format(".%L"),
+        formatSecond = format(":%S"),
+        formatMinute = format("%I:%M"),
+        formatHour = format("%I %p"),
+        formatDay = format("%a %d"),
+        formatWeek = format("%b %d"),
+        formatMonth = format("%B"),
+        formatYear = format("%Y");
+
+    var tickIntervals = [
+      [second,  1,      durationSecond],
+      [second,  5,  5 * durationSecond],
+      [second, 15, 15 * durationSecond],
+      [second, 30, 30 * durationSecond],
+      [minute,  1,      durationMinute],
+      [minute,  5,  5 * durationMinute],
+      [minute, 15, 15 * durationMinute],
+      [minute, 30, 30 * durationMinute],
+      [  hour,  1,      durationHour  ],
+      [  hour,  3,  3 * durationHour  ],
+      [  hour,  6,  6 * durationHour  ],
+      [  hour, 12, 12 * durationHour  ],
+      [   day,  1,      durationDay   ],
+      [   day,  2,  2 * durationDay   ],
+      [  week,  1,      durationWeek  ],
+      [ month,  1,      durationMonth ],
+      [ month,  3,  3 * durationMonth ],
+      [  year,  1,      durationYear  ]
+    ];
+
+    function tickFormat(date) {
+      return (second(date) < date ? formatMillisecond
+          : minute(date) < date ? formatSecond
+          : hour(date) < date ? formatMinute
+          : day(date) < date ? formatHour
+          : month(date) < date ? (week(date) < date ? formatDay : formatWeek)
+          : year(date) < date ? formatMonth
+          : formatYear)(date);
+    }
+
+    function tickInterval(interval, start, stop, step) {
+      if (interval == null) interval = 10;
+
+      // If a desired tick count is specified, pick a reasonable tick interval
+      // based on the extent of the domain and a rough estimate of tick size.
+      // Otherwise, assume interval is already a time interval and use it.
+      if (typeof interval === "number") {
+        var target = Math.abs(stop - start) / interval,
+            i = d3Array.bisector(function(i) { return i[2]; }).right(tickIntervals, target);
+        if (i === tickIntervals.length) {
+          step = d3Array.tickStep(start / durationYear, stop / durationYear, interval);
+          interval = year;
+        } else if (i) {
+          i = tickIntervals[target / tickIntervals[i - 1][2] < tickIntervals[i][2] / target ? i - 1 : i];
+          step = i[1];
+          interval = i[0];
+        } else {
+          step = d3Array.tickStep(start, stop, interval);
+          interval = millisecond;
+        }
+      }
+
+      return step == null ? interval : interval.every(step);
+    }
+
+    scale.invert = function(y) {
+      return new Date(invert(y));
+    };
+
+    scale.domain = function(_) {
+      return arguments.length ? domain(map$1.call(_, number$1)) : domain().map(date);
+    };
+
+    scale.ticks = function(interval, step) {
+      var d = domain(),
+          t0 = d[0],
+          t1 = d[d.length - 1],
+          r = t1 < t0,
+          t;
+      if (r) t = t0, t0 = t1, t1 = t;
+      t = tickInterval(interval, t0, t1, step);
+      t = t ? t.range(t0, t1 + 1) : []; // inclusive stop
+      return r ? t.reverse() : t;
+    };
+
+    scale.tickFormat = function(count, specifier) {
+      return specifier == null ? tickFormat : format(specifier);
+    };
+
+    scale.nice = function(interval, step) {
+      var d = domain();
+      return (interval = tickInterval(interval, d[0], d[d.length - 1], step))
+          ? domain(nice(d, interval))
+          : scale;
+    };
+
+    scale.copy = function() {
+      return copy(scale, calendar(year, month, week, day, hour, minute, second, millisecond, format));
+    };
+
+    return scale;
+  }
+
+  function time() {
+    return calendar(d3Time.timeYear, d3Time.timeMonth, d3Time.timeWeek, d3Time.timeDay, d3Time.timeHour, d3Time.timeMinute, d3Time.timeSecond, d3Time.timeMillisecond, d3TimeFormat.timeFormat).domain([new Date(2000, 0, 1), new Date(2000, 0, 2)]);
+  }
+
+  function utcTime() {
+    return calendar(d3Time.utcYear, d3Time.utcMonth, d3Time.utcWeek, d3Time.utcDay, d3Time.utcHour, d3Time.utcMinute, d3Time.utcSecond, d3Time.utcMillisecond, d3TimeFormat.utcFormat).domain([Date.UTC(2000, 0, 1), Date.UTC(2000, 0, 2)]);
+  }
+
+  function colors(s) {
+    return s.match(/.{6}/g).map(function(x) {
+      return "#" + x;
+    });
+  }
+
+  var category10 = colors("1f77b4ff7f0e2ca02cd627289467bd8c564be377c27f7f7fbcbd2217becf");
+
+  var category20b = colors("393b795254a36b6ecf9c9ede6379398ca252b5cf6bcedb9c8c6d31bd9e39e7ba52e7cb94843c39ad494ad6616be7969c7b4173a55194ce6dbdde9ed6");
+
+  var category20c = colors("3182bd6baed69ecae1c6dbefe6550dfd8d3cfdae6bfdd0a231a35474c476a1d99bc7e9c0756bb19e9ac8bcbddcdadaeb636363969696bdbdbdd9d9d9");
+
+  var category20 = colors("1f77b4aec7e8ff7f0effbb782ca02c98df8ad62728ff98969467bdc5b0d58c564bc49c94e377c2f7b6d27f7f7fc7c7c7bcbd22dbdb8d17becf9edae5");
+
+  var cubehelix$1 = d3Interpolate.interpolateCubehelixLong(d3Color.cubehelix(300, 0.5, 0.0), d3Color.cubehelix(-240, 0.5, 1.0));
+
+  var warm = d3Interpolate.interpolateCubehelixLong(d3Color.cubehelix(-100, 0.75, 0.35), d3Color.cubehelix(80, 1.50, 0.8));
+
+  var cool = d3Interpolate.interpolateCubehelixLong(d3Color.cubehelix(260, 0.75, 0.35), d3Color.cubehelix(80, 1.50, 0.8));
+
+  var rainbow = d3Color.cubehelix();
+
+  function rainbow$1(t) {
+    if (t < 0 || t > 1) t -= Math.floor(t);
+    var ts = Math.abs(t - 0.5);
+    rainbow.h = 360 * t - 100;
+    rainbow.s = 1.5 - 1.5 * ts;
+    rainbow.l = 0.8 - 0.9 * ts;
+    return rainbow + "";
+  }
+
+  function ramp(range) {
+    var n = range.length;
+    return function(t) {
+      return range[Math.max(0, Math.min(n - 1, Math.floor(t * n)))];
+    };
+  }
+
+  var viridis = ramp(colors("44015444025645045745055946075a46085c460a5d460b5e470d60470e6147106347116447136548146748166848176948186a481a6c481b6d481c6e481d6f481f70482071482173482374482475482576482677482878482979472a7a472c7a472d7b472e7c472f7d46307e46327e46337f463480453581453781453882443983443a83443b84433d84433e85423f854240864241864142874144874045884046883f47883f48893e49893e4a893e4c8a3d4d8a3d4e8a3c4f8a3c508b3b518b3b528b3a538b3a548c39558c39568c38588c38598c375a8c375b8d365c8d365d8d355e8d355f8d34608d34618d33628d33638d32648e32658e31668e31678e31688e30698e306a8e2f6b8e2f6c8e2e6d8e2e6e8e2e6f8e2d708e2d718e2c718e2c728e2c738e2b748e2b758e2a768e2a778e2a788e29798e297a8e297b8e287c8e287d8e277e8e277f8e27808e26818e26828e26828e25838e25848e25858e24868e24878e23888e23898e238a8d228b8d228c8d228d8d218e8d218f8d21908d21918c20928c20928c20938c1f948c1f958b1f968b1f978b1f988b1f998a1f9a8a1e9b8a1e9c891e9d891f9e891f9f881fa0881fa1881fa1871fa28720a38620a48621a58521a68522a78522a88423a98324aa8325ab8225ac8226ad8127ad8128ae8029af7f2ab07f2cb17e2db27d2eb37c2fb47c31b57b32b67a34b67935b77937b87838b9773aba763bbb753dbc743fbc7340bd7242be7144bf7046c06f48c16e4ac16d4cc26c4ec36b50c46a52c56954c56856c66758c7655ac8645cc8635ec96260ca6063cb5f65cb5e67cc5c69cd5b6ccd5a6ece5870cf5773d05675d05477d1537ad1517cd2507fd34e81d34d84d44b86d54989d5488bd6468ed64590d74393d74195d84098d83e9bd93c9dd93ba0da39a2da37a5db36a8db34aadc32addc30b0dd2fb2dd2db5de2bb8de29bade28bddf26c0df25c2df23c5e021c8e020cae11fcde11dd0e11cd2e21bd5e21ad8e219dae319dde318dfe318e2e418e5e419e7e419eae51aece51befe51cf1e51df4e61ef6e620f8e621fbe723fde725"));
+
+  var magma = ramp(colors("00000401000501010601010802010902020b02020d03030f03031204041405041606051806051a07061c08071e0907200a08220b09240c09260d0a290e0b2b100b2d110c2f120d31130d34140e36150e38160f3b180f3d19103f1a10421c10441d11471e114920114b21114e22115024125325125527125829115a2a115c2c115f2d11612f116331116533106734106936106b38106c390f6e3b0f703d0f713f0f72400f74420f75440f764510774710784910784a10794c117a4e117b4f127b51127c52137c54137d56147d57157e59157e5a167e5c167f5d177f5f187f601880621980641a80651a80671b80681c816a1c816b1d816d1d816e1e81701f81721f817320817521817621817822817922827b23827c23827e24828025828125818326818426818627818827818928818b29818c29818e2a81902a81912b81932b80942c80962c80982d80992d809b2e7f9c2e7f9e2f7fa02f7fa1307ea3307ea5317ea6317da8327daa337dab337cad347cae347bb0357bb2357bb3367ab5367ab73779b83779ba3878bc3978bd3977bf3a77c03a76c23b75c43c75c53c74c73d73c83e73ca3e72cc3f71cd4071cf4070d0416fd2426fd3436ed5446dd6456cd8456cd9466bdb476adc4869de4968df4a68e04c67e24d66e34e65e44f64e55064e75263e85362e95462ea5661eb5760ec5860ed5a5fee5b5eef5d5ef05f5ef1605df2625df2645cf3655cf4675cf4695cf56b5cf66c5cf66e5cf7705cf7725cf8745cf8765cf9785df9795df97b5dfa7d5efa7f5efa815ffb835ffb8560fb8761fc8961fc8a62fc8c63fc8e64fc9065fd9266fd9467fd9668fd9869fd9a6afd9b6bfe9d6cfe9f6dfea16efea36ffea571fea772fea973feaa74feac76feae77feb078feb27afeb47bfeb67cfeb77efeb97ffebb81febd82febf84fec185fec287fec488fec68afec88cfeca8dfecc8ffecd90fecf92fed194fed395fed597fed799fed89afdda9cfddc9efddea0fde0a1fde2a3fde3a5fde5a7fde7a9fde9aafdebacfcecaefceeb0fcf0b2fcf2b4fcf4b6fcf6b8fcf7b9fcf9bbfcfbbdfcfdbf"));
+
+  var inferno = ramp(colors("00000401000501010601010802010a02020c02020e03021004031204031405041706041907051b08051d09061f0a07220b07240c08260d08290e092b10092d110a30120a32140b34150b37160b39180c3c190c3e1b0c411c0c431e0c451f0c48210c4a230c4c240c4f260c51280b53290b552b0b572d0b592f0a5b310a5c320a5e340a5f3609613809623909633b09643d09653e0966400a67420a68440a68450a69470b6a490b6a4a0c6b4c0c6b4d0d6c4f0d6c510e6c520e6d540f6d550f6d57106e59106e5a116e5c126e5d126e5f136e61136e62146e64156e65156e67166e69166e6a176e6c186e6d186e6f196e71196e721a6e741a6e751b6e771c6d781c6d7a1d6d7c1d6d7d1e6d7f1e6c801f6c82206c84206b85216b87216b88226a8a226a8c23698d23698f24699025689225689326679526679727669827669a28659b29649d29649f2a63a02a63a22b62a32c61a52c60a62d60a82e5fa92e5eab2f5ead305dae305cb0315bb1325ab3325ab43359b63458b73557b93556ba3655bc3754bd3853bf3952c03a51c13a50c33b4fc43c4ec63d4dc73e4cc83f4bca404acb4149cc4248ce4347cf4446d04545d24644d34743d44842d54a41d74b3fd84c3ed94d3dda4e3cdb503bdd513ade5238df5337e05536e15635e25734e35933e45a31e55c30e65d2fe75e2ee8602de9612bea632aeb6429eb6628ec6726ed6925ee6a24ef6c23ef6e21f06f20f1711ff1731df2741cf3761bf37819f47918f57b17f57d15f67e14f68013f78212f78410f8850ff8870ef8890cf98b0bf98c0af98e09fa9008fa9207fa9407fb9606fb9706fb9906fb9b06fb9d07fc9f07fca108fca309fca50afca60cfca80dfcaa0ffcac11fcae12fcb014fcb216fcb418fbb61afbb81dfbba1ffbbc21fbbe23fac026fac228fac42afac62df9c72ff9c932f9cb35f8cd37f8cf3af7d13df7d340f6d543f6d746f5d949f5db4cf4dd4ff4df53f4e156f3e35af3e55df2e661f2e865f2ea69f1ec6df1ed71f1ef75f1f179f2f27df2f482f3f586f3f68af4f88ef5f992f6fa96f8fb9af9fc9dfafda1fcffa4"));
+
+  var plasma = ramp(colors("0d088710078813078916078a19068c1b068d1d068e20068f2206902406912605912805922a05932c05942e05952f059631059733059735049837049938049a3a049a3c049b3e049c3f049c41049d43039e44039e46039f48039f4903a04b03a14c02a14e02a25002a25102a35302a35502a45601a45801a45901a55b01a55c01a65e01a66001a66100a76300a76400a76600a76700a86900a86a00a86c00a86e00a86f00a87100a87201a87401a87501a87701a87801a87a02a87b02a87d03a87e03a88004a88104a78305a78405a78606a68707a68808a68a09a58b0aa58d0ba58e0ca48f0da4910ea3920fa39410a29511a19613a19814a099159f9a169f9c179e9d189d9e199da01a9ca11b9ba21d9aa31e9aa51f99a62098a72197a82296aa2395ab2494ac2694ad2793ae2892b02991b12a90b22b8fb32c8eb42e8db52f8cb6308bb7318ab83289ba3388bb3488bc3587bd3786be3885bf3984c03a83c13b82c23c81c33d80c43e7fc5407ec6417dc7427cc8437bc9447aca457acb4679cc4778cc4977cd4a76ce4b75cf4c74d04d73d14e72d24f71d35171d45270d5536fd5546ed6556dd7566cd8576bd9586ada5a6ada5b69db5c68dc5d67dd5e66de5f65de6164df6263e06363e16462e26561e26660e3685fe4695ee56a5de56b5de66c5ce76e5be76f5ae87059e97158e97257ea7457eb7556eb7655ec7754ed7953ed7a52ee7b51ef7c51ef7e50f07f4ff0804ef1814df1834cf2844bf3854bf3874af48849f48948f58b47f58c46f68d45f68f44f79044f79143f79342f89441f89540f9973ff9983ef99a3efa9b3dfa9c3cfa9e3bfb9f3afba139fba238fca338fca537fca636fca835fca934fdab33fdac33fdae32fdaf31fdb130fdb22ffdb42ffdb52efeb72dfeb82cfeba2cfebb2bfebd2afebe2afec029fdc229fdc328fdc527fdc627fdc827fdca26fdcb26fccd25fcce25fcd025fcd225fbd324fbd524fbd724fad824fada24f9dc24f9dd25f8df25f8e125f7e225f7e425f6e626f6e826f5e926f5eb27f4ed27f3ee27f3f027f2f227f1f426f1f525f0f724f0f921"));
+
+  function sequential(interpolator) {
+    var x0 = 0,
+        x1 = 1,
+        clamp = false;
+
+    function scale(x) {
+      var t = (x - x0) / (x1 - x0);
+      return interpolator(clamp ? Math.max(0, Math.min(1, t)) : t);
+    }
+
+    scale.domain = function(_) {
+      return arguments.length ? (x0 = +_[0], x1 = +_[1], scale) : [x0, x1];
+    };
+
+    scale.clamp = function(_) {
+      return arguments.length ? (clamp = !!_, scale) : clamp;
+    };
+
+    scale.interpolator = function(_) {
+      return arguments.length ? (interpolator = _, scale) : interpolator;
+    };
+
+    scale.copy = function() {
+      return sequential(interpolator).domain([x0, x1]).clamp(clamp);
+    };
+
+    return linearish(scale);
+  }
+
+  exports.scaleBand = band;
+  exports.scalePoint = point;
+  exports.scaleIdentity = identity;
+  exports.scaleLinear = linear;
+  exports.scaleLog = log;
+  exports.scaleOrdinal = ordinal;
+  exports.scaleImplicit = implicit;
+  exports.scalePow = pow;
+  exports.scaleSqrt = sqrt;
+  exports.scaleQuantile = quantile$1;
+  exports.scaleQuantize = quantize;
+  exports.scaleThreshold = threshold;
+  exports.scaleTime = time;
+  exports.scaleUtc = utcTime;
+  exports.schemeCategory10 = category10;
+  exports.schemeCategory20b = category20b;
+  exports.schemeCategory20c = category20c;
+  exports.schemeCategory20 = category20;
+  exports.interpolateCubehelixDefault = cubehelix$1;
+  exports.interpolateRainbow = rainbow$1;
+  exports.interpolateWarm = warm;
+  exports.interpolateCool = cool;
+  exports.interpolateViridis = viridis;
+  exports.interpolateMagma = magma;
+  exports.interpolateInferno = inferno;
+  exports.interpolatePlasma = plasma;
+  exports.scaleSequential = sequential;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
+
+}));
+},{"d3-array":109,"d3-collection":110,"d3-color":111,"d3-format":112,"d3-interpolate":114,"d3-time":119,"d3-time-format":118}],117:[function(require,module,exports){
+// https://d3js.org/d3-shape/ Version 1.0.3. Copyright 2016 Mike Bostock.
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-path')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'd3-path'], factory) :
+  (factory((global.d3 = global.d3 || {}),global.d3));
+}(this, (function (exports,d3Path) { 'use strict';
+
+function constant(x) {
+  return function constant() {
+    return x;
+  };
+}
+
+var epsilon = 1e-12;
+var pi = Math.PI;
+var halfPi = pi / 2;
+var tau = 2 * pi;
+
+function arcInnerRadius(d) {
+  return d.innerRadius;
+}
+
+function arcOuterRadius(d) {
+  return d.outerRadius;
+}
+
+function arcStartAngle(d) {
+  return d.startAngle;
+}
+
+function arcEndAngle(d) {
+  return d.endAngle;
+}
+
+function arcPadAngle(d) {
+  return d && d.padAngle; // Note: optional!
+}
+
+function asin(x) {
+  return x >= 1 ? halfPi : x <= -1 ? -halfPi : Math.asin(x);
+}
+
+function intersect(x0, y0, x1, y1, x2, y2, x3, y3) {
+  var x10 = x1 - x0, y10 = y1 - y0,
+      x32 = x3 - x2, y32 = y3 - y2,
+      t = (x32 * (y0 - y2) - y32 * (x0 - x2)) / (y32 * x10 - x32 * y10);
+  return [x0 + t * x10, y0 + t * y10];
+}
+
+// Compute perpendicular offset line of length rc.
+// http://mathworld.wolfram.com/Circle-LineIntersection.html
+function cornerTangents(x0, y0, x1, y1, r1, rc, cw) {
+  var x01 = x0 - x1,
+      y01 = y0 - y1,
+      lo = (cw ? rc : -rc) / Math.sqrt(x01 * x01 + y01 * y01),
+      ox = lo * y01,
+      oy = -lo * x01,
+      x11 = x0 + ox,
+      y11 = y0 + oy,
+      x10 = x1 + ox,
+      y10 = y1 + oy,
+      x00 = (x11 + x10) / 2,
+      y00 = (y11 + y10) / 2,
+      dx = x10 - x11,
+      dy = y10 - y11,
+      d2 = dx * dx + dy * dy,
+      r = r1 - rc,
+      D = x11 * y10 - x10 * y11,
+      d = (dy < 0 ? -1 : 1) * Math.sqrt(Math.max(0, r * r * d2 - D * D)),
+      cx0 = (D * dy - dx * d) / d2,
+      cy0 = (-D * dx - dy * d) / d2,
+      cx1 = (D * dy + dx * d) / d2,
+      cy1 = (-D * dx + dy * d) / d2,
+      dx0 = cx0 - x00,
+      dy0 = cy0 - y00,
+      dx1 = cx1 - x00,
+      dy1 = cy1 - y00;
+
+  // Pick the closer of the two intersection points.
+  // TODO Is there a faster way to determine which intersection to use?
+  if (dx0 * dx0 + dy0 * dy0 > dx1 * dx1 + dy1 * dy1) cx0 = cx1, cy0 = cy1;
+
+  return {
+    cx: cx0,
+    cy: cy0,
+    x01: -ox,
+    y01: -oy,
+    x11: cx0 * (r1 / r - 1),
+    y11: cy0 * (r1 / r - 1)
+  };
+}
+
+function arc() {
+  var innerRadius = arcInnerRadius,
+      outerRadius = arcOuterRadius,
+      cornerRadius = constant(0),
+      padRadius = null,
+      startAngle = arcStartAngle,
+      endAngle = arcEndAngle,
+      padAngle = arcPadAngle,
+      context = null;
+
+  function arc() {
+    var buffer,
+        r,
+        r0 = +innerRadius.apply(this, arguments),
+        r1 = +outerRadius.apply(this, arguments),
+        a0 = startAngle.apply(this, arguments) - halfPi,
+        a1 = endAngle.apply(this, arguments) - halfPi,
+        da = Math.abs(a1 - a0),
+        cw = a1 > a0;
+
+    if (!context) context = buffer = d3Path.path();
+
+    // Ensure that the outer radius is always larger than the inner radius.
+    if (r1 < r0) r = r1, r1 = r0, r0 = r;
+
+    // Is it a point?
+    if (!(r1 > epsilon)) context.moveTo(0, 0);
+
+    // Or is it a circle or annulus?
+    else if (da > tau - epsilon) {
+      context.moveTo(r1 * Math.cos(a0), r1 * Math.sin(a0));
+      context.arc(0, 0, r1, a0, a1, !cw);
+      if (r0 > epsilon) {
+        context.moveTo(r0 * Math.cos(a1), r0 * Math.sin(a1));
+        context.arc(0, 0, r0, a1, a0, cw);
+      }
+    }
+
+    // Or is it a circular or annular sector?
+    else {
+      var a01 = a0,
+          a11 = a1,
+          a00 = a0,
+          a10 = a1,
+          da0 = da,
+          da1 = da,
+          ap = padAngle.apply(this, arguments) / 2,
+          rp = (ap > epsilon) && (padRadius ? +padRadius.apply(this, arguments) : Math.sqrt(r0 * r0 + r1 * r1)),
+          rc = Math.min(Math.abs(r1 - r0) / 2, +cornerRadius.apply(this, arguments)),
+          rc0 = rc,
+          rc1 = rc,
+          t0,
+          t1;
+
+      // Apply padding? Note that since r1 ≥ r0, da1 ≥ da0.
+      if (rp > epsilon) {
+        var p0 = asin(rp / r0 * Math.sin(ap)),
+            p1 = asin(rp / r1 * Math.sin(ap));
+        if ((da0 -= p0 * 2) > epsilon) p0 *= (cw ? 1 : -1), a00 += p0, a10 -= p0;
+        else da0 = 0, a00 = a10 = (a0 + a1) / 2;
+        if ((da1 -= p1 * 2) > epsilon) p1 *= (cw ? 1 : -1), a01 += p1, a11 -= p1;
+        else da1 = 0, a01 = a11 = (a0 + a1) / 2;
+      }
+
+      var x01 = r1 * Math.cos(a01),
+          y01 = r1 * Math.sin(a01),
+          x10 = r0 * Math.cos(a10),
+          y10 = r0 * Math.sin(a10);
+
+      // Apply rounded corners?
+      if (rc > epsilon) {
+        var x11 = r1 * Math.cos(a11),
+            y11 = r1 * Math.sin(a11),
+            x00 = r0 * Math.cos(a00),
+            y00 = r0 * Math.sin(a00);
+
+        // Restrict the corner radius according to the sector angle.
+        if (da < pi) {
+          var oc = da0 > epsilon ? intersect(x01, y01, x00, y00, x11, y11, x10, y10) : [x10, y10],
+              ax = x01 - oc[0],
+              ay = y01 - oc[1],
+              bx = x11 - oc[0],
+              by = y11 - oc[1],
+              kc = 1 / Math.sin(Math.acos((ax * bx + ay * by) / (Math.sqrt(ax * ax + ay * ay) * Math.sqrt(bx * bx + by * by))) / 2),
+              lc = Math.sqrt(oc[0] * oc[0] + oc[1] * oc[1]);
+          rc0 = Math.min(rc, (r0 - lc) / (kc - 1));
+          rc1 = Math.min(rc, (r1 - lc) / (kc + 1));
+        }
+      }
+
+      // Is the sector collapsed to a line?
+      if (!(da1 > epsilon)) context.moveTo(x01, y01);
+
+      // Does the sector’s outer ring have rounded corners?
+      else if (rc1 > epsilon) {
+        t0 = cornerTangents(x00, y00, x01, y01, r1, rc1, cw);
+        t1 = cornerTangents(x11, y11, x10, y10, r1, rc1, cw);
+
+        context.moveTo(t0.cx + t0.x01, t0.cy + t0.y01);
+
+        // Have the corners merged?
+        if (rc1 < rc) context.arc(t0.cx, t0.cy, rc1, Math.atan2(t0.y01, t0.x01), Math.atan2(t1.y01, t1.x01), !cw);
+
+        // Otherwise, draw the two corners and the ring.
+        else {
+          context.arc(t0.cx, t0.cy, rc1, Math.atan2(t0.y01, t0.x01), Math.atan2(t0.y11, t0.x11), !cw);
+          context.arc(0, 0, r1, Math.atan2(t0.cy + t0.y11, t0.cx + t0.x11), Math.atan2(t1.cy + t1.y11, t1.cx + t1.x11), !cw);
+          context.arc(t1.cx, t1.cy, rc1, Math.atan2(t1.y11, t1.x11), Math.atan2(t1.y01, t1.x01), !cw);
+        }
+      }
+
+      // Or is the outer ring just a circular arc?
+      else context.moveTo(x01, y01), context.arc(0, 0, r1, a01, a11, !cw);
+
+      // Is there no inner ring, and it’s a circular sector?
+      // Or perhaps it’s an annular sector collapsed due to padding?
+      if (!(r0 > epsilon) || !(da0 > epsilon)) context.lineTo(x10, y10);
+
+      // Does the sector’s inner ring (or point) have rounded corners?
+      else if (rc0 > epsilon) {
+        t0 = cornerTangents(x10, y10, x11, y11, r0, -rc0, cw);
+        t1 = cornerTangents(x01, y01, x00, y00, r0, -rc0, cw);
+
+        context.lineTo(t0.cx + t0.x01, t0.cy + t0.y01);
+
+        // Have the corners merged?
+        if (rc0 < rc) context.arc(t0.cx, t0.cy, rc0, Math.atan2(t0.y01, t0.x01), Math.atan2(t1.y01, t1.x01), !cw);
+
+        // Otherwise, draw the two corners and the ring.
+        else {
+          context.arc(t0.cx, t0.cy, rc0, Math.atan2(t0.y01, t0.x01), Math.atan2(t0.y11, t0.x11), !cw);
+          context.arc(0, 0, r0, Math.atan2(t0.cy + t0.y11, t0.cx + t0.x11), Math.atan2(t1.cy + t1.y11, t1.cx + t1.x11), cw);
+          context.arc(t1.cx, t1.cy, rc0, Math.atan2(t1.y11, t1.x11), Math.atan2(t1.y01, t1.x01), !cw);
+        }
+      }
+
+      // Or is the inner ring just a circular arc?
+      else context.arc(0, 0, r0, a10, a00, cw);
+    }
+
+    context.closePath();
+
+    if (buffer) return context = null, buffer + "" || null;
+  }
+
+  arc.centroid = function() {
+    var r = (+innerRadius.apply(this, arguments) + +outerRadius.apply(this, arguments)) / 2,
+        a = (+startAngle.apply(this, arguments) + +endAngle.apply(this, arguments)) / 2 - pi / 2;
+    return [Math.cos(a) * r, Math.sin(a) * r];
+  };
+
+  arc.innerRadius = function(_) {
+    return arguments.length ? (innerRadius = typeof _ === "function" ? _ : constant(+_), arc) : innerRadius;
+  };
+
+  arc.outerRadius = function(_) {
+    return arguments.length ? (outerRadius = typeof _ === "function" ? _ : constant(+_), arc) : outerRadius;
+  };
+
+  arc.cornerRadius = function(_) {
+    return arguments.length ? (cornerRadius = typeof _ === "function" ? _ : constant(+_), arc) : cornerRadius;
+  };
+
+  arc.padRadius = function(_) {
+    return arguments.length ? (padRadius = _ == null ? null : typeof _ === "function" ? _ : constant(+_), arc) : padRadius;
+  };
+
+  arc.startAngle = function(_) {
+    return arguments.length ? (startAngle = typeof _ === "function" ? _ : constant(+_), arc) : startAngle;
+  };
+
+  arc.endAngle = function(_) {
+    return arguments.length ? (endAngle = typeof _ === "function" ? _ : constant(+_), arc) : endAngle;
+  };
+
+  arc.padAngle = function(_) {
+    return arguments.length ? (padAngle = typeof _ === "function" ? _ : constant(+_), arc) : padAngle;
+  };
+
+  arc.context = function(_) {
+    return arguments.length ? ((context = _ == null ? null : _), arc) : context;
+  };
+
+  return arc;
+}
+
+function Linear(context) {
+  this._context = context;
+}
+
+Linear.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._point = 0;
+  },
+  lineEnd: function() {
+    if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
+    this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    switch (this._point) {
+      case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
+      case 1: this._point = 2; // proceed
+      default: this._context.lineTo(x, y); break;
+    }
+  }
+};
+
+function curveLinear(context) {
+  return new Linear(context);
+}
+
+function x(p) {
+  return p[0];
+}
+
+function y(p) {
+  return p[1];
+}
+
+function line() {
+  var x$$ = x,
+      y$$ = y,
+      defined = constant(true),
+      context = null,
+      curve = curveLinear,
+      output = null;
+
+  function line(data) {
+    var i,
+        n = data.length,
+        d,
+        defined0 = false,
+        buffer;
+
+    if (context == null) output = curve(buffer = d3Path.path());
+
+    for (i = 0; i <= n; ++i) {
+      if (!(i < n && defined(d = data[i], i, data)) === defined0) {
+        if (defined0 = !defined0) output.lineStart();
+        else output.lineEnd();
+      }
+      if (defined0) output.point(+x$$(d, i, data), +y$$(d, i, data));
+    }
+
+    if (buffer) return output = null, buffer + "" || null;
+  }
+
+  line.x = function(_) {
+    return arguments.length ? (x$$ = typeof _ === "function" ? _ : constant(+_), line) : x$$;
+  };
+
+  line.y = function(_) {
+    return arguments.length ? (y$$ = typeof _ === "function" ? _ : constant(+_), line) : y$$;
+  };
+
+  line.defined = function(_) {
+    return arguments.length ? (defined = typeof _ === "function" ? _ : constant(!!_), line) : defined;
+  };
+
+  line.curve = function(_) {
+    return arguments.length ? (curve = _, context != null && (output = curve(context)), line) : curve;
+  };
+
+  line.context = function(_) {
+    return arguments.length ? (_ == null ? context = output = null : output = curve(context = _), line) : context;
+  };
+
+  return line;
+}
+
+function area() {
+  var x0 = x,
+      x1 = null,
+      y0 = constant(0),
+      y1 = y,
+      defined = constant(true),
+      context = null,
+      curve = curveLinear,
+      output = null;
+
+  function area(data) {
+    var i,
+        j,
+        k,
+        n = data.length,
+        d,
+        defined0 = false,
+        buffer,
+        x0z = new Array(n),
+        y0z = new Array(n);
+
+    if (context == null) output = curve(buffer = d3Path.path());
+
+    for (i = 0; i <= n; ++i) {
+      if (!(i < n && defined(d = data[i], i, data)) === defined0) {
+        if (defined0 = !defined0) {
+          j = i;
+          output.areaStart();
+          output.lineStart();
+        } else {
+          output.lineEnd();
+          output.lineStart();
+          for (k = i - 1; k >= j; --k) {
+            output.point(x0z[k], y0z[k]);
+          }
+          output.lineEnd();
+          output.areaEnd();
+        }
+      }
+      if (defined0) {
+        x0z[i] = +x0(d, i, data), y0z[i] = +y0(d, i, data);
+        output.point(x1 ? +x1(d, i, data) : x0z[i], y1 ? +y1(d, i, data) : y0z[i]);
+      }
+    }
+
+    if (buffer) return output = null, buffer + "" || null;
+  }
+
+  function arealine() {
+    return line().defined(defined).curve(curve).context(context);
+  }
+
+  area.x = function(_) {
+    return arguments.length ? (x0 = typeof _ === "function" ? _ : constant(+_), x1 = null, area) : x0;
+  };
+
+  area.x0 = function(_) {
+    return arguments.length ? (x0 = typeof _ === "function" ? _ : constant(+_), area) : x0;
+  };
+
+  area.x1 = function(_) {
+    return arguments.length ? (x1 = _ == null ? null : typeof _ === "function" ? _ : constant(+_), area) : x1;
+  };
+
+  area.y = function(_) {
+    return arguments.length ? (y0 = typeof _ === "function" ? _ : constant(+_), y1 = null, area) : y0;
+  };
+
+  area.y0 = function(_) {
+    return arguments.length ? (y0 = typeof _ === "function" ? _ : constant(+_), area) : y0;
+  };
+
+  area.y1 = function(_) {
+    return arguments.length ? (y1 = _ == null ? null : typeof _ === "function" ? _ : constant(+_), area) : y1;
+  };
+
+  area.lineX0 =
+  area.lineY0 = function() {
+    return arealine().x(x0).y(y0);
+  };
+
+  area.lineY1 = function() {
+    return arealine().x(x0).y(y1);
+  };
+
+  area.lineX1 = function() {
+    return arealine().x(x1).y(y0);
+  };
+
+  area.defined = function(_) {
+    return arguments.length ? (defined = typeof _ === "function" ? _ : constant(!!_), area) : defined;
+  };
+
+  area.curve = function(_) {
+    return arguments.length ? (curve = _, context != null && (output = curve(context)), area) : curve;
+  };
+
+  area.context = function(_) {
+    return arguments.length ? (_ == null ? context = output = null : output = curve(context = _), area) : context;
+  };
+
+  return area;
+}
+
+function descending(a, b) {
+  return b < a ? -1 : b > a ? 1 : b >= a ? 0 : NaN;
+}
+
+function identity(d) {
+  return d;
+}
+
+function pie() {
+  var value = identity,
+      sortValues = descending,
+      sort = null,
+      startAngle = constant(0),
+      endAngle = constant(tau),
+      padAngle = constant(0);
+
+  function pie(data) {
+    var i,
+        n = data.length,
+        j,
+        k,
+        sum = 0,
+        index = new Array(n),
+        arcs = new Array(n),
+        a0 = +startAngle.apply(this, arguments),
+        da = Math.min(tau, Math.max(-tau, endAngle.apply(this, arguments) - a0)),
+        a1,
+        p = Math.min(Math.abs(da) / n, padAngle.apply(this, arguments)),
+        pa = p * (da < 0 ? -1 : 1),
+        v;
+
+    for (i = 0; i < n; ++i) {
+      if ((v = arcs[index[i] = i] = +value(data[i], i, data)) > 0) {
+        sum += v;
+      }
+    }
+
+    // Optionally sort the arcs by previously-computed values or by data.
+    if (sortValues != null) index.sort(function(i, j) { return sortValues(arcs[i], arcs[j]); });
+    else if (sort != null) index.sort(function(i, j) { return sort(data[i], data[j]); });
+
+    // Compute the arcs! They are stored in the original data's order.
+    for (i = 0, k = sum ? (da - n * pa) / sum : 0; i < n; ++i, a0 = a1) {
+      j = index[i], v = arcs[j], a1 = a0 + (v > 0 ? v * k : 0) + pa, arcs[j] = {
+        data: data[j],
+        index: i,
+        value: v,
+        startAngle: a0,
+        endAngle: a1,
+        padAngle: p
+      };
+    }
+
+    return arcs;
+  }
+
+  pie.value = function(_) {
+    return arguments.length ? (value = typeof _ === "function" ? _ : constant(+_), pie) : value;
+  };
+
+  pie.sortValues = function(_) {
+    return arguments.length ? (sortValues = _, sort = null, pie) : sortValues;
+  };
+
+  pie.sort = function(_) {
+    return arguments.length ? (sort = _, sortValues = null, pie) : sort;
+  };
+
+  pie.startAngle = function(_) {
+    return arguments.length ? (startAngle = typeof _ === "function" ? _ : constant(+_), pie) : startAngle;
+  };
+
+  pie.endAngle = function(_) {
+    return arguments.length ? (endAngle = typeof _ === "function" ? _ : constant(+_), pie) : endAngle;
+  };
+
+  pie.padAngle = function(_) {
+    return arguments.length ? (padAngle = typeof _ === "function" ? _ : constant(+_), pie) : padAngle;
+  };
+
+  return pie;
+}
+
+var curveRadialLinear = curveRadial(curveLinear);
+
+function Radial(curve) {
+  this._curve = curve;
+}
+
+Radial.prototype = {
+  areaStart: function() {
+    this._curve.areaStart();
+  },
+  areaEnd: function() {
+    this._curve.areaEnd();
+  },
+  lineStart: function() {
+    this._curve.lineStart();
+  },
+  lineEnd: function() {
+    this._curve.lineEnd();
+  },
+  point: function(a, r) {
+    this._curve.point(r * Math.sin(a), r * -Math.cos(a));
+  }
+};
+
+function curveRadial(curve) {
+
+  function radial(context) {
+    return new Radial(curve(context));
+  }
+
+  radial._curve = curve;
+
+  return radial;
+}
+
+function radialLine(l) {
+  var c = l.curve;
+
+  l.angle = l.x, delete l.x;
+  l.radius = l.y, delete l.y;
+
+  l.curve = function(_) {
+    return arguments.length ? c(curveRadial(_)) : c()._curve;
+  };
+
+  return l;
+}
+
+function radialLine$1() {
+  return radialLine(line().curve(curveRadialLinear));
+}
+
+function radialArea() {
+  var a = area().curve(curveRadialLinear),
+      c = a.curve,
+      x0 = a.lineX0,
+      x1 = a.lineX1,
+      y0 = a.lineY0,
+      y1 = a.lineY1;
+
+  a.angle = a.x, delete a.x;
+  a.startAngle = a.x0, delete a.x0;
+  a.endAngle = a.x1, delete a.x1;
+  a.radius = a.y, delete a.y;
+  a.innerRadius = a.y0, delete a.y0;
+  a.outerRadius = a.y1, delete a.y1;
+  a.lineStartAngle = function() { return radialLine(x0()); }, delete a.lineX0;
+  a.lineEndAngle = function() { return radialLine(x1()); }, delete a.lineX1;
+  a.lineInnerRadius = function() { return radialLine(y0()); }, delete a.lineY0;
+  a.lineOuterRadius = function() { return radialLine(y1()); }, delete a.lineY1;
+
+  a.curve = function(_) {
+    return arguments.length ? c(curveRadial(_)) : c()._curve;
+  };
+
+  return a;
+}
+
+var circle = {
+  draw: function(context, size) {
+    var r = Math.sqrt(size / pi);
+    context.moveTo(r, 0);
+    context.arc(0, 0, r, 0, tau);
+  }
+};
+
+var cross = {
+  draw: function(context, size) {
+    var r = Math.sqrt(size / 5) / 2;
+    context.moveTo(-3 * r, -r);
+    context.lineTo(-r, -r);
+    context.lineTo(-r, -3 * r);
+    context.lineTo(r, -3 * r);
+    context.lineTo(r, -r);
+    context.lineTo(3 * r, -r);
+    context.lineTo(3 * r, r);
+    context.lineTo(r, r);
+    context.lineTo(r, 3 * r);
+    context.lineTo(-r, 3 * r);
+    context.lineTo(-r, r);
+    context.lineTo(-3 * r, r);
+    context.closePath();
+  }
+};
+
+var tan30 = Math.sqrt(1 / 3);
+var tan30_2 = tan30 * 2;
+var diamond = {
+  draw: function(context, size) {
+    var y = Math.sqrt(size / tan30_2),
+        x = y * tan30;
+    context.moveTo(0, -y);
+    context.lineTo(x, 0);
+    context.lineTo(0, y);
+    context.lineTo(-x, 0);
+    context.closePath();
+  }
+};
+
+var ka = 0.89081309152928522810;
+var kr = Math.sin(pi / 10) / Math.sin(7 * pi / 10);
+var kx = Math.sin(tau / 10) * kr;
+var ky = -Math.cos(tau / 10) * kr;
+var star = {
+  draw: function(context, size) {
+    var r = Math.sqrt(size * ka),
+        x = kx * r,
+        y = ky * r;
+    context.moveTo(0, -r);
+    context.lineTo(x, y);
+    for (var i = 1; i < 5; ++i) {
+      var a = tau * i / 5,
+          c = Math.cos(a),
+          s = Math.sin(a);
+      context.lineTo(s * r, -c * r);
+      context.lineTo(c * x - s * y, s * x + c * y);
+    }
+    context.closePath();
+  }
+};
+
+var square = {
+  draw: function(context, size) {
+    var w = Math.sqrt(size),
+        x = -w / 2;
+    context.rect(x, x, w, w);
+  }
+};
+
+var sqrt3 = Math.sqrt(3);
+
+var triangle = {
+  draw: function(context, size) {
+    var y = -Math.sqrt(size / (sqrt3 * 3));
+    context.moveTo(0, y * 2);
+    context.lineTo(-sqrt3 * y, -y);
+    context.lineTo(sqrt3 * y, -y);
+    context.closePath();
+  }
+};
+
+var c = -0.5;
+var s = Math.sqrt(3) / 2;
+var k = 1 / Math.sqrt(12);
+var a = (k / 2 + 1) * 3;
+var wye = {
+  draw: function(context, size) {
+    var r = Math.sqrt(size / a),
+        x0 = r / 2,
+        y0 = r * k,
+        x1 = x0,
+        y1 = r * k + r,
+        x2 = -x1,
+        y2 = y1;
+    context.moveTo(x0, y0);
+    context.lineTo(x1, y1);
+    context.lineTo(x2, y2);
+    context.lineTo(c * x0 - s * y0, s * x0 + c * y0);
+    context.lineTo(c * x1 - s * y1, s * x1 + c * y1);
+    context.lineTo(c * x2 - s * y2, s * x2 + c * y2);
+    context.lineTo(c * x0 + s * y0, c * y0 - s * x0);
+    context.lineTo(c * x1 + s * y1, c * y1 - s * x1);
+    context.lineTo(c * x2 + s * y2, c * y2 - s * x2);
+    context.closePath();
+  }
+};
+
+var symbols = [
+  circle,
+  cross,
+  diamond,
+  square,
+  star,
+  triangle,
+  wye
+];
+
+function symbol() {
+  var type = constant(circle),
+      size = constant(64),
+      context = null;
+
+  function symbol() {
+    var buffer;
+    if (!context) context = buffer = d3Path.path();
+    type.apply(this, arguments).draw(context, +size.apply(this, arguments));
+    if (buffer) return context = null, buffer + "" || null;
+  }
+
+  symbol.type = function(_) {
+    return arguments.length ? (type = typeof _ === "function" ? _ : constant(_), symbol) : type;
+  };
+
+  symbol.size = function(_) {
+    return arguments.length ? (size = typeof _ === "function" ? _ : constant(+_), symbol) : size;
+  };
+
+  symbol.context = function(_) {
+    return arguments.length ? (context = _ == null ? null : _, symbol) : context;
+  };
+
+  return symbol;
+}
+
+function noop() {}
+
+function point(that, x, y) {
+  that._context.bezierCurveTo(
+    (2 * that._x0 + that._x1) / 3,
+    (2 * that._y0 + that._y1) / 3,
+    (that._x0 + 2 * that._x1) / 3,
+    (that._y0 + 2 * that._y1) / 3,
+    (that._x0 + 4 * that._x1 + x) / 6,
+    (that._y0 + 4 * that._y1 + y) / 6
+  );
+}
+
+function Basis(context) {
+  this._context = context;
+}
+
+Basis.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x0 = this._x1 =
+    this._y0 = this._y1 = NaN;
+    this._point = 0;
+  },
+  lineEnd: function() {
+    switch (this._point) {
+      case 3: point(this, this._x1, this._y1); // proceed
+      case 2: this._context.lineTo(this._x1, this._y1); break;
+    }
+    if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
+    this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    switch (this._point) {
+      case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
+      case 1: this._point = 2; break;
+      case 2: this._point = 3; this._context.lineTo((5 * this._x0 + this._x1) / 6, (5 * this._y0 + this._y1) / 6); // proceed
+      default: point(this, x, y); break;
+    }
+    this._x0 = this._x1, this._x1 = x;
+    this._y0 = this._y1, this._y1 = y;
+  }
+};
+
+function basis(context) {
+  return new Basis(context);
+}
+
+function BasisClosed(context) {
+  this._context = context;
+}
+
+BasisClosed.prototype = {
+  areaStart: noop,
+  areaEnd: noop,
+  lineStart: function() {
+    this._x0 = this._x1 = this._x2 = this._x3 = this._x4 =
+    this._y0 = this._y1 = this._y2 = this._y3 = this._y4 = NaN;
+    this._point = 0;
+  },
+  lineEnd: function() {
+    switch (this._point) {
+      case 1: {
+        this._context.moveTo(this._x2, this._y2);
+        this._context.closePath();
+        break;
+      }
+      case 2: {
+        this._context.moveTo((this._x2 + 2 * this._x3) / 3, (this._y2 + 2 * this._y3) / 3);
+        this._context.lineTo((this._x3 + 2 * this._x2) / 3, (this._y3 + 2 * this._y2) / 3);
+        this._context.closePath();
+        break;
+      }
+      case 3: {
+        this.point(this._x2, this._y2);
+        this.point(this._x3, this._y3);
+        this.point(this._x4, this._y4);
+        break;
+      }
+    }
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    switch (this._point) {
+      case 0: this._point = 1; this._x2 = x, this._y2 = y; break;
+      case 1: this._point = 2; this._x3 = x, this._y3 = y; break;
+      case 2: this._point = 3; this._x4 = x, this._y4 = y; this._context.moveTo((this._x0 + 4 * this._x1 + x) / 6, (this._y0 + 4 * this._y1 + y) / 6); break;
+      default: point(this, x, y); break;
+    }
+    this._x0 = this._x1, this._x1 = x;
+    this._y0 = this._y1, this._y1 = y;
+  }
+};
+
+function basisClosed(context) {
+  return new BasisClosed(context);
+}
+
+function BasisOpen(context) {
+  this._context = context;
+}
+
+BasisOpen.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x0 = this._x1 =
+    this._y0 = this._y1 = NaN;
+    this._point = 0;
+  },
+  lineEnd: function() {
+    if (this._line || (this._line !== 0 && this._point === 3)) this._context.closePath();
+    this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    switch (this._point) {
+      case 0: this._point = 1; break;
+      case 1: this._point = 2; break;
+      case 2: this._point = 3; var x0 = (this._x0 + 4 * this._x1 + x) / 6, y0 = (this._y0 + 4 * this._y1 + y) / 6; this._line ? this._context.lineTo(x0, y0) : this._context.moveTo(x0, y0); break;
+      case 3: this._point = 4; // proceed
+      default: point(this, x, y); break;
+    }
+    this._x0 = this._x1, this._x1 = x;
+    this._y0 = this._y1, this._y1 = y;
+  }
+};
+
+function basisOpen(context) {
+  return new BasisOpen(context);
+}
+
+function Bundle(context, beta) {
+  this._basis = new Basis(context);
+  this._beta = beta;
+}
+
+Bundle.prototype = {
+  lineStart: function() {
+    this._x = [];
+    this._y = [];
+    this._basis.lineStart();
+  },
+  lineEnd: function() {
+    var x = this._x,
+        y = this._y,
+        j = x.length - 1;
+
+    if (j > 0) {
+      var x0 = x[0],
+          y0 = y[0],
+          dx = x[j] - x0,
+          dy = y[j] - y0,
+          i = -1,
+          t;
+
+      while (++i <= j) {
+        t = i / j;
+        this._basis.point(
+          this._beta * x[i] + (1 - this._beta) * (x0 + t * dx),
+          this._beta * y[i] + (1 - this._beta) * (y0 + t * dy)
+        );
+      }
+    }
+
+    this._x = this._y = null;
+    this._basis.lineEnd();
+  },
+  point: function(x, y) {
+    this._x.push(+x);
+    this._y.push(+y);
+  }
+};
+
+var bundle = (function custom(beta) {
+
+  function bundle(context) {
+    return beta === 1 ? new Basis(context) : new Bundle(context, beta);
+  }
+
+  bundle.beta = function(beta) {
+    return custom(+beta);
+  };
+
+  return bundle;
+})(0.85);
+
+function point$1(that, x, y) {
+  that._context.bezierCurveTo(
+    that._x1 + that._k * (that._x2 - that._x0),
+    that._y1 + that._k * (that._y2 - that._y0),
+    that._x2 + that._k * (that._x1 - x),
+    that._y2 + that._k * (that._y1 - y),
+    that._x2,
+    that._y2
+  );
+}
+
+function Cardinal(context, tension) {
+  this._context = context;
+  this._k = (1 - tension) / 6;
+}
+
+Cardinal.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x0 = this._x1 = this._x2 =
+    this._y0 = this._y1 = this._y2 = NaN;
+    this._point = 0;
+  },
+  lineEnd: function() {
+    switch (this._point) {
+      case 2: this._context.lineTo(this._x2, this._y2); break;
+      case 3: point$1(this, this._x1, this._y1); break;
+    }
+    if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
+    this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    switch (this._point) {
+      case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
+      case 1: this._point = 2; this._x1 = x, this._y1 = y; break;
+      case 2: this._point = 3; // proceed
+      default: point$1(this, x, y); break;
+    }
+    this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
+    this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
+  }
+};
+
+var cardinal = (function custom(tension) {
+
+  function cardinal(context) {
+    return new Cardinal(context, tension);
+  }
+
+  cardinal.tension = function(tension) {
+    return custom(+tension);
+  };
+
+  return cardinal;
+})(0);
+
+function CardinalClosed(context, tension) {
+  this._context = context;
+  this._k = (1 - tension) / 6;
+}
+
+CardinalClosed.prototype = {
+  areaStart: noop,
+  areaEnd: noop,
+  lineStart: function() {
+    this._x0 = this._x1 = this._x2 = this._x3 = this._x4 = this._x5 =
+    this._y0 = this._y1 = this._y2 = this._y3 = this._y4 = this._y5 = NaN;
+    this._point = 0;
+  },
+  lineEnd: function() {
+    switch (this._point) {
+      case 1: {
+        this._context.moveTo(this._x3, this._y3);
+        this._context.closePath();
+        break;
+      }
+      case 2: {
+        this._context.lineTo(this._x3, this._y3);
+        this._context.closePath();
+        break;
+      }
+      case 3: {
+        this.point(this._x3, this._y3);
+        this.point(this._x4, this._y4);
+        this.point(this._x5, this._y5);
+        break;
+      }
+    }
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    switch (this._point) {
+      case 0: this._point = 1; this._x3 = x, this._y3 = y; break;
+      case 1: this._point = 2; this._context.moveTo(this._x4 = x, this._y4 = y); break;
+      case 2: this._point = 3; this._x5 = x, this._y5 = y; break;
+      default: point$1(this, x, y); break;
+    }
+    this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
+    this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
+  }
+};
+
+var cardinalClosed = (function custom(tension) {
+
+  function cardinal(context) {
+    return new CardinalClosed(context, tension);
+  }
+
+  cardinal.tension = function(tension) {
+    return custom(+tension);
+  };
+
+  return cardinal;
+})(0);
+
+function CardinalOpen(context, tension) {
+  this._context = context;
+  this._k = (1 - tension) / 6;
+}
+
+CardinalOpen.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x0 = this._x1 = this._x2 =
+    this._y0 = this._y1 = this._y2 = NaN;
+    this._point = 0;
+  },
+  lineEnd: function() {
+    if (this._line || (this._line !== 0 && this._point === 3)) this._context.closePath();
+    this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    switch (this._point) {
+      case 0: this._point = 1; break;
+      case 1: this._point = 2; break;
+      case 2: this._point = 3; this._line ? this._context.lineTo(this._x2, this._y2) : this._context.moveTo(this._x2, this._y2); break;
+      case 3: this._point = 4; // proceed
+      default: point$1(this, x, y); break;
+    }
+    this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
+    this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
+  }
+};
+
+var cardinalOpen = (function custom(tension) {
+
+  function cardinal(context) {
+    return new CardinalOpen(context, tension);
+  }
+
+  cardinal.tension = function(tension) {
+    return custom(+tension);
+  };
+
+  return cardinal;
+})(0);
+
+function point$2(that, x, y) {
+  var x1 = that._x1,
+      y1 = that._y1,
+      x2 = that._x2,
+      y2 = that._y2;
+
+  if (that._l01_a > epsilon) {
+    var a = 2 * that._l01_2a + 3 * that._l01_a * that._l12_a + that._l12_2a,
+        n = 3 * that._l01_a * (that._l01_a + that._l12_a);
+    x1 = (x1 * a - that._x0 * that._l12_2a + that._x2 * that._l01_2a) / n;
+    y1 = (y1 * a - that._y0 * that._l12_2a + that._y2 * that._l01_2a) / n;
+  }
+
+  if (that._l23_a > epsilon) {
+    var b = 2 * that._l23_2a + 3 * that._l23_a * that._l12_a + that._l12_2a,
+        m = 3 * that._l23_a * (that._l23_a + that._l12_a);
+    x2 = (x2 * b + that._x1 * that._l23_2a - x * that._l12_2a) / m;
+    y2 = (y2 * b + that._y1 * that._l23_2a - y * that._l12_2a) / m;
+  }
+
+  that._context.bezierCurveTo(x1, y1, x2, y2, that._x2, that._y2);
+}
+
+function CatmullRom(context, alpha) {
+  this._context = context;
+  this._alpha = alpha;
+}
+
+CatmullRom.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x0 = this._x1 = this._x2 =
+    this._y0 = this._y1 = this._y2 = NaN;
+    this._l01_a = this._l12_a = this._l23_a =
+    this._l01_2a = this._l12_2a = this._l23_2a =
+    this._point = 0;
+  },
+  lineEnd: function() {
+    switch (this._point) {
+      case 2: this._context.lineTo(this._x2, this._y2); break;
+      case 3: this.point(this._x2, this._y2); break;
+    }
+    if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
+    this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+
+    if (this._point) {
+      var x23 = this._x2 - x,
+          y23 = this._y2 - y;
+      this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
+    }
+
+    switch (this._point) {
+      case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
+      case 1: this._point = 2; break;
+      case 2: this._point = 3; // proceed
+      default: point$2(this, x, y); break;
+    }
+
+    this._l01_a = this._l12_a, this._l12_a = this._l23_a;
+    this._l01_2a = this._l12_2a, this._l12_2a = this._l23_2a;
+    this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
+    this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
+  }
+};
+
+var catmullRom = (function custom(alpha) {
+
+  function catmullRom(context) {
+    return alpha ? new CatmullRom(context, alpha) : new Cardinal(context, 0);
+  }
+
+  catmullRom.alpha = function(alpha) {
+    return custom(+alpha);
+  };
+
+  return catmullRom;
+})(0.5);
+
+function CatmullRomClosed(context, alpha) {
+  this._context = context;
+  this._alpha = alpha;
+}
+
+CatmullRomClosed.prototype = {
+  areaStart: noop,
+  areaEnd: noop,
+  lineStart: function() {
+    this._x0 = this._x1 = this._x2 = this._x3 = this._x4 = this._x5 =
+    this._y0 = this._y1 = this._y2 = this._y3 = this._y4 = this._y5 = NaN;
+    this._l01_a = this._l12_a = this._l23_a =
+    this._l01_2a = this._l12_2a = this._l23_2a =
+    this._point = 0;
+  },
+  lineEnd: function() {
+    switch (this._point) {
+      case 1: {
+        this._context.moveTo(this._x3, this._y3);
+        this._context.closePath();
+        break;
+      }
+      case 2: {
+        this._context.lineTo(this._x3, this._y3);
+        this._context.closePath();
+        break;
+      }
+      case 3: {
+        this.point(this._x3, this._y3);
+        this.point(this._x4, this._y4);
+        this.point(this._x5, this._y5);
+        break;
+      }
+    }
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+
+    if (this._point) {
+      var x23 = this._x2 - x,
+          y23 = this._y2 - y;
+      this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
+    }
+
+    switch (this._point) {
+      case 0: this._point = 1; this._x3 = x, this._y3 = y; break;
+      case 1: this._point = 2; this._context.moveTo(this._x4 = x, this._y4 = y); break;
+      case 2: this._point = 3; this._x5 = x, this._y5 = y; break;
+      default: point$2(this, x, y); break;
+    }
+
+    this._l01_a = this._l12_a, this._l12_a = this._l23_a;
+    this._l01_2a = this._l12_2a, this._l12_2a = this._l23_2a;
+    this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
+    this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
+  }
+};
+
+var catmullRomClosed = (function custom(alpha) {
+
+  function catmullRom(context) {
+    return alpha ? new CatmullRomClosed(context, alpha) : new CardinalClosed(context, 0);
+  }
+
+  catmullRom.alpha = function(alpha) {
+    return custom(+alpha);
+  };
+
+  return catmullRom;
+})(0.5);
+
+function CatmullRomOpen(context, alpha) {
+  this._context = context;
+  this._alpha = alpha;
+}
+
+CatmullRomOpen.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x0 = this._x1 = this._x2 =
+    this._y0 = this._y1 = this._y2 = NaN;
+    this._l01_a = this._l12_a = this._l23_a =
+    this._l01_2a = this._l12_2a = this._l23_2a =
+    this._point = 0;
+  },
+  lineEnd: function() {
+    if (this._line || (this._line !== 0 && this._point === 3)) this._context.closePath();
+    this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+
+    if (this._point) {
+      var x23 = this._x2 - x,
+          y23 = this._y2 - y;
+      this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
+    }
+
+    switch (this._point) {
+      case 0: this._point = 1; break;
+      case 1: this._point = 2; break;
+      case 2: this._point = 3; this._line ? this._context.lineTo(this._x2, this._y2) : this._context.moveTo(this._x2, this._y2); break;
+      case 3: this._point = 4; // proceed
+      default: point$2(this, x, y); break;
+    }
+
+    this._l01_a = this._l12_a, this._l12_a = this._l23_a;
+    this._l01_2a = this._l12_2a, this._l12_2a = this._l23_2a;
+    this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
+    this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
+  }
+};
+
+var catmullRomOpen = (function custom(alpha) {
+
+  function catmullRom(context) {
+    return alpha ? new CatmullRomOpen(context, alpha) : new CardinalOpen(context, 0);
+  }
+
+  catmullRom.alpha = function(alpha) {
+    return custom(+alpha);
+  };
+
+  return catmullRom;
+})(0.5);
+
+function LinearClosed(context) {
+  this._context = context;
+}
+
+LinearClosed.prototype = {
+  areaStart: noop,
+  areaEnd: noop,
+  lineStart: function() {
+    this._point = 0;
+  },
+  lineEnd: function() {
+    if (this._point) this._context.closePath();
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    if (this._point) this._context.lineTo(x, y);
+    else this._point = 1, this._context.moveTo(x, y);
+  }
+};
+
+function linearClosed(context) {
+  return new LinearClosed(context);
+}
+
+function sign(x) {
+  return x < 0 ? -1 : 1;
+}
+
+// Calculate the slopes of the tangents (Hermite-type interpolation) based on
+// the following paper: Steffen, M. 1990. A Simple Method for Monotonic
+// Interpolation in One Dimension. Astronomy and Astrophysics, Vol. 239, NO.
+// NOV(II), P. 443, 1990.
+function slope3(that, x2, y2) {
+  var h0 = that._x1 - that._x0,
+      h1 = x2 - that._x1,
+      s0 = (that._y1 - that._y0) / (h0 || h1 < 0 && -0),
+      s1 = (y2 - that._y1) / (h1 || h0 < 0 && -0),
+      p = (s0 * h1 + s1 * h0) / (h0 + h1);
+  return (sign(s0) + sign(s1)) * Math.min(Math.abs(s0), Math.abs(s1), 0.5 * Math.abs(p)) || 0;
+}
+
+// Calculate a one-sided slope.
+function slope2(that, t) {
+  var h = that._x1 - that._x0;
+  return h ? (3 * (that._y1 - that._y0) / h - t) / 2 : t;
+}
+
+// According to https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Representations
+// "you can express cubic Hermite interpolation in terms of cubic Bézier curves
+// with respect to the four values p0, p0 + m0 / 3, p1 - m1 / 3, p1".
+function point$3(that, t0, t1) {
+  var x0 = that._x0,
+      y0 = that._y0,
+      x1 = that._x1,
+      y1 = that._y1,
+      dx = (x1 - x0) / 3;
+  that._context.bezierCurveTo(x0 + dx, y0 + dx * t0, x1 - dx, y1 - dx * t1, x1, y1);
+}
+
+function MonotoneX(context) {
+  this._context = context;
+}
+
+MonotoneX.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x0 = this._x1 =
+    this._y0 = this._y1 =
+    this._t0 = NaN;
+    this._point = 0;
+  },
+  lineEnd: function() {
+    switch (this._point) {
+      case 2: this._context.lineTo(this._x1, this._y1); break;
+      case 3: point$3(this, this._t0, slope2(this, this._t0)); break;
+    }
+    if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
+    this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    var t1 = NaN;
+
+    x = +x, y = +y;
+    if (x === this._x1 && y === this._y1) return; // Ignore coincident points.
+    switch (this._point) {
+      case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
+      case 1: this._point = 2; break;
+      case 2: this._point = 3; point$3(this, slope2(this, t1 = slope3(this, x, y)), t1); break;
+      default: point$3(this, this._t0, t1 = slope3(this, x, y)); break;
+    }
+
+    this._x0 = this._x1, this._x1 = x;
+    this._y0 = this._y1, this._y1 = y;
+    this._t0 = t1;
+  }
+}
+
+function MonotoneY(context) {
+  this._context = new ReflectContext(context);
+}
+
+(MonotoneY.prototype = Object.create(MonotoneX.prototype)).point = function(x, y) {
+  MonotoneX.prototype.point.call(this, y, x);
+};
+
+function ReflectContext(context) {
+  this._context = context;
+}
+
+ReflectContext.prototype = {
+  moveTo: function(x, y) { this._context.moveTo(y, x); },
+  closePath: function() { this._context.closePath(); },
+  lineTo: function(x, y) { this._context.lineTo(y, x); },
+  bezierCurveTo: function(x1, y1, x2, y2, x, y) { this._context.bezierCurveTo(y1, x1, y2, x2, y, x); }
+};
+
+function monotoneX(context) {
+  return new MonotoneX(context);
+}
+
+function monotoneY(context) {
+  return new MonotoneY(context);
+}
+
+function Natural(context) {
+  this._context = context;
+}
+
+Natural.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x = [];
+    this._y = [];
+  },
+  lineEnd: function() {
+    var x = this._x,
+        y = this._y,
+        n = x.length;
+
+    if (n) {
+      this._line ? this._context.lineTo(x[0], y[0]) : this._context.moveTo(x[0], y[0]);
+      if (n === 2) {
+        this._context.lineTo(x[1], y[1]);
+      } else {
+        var px = controlPoints(x),
+            py = controlPoints(y);
+        for (var i0 = 0, i1 = 1; i1 < n; ++i0, ++i1) {
+          this._context.bezierCurveTo(px[0][i0], py[0][i0], px[1][i0], py[1][i0], x[i1], y[i1]);
+        }
+      }
+    }
+
+    if (this._line || (this._line !== 0 && n === 1)) this._context.closePath();
+    this._line = 1 - this._line;
+    this._x = this._y = null;
+  },
+  point: function(x, y) {
+    this._x.push(+x);
+    this._y.push(+y);
+  }
+};
+
+// See https://www.particleincell.com/2012/bezier-splines/ for derivation.
+function controlPoints(x) {
+  var i,
+      n = x.length - 1,
+      m,
+      a = new Array(n),
+      b = new Array(n),
+      r = new Array(n);
+  a[0] = 0, b[0] = 2, r[0] = x[0] + 2 * x[1];
+  for (i = 1; i < n - 1; ++i) a[i] = 1, b[i] = 4, r[i] = 4 * x[i] + 2 * x[i + 1];
+  a[n - 1] = 2, b[n - 1] = 7, r[n - 1] = 8 * x[n - 1] + x[n];
+  for (i = 1; i < n; ++i) m = a[i] / b[i - 1], b[i] -= m, r[i] -= m * r[i - 1];
+  a[n - 1] = r[n - 1] / b[n - 1];
+  for (i = n - 2; i >= 0; --i) a[i] = (r[i] - a[i + 1]) / b[i];
+  b[n - 1] = (x[n] + a[n - 1]) / 2;
+  for (i = 0; i < n - 1; ++i) b[i] = 2 * x[i + 1] - a[i + 1];
+  return [a, b];
+}
+
+function natural(context) {
+  return new Natural(context);
+}
+
+function Step(context, t) {
+  this._context = context;
+  this._t = t;
+}
+
+Step.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x = this._y = NaN;
+    this._point = 0;
+  },
+  lineEnd: function() {
+    if (0 < this._t && this._t < 1 && this._point === 2) this._context.lineTo(this._x, this._y);
+    if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
+    if (this._line >= 0) this._t = 1 - this._t, this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    switch (this._point) {
+      case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
+      case 1: this._point = 2; // proceed
+      default: {
+        if (this._t <= 0) {
+          this._context.lineTo(this._x, y);
+          this._context.lineTo(x, y);
+        } else {
+          var x1 = this._x * (1 - this._t) + x * this._t;
+          this._context.lineTo(x1, this._y);
+          this._context.lineTo(x1, y);
+        }
+        break;
+      }
+    }
+    this._x = x, this._y = y;
+  }
+};
+
+function step(context) {
+  return new Step(context, 0.5);
+}
+
+function stepBefore(context) {
+  return new Step(context, 0);
+}
+
+function stepAfter(context) {
+  return new Step(context, 1);
+}
+
+var slice = Array.prototype.slice;
+
+function none(series, order) {
+  if (!((n = series.length) > 1)) return;
+  for (var i = 1, s0, s1 = series[order[0]], n, m = s1.length; i < n; ++i) {
+    s0 = s1, s1 = series[order[i]];
+    for (var j = 0; j < m; ++j) {
+      s1[j][1] += s1[j][0] = isNaN(s0[j][1]) ? s0[j][0] : s0[j][1];
+    }
+  }
+}
+
+function none$1(series) {
+  var n = series.length, o = new Array(n);
+  while (--n >= 0) o[n] = n;
+  return o;
+}
+
+function stackValue(d, key) {
+  return d[key];
+}
+
+function stack() {
+  var keys = constant([]),
+      order = none$1,
+      offset = none,
+      value = stackValue;
+
+  function stack(data) {
+    var kz = keys.apply(this, arguments),
+        i,
+        m = data.length,
+        n = kz.length,
+        sz = new Array(n),
+        oz;
+
+    for (i = 0; i < n; ++i) {
+      for (var ki = kz[i], si = sz[i] = new Array(m), j = 0, sij; j < m; ++j) {
+        si[j] = sij = [0, +value(data[j], ki, j, data)];
+        sij.data = data[j];
+      }
+      si.key = ki;
+    }
+
+    for (i = 0, oz = order(sz); i < n; ++i) {
+      sz[oz[i]].index = i;
+    }
+
+    offset(sz, oz);
+    return sz;
+  }
+
+  stack.keys = function(_) {
+    return arguments.length ? (keys = typeof _ === "function" ? _ : constant(slice.call(_)), stack) : keys;
+  };
+
+  stack.value = function(_) {
+    return arguments.length ? (value = typeof _ === "function" ? _ : constant(+_), stack) : value;
+  };
+
+  stack.order = function(_) {
+    return arguments.length ? (order = _ == null ? none$1 : typeof _ === "function" ? _ : constant(slice.call(_)), stack) : order;
+  };
+
+  stack.offset = function(_) {
+    return arguments.length ? (offset = _ == null ? none : _, stack) : offset;
+  };
+
+  return stack;
+}
+
+function expand(series, order) {
+  if (!((n = series.length) > 0)) return;
+  for (var i, n, j = 0, m = series[0].length, y; j < m; ++j) {
+    for (y = i = 0; i < n; ++i) y += series[i][j][1] || 0;
+    if (y) for (i = 0; i < n; ++i) series[i][j][1] /= y;
+  }
+  none(series, order);
+}
+
+function silhouette(series, order) {
+  if (!((n = series.length) > 0)) return;
+  for (var j = 0, s0 = series[order[0]], n, m = s0.length; j < m; ++j) {
+    for (var i = 0, y = 0; i < n; ++i) y += series[i][j][1] || 0;
+    s0[j][1] += s0[j][0] = -y / 2;
+  }
+  none(series, order);
+}
+
+function wiggle(series, order) {
+  if (!((n = series.length) > 0) || !((m = (s0 = series[order[0]]).length) > 0)) return;
+  for (var y = 0, j = 1, s0, m, n; j < m; ++j) {
+    for (var i = 0, s1 = 0, s2 = 0; i < n; ++i) {
+      var si = series[order[i]],
+          sij0 = si[j][1] || 0,
+          sij1 = si[j - 1][1] || 0,
+          s3 = (sij0 - sij1) / 2;
+      for (var k = 0; k < i; ++k) {
+        var sk = series[order[k]],
+            skj0 = sk[j][1] || 0,
+            skj1 = sk[j - 1][1] || 0;
+        s3 += skj0 - skj1;
+      }
+      s1 += sij0, s2 += s3 * sij0;
+    }
+    s0[j - 1][1] += s0[j - 1][0] = y;
+    if (s1) y -= s2 / s1;
+  }
+  s0[j - 1][1] += s0[j - 1][0] = y;
+  none(series, order);
+}
+
+function ascending(series) {
+  var sums = series.map(sum);
+  return none$1(series).sort(function(a, b) { return sums[a] - sums[b]; });
+}
+
+function sum(series) {
+  var s = 0, i = -1, n = series.length, v;
+  while (++i < n) if (v = +series[i][1]) s += v;
+  return s;
+}
+
+function descending$1(series) {
+  return ascending(series).reverse();
+}
+
+function insideOut(series) {
+  var n = series.length,
+      i,
+      j,
+      sums = series.map(sum),
+      order = none$1(series).sort(function(a, b) { return sums[b] - sums[a]; }),
+      top = 0,
+      bottom = 0,
+      tops = [],
+      bottoms = [];
+
+  for (i = 0; i < n; ++i) {
+    j = order[i];
+    if (top < bottom) {
+      top += sums[j];
+      tops.push(j);
+    } else {
+      bottom += sums[j];
+      bottoms.push(j);
+    }
+  }
+
+  return bottoms.reverse().concat(tops);
+}
+
+function reverse(series) {
+  return none$1(series).reverse();
+}
+
+exports.arc = arc;
+exports.area = area;
+exports.line = line;
+exports.pie = pie;
+exports.radialArea = radialArea;
+exports.radialLine = radialLine$1;
+exports.symbol = symbol;
+exports.symbols = symbols;
+exports.symbolCircle = circle;
+exports.symbolCross = cross;
+exports.symbolDiamond = diamond;
+exports.symbolSquare = square;
+exports.symbolStar = star;
+exports.symbolTriangle = triangle;
+exports.symbolWye = wye;
+exports.curveBasisClosed = basisClosed;
+exports.curveBasisOpen = basisOpen;
+exports.curveBasis = basis;
+exports.curveBundle = bundle;
+exports.curveCardinalClosed = cardinalClosed;
+exports.curveCardinalOpen = cardinalOpen;
+exports.curveCardinal = cardinal;
+exports.curveCatmullRomClosed = catmullRomClosed;
+exports.curveCatmullRomOpen = catmullRomOpen;
+exports.curveCatmullRom = catmullRom;
+exports.curveLinearClosed = linearClosed;
+exports.curveLinear = curveLinear;
+exports.curveMonotoneX = monotoneX;
+exports.curveMonotoneY = monotoneY;
+exports.curveNatural = natural;
+exports.curveStep = step;
+exports.curveStepAfter = stepAfter;
+exports.curveStepBefore = stepBefore;
+exports.stack = stack;
+exports.stackOffsetExpand = expand;
+exports.stackOffsetNone = none;
+exports.stackOffsetSilhouette = silhouette;
+exports.stackOffsetWiggle = wiggle;
+exports.stackOrderAscending = ascending;
+exports.stackOrderDescending = descending$1;
+exports.stackOrderInsideOut = insideOut;
+exports.stackOrderNone = none$1;
+exports.stackOrderReverse = reverse;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+},{"d3-path":115}],118:[function(require,module,exports){
+// https://d3js.org/d3-time-format/ Version 2.0.2. Copyright 2016 Mike Bostock.
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-time')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'd3-time'], factory) :
+  (factory((global.d3 = global.d3 || {}),global.d3));
+}(this, function (exports,d3Time) { 'use strict';
+
+  function localDate(d) {
+    if (0 <= d.y && d.y < 100) {
+      var date = new Date(-1, d.m, d.d, d.H, d.M, d.S, d.L);
+      date.setFullYear(d.y);
+      return date;
+    }
+    return new Date(d.y, d.m, d.d, d.H, d.M, d.S, d.L);
+  }
+
+  function utcDate(d) {
+    if (0 <= d.y && d.y < 100) {
+      var date = new Date(Date.UTC(-1, d.m, d.d, d.H, d.M, d.S, d.L));
+      date.setUTCFullYear(d.y);
+      return date;
+    }
+    return new Date(Date.UTC(d.y, d.m, d.d, d.H, d.M, d.S, d.L));
+  }
+
+  function newYear(y) {
+    return {y: y, m: 0, d: 1, H: 0, M: 0, S: 0, L: 0};
+  }
+
+  function formatLocale(locale) {
+    var locale_dateTime = locale.dateTime,
+        locale_date = locale.date,
+        locale_time = locale.time,
+        locale_periods = locale.periods,
+        locale_weekdays = locale.days,
+        locale_shortWeekdays = locale.shortDays,
+        locale_months = locale.months,
+        locale_shortMonths = locale.shortMonths;
+
+    var periodRe = formatRe(locale_periods),
+        periodLookup = formatLookup(locale_periods),
+        weekdayRe = formatRe(locale_weekdays),
+        weekdayLookup = formatLookup(locale_weekdays),
+        shortWeekdayRe = formatRe(locale_shortWeekdays),
+        shortWeekdayLookup = formatLookup(locale_shortWeekdays),
+        monthRe = formatRe(locale_months),
+        monthLookup = formatLookup(locale_months),
+        shortMonthRe = formatRe(locale_shortMonths),
+        shortMonthLookup = formatLookup(locale_shortMonths);
+
+    var formats = {
+      "a": formatShortWeekday,
+      "A": formatWeekday,
+      "b": formatShortMonth,
+      "B": formatMonth,
+      "c": null,
+      "d": formatDayOfMonth,
+      "e": formatDayOfMonth,
+      "H": formatHour24,
+      "I": formatHour12,
+      "j": formatDayOfYear,
+      "L": formatMilliseconds,
+      "m": formatMonthNumber,
+      "M": formatMinutes,
+      "p": formatPeriod,
+      "S": formatSeconds,
+      "U": formatWeekNumberSunday,
+      "w": formatWeekdayNumber,
+      "W": formatWeekNumberMonday,
+      "x": null,
+      "X": null,
+      "y": formatYear,
+      "Y": formatFullYear,
+      "Z": formatZone,
+      "%": formatLiteralPercent
+    };
+
+    var utcFormats = {
+      "a": formatUTCShortWeekday,
+      "A": formatUTCWeekday,
+      "b": formatUTCShortMonth,
+      "B": formatUTCMonth,
+      "c": null,
+      "d": formatUTCDayOfMonth,
+      "e": formatUTCDayOfMonth,
+      "H": formatUTCHour24,
+      "I": formatUTCHour12,
+      "j": formatUTCDayOfYear,
+      "L": formatUTCMilliseconds,
+      "m": formatUTCMonthNumber,
+      "M": formatUTCMinutes,
+      "p": formatUTCPeriod,
+      "S": formatUTCSeconds,
+      "U": formatUTCWeekNumberSunday,
+      "w": formatUTCWeekdayNumber,
+      "W": formatUTCWeekNumberMonday,
+      "x": null,
+      "X": null,
+      "y": formatUTCYear,
+      "Y": formatUTCFullYear,
+      "Z": formatUTCZone,
+      "%": formatLiteralPercent
+    };
+
+    var parses = {
+      "a": parseShortWeekday,
+      "A": parseWeekday,
+      "b": parseShortMonth,
+      "B": parseMonth,
+      "c": parseLocaleDateTime,
+      "d": parseDayOfMonth,
+      "e": parseDayOfMonth,
+      "H": parseHour24,
+      "I": parseHour24,
+      "j": parseDayOfYear,
+      "L": parseMilliseconds,
+      "m": parseMonthNumber,
+      "M": parseMinutes,
+      "p": parsePeriod,
+      "S": parseSeconds,
+      "U": parseWeekNumberSunday,
+      "w": parseWeekdayNumber,
+      "W": parseWeekNumberMonday,
+      "x": parseLocaleDate,
+      "X": parseLocaleTime,
+      "y": parseYear,
+      "Y": parseFullYear,
+      "Z": parseZone,
+      "%": parseLiteralPercent
+    };
+
+    // These recursive directive definitions must be deferred.
+    formats.x = newFormat(locale_date, formats);
+    formats.X = newFormat(locale_time, formats);
+    formats.c = newFormat(locale_dateTime, formats);
+    utcFormats.x = newFormat(locale_date, utcFormats);
+    utcFormats.X = newFormat(locale_time, utcFormats);
+    utcFormats.c = newFormat(locale_dateTime, utcFormats);
+
+    function newFormat(specifier, formats) {
+      return function(date) {
+        var string = [],
+            i = -1,
+            j = 0,
+            n = specifier.length,
+            c,
+            pad,
+            format;
+
+        if (!(date instanceof Date)) date = new Date(+date);
+
+        while (++i < n) {
+          if (specifier.charCodeAt(i) === 37) {
+            string.push(specifier.slice(j, i));
+            if ((pad = pads[c = specifier.charAt(++i)]) != null) c = specifier.charAt(++i);
+            else pad = c === "e" ? " " : "0";
+            if (format = formats[c]) c = format(date, pad);
+            string.push(c);
+            j = i + 1;
+          }
+        }
+
+        string.push(specifier.slice(j, i));
+        return string.join("");
+      };
+    }
+
+    function newParse(specifier, newDate) {
+      return function(string) {
+        var d = newYear(1900),
+            i = parseSpecifier(d, specifier, string += "", 0);
+        if (i != string.length) return null;
+
+        // The am-pm flag is 0 for AM, and 1 for PM.
+        if ("p" in d) d.H = d.H % 12 + d.p * 12;
+
+        // Convert day-of-week and week-of-year to day-of-year.
+        if ("W" in d || "U" in d) {
+          if (!("w" in d)) d.w = "W" in d ? 1 : 0;
+          var day = "Z" in d ? utcDate(newYear(d.y)).getUTCDay() : newDate(newYear(d.y)).getDay();
+          d.m = 0;
+          d.d = "W" in d ? (d.w + 6) % 7 + d.W * 7 - (day + 5) % 7 : d.w + d.U * 7 - (day + 6) % 7;
+        }
+
+        // If a time zone is specified, all fields are interpreted as UTC and then
+        // offset according to the specified time zone.
+        if ("Z" in d) {
+          d.H += d.Z / 100 | 0;
+          d.M += d.Z % 100;
+          return utcDate(d);
+        }
+
+        // Otherwise, all fields are in local time.
+        return newDate(d);
+      };
+    }
+
+    function parseSpecifier(d, specifier, string, j) {
+      var i = 0,
+          n = specifier.length,
+          m = string.length,
+          c,
+          parse;
+
+      while (i < n) {
+        if (j >= m) return -1;
+        c = specifier.charCodeAt(i++);
+        if (c === 37) {
+          c = specifier.charAt(i++);
+          parse = parses[c in pads ? specifier.charAt(i++) : c];
+          if (!parse || ((j = parse(d, string, j)) < 0)) return -1;
+        } else if (c != string.charCodeAt(j++)) {
+          return -1;
+        }
+      }
+
+      return j;
+    }
+
+    function parsePeriod(d, string, i) {
+      var n = periodRe.exec(string.slice(i));
+      return n ? (d.p = periodLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+    }
+
+    function parseShortWeekday(d, string, i) {
+      var n = shortWeekdayRe.exec(string.slice(i));
+      return n ? (d.w = shortWeekdayLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+    }
+
+    function parseWeekday(d, string, i) {
+      var n = weekdayRe.exec(string.slice(i));
+      return n ? (d.w = weekdayLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+    }
+
+    function parseShortMonth(d, string, i) {
+      var n = shortMonthRe.exec(string.slice(i));
+      return n ? (d.m = shortMonthLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+    }
+
+    function parseMonth(d, string, i) {
+      var n = monthRe.exec(string.slice(i));
+      return n ? (d.m = monthLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+    }
+
+    function parseLocaleDateTime(d, string, i) {
+      return parseSpecifier(d, locale_dateTime, string, i);
+    }
+
+    function parseLocaleDate(d, string, i) {
+      return parseSpecifier(d, locale_date, string, i);
+    }
+
+    function parseLocaleTime(d, string, i) {
+      return parseSpecifier(d, locale_time, string, i);
+    }
+
+    function formatShortWeekday(d) {
+      return locale_shortWeekdays[d.getDay()];
+    }
+
+    function formatWeekday(d) {
+      return locale_weekdays[d.getDay()];
+    }
+
+    function formatShortMonth(d) {
+      return locale_shortMonths[d.getMonth()];
+    }
+
+    function formatMonth(d) {
+      return locale_months[d.getMonth()];
+    }
+
+    function formatPeriod(d) {
+      return locale_periods[+(d.getHours() >= 12)];
+    }
+
+    function formatUTCShortWeekday(d) {
+      return locale_shortWeekdays[d.getUTCDay()];
+    }
+
+    function formatUTCWeekday(d) {
+      return locale_weekdays[d.getUTCDay()];
+    }
+
+    function formatUTCShortMonth(d) {
+      return locale_shortMonths[d.getUTCMonth()];
+    }
+
+    function formatUTCMonth(d) {
+      return locale_months[d.getUTCMonth()];
+    }
+
+    function formatUTCPeriod(d) {
+      return locale_periods[+(d.getUTCHours() >= 12)];
+    }
+
+    return {
+      format: function(specifier) {
+        var f = newFormat(specifier += "", formats);
+        f.toString = function() { return specifier; };
+        return f;
+      },
+      parse: function(specifier) {
+        var p = newParse(specifier += "", localDate);
+        p.toString = function() { return specifier; };
+        return p;
+      },
+      utcFormat: function(specifier) {
+        var f = newFormat(specifier += "", utcFormats);
+        f.toString = function() { return specifier; };
+        return f;
+      },
+      utcParse: function(specifier) {
+        var p = newParse(specifier, utcDate);
+        p.toString = function() { return specifier; };
+        return p;
+      }
+    };
+  }
+
+  var pads = {"-": "", "_": " ", "0": "0"};
+  var numberRe = /^\s*\d+/;
+  var percentRe = /^%/;
+  var requoteRe = /[\\\^\$\*\+\?\|\[\]\(\)\.\{\}]/g;
+  function pad(value, fill, width) {
+    var sign = value < 0 ? "-" : "",
+        string = (sign ? -value : value) + "",
+        length = string.length;
+    return sign + (length < width ? new Array(width - length + 1).join(fill) + string : string);
+  }
+
+  function requote(s) {
+    return s.replace(requoteRe, "\\$&");
+  }
+
+  function formatRe(names) {
+    return new RegExp("^(?:" + names.map(requote).join("|") + ")", "i");
+  }
+
+  function formatLookup(names) {
+    var map = {}, i = -1, n = names.length;
+    while (++i < n) map[names[i].toLowerCase()] = i;
+    return map;
+  }
+
+  function parseWeekdayNumber(d, string, i) {
+    var n = numberRe.exec(string.slice(i, i + 1));
+    return n ? (d.w = +n[0], i + n[0].length) : -1;
+  }
+
+  function parseWeekNumberSunday(d, string, i) {
+    var n = numberRe.exec(string.slice(i));
+    return n ? (d.U = +n[0], i + n[0].length) : -1;
+  }
+
+  function parseWeekNumberMonday(d, string, i) {
+    var n = numberRe.exec(string.slice(i));
+    return n ? (d.W = +n[0], i + n[0].length) : -1;
+  }
+
+  function parseFullYear(d, string, i) {
+    var n = numberRe.exec(string.slice(i, i + 4));
+    return n ? (d.y = +n[0], i + n[0].length) : -1;
+  }
+
+  function parseYear(d, string, i) {
+    var n = numberRe.exec(string.slice(i, i + 2));
+    return n ? (d.y = +n[0] + (+n[0] > 68 ? 1900 : 2000), i + n[0].length) : -1;
+  }
+
+  function parseZone(d, string, i) {
+    var n = /^(Z)|([+-]\d\d)(?:\:?(\d\d))?/.exec(string.slice(i, i + 6));
+    return n ? (d.Z = n[1] ? 0 : -(n[2] + (n[3] || "00")), i + n[0].length) : -1;
+  }
+
+  function parseMonthNumber(d, string, i) {
+    var n = numberRe.exec(string.slice(i, i + 2));
+    return n ? (d.m = n[0] - 1, i + n[0].length) : -1;
+  }
+
+  function parseDayOfMonth(d, string, i) {
+    var n = numberRe.exec(string.slice(i, i + 2));
+    return n ? (d.d = +n[0], i + n[0].length) : -1;
+  }
+
+  function parseDayOfYear(d, string, i) {
+    var n = numberRe.exec(string.slice(i, i + 3));
+    return n ? (d.m = 0, d.d = +n[0], i + n[0].length) : -1;
+  }
+
+  function parseHour24(d, string, i) {
+    var n = numberRe.exec(string.slice(i, i + 2));
+    return n ? (d.H = +n[0], i + n[0].length) : -1;
+  }
+
+  function parseMinutes(d, string, i) {
+    var n = numberRe.exec(string.slice(i, i + 2));
+    return n ? (d.M = +n[0], i + n[0].length) : -1;
+  }
+
+  function parseSeconds(d, string, i) {
+    var n = numberRe.exec(string.slice(i, i + 2));
+    return n ? (d.S = +n[0], i + n[0].length) : -1;
+  }
+
+  function parseMilliseconds(d, string, i) {
+    var n = numberRe.exec(string.slice(i, i + 3));
+    return n ? (d.L = +n[0], i + n[0].length) : -1;
+  }
+
+  function parseLiteralPercent(d, string, i) {
+    var n = percentRe.exec(string.slice(i, i + 1));
+    return n ? i + n[0].length : -1;
+  }
+
+  function formatDayOfMonth(d, p) {
+    return pad(d.getDate(), p, 2);
+  }
+
+  function formatHour24(d, p) {
+    return pad(d.getHours(), p, 2);
+  }
+
+  function formatHour12(d, p) {
+    return pad(d.getHours() % 12 || 12, p, 2);
+  }
+
+  function formatDayOfYear(d, p) {
+    return pad(1 + d3Time.timeDay.count(d3Time.timeYear(d), d), p, 3);
+  }
+
+  function formatMilliseconds(d, p) {
+    return pad(d.getMilliseconds(), p, 3);
+  }
+
+  function formatMonthNumber(d, p) {
+    return pad(d.getMonth() + 1, p, 2);
+  }
+
+  function formatMinutes(d, p) {
+    return pad(d.getMinutes(), p, 2);
+  }
+
+  function formatSeconds(d, p) {
+    return pad(d.getSeconds(), p, 2);
+  }
+
+  function formatWeekNumberSunday(d, p) {
+    return pad(d3Time.timeSunday.count(d3Time.timeYear(d), d), p, 2);
+  }
+
+  function formatWeekdayNumber(d) {
+    return d.getDay();
+  }
+
+  function formatWeekNumberMonday(d, p) {
+    return pad(d3Time.timeMonday.count(d3Time.timeYear(d), d), p, 2);
+  }
+
+  function formatYear(d, p) {
+    return pad(d.getFullYear() % 100, p, 2);
+  }
+
+  function formatFullYear(d, p) {
+    return pad(d.getFullYear() % 10000, p, 4);
+  }
+
+  function formatZone(d) {
+    var z = d.getTimezoneOffset();
+    return (z > 0 ? "-" : (z *= -1, "+"))
+        + pad(z / 60 | 0, "0", 2)
+        + pad(z % 60, "0", 2);
+  }
+
+  function formatUTCDayOfMonth(d, p) {
+    return pad(d.getUTCDate(), p, 2);
+  }
+
+  function formatUTCHour24(d, p) {
+    return pad(d.getUTCHours(), p, 2);
+  }
+
+  function formatUTCHour12(d, p) {
+    return pad(d.getUTCHours() % 12 || 12, p, 2);
+  }
+
+  function formatUTCDayOfYear(d, p) {
+    return pad(1 + d3Time.utcDay.count(d3Time.utcYear(d), d), p, 3);
+  }
+
+  function formatUTCMilliseconds(d, p) {
+    return pad(d.getUTCMilliseconds(), p, 3);
+  }
+
+  function formatUTCMonthNumber(d, p) {
+    return pad(d.getUTCMonth() + 1, p, 2);
+  }
+
+  function formatUTCMinutes(d, p) {
+    return pad(d.getUTCMinutes(), p, 2);
+  }
+
+  function formatUTCSeconds(d, p) {
+    return pad(d.getUTCSeconds(), p, 2);
+  }
+
+  function formatUTCWeekNumberSunday(d, p) {
+    return pad(d3Time.utcSunday.count(d3Time.utcYear(d), d), p, 2);
+  }
+
+  function formatUTCWeekdayNumber(d) {
+    return d.getUTCDay();
+  }
+
+  function formatUTCWeekNumberMonday(d, p) {
+    return pad(d3Time.utcMonday.count(d3Time.utcYear(d), d), p, 2);
+  }
+
+  function formatUTCYear(d, p) {
+    return pad(d.getUTCFullYear() % 100, p, 2);
+  }
+
+  function formatUTCFullYear(d, p) {
+    return pad(d.getUTCFullYear() % 10000, p, 4);
+  }
+
+  function formatUTCZone() {
+    return "+0000";
+  }
+
+  function formatLiteralPercent() {
+    return "%";
+  }
+
+  var locale;
+  defaultLocale({
+    dateTime: "%x, %X",
+    date: "%-m/%-d/%Y",
+    time: "%-I:%M:%S %p",
+    periods: ["AM", "PM"],
+    days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    shortDays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    shortMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  });
+
+  function defaultLocale(definition) {
+    locale = formatLocale(definition);
+    exports.timeFormat = locale.format;
+    exports.timeParse = locale.parse;
+    exports.utcFormat = locale.utcFormat;
+    exports.utcParse = locale.utcParse;
+    return locale;
+  }
+
+  var isoSpecifier = "%Y-%m-%dT%H:%M:%S.%LZ";
+
+  function formatIsoNative(date) {
+    return date.toISOString();
+  }
+
+  var formatIso = Date.prototype.toISOString
+      ? formatIsoNative
+      : exports.utcFormat(isoSpecifier);
+
+  function parseIsoNative(string) {
+    var date = new Date(string);
+    return isNaN(date) ? null : date;
+  }
+
+  var parseIso = +new Date("2000-01-01T00:00:00.000Z")
+      ? parseIsoNative
+      : exports.utcParse(isoSpecifier);
+
+  exports.timeFormatDefaultLocale = defaultLocale;
+  exports.timeFormatLocale = formatLocale;
+  exports.isoFormat = formatIso;
+  exports.isoParse = parseIso;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
+
+}));
+},{"d3-time":119}],119:[function(require,module,exports){
+// https://d3js.org/d3-time/ Version 1.0.3. Copyright 2016 Mike Bostock.
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (factory((global.d3 = global.d3 || {})));
+}(this, (function (exports) { 'use strict';
+
+var t0 = new Date;
+var t1 = new Date;
+
+function newInterval(floori, offseti, count, field) {
+
+  function interval(date) {
+    return floori(date = new Date(+date)), date;
+  }
+
+  interval.floor = interval;
+
+  interval.ceil = function(date) {
+    return floori(date = new Date(date - 1)), offseti(date, 1), floori(date), date;
+  };
+
+  interval.round = function(date) {
+    var d0 = interval(date),
+        d1 = interval.ceil(date);
+    return date - d0 < d1 - date ? d0 : d1;
+  };
+
+  interval.offset = function(date, step) {
+    return offseti(date = new Date(+date), step == null ? 1 : Math.floor(step)), date;
+  };
+
+  interval.range = function(start, stop, step) {
+    var range = [];
+    start = interval.ceil(start);
+    step = step == null ? 1 : Math.floor(step);
+    if (!(start < stop) || !(step > 0)) return range; // also handles Invalid Date
+    do range.push(new Date(+start)); while (offseti(start, step), floori(start), start < stop)
+    return range;
+  };
+
+  interval.filter = function(test) {
+    return newInterval(function(date) {
+      while (floori(date), !test(date)) date.setTime(date - 1);
+    }, function(date, step) {
+      while (--step >= 0) while (offseti(date, 1), !test(date)) {} // eslint-disable-line no-empty
+    });
+  };
+
+  if (count) {
+    interval.count = function(start, end) {
+      t0.setTime(+start), t1.setTime(+end);
+      floori(t0), floori(t1);
+      return Math.floor(count(t0, t1));
+    };
+
+    interval.every = function(step) {
+      step = Math.floor(step);
+      return !isFinite(step) || !(step > 0) ? null
+          : !(step > 1) ? interval
+          : interval.filter(field
+              ? function(d) { return field(d) % step === 0; }
+              : function(d) { return interval.count(0, d) % step === 0; });
+    };
+  }
+
+  return interval;
+}
+
+var millisecond = newInterval(function() {
+  // noop
+}, function(date, step) {
+  date.setTime(+date + step);
+}, function(start, end) {
+  return end - start;
+});
+
+// An optimized implementation for this simple case.
+millisecond.every = function(k) {
+  k = Math.floor(k);
+  if (!isFinite(k) || !(k > 0)) return null;
+  if (!(k > 1)) return millisecond;
+  return newInterval(function(date) {
+    date.setTime(Math.floor(date / k) * k);
+  }, function(date, step) {
+    date.setTime(+date + step * k);
+  }, function(start, end) {
+    return (end - start) / k;
+  });
+};
+
+var milliseconds = millisecond.range;
+
+var durationSecond = 1e3;
+var durationMinute = 6e4;
+var durationHour = 36e5;
+var durationDay = 864e5;
+var durationWeek = 6048e5;
+
+var second = newInterval(function(date) {
+  date.setTime(Math.floor(date / durationSecond) * durationSecond);
+}, function(date, step) {
+  date.setTime(+date + step * durationSecond);
+}, function(start, end) {
+  return (end - start) / durationSecond;
+}, function(date) {
+  return date.getUTCSeconds();
+});
+
+var seconds = second.range;
+
+var minute = newInterval(function(date) {
+  date.setTime(Math.floor(date / durationMinute) * durationMinute);
+}, function(date, step) {
+  date.setTime(+date + step * durationMinute);
+}, function(start, end) {
+  return (end - start) / durationMinute;
+}, function(date) {
+  return date.getMinutes();
+});
+
+var minutes = minute.range;
+
+var hour = newInterval(function(date) {
+  var offset = date.getTimezoneOffset() * durationMinute % durationHour;
+  if (offset < 0) offset += durationHour;
+  date.setTime(Math.floor((+date - offset) / durationHour) * durationHour + offset);
+}, function(date, step) {
+  date.setTime(+date + step * durationHour);
+}, function(start, end) {
+  return (end - start) / durationHour;
+}, function(date) {
+  return date.getHours();
+});
+
+var hours = hour.range;
+
+var day = newInterval(function(date) {
+  date.setHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setDate(date.getDate() + step);
+}, function(start, end) {
+  return (end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * durationMinute) / durationDay;
+}, function(date) {
+  return date.getDate() - 1;
+});
+
+var days = day.range;
+
+function weekday(i) {
+  return newInterval(function(date) {
+    date.setDate(date.getDate() - (date.getDay() + 7 - i) % 7);
+    date.setHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setDate(date.getDate() + step * 7);
+  }, function(start, end) {
+    return (end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * durationMinute) / durationWeek;
+  });
+}
+
+var sunday = weekday(0);
+var monday = weekday(1);
+var tuesday = weekday(2);
+var wednesday = weekday(3);
+var thursday = weekday(4);
+var friday = weekday(5);
+var saturday = weekday(6);
+
+var sundays = sunday.range;
+var mondays = monday.range;
+var tuesdays = tuesday.range;
+var wednesdays = wednesday.range;
+var thursdays = thursday.range;
+var fridays = friday.range;
+var saturdays = saturday.range;
+
+var month = newInterval(function(date) {
+  date.setDate(1);
+  date.setHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setMonth(date.getMonth() + step);
+}, function(start, end) {
+  return end.getMonth() - start.getMonth() + (end.getFullYear() - start.getFullYear()) * 12;
+}, function(date) {
+  return date.getMonth();
+});
+
+var months = month.range;
+
+var year = newInterval(function(date) {
+  date.setMonth(0, 1);
+  date.setHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setFullYear(date.getFullYear() + step);
+}, function(start, end) {
+  return end.getFullYear() - start.getFullYear();
+}, function(date) {
+  return date.getFullYear();
+});
+
+// An optimized implementation for this simple case.
+year.every = function(k) {
+  return !isFinite(k = Math.floor(k)) || !(k > 0) ? null : newInterval(function(date) {
+    date.setFullYear(Math.floor(date.getFullYear() / k) * k);
+    date.setMonth(0, 1);
+    date.setHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setFullYear(date.getFullYear() + step * k);
+  });
+};
+
+var years = year.range;
+
+var utcMinute = newInterval(function(date) {
+  date.setUTCSeconds(0, 0);
+}, function(date, step) {
+  date.setTime(+date + step * durationMinute);
+}, function(start, end) {
+  return (end - start) / durationMinute;
+}, function(date) {
+  return date.getUTCMinutes();
+});
+
+var utcMinutes = utcMinute.range;
+
+var utcHour = newInterval(function(date) {
+  date.setUTCMinutes(0, 0, 0);
+}, function(date, step) {
+  date.setTime(+date + step * durationHour);
+}, function(start, end) {
+  return (end - start) / durationHour;
+}, function(date) {
+  return date.getUTCHours();
+});
+
+var utcHours = utcHour.range;
+
+var utcDay = newInterval(function(date) {
+  date.setUTCHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setUTCDate(date.getUTCDate() + step);
+}, function(start, end) {
+  return (end - start) / durationDay;
+}, function(date) {
+  return date.getUTCDate() - 1;
+});
+
+var utcDays = utcDay.range;
+
+function utcWeekday(i) {
+  return newInterval(function(date) {
+    date.setUTCDate(date.getUTCDate() - (date.getUTCDay() + 7 - i) % 7);
+    date.setUTCHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setUTCDate(date.getUTCDate() + step * 7);
+  }, function(start, end) {
+    return (end - start) / durationWeek;
+  });
+}
+
+var utcSunday = utcWeekday(0);
+var utcMonday = utcWeekday(1);
+var utcTuesday = utcWeekday(2);
+var utcWednesday = utcWeekday(3);
+var utcThursday = utcWeekday(4);
+var utcFriday = utcWeekday(5);
+var utcSaturday = utcWeekday(6);
+
+var utcSundays = utcSunday.range;
+var utcMondays = utcMonday.range;
+var utcTuesdays = utcTuesday.range;
+var utcWednesdays = utcWednesday.range;
+var utcThursdays = utcThursday.range;
+var utcFridays = utcFriday.range;
+var utcSaturdays = utcSaturday.range;
+
+var utcMonth = newInterval(function(date) {
+  date.setUTCDate(1);
+  date.setUTCHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setUTCMonth(date.getUTCMonth() + step);
+}, function(start, end) {
+  return end.getUTCMonth() - start.getUTCMonth() + (end.getUTCFullYear() - start.getUTCFullYear()) * 12;
+}, function(date) {
+  return date.getUTCMonth();
+});
+
+var utcMonths = utcMonth.range;
+
+var utcYear = newInterval(function(date) {
+  date.setUTCMonth(0, 1);
+  date.setUTCHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setUTCFullYear(date.getUTCFullYear() + step);
+}, function(start, end) {
+  return end.getUTCFullYear() - start.getUTCFullYear();
+}, function(date) {
+  return date.getUTCFullYear();
+});
+
+// An optimized implementation for this simple case.
+utcYear.every = function(k) {
+  return !isFinite(k = Math.floor(k)) || !(k > 0) ? null : newInterval(function(date) {
+    date.setUTCFullYear(Math.floor(date.getUTCFullYear() / k) * k);
+    date.setUTCMonth(0, 1);
+    date.setUTCHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setUTCFullYear(date.getUTCFullYear() + step * k);
+  });
+};
+
+var utcYears = utcYear.range;
+
+exports.timeInterval = newInterval;
+exports.timeMillisecond = millisecond;
+exports.timeMilliseconds = milliseconds;
+exports.utcMillisecond = millisecond;
+exports.utcMilliseconds = milliseconds;
+exports.timeSecond = second;
+exports.timeSeconds = seconds;
+exports.utcSecond = second;
+exports.utcSeconds = seconds;
+exports.timeMinute = minute;
+exports.timeMinutes = minutes;
+exports.timeHour = hour;
+exports.timeHours = hours;
+exports.timeDay = day;
+exports.timeDays = days;
+exports.timeWeek = sunday;
+exports.timeWeeks = sundays;
+exports.timeSunday = sunday;
+exports.timeSundays = sundays;
+exports.timeMonday = monday;
+exports.timeMondays = mondays;
+exports.timeTuesday = tuesday;
+exports.timeTuesdays = tuesdays;
+exports.timeWednesday = wednesday;
+exports.timeWednesdays = wednesdays;
+exports.timeThursday = thursday;
+exports.timeThursdays = thursdays;
+exports.timeFriday = friday;
+exports.timeFridays = fridays;
+exports.timeSaturday = saturday;
+exports.timeSaturdays = saturdays;
+exports.timeMonth = month;
+exports.timeMonths = months;
+exports.timeYear = year;
+exports.timeYears = years;
+exports.utcMinute = utcMinute;
+exports.utcMinutes = utcMinutes;
+exports.utcHour = utcHour;
+exports.utcHours = utcHours;
+exports.utcDay = utcDay;
+exports.utcDays = utcDays;
+exports.utcWeek = utcSunday;
+exports.utcWeeks = utcSundays;
+exports.utcSunday = utcSunday;
+exports.utcSundays = utcSundays;
+exports.utcMonday = utcMonday;
+exports.utcMondays = utcMondays;
+exports.utcTuesday = utcTuesday;
+exports.utcTuesdays = utcTuesdays;
+exports.utcWednesday = utcWednesday;
+exports.utcWednesdays = utcWednesdays;
+exports.utcThursday = utcThursday;
+exports.utcThursdays = utcThursdays;
+exports.utcFriday = utcFriday;
+exports.utcFridays = utcFridays;
+exports.utcSaturday = utcSaturday;
+exports.utcSaturdays = utcSaturdays;
+exports.utcMonth = utcMonth;
+exports.utcMonths = utcMonths;
+exports.utcYear = utcYear;
+exports.utcYears = utcYears;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+},{}],120:[function(require,module,exports){
+var pSlice = Array.prototype.slice;
+var objectKeys = require('./lib/keys.js');
+var isArguments = require('./lib/is_arguments.js');
+
+var deepEqual = module.exports = function (actual, expected, opts) {
+  if (!opts) opts = {};
+  // 7.1. All identical values are equivalent, as determined by ===.
+  if (actual === expected) {
+    return true;
+
+  } else if (actual instanceof Date && expected instanceof Date) {
+    return actual.getTime() === expected.getTime();
+
+  // 7.3. Other pairs that do not both pass typeof value == 'object',
+  // equivalence is determined by ==.
+  } else if (!actual || !expected || typeof actual != 'object' && typeof expected != 'object') {
+    return opts.strict ? actual === expected : actual == expected;
+
+  // 7.4. For all other Object pairs, including Array objects, equivalence is
+  // determined by having the same number of owned properties (as verified
+  // with Object.prototype.hasOwnProperty.call), the same set of keys
+  // (although not necessarily the same order), equivalent values for every
+  // corresponding key, and an identical 'prototype' property. Note: this
+  // accounts for both named and indexed properties on Arrays.
+  } else {
+    return objEquiv(actual, expected, opts);
+  }
+}
+
+function isUndefinedOrNull(value) {
+  return value === null || value === undefined;
+}
+
+function isBuffer (x) {
+  if (!x || typeof x !== 'object' || typeof x.length !== 'number') return false;
+  if (typeof x.copy !== 'function' || typeof x.slice !== 'function') {
+    return false;
+  }
+  if (x.length > 0 && typeof x[0] !== 'number') return false;
+  return true;
+}
+
+function objEquiv(a, b, opts) {
+  var i, key;
+  if (isUndefinedOrNull(a) || isUndefinedOrNull(b))
+    return false;
+  // an identical 'prototype' property.
+  if (a.prototype !== b.prototype) return false;
+  //~~~I've managed to break Object.keys through screwy arguments passing.
+  //   Converting to array solves the problem.
+  if (isArguments(a)) {
+    if (!isArguments(b)) {
+      return false;
+    }
+    a = pSlice.call(a);
+    b = pSlice.call(b);
+    return deepEqual(a, b, opts);
+  }
+  if (isBuffer(a)) {
+    if (!isBuffer(b)) {
+      return false;
+    }
+    if (a.length !== b.length) return false;
+    for (i = 0; i < a.length; i++) {
+      if (a[i] !== b[i]) return false;
+    }
+    return true;
+  }
+  try {
+    var ka = objectKeys(a),
+        kb = objectKeys(b);
+  } catch (e) {//happens when one is a string literal and the other isn't
+    return false;
+  }
+  // having the same number of owned properties (keys incorporates
+  // hasOwnProperty)
+  if (ka.length != kb.length)
+    return false;
+  //the same set of keys (although not necessarily the same order),
+  ka.sort();
+  kb.sort();
+  //~~~cheap key test
+  for (i = ka.length - 1; i >= 0; i--) {
+    if (ka[i] != kb[i])
+      return false;
+  }
+  //equivalent values for every corresponding key, and
+  //~~~possibly expensive deep test
+  for (i = ka.length - 1; i >= 0; i--) {
+    key = ka[i];
+    if (!deepEqual(a[key], b[key], opts)) return false;
+  }
+  return typeof a === typeof b;
+}
+
+},{"./lib/is_arguments.js":121,"./lib/keys.js":122}],121:[function(require,module,exports){
+var supportsArgumentsClass = (function(){
+  return Object.prototype.toString.call(arguments)
+})() == '[object Arguments]';
+
+exports = module.exports = supportsArgumentsClass ? supported : unsupported;
+
+exports.supported = supported;
+function supported(object) {
+  return Object.prototype.toString.call(object) == '[object Arguments]';
+};
+
+exports.unsupported = unsupported;
+function unsupported(object){
+  return object &&
+    typeof object == 'object' &&
+    typeof object.length == 'number' &&
+    Object.prototype.hasOwnProperty.call(object, 'callee') &&
+    !Object.prototype.propertyIsEnumerable.call(object, 'callee') ||
+    false;
+};
+
+},{}],122:[function(require,module,exports){
+exports = module.exports = typeof Object.keys === 'function'
+  ? Object.keys : shim;
+
+exports.shim = shim;
+function shim (obj) {
+  var keys = [];
+  for (var key in obj) keys.push(key);
+  return keys;
+}
+
+},{}],123:[function(require,module,exports){
 'use strict';
 
 var babelHelpers = require('./util/babelHelpers.js');
@@ -2305,19 +9811,19 @@ function activeElement() {
 }
 
 module.exports = exports['default'];
-},{"./ownerDocument":117,"./util/babelHelpers.js":130}],109:[function(require,module,exports){
+},{"./ownerDocument":132,"./util/babelHelpers.js":145}],124:[function(require,module,exports){
 'use strict';
 var hasClass = require('./hasClass');
 
 module.exports = function addClass(element, className) {
   if (element.classList) element.classList.add(className);else if (!hasClass(element)) element.className = element.className + ' ' + className;
 };
-},{"./hasClass":110}],110:[function(require,module,exports){
+},{"./hasClass":125}],125:[function(require,module,exports){
 'use strict';
 module.exports = function hasClass(element, className) {
   if (element.classList) return !!className && element.classList.contains(className);else return (' ' + element.className + ' ').indexOf(' ' + className + ' ') !== -1;
 };
-},{}],111:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -2325,13 +9831,13 @@ module.exports = {
   removeClass: require('./removeClass'),
   hasClass: require('./hasClass')
 };
-},{"./addClass":109,"./hasClass":110,"./removeClass":112}],112:[function(require,module,exports){
+},{"./addClass":124,"./hasClass":125,"./removeClass":127}],127:[function(require,module,exports){
 'use strict';
 
 module.exports = function removeClass(element, className) {
   if (element.classList) element.classList.remove(className);else element.className = element.className.replace(new RegExp('(^|\\s)' + className + '(?:\\s|$)', 'g'), '$1').replace(/\s+/g, ' ').replace(/^\s*|\s*$/g, '');
 };
-},{}],113:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 'use strict';
 
 var contains = require('../query/contains'),
@@ -2348,14 +9854,14 @@ module.exports = function (selector, handler) {
     })) handler.call(this, e);
   };
 };
-},{"../query/contains":118,"../query/querySelectorAll":123}],114:[function(require,module,exports){
+},{"../query/contains":133,"../query/querySelectorAll":138}],129:[function(require,module,exports){
 'use strict';
 var on = require('./on'),
     off = require('./off'),
     filter = require('./filter');
 
 module.exports = { on: on, off: off, filter: filter };
-},{"./filter":113,"./off":115,"./on":116}],115:[function(require,module,exports){
+},{"./filter":128,"./off":130,"./on":131}],130:[function(require,module,exports){
 'use strict';
 var canUseDOM = require('../util/inDOM');
 var off = function off() {};
@@ -2373,7 +9879,7 @@ if (canUseDOM) {
 }
 
 module.exports = off;
-},{"../util/inDOM":135}],116:[function(require,module,exports){
+},{"../util/inDOM":150}],131:[function(require,module,exports){
 'use strict';
 var canUseDOM = require('../util/inDOM');
 var on = function on() {};
@@ -2390,7 +9896,7 @@ if (canUseDOM) {
 }
 
 module.exports = on;
-},{"../util/inDOM":135}],117:[function(require,module,exports){
+},{"../util/inDOM":150}],132:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -2401,7 +9907,7 @@ function ownerDocument(node) {
 }
 
 module.exports = exports["default"];
-},{}],118:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 'use strict';
 var canUseDOM = require('../util/inDOM');
 
@@ -2422,13 +9928,13 @@ var contains = (function () {
 })();
 
 module.exports = contains;
-},{"../util/inDOM":135}],119:[function(require,module,exports){
+},{"../util/inDOM":150}],134:[function(require,module,exports){
 'use strict';
 
 module.exports = function getWindow(node) {
   return node === node.window ? node : node.nodeType === 9 ? node.defaultView || node.parentWindow : false;
 };
-},{}],120:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 'use strict';
 var contains = require('./contains'),
     getWindow = require('./isWindow'),
@@ -2459,7 +9965,7 @@ module.exports = function offset(node) {
 
   return box;
 };
-},{"../ownerDocument":117,"./contains":118,"./isWindow":119}],121:[function(require,module,exports){
+},{"../ownerDocument":132,"./contains":133,"./isWindow":134}],136:[function(require,module,exports){
 'use strict';
 
 var babelHelpers = require('../util/babelHelpers.js');
@@ -2491,7 +9997,7 @@ function offsetParent(node) {
 }
 
 module.exports = exports['default'];
-},{"../ownerDocument":117,"../style":127,"../util/babelHelpers.js":130}],122:[function(require,module,exports){
+},{"../ownerDocument":132,"../style":142,"../util/babelHelpers.js":145}],137:[function(require,module,exports){
 'use strict';
 
 var babelHelpers = require('../util/babelHelpers.js');
@@ -2549,7 +10055,7 @@ function position(node, offsetParent) {
 }
 
 module.exports = exports['default'];
-},{"../style":127,"../util/babelHelpers.js":130,"./offset":120,"./offsetParent":121,"./scrollLeft":124,"./scrollTop":125}],123:[function(require,module,exports){
+},{"../style":142,"../util/babelHelpers.js":145,"./offset":135,"./offsetParent":136,"./scrollLeft":139,"./scrollTop":140}],138:[function(require,module,exports){
 'use strict';
 //     Zepto.js
 //     (c) 2010-2015 Thomas Fuchs
@@ -2577,7 +10083,7 @@ module.exports = function qsa(element, selector) {
 
   return toArray(element.querySelectorAll(selector));
 };
-},{}],124:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
 'use strict';
 var getWindow = require('./isWindow');
 
@@ -2588,7 +10094,7 @@ module.exports = function scrollTop(node, val) {
 
   if (win) win.scrollTo(val, 'pageYOffset' in win ? win.pageYOffset : win.document.documentElement.scrollTop);else node.scrollLeft = val;
 };
-},{"./isWindow":119}],125:[function(require,module,exports){
+},{"./isWindow":134}],140:[function(require,module,exports){
 'use strict';
 var getWindow = require('./isWindow');
 
@@ -2599,7 +10105,7 @@ module.exports = function scrollTop(node, val) {
 
   if (win) win.scrollTo('pageXOffset' in win ? win.pageXOffset : win.document.documentElement.scrollLeft, val);else node.scrollTop = val;
 };
-},{"./isWindow":119}],126:[function(require,module,exports){
+},{"./isWindow":134}],141:[function(require,module,exports){
 'use strict';
 
 var babelHelpers = require('../util/babelHelpers.js');
@@ -2648,7 +10154,7 @@ module.exports = function _getComputedStyle(node) {
     }
   };
 };
-},{"../util/babelHelpers.js":130,"../util/camelizeStyle":132}],127:[function(require,module,exports){
+},{"../util/babelHelpers.js":145,"../util/camelizeStyle":147}],142:[function(require,module,exports){
 'use strict';
 
 var camelize = require('../util/camelizeStyle'),
@@ -2673,13 +10179,13 @@ module.exports = function style(node, property, value) {
 
   node.style.cssText += ';' + css;
 };
-},{"../util/camelizeStyle":132,"../util/hyphenateStyle":134,"./getComputedStyle":126,"./removeStyle":128}],128:[function(require,module,exports){
+},{"../util/camelizeStyle":147,"../util/hyphenateStyle":149,"./getComputedStyle":141,"./removeStyle":143}],143:[function(require,module,exports){
 'use strict';
 
 module.exports = function removeStyle(node, key) {
   return 'removeProperty' in node.style ? node.style.removeProperty(key) : node.style.removeAttribute(key);
 };
-},{}],129:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
 'use strict';
 var canUseDOM = require('../util/inDOM');
 
@@ -2735,7 +10241,7 @@ function getTransitionProperties() {
 
   return { end: endEvent, prefix: prefix };
 }
-},{"../util/inDOM":135}],130:[function(require,module,exports){
+},{"../util/inDOM":150}],145:[function(require,module,exports){
 (function (root, factory) {
   if (typeof define === "function" && define.amd) {
     define(["exports"], factory);
@@ -2767,7 +10273,7 @@ function getTransitionProperties() {
     return target;
   };
 })
-},{}],131:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 "use strict";
 
 var rHyphen = /-(.)/g;
@@ -2777,7 +10283,7 @@ module.exports = function camelize(string) {
     return chr.toUpperCase();
   });
 };
-},{}],132:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -2791,7 +10297,7 @@ var msPattern = /^-ms-/;
 module.exports = function camelizeStyleName(string) {
   return camelize(string.replace(msPattern, 'ms-'));
 };
-},{"./camelize":131}],133:[function(require,module,exports){
+},{"./camelize":146}],148:[function(require,module,exports){
 'use strict';
 
 var rUpper = /([A-Z])/g;
@@ -2799,7 +10305,7 @@ var rUpper = /([A-Z])/g;
 module.exports = function hyphenate(string) {
   return string.replace(rUpper, '-$1').toLowerCase();
 };
-},{}],134:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -2814,10 +10320,10 @@ var msPattern = /^ms-/;
 module.exports = function hyphenateStyleName(string) {
   return hyphenate(string).replace(msPattern, "-ms-");
 };
-},{"./hyphenate":133}],135:[function(require,module,exports){
+},{"./hyphenate":148}],150:[function(require,module,exports){
 'use strict';
 module.exports = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
-},{}],136:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 'use strict';
 
 var canUseDOM = require('./inDOM');
@@ -2843,7 +10349,7 @@ module.exports = function (recalc) {
 
   return size;
 };
-},{"./inDOM":135}],137:[function(require,module,exports){
+},{"./inDOM":150}],152:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -2929,7 +10435,7 @@ var EventListener = {
 
 module.exports = EventListener;
 }).call(this,require('_process'))
-},{"./emptyFunction":144,"_process":20}],138:[function(require,module,exports){
+},{"./emptyFunction":159,"_process":21}],153:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -2965,7 +10471,7 @@ var ExecutionEnvironment = {
 };
 
 module.exports = ExecutionEnvironment;
-},{}],139:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 "use strict";
 
 /**
@@ -2997,7 +10503,7 @@ function camelize(string) {
 }
 
 module.exports = camelize;
-},{}],140:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -3037,7 +10543,7 @@ function camelizeStyleName(string) {
 }
 
 module.exports = camelizeStyleName;
-},{"./camelize":139}],141:[function(require,module,exports){
+},{"./camelize":154}],156:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3077,7 +10583,7 @@ function containsNode(outerNode, innerNode) {
 }
 
 module.exports = containsNode;
-},{"./isTextNode":154}],142:[function(require,module,exports){
+},{"./isTextNode":169}],157:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -3206,7 +10712,7 @@ function createArrayFromMixed(obj) {
 
 module.exports = createArrayFromMixed;
 }).call(this,require('_process'))
-},{"./invariant":152,"_process":20}],143:[function(require,module,exports){
+},{"./invariant":167,"_process":21}],158:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -3292,7 +10798,7 @@ function createNodesFromMarkup(markup, handleScript) {
 
 module.exports = createNodesFromMarkup;
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":138,"./createArrayFromMixed":142,"./getMarkupWrap":148,"./invariant":152,"_process":20}],144:[function(require,module,exports){
+},{"./ExecutionEnvironment":153,"./createArrayFromMixed":157,"./getMarkupWrap":163,"./invariant":167,"_process":21}],159:[function(require,module,exports){
 "use strict";
 
 /**
@@ -3331,7 +10837,7 @@ emptyFunction.thatReturnsArgument = function (arg) {
 };
 
 module.exports = emptyFunction;
-},{}],145:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 (function (process){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -3353,7 +10859,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = emptyObject;
 }).call(this,require('_process'))
-},{"_process":20}],146:[function(require,module,exports){
+},{"_process":21}],161:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -3380,7 +10886,7 @@ function focusNode(node) {
 }
 
 module.exports = focusNode;
-},{}],147:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3415,7 +10921,7 @@ function getActiveElement() /*?DOMElement*/{
 }
 
 module.exports = getActiveElement;
-},{}],148:[function(require,module,exports){
+},{}],163:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -3512,7 +11018,7 @@ function getMarkupWrap(nodeName) {
 
 module.exports = getMarkupWrap;
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":138,"./invariant":152,"_process":20}],149:[function(require,module,exports){
+},{"./ExecutionEnvironment":153,"./invariant":167,"_process":21}],164:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -3551,7 +11057,7 @@ function getUnboundedScrollPosition(scrollable) {
 }
 
 module.exports = getUnboundedScrollPosition;
-},{}],150:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3584,7 +11090,7 @@ function hyphenate(string) {
 }
 
 module.exports = hyphenate;
-},{}],151:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -3623,7 +11129,7 @@ function hyphenateStyleName(string) {
 }
 
 module.exports = hyphenateStyleName;
-},{"./hyphenate":150}],152:[function(require,module,exports){
+},{"./hyphenate":165}],167:[function(require,module,exports){
 (function (process){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -3675,7 +11181,7 @@ function invariant(condition, format, a, b, c, d, e, f) {
 
 module.exports = invariant;
 }).call(this,require('_process'))
-},{"_process":20}],153:[function(require,module,exports){
+},{"_process":21}],168:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3698,7 +11204,7 @@ function isNode(object) {
 }
 
 module.exports = isNode;
-},{}],154:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3723,7 +11229,7 @@ function isTextNode(object) {
 }
 
 module.exports = isTextNode;
-},{"./isNode":153}],155:[function(require,module,exports){
+},{"./isNode":168}],170:[function(require,module,exports){
 (function (process){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -3773,7 +11279,7 @@ var keyMirror = function keyMirror(obj) {
 
 module.exports = keyMirror;
 }).call(this,require('_process'))
-},{"./invariant":152,"_process":20}],156:[function(require,module,exports){
+},{"./invariant":167,"_process":21}],171:[function(require,module,exports){
 "use strict";
 
 /**
@@ -3808,7 +11314,7 @@ var keyOf = function keyOf(oneKeyObj) {
 };
 
 module.exports = keyOf;
-},{}],157:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -3838,7 +11344,7 @@ function memoizeStringOnly(callback) {
 }
 
 module.exports = memoizeStringOnly;
-},{}],158:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -3861,7 +11367,7 @@ if (ExecutionEnvironment.canUseDOM) {
 }
 
 module.exports = performance || {};
-},{"./ExecutionEnvironment":138}],159:[function(require,module,exports){
+},{"./ExecutionEnvironment":153}],174:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3895,7 +11401,7 @@ if (performance.now) {
 }
 
 module.exports = performanceNow;
-},{"./performance":158}],160:[function(require,module,exports){
+},{"./performance":173}],175:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -3962,7 +11468,7 @@ function shallowEqual(objA, objB) {
 }
 
 module.exports = shallowEqual;
-},{}],161:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -4031,7 +11537,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = warning;
 }).call(this,require('_process'))
-},{"./emptyFunction":144,"_process":20}],162:[function(require,module,exports){
+},{"./emptyFunction":159,"_process":21}],177:[function(require,module,exports){
 (function (global){
 var topLevel = typeof global !== 'undefined' ? global :
     typeof window !== 'undefined' ? window : {}
@@ -4050,7 +11556,20 @@ if (typeof document !== 'undefined') {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"min-document":19}],163:[function(require,module,exports){
+},{"min-document":20}],178:[function(require,module,exports){
+(function (global){
+if (typeof window !== "undefined") {
+    module.exports = window;
+} else if (typeof global !== "undefined") {
+    module.exports = global;
+} else if (typeof self !== "undefined"){
+    module.exports = self;
+} else {
+    module.exports = {};
+}
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],179:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -4105,7 +11624,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":20}],164:[function(require,module,exports){
+},{"_process":21}],180:[function(require,module,exports){
 // Source: http://jsfiddle.net/vWx8V/
 // http://stackoverflow.com/questions/5603195/full-list-of-javascript-keycodes
 
@@ -4253,7 +11772,7 @@ for (var alias in aliases) {
   codes[alias] = aliases[alias]
 }
 
-},{}],165:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 'use strict';
 /* eslint-disable no-unused-vars */
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -4338,7 +11857,121 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	return to;
 };
 
-},{}],166:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
+(function (process){
+// Generated by CoffeeScript 1.7.1
+(function() {
+  var getNanoSeconds, hrtime, loadTime;
+
+  if ((typeof performance !== "undefined" && performance !== null) && performance.now) {
+    module.exports = function() {
+      return performance.now();
+    };
+  } else if ((typeof process !== "undefined" && process !== null) && process.hrtime) {
+    module.exports = function() {
+      return (getNanoSeconds() - loadTime) / 1e6;
+    };
+    hrtime = process.hrtime;
+    getNanoSeconds = function() {
+      var hr;
+      hr = hrtime();
+      return hr[0] * 1e9 + hr[1];
+    };
+    loadTime = getNanoSeconds();
+  } else if (Date.now) {
+    module.exports = function() {
+      return Date.now() - loadTime;
+    };
+    loadTime = Date.now();
+  } else {
+    module.exports = function() {
+      return new Date().getTime() - loadTime;
+    };
+    loadTime = new Date().getTime();
+  }
+
+}).call(this);
+
+}).call(this,require('_process'))
+},{"_process":21}],183:[function(require,module,exports){
+(function (global){
+var now = require('performance-now')
+  , root = typeof window === 'undefined' ? global : window
+  , vendors = ['moz', 'webkit']
+  , suffix = 'AnimationFrame'
+  , raf = root['request' + suffix]
+  , caf = root['cancel' + suffix] || root['cancelRequest' + suffix]
+
+for(var i = 0; !raf && i < vendors.length; i++) {
+  raf = root[vendors[i] + 'Request' + suffix]
+  caf = root[vendors[i] + 'Cancel' + suffix]
+      || root[vendors[i] + 'CancelRequest' + suffix]
+}
+
+// Some versions of FF have rAF but not cAF
+if(!raf || !caf) {
+  var last = 0
+    , id = 0
+    , queue = []
+    , frameDuration = 1000 / 60
+
+  raf = function(callback) {
+    if(queue.length === 0) {
+      var _now = now()
+        , next = Math.max(0, frameDuration - (_now - last))
+      last = next + _now
+      setTimeout(function() {
+        var cp = queue.slice(0)
+        // Clear queue here to prevent
+        // callbacks from appending listeners
+        // to the current frame's queue
+        queue.length = 0
+        for(var i = 0; i < cp.length; i++) {
+          if(!cp[i].cancelled) {
+            try{
+              cp[i].callback(last)
+            } catch(e) {
+              setTimeout(function() { throw e }, 0)
+            }
+          }
+        }
+      }, Math.round(next))
+    }
+    queue.push({
+      handle: ++id,
+      callback: callback,
+      cancelled: false
+    })
+    return id
+  }
+
+  caf = function(handle) {
+    for(var i = 0; i < queue.length; i++) {
+      if(queue[i].handle === handle) {
+        queue[i].cancelled = true
+      }
+    }
+  }
+}
+
+module.exports = function(fn) {
+  // Wrap in a new function to prevent
+  // `cancel` potentially being assigned
+  // to the native rAF function
+  return raf.call(root, fn)
+}
+module.exports.cancel = function() {
+  caf.apply(root, arguments)
+}
+module.exports.polyfill = function() {
+  root.requestAnimationFrame = raf
+  root.cancelAnimationFrame = caf
+}
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"performance-now":182}],184:[function(require,module,exports){
+module.exports = require('react/lib/shallowCompare');
+},{"react/lib/shallowCompare":498}],185:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -4390,7 +12023,7 @@ var Accordion = function (_React$Component) {
 
 exports['default'] = Accordion;
 module.exports = exports['default'];
-},{"./PanelGroup":234,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/possibleConstructorReturn":17,"react":428}],167:[function(require,module,exports){
+},{"./PanelGroup":253,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/possibleConstructorReturn":18,"react":502}],186:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -4519,7 +12152,7 @@ Alert.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsStyles)((0, _values2['default'])(_StyleConfig.State), _StyleConfig.State.INFO, (0, _bootstrapUtils.bsClass)('alert', Alert));
 module.exports = exports['default'];
-},{"./utils/StyleConfig":254,"./utils/bootstrapUtils":257,"babel-runtime/core-js/object/values":10,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],168:[function(require,module,exports){
+},{"./utils/StyleConfig":273,"./utils/bootstrapUtils":276,"babel-runtime/core-js/object/values":11,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],187:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -4627,7 +12260,7 @@ Badge.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('badge', Badge);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],169:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],188:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -4703,7 +12336,7 @@ Breadcrumb.Item = _BreadcrumbItem2['default'];
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('breadcrumb', Breadcrumb);
 module.exports = exports['default'];
-},{"./BreadcrumbItem":170,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],170:[function(require,module,exports){
+},{"./BreadcrumbItem":189,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],189:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -4801,7 +12434,7 @@ BreadcrumbItem.defaultProps = defaultProps;
 
 exports['default'] = BreadcrumbItem;
 module.exports = exports['default'];
-},{"./SafeAnchor":240,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],171:[function(require,module,exports){
+},{"./SafeAnchor":259,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],190:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -4933,7 +12566,7 @@ Button.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('btn', (0, _bootstrapUtils.bsSizes)([_StyleConfig.Size.LARGE, _StyleConfig.Size.SMALL, _StyleConfig.Size.XSMALL], (0, _bootstrapUtils.bsStyles)([].concat((0, _values2['default'])(_StyleConfig.State), [_StyleConfig.Style.DEFAULT, _StyleConfig.Style.PRIMARY, _StyleConfig.Style.LINK]), _StyleConfig.Style.DEFAULT, Button)));
 module.exports = exports['default'];
-},{"./SafeAnchor":240,"./utils/StyleConfig":254,"./utils/bootstrapUtils":257,"babel-runtime/core-js/object/values":10,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283}],172:[function(require,module,exports){
+},{"./SafeAnchor":259,"./utils/StyleConfig":273,"./utils/bootstrapUtils":276,"babel-runtime/core-js/object/values":11,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314}],191:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -5038,7 +12671,7 @@ ButtonGroup.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('btn-group', ButtonGroup);
 module.exports = exports['default'];
-},{"./Button":171,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/all":281}],173:[function(require,module,exports){
+},{"./Button":190,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/all":312}],192:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -5111,7 +12744,7 @@ var ButtonToolbar = function (_React$Component) {
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('btn-toolbar', (0, _bootstrapUtils.bsSizes)(_Button2['default'].SIZES, ButtonToolbar));
 module.exports = exports['default'];
-},{"./Button":171,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],174:[function(require,module,exports){
+},{"./Button":190,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],193:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -5523,7 +13156,7 @@ Carousel.Item = _CarouselItem2['default'];
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('carousel', Carousel);
 module.exports = exports['default'];
-},{"./CarouselCaption":175,"./CarouselItem":176,"./Glyphicon":192,"./SafeAnchor":240,"./utils/ValidComponentChildren":256,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],175:[function(require,module,exports){
+},{"./CarouselCaption":194,"./CarouselItem":195,"./Glyphicon":211,"./SafeAnchor":259,"./utils/ValidComponentChildren":275,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],194:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -5607,7 +13240,7 @@ CarouselCaption.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('carousel-caption', CarouselCaption);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283}],176:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314}],195:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -5771,7 +13404,7 @@ CarouselItem.defaultProps = defaultProps;
 
 exports['default'] = CarouselItem;
 module.exports = exports['default'];
-},{"./utils/TransitionEvents":255,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-dom":264}],177:[function(require,module,exports){
+},{"./utils/TransitionEvents":274,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-dom":283}],196:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -5911,7 +13544,7 @@ Checkbox.defaultProps = defaultProps;
 exports['default'] = (0, _bootstrapUtils.bsClass)('checkbox', Checkbox);
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./utils/bootstrapUtils":257,"_process":20,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"warning":263}],178:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"_process":21,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"warning":282}],197:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -6043,7 +13676,7 @@ Clearfix.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('clearfix', Clearfix);
 module.exports = exports['default'];
-},{"./utils/StyleConfig":254,"./utils/bootstrapUtils":257,"./utils/capitalize":258,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283}],179:[function(require,module,exports){
+},{"./utils/StyleConfig":273,"./utils/bootstrapUtils":276,"./utils/capitalize":277,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314}],198:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -6314,7 +13947,7 @@ Col.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('col', Col);
 module.exports = exports['default'];
-},{"./utils/StyleConfig":254,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283}],180:[function(require,module,exports){
+},{"./utils/StyleConfig":273,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314}],199:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -6573,7 +14206,7 @@ Collapse.defaultProps = defaultProps;
 
 exports['default'] = Collapse;
 module.exports = exports['default'];
-},{"./utils/capitalize":258,"./utils/createChainedFunction":259,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"dom-helpers/style":127,"react":428,"react-overlays/lib/Transition":271}],181:[function(require,module,exports){
+},{"./utils/capitalize":277,"./utils/createChainedFunction":278,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"dom-helpers/style":142,"react":502,"react-overlays/lib/Transition":302}],200:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -6678,7 +14311,7 @@ ControlLabel.contextTypes = contextTypes;
 exports['default'] = (0, _bootstrapUtils.bsClass)('control-label', ControlLabel);
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./utils/bootstrapUtils":257,"_process":20,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"warning":263}],182:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"_process":21,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"warning":282}],201:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -7085,7 +14718,7 @@ UncontrolledDropdown.Menu = _DropdownMenu2['default'];
 exports['default'] = UncontrolledDropdown;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./ButtonGroup":172,"./DropdownMenu":184,"./DropdownToggle":185,"./utils/PropTypes":253,"./utils/ValidComponentChildren":256,"./utils/bootstrapUtils":257,"./utils/createChainedFunction":259,"_process":20,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"dom-helpers/activeElement":108,"dom-helpers/query/contains":118,"keycode":164,"react":428,"react-dom":264,"react-prop-types/lib/all":281,"react-prop-types/lib/elementType":283,"react-prop-types/lib/isRequiredForA11y":284,"uncontrollable":430,"warning":263}],183:[function(require,module,exports){
+},{"./ButtonGroup":191,"./DropdownMenu":203,"./DropdownToggle":204,"./utils/PropTypes":272,"./utils/ValidComponentChildren":275,"./utils/bootstrapUtils":276,"./utils/createChainedFunction":278,"_process":21,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"dom-helpers/activeElement":123,"dom-helpers/query/contains":133,"keycode":180,"react":502,"react-dom":283,"react-prop-types/lib/all":312,"react-prop-types/lib/elementType":314,"react-prop-types/lib/isRequiredForA11y":315,"uncontrollable":504,"warning":282}],202:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -7190,7 +14823,7 @@ DropdownButton.propTypes = propTypes;
 
 exports['default'] = DropdownButton;
 module.exports = exports['default'];
-},{"./Dropdown":182,"./utils/splitComponentProps":262,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"react":428}],184:[function(require,module,exports){
+},{"./Dropdown":201,"./utils/splitComponentProps":281,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"react":502}],203:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -7394,7 +15027,7 @@ DropdownMenu.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('dropdown-menu', DropdownMenu);
 module.exports = exports['default'];
-},{"./utils/ValidComponentChildren":256,"./utils/bootstrapUtils":257,"./utils/createChainedFunction":259,"babel-runtime/core-js/array/from":5,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"keycode":164,"react":428,"react-dom":264,"react-overlays/lib/RootCloseWrapper":270}],185:[function(require,module,exports){
+},{"./utils/ValidComponentChildren":275,"./utils/bootstrapUtils":276,"./utils/createChainedFunction":278,"babel-runtime/core-js/array/from":6,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"keycode":180,"react":502,"react-dom":283,"react-overlays/lib/RootCloseWrapper":301}],204:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -7503,7 +15136,7 @@ DropdownToggle.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('dropdown-toggle', DropdownToggle);
 module.exports = exports['default'];
-},{"./Button":171,"./SafeAnchor":240,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],186:[function(require,module,exports){
+},{"./Button":190,"./SafeAnchor":259,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],205:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -7619,7 +15252,7 @@ Fade.defaultProps = defaultProps;
 
 exports['default'] = Fade;
 module.exports = exports['default'];
-},{"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-overlays/lib/Transition":271}],187:[function(require,module,exports){
+},{"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-overlays/lib/Transition":302}],206:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -7715,7 +15348,7 @@ Form.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('form', Form);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283}],188:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314}],207:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -7843,7 +15476,7 @@ FormControl.Static = _FormControlStatic2['default'];
 exports['default'] = (0, _bootstrapUtils.bsClass)('form-control', FormControl);
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./FormControlFeedback":189,"./FormControlStatic":190,"./utils/bootstrapUtils":257,"_process":20,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283,"warning":263}],189:[function(require,module,exports){
+},{"./FormControlFeedback":208,"./FormControlStatic":209,"./utils/bootstrapUtils":276,"_process":21,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314,"warning":282}],208:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -7957,7 +15590,7 @@ FormControlFeedback.contextTypes = contextTypes;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('form-control-feedback', FormControlFeedback);
 module.exports = exports['default'];
-},{"./Glyphicon":192,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],190:[function(require,module,exports){
+},{"./Glyphicon":211,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],209:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -8041,7 +15674,7 @@ FormControlStatic.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('form-control-static', FormControlStatic);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283}],191:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314}],210:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -8163,7 +15796,7 @@ FormGroup.childContextTypes = childContextTypes;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('form-group', (0, _bootstrapUtils.bsSizes)([_StyleConfig.Size.LARGE, _StyleConfig.Size.SMALL], FormGroup));
 module.exports = exports['default'];
-},{"./utils/StyleConfig":254,"./utils/ValidComponentChildren":256,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],192:[function(require,module,exports){
+},{"./utils/StyleConfig":273,"./utils/ValidComponentChildren":275,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],211:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -8243,7 +15876,7 @@ Glyphicon.propTypes = propTypes;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('glyphicon', Glyphicon);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],193:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],212:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -8338,7 +15971,7 @@ Grid.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('container', Grid);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283}],194:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314}],213:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -8406,7 +16039,7 @@ var HelpBlock = function (_React$Component) {
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('help-block', HelpBlock);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],195:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],214:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -8512,7 +16145,7 @@ Image.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('img', Image);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],196:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],215:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -8593,7 +16226,7 @@ InputGroup.Button = _InputGroupButton2['default'];
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('input-group', (0, _bootstrapUtils.bsSizes)([_StyleConfig.Size.LARGE, _StyleConfig.Size.SMALL], InputGroup));
 module.exports = exports['default'];
-},{"./InputGroupAddon":197,"./InputGroupButton":198,"./utils/StyleConfig":254,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],197:[function(require,module,exports){
+},{"./InputGroupAddon":216,"./InputGroupButton":217,"./utils/StyleConfig":273,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],216:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -8661,7 +16294,7 @@ var InputGroupAddon = function (_React$Component) {
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('input-group-addon', InputGroupAddon);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],198:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],217:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -8729,7 +16362,7 @@ var InputGroupButton = function (_React$Component) {
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('input-group-btn', InputGroupButton);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],199:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],218:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -8813,7 +16446,7 @@ Jumbotron.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('jumbotron', Jumbotron);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283}],200:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314}],219:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -8912,7 +16545,7 @@ var Label = function (_React$Component) {
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('label', (0, _bootstrapUtils.bsStyles)([].concat((0, _values2['default'])(_StyleConfig.State), [_StyleConfig.Style.DEFAULT, _StyleConfig.Style.PRIMARY]), _StyleConfig.Style.DEFAULT, Label));
 module.exports = exports['default'];
-},{"./utils/StyleConfig":254,"./utils/bootstrapUtils":257,"babel-runtime/core-js/object/values":10,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],201:[function(require,module,exports){
+},{"./utils/StyleConfig":273,"./utils/bootstrapUtils":276,"babel-runtime/core-js/object/values":11,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],220:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -9032,7 +16665,7 @@ ListGroup.propTypes = propTypes;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('list-group', ListGroup);
 module.exports = exports['default'];
-},{"./ListGroupItem":202,"./utils/ValidComponentChildren":256,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283}],202:[function(require,module,exports){
+},{"./ListGroupItem":221,"./utils/ValidComponentChildren":275,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314}],221:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -9176,7 +16809,7 @@ ListGroupItem.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('list-group-item', (0, _bootstrapUtils.bsStyles)((0, _values2['default'])(_StyleConfig.State), ListGroupItem));
 module.exports = exports['default'];
-},{"./utils/StyleConfig":254,"./utils/bootstrapUtils":257,"babel-runtime/core-js/object/values":10,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],203:[function(require,module,exports){
+},{"./utils/StyleConfig":273,"./utils/bootstrapUtils":276,"babel-runtime/core-js/object/values":11,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],222:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -9291,7 +16924,7 @@ Media.ListItem = _MediaListItem2['default'];
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('media', Media);
 module.exports = exports['default'];
-},{"./MediaBody":204,"./MediaHeading":205,"./MediaLeft":206,"./MediaList":207,"./MediaListItem":208,"./MediaRight":209,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283}],204:[function(require,module,exports){
+},{"./MediaBody":223,"./MediaHeading":224,"./MediaLeft":225,"./MediaList":226,"./MediaListItem":227,"./MediaRight":228,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314}],223:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -9375,7 +17008,7 @@ MediaBody.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('media-body', MediaBody);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283}],205:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314}],224:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -9459,7 +17092,7 @@ MediaHeading.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('media-heading', MediaHeading);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283}],206:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314}],225:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -9546,7 +17179,7 @@ MediaLeft.propTypes = propTypes;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('media-left', MediaLeft);
 module.exports = exports['default'];
-},{"./Media":203,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],207:[function(require,module,exports){
+},{"./Media":222,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],226:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -9614,7 +17247,7 @@ var MediaList = function (_React$Component) {
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('media-list', MediaList);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],208:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],227:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -9682,7 +17315,7 @@ var MediaListItem = function (_React$Component) {
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('media', MediaListItem);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],209:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],228:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -9769,7 +17402,7 @@ MediaRight.propTypes = propTypes;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('media-right', MediaRight);
 module.exports = exports['default'];
-},{"./Media":203,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],210:[function(require,module,exports){
+},{"./Media":222,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],229:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -9967,7 +17600,7 @@ MenuItem.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('dropdown', MenuItem);
 module.exports = exports['default'];
-},{"./SafeAnchor":240,"./utils/bootstrapUtils":257,"./utils/createChainedFunction":259,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/all":281}],211:[function(require,module,exports){
+},{"./SafeAnchor":259,"./utils/bootstrapUtils":276,"./utils/createChainedFunction":278,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/all":312}],230:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -10313,7 +17946,7 @@ Modal.BACKDROP_TRANSITION_DURATION = 150;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('modal', (0, _bootstrapUtils.bsSizes)([_StyleConfig.Size.LARGE, _StyleConfig.Size.SMALL], Modal));
 module.exports = exports['default'];
-},{"./Fade":186,"./ModalBody":212,"./ModalDialog":213,"./ModalFooter":214,"./ModalHeader":215,"./ModalTitle":216,"./utils/StyleConfig":254,"./utils/bootstrapUtils":257,"./utils/createChainedFunction":259,"./utils/splitComponentProps":262,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"dom-helpers/events":114,"dom-helpers/ownerDocument":117,"dom-helpers/util/inDOM":135,"dom-helpers/util/scrollbarSize":136,"react":428,"react-dom":264,"react-overlays/lib/Modal":265,"react-overlays/lib/utils/isOverflowing":277,"react-prop-types/lib/elementType":283}],212:[function(require,module,exports){
+},{"./Fade":205,"./ModalBody":231,"./ModalDialog":232,"./ModalFooter":233,"./ModalHeader":234,"./ModalTitle":235,"./utils/StyleConfig":273,"./utils/bootstrapUtils":276,"./utils/createChainedFunction":278,"./utils/splitComponentProps":281,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"dom-helpers/events":129,"dom-helpers/ownerDocument":132,"dom-helpers/util/inDOM":150,"dom-helpers/util/scrollbarSize":151,"react":502,"react-dom":283,"react-overlays/lib/Modal":296,"react-overlays/lib/utils/isOverflowing":308,"react-prop-types/lib/elementType":314}],231:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -10381,7 +18014,7 @@ var ModalBody = function (_React$Component) {
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('modal-body', ModalBody);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],213:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],232:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -10484,7 +18117,7 @@ ModalDialog.propTypes = propTypes;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('modal', (0, _bootstrapUtils.bsSizes)([_StyleConfig.Size.LARGE, _StyleConfig.Size.SMALL], ModalDialog));
 module.exports = exports['default'];
-},{"./utils/StyleConfig":254,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],214:[function(require,module,exports){
+},{"./utils/StyleConfig":273,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],233:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -10552,7 +18185,7 @@ var ModalFooter = function (_React$Component) {
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('modal-footer', ModalFooter);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],215:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],234:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -10687,7 +18320,7 @@ ModalHeader.contextTypes = contextTypes;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('modal-header', ModalHeader);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"./utils/createChainedFunction":259,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],216:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"./utils/createChainedFunction":278,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],235:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -10755,7 +18388,7 @@ var ModalTitle = function (_React$Component) {
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('modal-title', ModalTitle);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],217:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],236:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -11162,7 +18795,7 @@ Nav.contextTypes = contextTypes;
 exports['default'] = (0, _bootstrapUtils.bsClass)('nav', (0, _bootstrapUtils.bsStyles)(['tabs', 'pills'], Nav));
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./utils/ValidComponentChildren":256,"./utils/bootstrapUtils":257,"./utils/createChainedFunction":259,"_process":20,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"keycode":164,"react":428,"react-dom":264,"react-prop-types/lib/all":281,"warning":263}],218:[function(require,module,exports){
+},{"./utils/ValidComponentChildren":275,"./utils/bootstrapUtils":276,"./utils/createChainedFunction":278,"_process":21,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"keycode":180,"react":502,"react-dom":283,"react-prop-types/lib/all":312,"warning":282}],237:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -11305,7 +18938,7 @@ NavDropdown.propTypes = propTypes;
 
 exports['default'] = NavDropdown;
 module.exports = exports['default'];
-},{"./Dropdown":182,"./utils/ValidComponentChildren":256,"./utils/splitComponentProps":262,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],219:[function(require,module,exports){
+},{"./Dropdown":201,"./utils/ValidComponentChildren":275,"./utils/splitComponentProps":281,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],238:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -11432,7 +19065,7 @@ NavItem.defaultProps = defaultProps;
 
 exports['default'] = NavItem;
 module.exports = exports['default'];
-},{"./SafeAnchor":240,"./utils/createChainedFunction":259,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],220:[function(require,module,exports){
+},{"./SafeAnchor":259,"./utils/createChainedFunction":278,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],239:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -11707,7 +19340,7 @@ UncontrollableNavbar.Link = createSimpleWrapper('a', 'link', 'NavbarLink');
 // Set bsStyles here so they can be overridden.
 exports['default'] = (0, _bootstrapUtils.bsStyles)([_StyleConfig.Style.DEFAULT, _StyleConfig.Style.INVERSE], _StyleConfig.Style.DEFAULT, UncontrollableNavbar);
 module.exports = exports['default'];
-},{"./Grid":193,"./NavbarBrand":221,"./NavbarCollapse":222,"./NavbarHeader":223,"./NavbarToggle":224,"./utils/StyleConfig":254,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283,"uncontrollable":430}],221:[function(require,module,exports){
+},{"./Grid":212,"./NavbarBrand":240,"./NavbarCollapse":241,"./NavbarHeader":242,"./NavbarToggle":243,"./utils/StyleConfig":273,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314,"uncontrollable":504}],240:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -11788,7 +19421,7 @@ NavbarBrand.contextTypes = contextTypes;
 
 exports['default'] = NavbarBrand;
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],222:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],241:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -11867,7 +19500,7 @@ NavbarCollapse.contextTypes = contextTypes;
 
 exports['default'] = NavbarCollapse;
 module.exports = exports['default'];
-},{"./Collapse":180,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"react":428}],223:[function(require,module,exports){
+},{"./Collapse":199,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"react":502}],242:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -11937,7 +19570,7 @@ NavbarHeader.contextTypes = contextTypes;
 
 exports['default'] = NavbarHeader;
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],224:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],243:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -12048,7 +19681,7 @@ NavbarToggle.contextTypes = contextTypes;
 
 exports['default'] = NavbarToggle;
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"./utils/createChainedFunction":259,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],225:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"./utils/createChainedFunction":278,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],244:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -12197,7 +19830,7 @@ Overlay.defaultProps = defaultProps;
 
 exports['default'] = Overlay;
 module.exports = exports['default'];
-},{"./Fade":186,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-overlays/lib/Overlay":267,"react-prop-types/lib/elementType":283}],226:[function(require,module,exports){
+},{"./Fade":205,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-overlays/lib/Overlay":298,"react-prop-types/lib/elementType":314}],245:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -12546,7 +20179,7 @@ OverlayTrigger.defaultProps = defaultProps;
 exports['default'] = OverlayTrigger;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./Overlay":225,"./utils/createChainedFunction":259,"_process":20,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"dom-helpers/query/contains":118,"react":428,"react-dom":264,"warning":263}],227:[function(require,module,exports){
+},{"./Overlay":244,"./utils/createChainedFunction":278,"_process":21,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"dom-helpers/query/contains":133,"react":502,"react-dom":283,"warning":282}],246:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -12623,7 +20256,7 @@ var PageHeader = function (_React$Component) {
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('page-header', PageHeader);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],228:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],247:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -12640,7 +20273,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'd
 
 exports['default'] = _deprecationWarning2['default'].wrapper(_PagerItem2['default'], '`<PageItem>`', '`<Pager.Item>`');
 module.exports = exports['default'];
-},{"./PagerItem":230,"./utils/deprecationWarning":260}],229:[function(require,module,exports){
+},{"./PagerItem":249,"./utils/deprecationWarning":279}],248:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -12738,7 +20371,7 @@ Pager.Item = _PagerItem2['default'];
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('pager', Pager);
 module.exports = exports['default'];
-},{"./PagerItem":230,"./utils/ValidComponentChildren":256,"./utils/bootstrapUtils":257,"./utils/createChainedFunction":259,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],230:[function(require,module,exports){
+},{"./PagerItem":249,"./utils/ValidComponentChildren":275,"./utils/bootstrapUtils":276,"./utils/createChainedFunction":278,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],249:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -12863,7 +20496,7 @@ PagerItem.defaultProps = defaultProps;
 
 exports['default'] = PagerItem;
 module.exports = exports['default'];
-},{"./SafeAnchor":240,"./utils/createChainedFunction":259,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],231:[function(require,module,exports){
+},{"./SafeAnchor":259,"./utils/createChainedFunction":278,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],250:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -13165,7 +20798,7 @@ Pagination.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('pagination', Pagination);
 module.exports = exports['default'];
-},{"./PaginationButton":232,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283}],232:[function(require,module,exports){
+},{"./PaginationButton":251,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314}],251:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -13299,7 +20932,7 @@ PaginationButton.defaultProps = defaultProps;
 
 exports['default'] = PaginationButton;
 module.exports = exports['default'];
-},{"./SafeAnchor":240,"./utils/createChainedFunction":259,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283}],233:[function(require,module,exports){
+},{"./SafeAnchor":259,"./utils/createChainedFunction":278,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314}],252:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -13565,7 +21198,7 @@ Panel.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('panel', (0, _bootstrapUtils.bsStyles)([].concat((0, _values2['default'])(_StyleConfig.State), [_StyleConfig.Style.DEFAULT, _StyleConfig.Style.PRIMARY]), _StyleConfig.Style.DEFAULT, Panel));
 module.exports = exports['default'];
-},{"./Collapse":180,"./utils/StyleConfig":254,"./utils/bootstrapUtils":257,"babel-runtime/core-js/object/values":10,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],234:[function(require,module,exports){
+},{"./Collapse":199,"./utils/StyleConfig":273,"./utils/bootstrapUtils":276,"babel-runtime/core-js/object/values":11,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],253:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -13715,7 +21348,7 @@ PanelGroup.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('panel-group', PanelGroup);
 module.exports = exports['default'];
-},{"./utils/ValidComponentChildren":256,"./utils/bootstrapUtils":257,"./utils/createChainedFunction":259,"babel-runtime/core-js/object/assign":6,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],235:[function(require,module,exports){
+},{"./utils/ValidComponentChildren":275,"./utils/bootstrapUtils":276,"./utils/createChainedFunction":278,"babel-runtime/core-js/object/assign":7,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],254:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -13868,7 +21501,7 @@ Popover.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('popover', Popover);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/isRequiredForA11y":284}],236:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/isRequiredForA11y":315}],255:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -14070,7 +21703,7 @@ ProgressBar.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('progress-bar', (0, _bootstrapUtils.bsStyles)((0, _values2['default'])(_StyleConfig.State), ProgressBar));
 module.exports = exports['default'];
-},{"./utils/StyleConfig":254,"./utils/ValidComponentChildren":256,"./utils/bootstrapUtils":257,"babel-runtime/core-js/object/values":10,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],237:[function(require,module,exports){
+},{"./utils/StyleConfig":273,"./utils/ValidComponentChildren":275,"./utils/bootstrapUtils":276,"babel-runtime/core-js/object/values":11,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],256:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -14210,7 +21843,7 @@ Radio.defaultProps = defaultProps;
 exports['default'] = (0, _bootstrapUtils.bsClass)('radio', Radio);
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./utils/bootstrapUtils":257,"_process":20,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"warning":263}],238:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"_process":21,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"warning":282}],257:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -14321,7 +21954,7 @@ ResponsiveEmbed.defaultProps = defaultProps;
 exports['default'] = (0, _bootstrapUtils.bsClass)('embed-responsive', ResponsiveEmbed);
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./utils/bootstrapUtils":257,"_process":20,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"warning":263}],239:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"_process":21,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"warning":282}],258:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -14405,7 +22038,7 @@ Row.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('row', Row);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283}],240:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314}],259:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -14533,7 +22166,7 @@ SafeAnchor.defaultProps = defaultProps;
 
 exports['default'] = SafeAnchor;
 module.exports = exports['default'];
-},{"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"react":428,"react-prop-types/lib/elementType":283}],241:[function(require,module,exports){
+},{"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"react":502,"react-prop-types/lib/elementType":314}],260:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -14663,7 +22296,7 @@ SplitButton.Toggle = _SplitToggle2['default'];
 
 exports['default'] = SplitButton;
 module.exports = exports['default'];
-},{"./Button":171,"./Dropdown":182,"./SplitToggle":242,"./utils/splitComponentProps":262,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"react":428}],242:[function(require,module,exports){
+},{"./Button":190,"./Dropdown":201,"./SplitToggle":261,"./utils/splitComponentProps":281,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"react":502}],261:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -14716,7 +22349,7 @@ SplitToggle.defaultProps = _DropdownToggle2['default'].defaultProps;
 
 exports['default'] = SplitToggle;
 module.exports = exports['default'];
-},{"./DropdownToggle":185,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/possibleConstructorReturn":17,"react":428}],243:[function(require,module,exports){
+},{"./DropdownToggle":204,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/possibleConstructorReturn":18,"react":502}],262:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -14797,7 +22430,7 @@ Tab.Pane = _TabPane2['default'];
 
 exports['default'] = Tab;
 module.exports = exports['default'];
-},{"./TabContainer":244,"./TabContent":245,"./TabPane":246,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/possibleConstructorReturn":17,"react":428}],244:[function(require,module,exports){
+},{"./TabContainer":263,"./TabContent":264,"./TabPane":265,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/possibleConstructorReturn":18,"react":502}],263:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -14949,7 +22582,7 @@ TabContainer.childContextTypes = childContextTypes;
 
 exports['default'] = (0, _uncontrollable2['default'])(TabContainer, { activeKey: 'onSelect' });
 module.exports = exports['default'];
-},{"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"react":428,"uncontrollable":430}],245:[function(require,module,exports){
+},{"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"react":502,"uncontrollable":504}],264:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -15157,7 +22790,7 @@ TabContent.childContextTypes = childContextTypes;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('tab', TabContent);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283}],246:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314}],265:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -15469,7 +23102,7 @@ TabPane.childContextTypes = childContextTypes;
 exports['default'] = (0, _bootstrapUtils.bsClass)('tab-pane', TabPane);
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./Fade":186,"./utils/bootstrapUtils":257,"./utils/createChainedFunction":259,"_process":20,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/elementType":283,"warning":263}],247:[function(require,module,exports){
+},{"./Fade":205,"./utils/bootstrapUtils":276,"./utils/createChainedFunction":278,"_process":21,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/elementType":314,"warning":282}],266:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -15573,7 +23206,7 @@ Table.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('table', Table);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],248:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],267:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -15777,7 +23410,7 @@ Tabs.defaultProps = defaultProps;
 
 exports['default'] = (0, _uncontrollable2['default'])(Tabs, { activeKey: 'onSelect' });
 module.exports = exports['default'];
-},{"./Nav":217,"./NavItem":219,"./TabContainer":244,"./TabContent":245,"./utils/ValidComponentChildren":256,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"react":428,"react-prop-types/lib/isRequiredForA11y":284,"uncontrollable":430}],249:[function(require,module,exports){
+},{"./Nav":236,"./NavItem":238,"./TabContainer":263,"./TabContent":264,"./utils/ValidComponentChildren":275,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"react":502,"react-prop-types/lib/isRequiredForA11y":315,"uncontrollable":504}],268:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -15870,7 +23503,7 @@ Thumbnail.propTypes = propTypes;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('thumbnail', Thumbnail);
 module.exports = exports['default'];
-},{"./SafeAnchor":240,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],250:[function(require,module,exports){
+},{"./SafeAnchor":259,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],269:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16011,7 +23644,7 @@ Tooltip.defaultProps = defaultProps;
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('tooltip', Tooltip);
 module.exports = exports['default'];
-},{"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428,"react-prop-types/lib/isRequiredForA11y":284}],251:[function(require,module,exports){
+},{"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502,"react-prop-types/lib/isRequiredForA11y":315}],270:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16081,7 +23714,7 @@ var Well = function (_React$Component) {
 
 exports['default'] = (0, _bootstrapUtils.bsClass)('well', (0, _bootstrapUtils.bsSizes)([_StyleConfig.Size.LARGE, _StyleConfig.Size.SMALL], Well));
 module.exports = exports['default'];
-},{"./utils/StyleConfig":254,"./utils/bootstrapUtils":257,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/extends":14,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/objectWithoutProperties":16,"babel-runtime/helpers/possibleConstructorReturn":17,"classnames":21,"react":428}],252:[function(require,module,exports){
+},{"./utils/StyleConfig":273,"./utils/bootstrapUtils":276,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/extends":15,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/objectWithoutProperties":17,"babel-runtime/helpers/possibleConstructorReturn":18,"classnames":22,"react":502}],271:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16426,7 +24059,7 @@ exports.Thumbnail = _Thumbnail3['default'];
 exports.Tooltip = _Tooltip3['default'];
 exports.Well = _Well3['default'];
 exports.utils = _utils;
-},{"./Accordion":166,"./Alert":167,"./Badge":168,"./Breadcrumb":169,"./BreadcrumbItem":170,"./Button":171,"./ButtonGroup":172,"./ButtonToolbar":173,"./Carousel":174,"./CarouselItem":176,"./Checkbox":177,"./Clearfix":178,"./Col":179,"./Collapse":180,"./ControlLabel":181,"./Dropdown":182,"./DropdownButton":183,"./Fade":186,"./Form":187,"./FormControl":188,"./FormGroup":191,"./Glyphicon":192,"./Grid":193,"./HelpBlock":194,"./Image":195,"./InputGroup":196,"./Jumbotron":199,"./Label":200,"./ListGroup":201,"./ListGroupItem":202,"./Media":203,"./MenuItem":210,"./Modal":211,"./ModalBody":212,"./ModalFooter":214,"./ModalHeader":215,"./ModalTitle":216,"./Nav":217,"./NavDropdown":218,"./NavItem":219,"./Navbar":220,"./NavbarBrand":221,"./Overlay":225,"./OverlayTrigger":226,"./PageHeader":227,"./PageItem":228,"./Pager":229,"./Pagination":231,"./Panel":233,"./PanelGroup":234,"./Popover":235,"./ProgressBar":236,"./Radio":237,"./ResponsiveEmbed":238,"./Row":239,"./SafeAnchor":240,"./SplitButton":241,"./Tab":243,"./TabContainer":244,"./TabContent":245,"./TabPane":246,"./Table":247,"./Tabs":248,"./Thumbnail":249,"./Tooltip":250,"./Well":251,"./utils":261}],253:[function(require,module,exports){
+},{"./Accordion":185,"./Alert":186,"./Badge":187,"./Breadcrumb":188,"./BreadcrumbItem":189,"./Button":190,"./ButtonGroup":191,"./ButtonToolbar":192,"./Carousel":193,"./CarouselItem":195,"./Checkbox":196,"./Clearfix":197,"./Col":198,"./Collapse":199,"./ControlLabel":200,"./Dropdown":201,"./DropdownButton":202,"./Fade":205,"./Form":206,"./FormControl":207,"./FormGroup":210,"./Glyphicon":211,"./Grid":212,"./HelpBlock":213,"./Image":214,"./InputGroup":215,"./Jumbotron":218,"./Label":219,"./ListGroup":220,"./ListGroupItem":221,"./Media":222,"./MenuItem":229,"./Modal":230,"./ModalBody":231,"./ModalFooter":233,"./ModalHeader":234,"./ModalTitle":235,"./Nav":236,"./NavDropdown":237,"./NavItem":238,"./Navbar":239,"./NavbarBrand":240,"./Overlay":244,"./OverlayTrigger":245,"./PageHeader":246,"./PageItem":247,"./Pager":248,"./Pagination":250,"./Panel":252,"./PanelGroup":253,"./Popover":254,"./ProgressBar":255,"./Radio":256,"./ResponsiveEmbed":257,"./Row":258,"./SafeAnchor":259,"./SplitButton":260,"./Tab":262,"./TabContainer":263,"./TabContent":264,"./TabPane":265,"./Table":266,"./Tabs":267,"./Thumbnail":268,"./Tooltip":269,"./Well":270,"./utils":280}],272:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16498,7 +24131,7 @@ function exclusiveRoles() {
     return null;
   });
 }
-},{"./ValidComponentChildren":256,"react-prop-types/lib/utils/createChainableTypeChecker":285}],254:[function(require,module,exports){
+},{"./ValidComponentChildren":275,"react-prop-types/lib/utils/createChainableTypeChecker":316}],273:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16534,7 +24167,7 @@ var Style = exports.Style = {
   LINK: 'link',
   INVERSE: 'inverse'
 };
-},{}],255:[function(require,module,exports){
+},{}],274:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16648,7 +24281,7 @@ var ReactTransitionEvents = {
 
 exports['default'] = ReactTransitionEvents;
 module.exports = exports['default'];
-},{}],256:[function(require,module,exports){
+},{}],275:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16841,7 +24474,7 @@ exports['default'] = {
   toArray: toArray
 };
 module.exports = exports['default'];
-},{"react":428}],257:[function(require,module,exports){
+},{"react":502}],276:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -17057,7 +24690,7 @@ function addStyle(Component) {
 
 var _curry = exports._curry = curry;
 }).call(this,require('_process'))
-},{"./StyleConfig":254,"_process":20,"babel-runtime/core-js/object/entries":8,"babel-runtime/helpers/extends":14,"invariant":163,"react":428}],258:[function(require,module,exports){
+},{"./StyleConfig":273,"_process":21,"babel-runtime/core-js/object/entries":9,"babel-runtime/helpers/extends":15,"invariant":179,"react":502}],277:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -17066,7 +24699,7 @@ function capitalize(string) {
   return "" + string.charAt(0).toUpperCase() + string.slice(1);
 }
 module.exports = exports["default"];
-},{}],259:[function(require,module,exports){
+},{}],278:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -17108,7 +24741,7 @@ function createChainedFunction() {
 
 exports['default'] = createChainedFunction;
 module.exports = exports['default'];
-},{}],260:[function(require,module,exports){
+},{}],279:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -17197,7 +24830,7 @@ function _resetWarned() {
   warned = {};
 }
 }).call(this,require('_process'))
-},{"_process":20,"babel-runtime/helpers/classCallCheck":13,"babel-runtime/helpers/inherits":15,"babel-runtime/helpers/possibleConstructorReturn":17,"babel-runtime/helpers/typeof":18,"warning":263}],261:[function(require,module,exports){
+},{"_process":21,"babel-runtime/helpers/classCallCheck":14,"babel-runtime/helpers/inherits":16,"babel-runtime/helpers/possibleConstructorReturn":18,"babel-runtime/helpers/typeof":19,"warning":282}],280:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -17222,7 +24855,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 exports.bootstrapUtils = _bootstrapUtils;
 exports.createChainedFunction = _createChainedFunction3['default'];
 exports.ValidComponentChildren = _ValidComponentChildren3['default'];
-},{"./ValidComponentChildren":256,"./bootstrapUtils":257,"./createChainedFunction":259}],262:[function(require,module,exports){
+},{"./ValidComponentChildren":275,"./bootstrapUtils":276,"./createChainedFunction":278}],281:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -17255,7 +24888,7 @@ function splitComponentProps(props, Component) {
   return [parentProps, childProps];
 }
 module.exports = exports["default"];
-},{"babel-runtime/core-js/object/entries":8}],263:[function(require,module,exports){
+},{"babel-runtime/core-js/object/entries":9}],282:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -17319,12 +24952,1320 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"_process":20}],264:[function(require,module,exports){
+},{"_process":21}],283:[function(require,module,exports){
 'use strict';
 
 module.exports = require('react/lib/ReactDOM');
 
-},{"react/lib/ReactDOM":323}],265:[function(require,module,exports){
+},{"react/lib/ReactDOM":396}],284:[function(require,module,exports){
+'use strict';
+
+exports.__esModule = true;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _mapToZero = require('./mapToZero');
+
+var _mapToZero2 = _interopRequireDefault(_mapToZero);
+
+var _stripStyle = require('./stripStyle');
+
+var _stripStyle2 = _interopRequireDefault(_stripStyle);
+
+var _stepper3 = require('./stepper');
+
+var _stepper4 = _interopRequireDefault(_stepper3);
+
+var _performanceNow = require('performance-now');
+
+var _performanceNow2 = _interopRequireDefault(_performanceNow);
+
+var _raf = require('raf');
+
+var _raf2 = _interopRequireDefault(_raf);
+
+var _shouldStopAnimation = require('./shouldStopAnimation');
+
+var _shouldStopAnimation2 = _interopRequireDefault(_shouldStopAnimation);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var msPerFrame = 1000 / 60;
+
+var Motion = _react2['default'].createClass({
+  displayName: 'Motion',
+
+  propTypes: {
+    // TOOD: warn against putting a config in here
+    defaultStyle: _react.PropTypes.objectOf(_react.PropTypes.number),
+    style: _react.PropTypes.objectOf(_react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.object])).isRequired,
+    children: _react.PropTypes.func.isRequired,
+    onRest: _react.PropTypes.func
+  },
+
+  getInitialState: function getInitialState() {
+    var _props = this.props;
+    var defaultStyle = _props.defaultStyle;
+    var style = _props.style;
+
+    var currentStyle = defaultStyle || _stripStyle2['default'](style);
+    var currentVelocity = _mapToZero2['default'](currentStyle);
+    return {
+      currentStyle: currentStyle,
+      currentVelocity: currentVelocity,
+      lastIdealStyle: currentStyle,
+      lastIdealVelocity: currentVelocity
+    };
+  },
+
+  wasAnimating: false,
+  animationID: null,
+  prevTime: 0,
+  accumulatedTime: 0,
+  // it's possible that currentStyle's value is stale: if props is immediately
+  // changed from 0 to 400 to spring(0) again, the async currentStyle is still
+  // at 0 (didn't have time to tick and interpolate even once). If we naively
+  // compare currentStyle with destVal it'll be 0 === 0 (no animation, stop).
+  // In reality currentStyle should be 400
+  unreadPropStyle: null,
+  // after checking for unreadPropStyle != null, we manually go set the
+  // non-interpolating values (those that are a number, without a spring
+  // config)
+  clearUnreadPropStyle: function clearUnreadPropStyle(destStyle) {
+    var dirty = false;
+    var _state = this.state;
+    var currentStyle = _state.currentStyle;
+    var currentVelocity = _state.currentVelocity;
+    var lastIdealStyle = _state.lastIdealStyle;
+    var lastIdealVelocity = _state.lastIdealVelocity;
+
+    for (var key in destStyle) {
+      if (!destStyle.hasOwnProperty(key)) {
+        continue;
+      }
+
+      var styleValue = destStyle[key];
+      if (typeof styleValue === 'number') {
+        if (!dirty) {
+          dirty = true;
+          currentStyle = _extends({}, currentStyle);
+          currentVelocity = _extends({}, currentVelocity);
+          lastIdealStyle = _extends({}, lastIdealStyle);
+          lastIdealVelocity = _extends({}, lastIdealVelocity);
+        }
+
+        currentStyle[key] = styleValue;
+        currentVelocity[key] = 0;
+        lastIdealStyle[key] = styleValue;
+        lastIdealVelocity[key] = 0;
+      }
+    }
+
+    if (dirty) {
+      this.setState({ currentStyle: currentStyle, currentVelocity: currentVelocity, lastIdealStyle: lastIdealStyle, lastIdealVelocity: lastIdealVelocity });
+    }
+  },
+
+  startAnimationIfNecessary: function startAnimationIfNecessary() {
+    var _this = this;
+
+    // TODO: when config is {a: 10} and dest is {a: 10} do we raf once and
+    // call cb? No, otherwise accidental parent rerender causes cb trigger
+    this.animationID = _raf2['default'](function () {
+      // check if we need to animate in the first place
+      var propsStyle = _this.props.style;
+      if (_shouldStopAnimation2['default'](_this.state.currentStyle, propsStyle, _this.state.currentVelocity)) {
+        if (_this.wasAnimating && _this.props.onRest) {
+          _this.props.onRest();
+        }
+
+        // no need to cancel animationID here; shouldn't have any in flight
+        _this.animationID = null;
+        _this.wasAnimating = false;
+        _this.accumulatedTime = 0;
+        return;
+      }
+
+      _this.wasAnimating = true;
+
+      var currentTime = _performanceNow2['default']();
+      var timeDelta = currentTime - _this.prevTime;
+      _this.prevTime = currentTime;
+      _this.accumulatedTime = _this.accumulatedTime + timeDelta;
+      // more than 10 frames? prolly switched browser tab. Restart
+      if (_this.accumulatedTime > msPerFrame * 10) {
+        _this.accumulatedTime = 0;
+      }
+
+      if (_this.accumulatedTime === 0) {
+        // no need to cancel animationID here; shouldn't have any in flight
+        _this.animationID = null;
+        _this.startAnimationIfNecessary();
+        return;
+      }
+
+      var currentFrameCompletion = (_this.accumulatedTime - Math.floor(_this.accumulatedTime / msPerFrame) * msPerFrame) / msPerFrame;
+      var framesToCatchUp = Math.floor(_this.accumulatedTime / msPerFrame);
+
+      var newLastIdealStyle = {};
+      var newLastIdealVelocity = {};
+      var newCurrentStyle = {};
+      var newCurrentVelocity = {};
+
+      for (var key in propsStyle) {
+        if (!propsStyle.hasOwnProperty(key)) {
+          continue;
+        }
+
+        var styleValue = propsStyle[key];
+        if (typeof styleValue === 'number') {
+          newCurrentStyle[key] = styleValue;
+          newCurrentVelocity[key] = 0;
+          newLastIdealStyle[key] = styleValue;
+          newLastIdealVelocity[key] = 0;
+        } else {
+          var newLastIdealStyleValue = _this.state.lastIdealStyle[key];
+          var newLastIdealVelocityValue = _this.state.lastIdealVelocity[key];
+          for (var i = 0; i < framesToCatchUp; i++) {
+            var _stepper = _stepper4['default'](msPerFrame / 1000, newLastIdealStyleValue, newLastIdealVelocityValue, styleValue.val, styleValue.stiffness, styleValue.damping, styleValue.precision);
+
+            newLastIdealStyleValue = _stepper[0];
+            newLastIdealVelocityValue = _stepper[1];
+          }
+
+          var _stepper2 = _stepper4['default'](msPerFrame / 1000, newLastIdealStyleValue, newLastIdealVelocityValue, styleValue.val, styleValue.stiffness, styleValue.damping, styleValue.precision);
+
+          var nextIdealX = _stepper2[0];
+          var nextIdealV = _stepper2[1];
+
+          newCurrentStyle[key] = newLastIdealStyleValue + (nextIdealX - newLastIdealStyleValue) * currentFrameCompletion;
+          newCurrentVelocity[key] = newLastIdealVelocityValue + (nextIdealV - newLastIdealVelocityValue) * currentFrameCompletion;
+          newLastIdealStyle[key] = newLastIdealStyleValue;
+          newLastIdealVelocity[key] = newLastIdealVelocityValue;
+        }
+      }
+
+      _this.animationID = null;
+      // the amount we're looped over above
+      _this.accumulatedTime -= framesToCatchUp * msPerFrame;
+
+      _this.setState({
+        currentStyle: newCurrentStyle,
+        currentVelocity: newCurrentVelocity,
+        lastIdealStyle: newLastIdealStyle,
+        lastIdealVelocity: newLastIdealVelocity
+      });
+
+      _this.unreadPropStyle = null;
+
+      _this.startAnimationIfNecessary();
+    });
+  },
+
+  componentDidMount: function componentDidMount() {
+    this.prevTime = _performanceNow2['default']();
+    this.startAnimationIfNecessary();
+  },
+
+  componentWillReceiveProps: function componentWillReceiveProps(props) {
+    if (this.unreadPropStyle != null) {
+      // previous props haven't had the chance to be set yet; set them here
+      this.clearUnreadPropStyle(this.unreadPropStyle);
+    }
+
+    this.unreadPropStyle = props.style;
+    if (this.animationID == null) {
+      this.prevTime = _performanceNow2['default']();
+      this.startAnimationIfNecessary();
+    }
+  },
+
+  componentWillUnmount: function componentWillUnmount() {
+    if (this.animationID != null) {
+      _raf2['default'].cancel(this.animationID);
+      this.animationID = null;
+    }
+  },
+
+  render: function render() {
+    var renderedChildren = this.props.children(this.state.currentStyle);
+    return renderedChildren && _react2['default'].Children.only(renderedChildren);
+  }
+});
+
+exports['default'] = Motion;
+module.exports = exports['default'];
+},{"./mapToZero":287,"./shouldStopAnimation":292,"./stepper":294,"./stripStyle":295,"performance-now":182,"raf":183,"react":502}],285:[function(require,module,exports){
+'use strict';
+
+exports.__esModule = true;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _mapToZero = require('./mapToZero');
+
+var _mapToZero2 = _interopRequireDefault(_mapToZero);
+
+var _stripStyle = require('./stripStyle');
+
+var _stripStyle2 = _interopRequireDefault(_stripStyle);
+
+var _stepper3 = require('./stepper');
+
+var _stepper4 = _interopRequireDefault(_stepper3);
+
+var _performanceNow = require('performance-now');
+
+var _performanceNow2 = _interopRequireDefault(_performanceNow);
+
+var _raf = require('raf');
+
+var _raf2 = _interopRequireDefault(_raf);
+
+var _shouldStopAnimation = require('./shouldStopAnimation');
+
+var _shouldStopAnimation2 = _interopRequireDefault(_shouldStopAnimation);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var msPerFrame = 1000 / 60;
+
+function shouldStopAnimationAll(currentStyles, styles, currentVelocities) {
+  for (var i = 0; i < currentStyles.length; i++) {
+    if (!_shouldStopAnimation2['default'](currentStyles[i], styles[i], currentVelocities[i])) {
+      return false;
+    }
+  }
+  return true;
+}
+
+var StaggeredMotion = _react2['default'].createClass({
+  displayName: 'StaggeredMotion',
+
+  propTypes: {
+    // TOOD: warn against putting a config in here
+    defaultStyles: _react.PropTypes.arrayOf(_react.PropTypes.objectOf(_react.PropTypes.number)),
+    styles: _react.PropTypes.func.isRequired,
+    children: _react.PropTypes.func.isRequired
+  },
+
+  getInitialState: function getInitialState() {
+    var _props = this.props;
+    var defaultStyles = _props.defaultStyles;
+    var styles = _props.styles;
+
+    var currentStyles = defaultStyles || styles().map(_stripStyle2['default']);
+    var currentVelocities = currentStyles.map(function (currentStyle) {
+      return _mapToZero2['default'](currentStyle);
+    });
+    return {
+      currentStyles: currentStyles,
+      currentVelocities: currentVelocities,
+      lastIdealStyles: currentStyles,
+      lastIdealVelocities: currentVelocities
+    };
+  },
+
+  animationID: null,
+  prevTime: 0,
+  accumulatedTime: 0,
+  // it's possible that currentStyle's value is stale: if props is immediately
+  // changed from 0 to 400 to spring(0) again, the async currentStyle is still
+  // at 0 (didn't have time to tick and interpolate even once). If we naively
+  // compare currentStyle with destVal it'll be 0 === 0 (no animation, stop).
+  // In reality currentStyle should be 400
+  unreadPropStyles: null,
+  // after checking for unreadPropStyles != null, we manually go set the
+  // non-interpolating values (those that are a number, without a spring
+  // config)
+  clearUnreadPropStyle: function clearUnreadPropStyle(unreadPropStyles) {
+    var _state = this.state;
+    var currentStyles = _state.currentStyles;
+    var currentVelocities = _state.currentVelocities;
+    var lastIdealStyles = _state.lastIdealStyles;
+    var lastIdealVelocities = _state.lastIdealVelocities;
+
+    var someDirty = false;
+    for (var i = 0; i < unreadPropStyles.length; i++) {
+      var unreadPropStyle = unreadPropStyles[i];
+      var dirty = false;
+
+      for (var key in unreadPropStyle) {
+        if (!unreadPropStyle.hasOwnProperty(key)) {
+          continue;
+        }
+
+        var styleValue = unreadPropStyle[key];
+        if (typeof styleValue === 'number') {
+          if (!dirty) {
+            dirty = true;
+            someDirty = true;
+            currentStyles[i] = _extends({}, currentStyles[i]);
+            currentVelocities[i] = _extends({}, currentVelocities[i]);
+            lastIdealStyles[i] = _extends({}, lastIdealStyles[i]);
+            lastIdealVelocities[i] = _extends({}, lastIdealVelocities[i]);
+          }
+          currentStyles[i][key] = styleValue;
+          currentVelocities[i][key] = 0;
+          lastIdealStyles[i][key] = styleValue;
+          lastIdealVelocities[i][key] = 0;
+        }
+      }
+    }
+
+    if (someDirty) {
+      this.setState({ currentStyles: currentStyles, currentVelocities: currentVelocities, lastIdealStyles: lastIdealStyles, lastIdealVelocities: lastIdealVelocities });
+    }
+  },
+
+  startAnimationIfNecessary: function startAnimationIfNecessary() {
+    var _this = this;
+
+    // TODO: when config is {a: 10} and dest is {a: 10} do we raf once and
+    // call cb? No, otherwise accidental parent rerender causes cb trigger
+    this.animationID = _raf2['default'](function () {
+      var destStyles = _this.props.styles(_this.state.lastIdealStyles);
+
+      // check if we need to animate in the first place
+      if (shouldStopAnimationAll(_this.state.currentStyles, destStyles, _this.state.currentVelocities)) {
+        // no need to cancel animationID here; shouldn't have any in flight
+        _this.animationID = null;
+        _this.accumulatedTime = 0;
+        return;
+      }
+
+      var currentTime = _performanceNow2['default']();
+      var timeDelta = currentTime - _this.prevTime;
+      _this.prevTime = currentTime;
+      _this.accumulatedTime = _this.accumulatedTime + timeDelta;
+      // more than 10 frames? prolly switched browser tab. Restart
+      if (_this.accumulatedTime > msPerFrame * 10) {
+        _this.accumulatedTime = 0;
+      }
+
+      if (_this.accumulatedTime === 0) {
+        // no need to cancel animationID here; shouldn't have any in flight
+        _this.animationID = null;
+        _this.startAnimationIfNecessary();
+        return;
+      }
+
+      var currentFrameCompletion = (_this.accumulatedTime - Math.floor(_this.accumulatedTime / msPerFrame) * msPerFrame) / msPerFrame;
+      var framesToCatchUp = Math.floor(_this.accumulatedTime / msPerFrame);
+
+      var newLastIdealStyles = [];
+      var newLastIdealVelocities = [];
+      var newCurrentStyles = [];
+      var newCurrentVelocities = [];
+
+      for (var i = 0; i < destStyles.length; i++) {
+        var destStyle = destStyles[i];
+        var newCurrentStyle = {};
+        var newCurrentVelocity = {};
+        var newLastIdealStyle = {};
+        var newLastIdealVelocity = {};
+
+        for (var key in destStyle) {
+          if (!destStyle.hasOwnProperty(key)) {
+            continue;
+          }
+
+          var styleValue = destStyle[key];
+          if (typeof styleValue === 'number') {
+            newCurrentStyle[key] = styleValue;
+            newCurrentVelocity[key] = 0;
+            newLastIdealStyle[key] = styleValue;
+            newLastIdealVelocity[key] = 0;
+          } else {
+            var newLastIdealStyleValue = _this.state.lastIdealStyles[i][key];
+            var newLastIdealVelocityValue = _this.state.lastIdealVelocities[i][key];
+            for (var j = 0; j < framesToCatchUp; j++) {
+              var _stepper = _stepper4['default'](msPerFrame / 1000, newLastIdealStyleValue, newLastIdealVelocityValue, styleValue.val, styleValue.stiffness, styleValue.damping, styleValue.precision);
+
+              newLastIdealStyleValue = _stepper[0];
+              newLastIdealVelocityValue = _stepper[1];
+            }
+
+            var _stepper2 = _stepper4['default'](msPerFrame / 1000, newLastIdealStyleValue, newLastIdealVelocityValue, styleValue.val, styleValue.stiffness, styleValue.damping, styleValue.precision);
+
+            var nextIdealX = _stepper2[0];
+            var nextIdealV = _stepper2[1];
+
+            newCurrentStyle[key] = newLastIdealStyleValue + (nextIdealX - newLastIdealStyleValue) * currentFrameCompletion;
+            newCurrentVelocity[key] = newLastIdealVelocityValue + (nextIdealV - newLastIdealVelocityValue) * currentFrameCompletion;
+            newLastIdealStyle[key] = newLastIdealStyleValue;
+            newLastIdealVelocity[key] = newLastIdealVelocityValue;
+          }
+        }
+
+        newCurrentStyles[i] = newCurrentStyle;
+        newCurrentVelocities[i] = newCurrentVelocity;
+        newLastIdealStyles[i] = newLastIdealStyle;
+        newLastIdealVelocities[i] = newLastIdealVelocity;
+      }
+
+      _this.animationID = null;
+      // the amount we're looped over above
+      _this.accumulatedTime -= framesToCatchUp * msPerFrame;
+
+      _this.setState({
+        currentStyles: newCurrentStyles,
+        currentVelocities: newCurrentVelocities,
+        lastIdealStyles: newLastIdealStyles,
+        lastIdealVelocities: newLastIdealVelocities
+      });
+
+      _this.unreadPropStyles = null;
+
+      _this.startAnimationIfNecessary();
+    });
+  },
+
+  componentDidMount: function componentDidMount() {
+    this.prevTime = _performanceNow2['default']();
+    this.startAnimationIfNecessary();
+  },
+
+  componentWillReceiveProps: function componentWillReceiveProps(props) {
+    if (this.unreadPropStyles != null) {
+      // previous props haven't had the chance to be set yet; set them here
+      this.clearUnreadPropStyle(this.unreadPropStyles);
+    }
+
+    this.unreadPropStyles = props.styles(this.state.lastIdealStyles);
+    if (this.animationID == null) {
+      this.prevTime = _performanceNow2['default']();
+      this.startAnimationIfNecessary();
+    }
+  },
+
+  componentWillUnmount: function componentWillUnmount() {
+    if (this.animationID != null) {
+      _raf2['default'].cancel(this.animationID);
+      this.animationID = null;
+    }
+  },
+
+  render: function render() {
+    var renderedChildren = this.props.children(this.state.currentStyles);
+    return renderedChildren && _react2['default'].Children.only(renderedChildren);
+  }
+});
+
+exports['default'] = StaggeredMotion;
+module.exports = exports['default'];
+},{"./mapToZero":287,"./shouldStopAnimation":292,"./stepper":294,"./stripStyle":295,"performance-now":182,"raf":183,"react":502}],286:[function(require,module,exports){
+'use strict';
+
+exports.__esModule = true;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _mapToZero = require('./mapToZero');
+
+var _mapToZero2 = _interopRequireDefault(_mapToZero);
+
+var _stripStyle = require('./stripStyle');
+
+var _stripStyle2 = _interopRequireDefault(_stripStyle);
+
+var _stepper3 = require('./stepper');
+
+var _stepper4 = _interopRequireDefault(_stepper3);
+
+var _mergeDiff = require('./mergeDiff');
+
+var _mergeDiff2 = _interopRequireDefault(_mergeDiff);
+
+var _performanceNow = require('performance-now');
+
+var _performanceNow2 = _interopRequireDefault(_performanceNow);
+
+var _raf = require('raf');
+
+var _raf2 = _interopRequireDefault(_raf);
+
+var _shouldStopAnimation = require('./shouldStopAnimation');
+
+var _shouldStopAnimation2 = _interopRequireDefault(_shouldStopAnimation);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var msPerFrame = 1000 / 60;
+
+// the children function & (potential) styles function asks as param an
+// Array<TransitionPlainStyle>, where each TransitionPlainStyle is of the format
+// {key: string, data?: any, style: PlainStyle}. However, the way we keep
+// internal states doesn't contain such a data structure (check the state and
+// TransitionMotionState). So when children function and others ask for such
+// data we need to generate them on the fly by combining mergedPropsStyles and
+// currentStyles/lastIdealStyles
+function rehydrateStyles(mergedPropsStyles, unreadPropStyles, plainStyles) {
+  if (unreadPropStyles == null) {
+    // $FlowFixMe
+    return mergedPropsStyles.map(function (mergedPropsStyle, i) {
+      return {
+        key: mergedPropsStyle.key,
+        data: mergedPropsStyle.data,
+        style: plainStyles[i]
+      };
+    });
+  }
+  return mergedPropsStyles.map(function (mergedPropsStyle, i) {
+    // $FlowFixMe
+    for (var j = 0; j < unreadPropStyles.length; j++) {
+      // $FlowFixMe
+      if (unreadPropStyles[j].key === mergedPropsStyle.key) {
+        return {
+          // $FlowFixMe
+          key: unreadPropStyles[j].key,
+          data: unreadPropStyles[j].data,
+          style: plainStyles[i]
+        };
+      }
+    }
+    // $FlowFixMe
+    return { key: mergedPropsStyle.key, data: mergedPropsStyle.data, style: plainStyles[i] };
+  });
+}
+
+function shouldStopAnimationAll(currentStyles, destStyles, currentVelocities, mergedPropsStyles) {
+  if (mergedPropsStyles.length !== destStyles.length) {
+    return false;
+  }
+
+  for (var i = 0; i < mergedPropsStyles.length; i++) {
+    if (mergedPropsStyles[i].key !== destStyles[i].key) {
+      return false;
+    }
+  }
+
+  // we have the invariant that mergedPropsStyles and
+  // currentStyles/currentVelocities/last* are synced in terms of cells, see
+  // mergeAndSync comment for more info
+  for (var i = 0; i < mergedPropsStyles.length; i++) {
+    if (!_shouldStopAnimation2['default'](currentStyles[i], destStyles[i].style, currentVelocities[i])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+// core key merging logic
+
+// things to do: say previously merged style is {a, b}, dest style (prop) is {b,
+// c}, previous current (interpolating) style is {a, b}
+// **invariant**: current[i] corresponds to merged[i] in terms of key
+
+// steps:
+// turn merged style into {a?, b, c}
+//    add c, value of c is destStyles.c
+//    maybe remove a, aka call willLeave(a), then merged is either {b, c} or {a, b, c}
+// turn current (interpolating) style from {a, b} into {a?, b, c}
+//    maybe remove a
+//    certainly add c, value of c is willEnter(c)
+// loop over merged and construct new current
+// dest doesn't change, that's owner's
+function mergeAndSync(willEnter, willLeave, oldMergedPropsStyles, destStyles, oldCurrentStyles, oldCurrentVelocities, oldLastIdealStyles, oldLastIdealVelocities) {
+  var newMergedPropsStyles = _mergeDiff2['default'](oldMergedPropsStyles, destStyles, function (oldIndex, oldMergedPropsStyle) {
+    var leavingStyle = willLeave(oldMergedPropsStyle);
+    if (leavingStyle == null) {
+      return null;
+    }
+    if (_shouldStopAnimation2['default'](oldCurrentStyles[oldIndex], leavingStyle, oldCurrentVelocities[oldIndex])) {
+      return null;
+    }
+    return { key: oldMergedPropsStyle.key, data: oldMergedPropsStyle.data, style: leavingStyle };
+  });
+
+  var newCurrentStyles = [];
+  var newCurrentVelocities = [];
+  var newLastIdealStyles = [];
+  var newLastIdealVelocities = [];
+  for (var i = 0; i < newMergedPropsStyles.length; i++) {
+    var newMergedPropsStyleCell = newMergedPropsStyles[i];
+    var foundOldIndex = null;
+    for (var j = 0; j < oldMergedPropsStyles.length; j++) {
+      if (oldMergedPropsStyles[j].key === newMergedPropsStyleCell.key) {
+        foundOldIndex = j;
+        break;
+      }
+    }
+    // TODO: key search code
+    if (foundOldIndex == null) {
+      var plainStyle = willEnter(newMergedPropsStyleCell);
+      newCurrentStyles[i] = plainStyle;
+      newLastIdealStyles[i] = plainStyle;
+
+      // $FlowFixMe
+      var velocity = _mapToZero2['default'](newMergedPropsStyleCell.style);
+      newCurrentVelocities[i] = velocity;
+      newLastIdealVelocities[i] = velocity;
+    } else {
+      newCurrentStyles[i] = oldCurrentStyles[foundOldIndex];
+      newLastIdealStyles[i] = oldLastIdealStyles[foundOldIndex];
+      newCurrentVelocities[i] = oldCurrentVelocities[foundOldIndex];
+      newLastIdealVelocities[i] = oldLastIdealVelocities[foundOldIndex];
+    }
+  }
+
+  return [newMergedPropsStyles, newCurrentStyles, newCurrentVelocities, newLastIdealStyles, newLastIdealVelocities];
+}
+
+var TransitionMotion = _react2['default'].createClass({
+  displayName: 'TransitionMotion',
+
+  propTypes: {
+    defaultStyles: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+      key: _react.PropTypes.string.isRequired,
+      data: _react.PropTypes.any,
+      style: _react.PropTypes.objectOf(_react.PropTypes.number).isRequired
+    })),
+    styles: _react.PropTypes.oneOfType([_react.PropTypes.func, _react.PropTypes.arrayOf(_react.PropTypes.shape({
+      key: _react.PropTypes.string.isRequired,
+      data: _react.PropTypes.any,
+      style: _react.PropTypes.objectOf(_react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.object])).isRequired
+    }))]).isRequired,
+    children: _react.PropTypes.func.isRequired,
+    willLeave: _react.PropTypes.func,
+    willEnter: _react.PropTypes.func
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      willEnter: function willEnter(styleThatEntered) {
+        return _stripStyle2['default'](styleThatEntered.style);
+      },
+      // recall: returning null makes the current unmounting TransitionStyle
+      // disappear immediately
+      willLeave: function willLeave() {
+        return null;
+      }
+    };
+  },
+
+  getInitialState: function getInitialState() {
+    var _props = this.props;
+    var defaultStyles = _props.defaultStyles;
+    var styles = _props.styles;
+    var willEnter = _props.willEnter;
+    var willLeave = _props.willLeave;
+
+    var destStyles = typeof styles === 'function' ? styles(defaultStyles) : styles;
+
+    // this is special. for the first time around, we don't have a comparison
+    // between last (no last) and current merged props. we'll compute last so:
+    // say default is {a, b} and styles (dest style) is {b, c}, we'll
+    // fabricate last as {a, b}
+    var oldMergedPropsStyles = undefined;
+    if (defaultStyles == null) {
+      oldMergedPropsStyles = destStyles;
+    } else {
+      // $FlowFixMe
+      oldMergedPropsStyles = defaultStyles.map(function (defaultStyleCell) {
+        // TODO: key search code
+        for (var i = 0; i < destStyles.length; i++) {
+          if (destStyles[i].key === defaultStyleCell.key) {
+            return destStyles[i];
+          }
+        }
+        return defaultStyleCell;
+      });
+    }
+    var oldCurrentStyles = defaultStyles == null ? destStyles.map(function (s) {
+      return _stripStyle2['default'](s.style);
+    }) : defaultStyles.map(function (s) {
+      return _stripStyle2['default'](s.style);
+    });
+    var oldCurrentVelocities = defaultStyles == null ? destStyles.map(function (s) {
+      return _mapToZero2['default'](s.style);
+    }) : defaultStyles.map(function (s) {
+      return _mapToZero2['default'](s.style);
+    });
+
+    var _mergeAndSync = mergeAndSync(
+    // $FlowFixMe
+    willEnter,
+    // $FlowFixMe
+    willLeave, oldMergedPropsStyles, destStyles, oldCurrentStyles, oldCurrentVelocities, oldCurrentStyles, // oldLastIdealStyles really
+    oldCurrentVelocities);
+
+    var mergedPropsStyles = _mergeAndSync[0];
+    var currentStyles = _mergeAndSync[1];
+    var currentVelocities = _mergeAndSync[2];
+    var lastIdealStyles = _mergeAndSync[3];
+    var lastIdealVelocities = _mergeAndSync[4];
+    // oldLastIdealVelocities really
+
+    return {
+      currentStyles: currentStyles,
+      currentVelocities: currentVelocities,
+      lastIdealStyles: lastIdealStyles,
+      lastIdealVelocities: lastIdealVelocities,
+      mergedPropsStyles: mergedPropsStyles
+    };
+  },
+
+  animationID: null,
+  prevTime: 0,
+  accumulatedTime: 0,
+  // it's possible that currentStyle's value is stale: if props is immediately
+  // changed from 0 to 400 to spring(0) again, the async currentStyle is still
+  // at 0 (didn't have time to tick and interpolate even once). If we naively
+  // compare currentStyle with destVal it'll be 0 === 0 (no animation, stop).
+  // In reality currentStyle should be 400
+  unreadPropStyles: null,
+  // after checking for unreadPropStyles != null, we manually go set the
+  // non-interpolating values (those that are a number, without a spring
+  // config)
+  clearUnreadPropStyle: function clearUnreadPropStyle(unreadPropStyles) {
+    var _mergeAndSync2 = mergeAndSync(
+    // $FlowFixMe
+    this.props.willEnter,
+    // $FlowFixMe
+    this.props.willLeave, this.state.mergedPropsStyles, unreadPropStyles, this.state.currentStyles, this.state.currentVelocities, this.state.lastIdealStyles, this.state.lastIdealVelocities);
+
+    var mergedPropsStyles = _mergeAndSync2[0];
+    var currentStyles = _mergeAndSync2[1];
+    var currentVelocities = _mergeAndSync2[2];
+    var lastIdealStyles = _mergeAndSync2[3];
+    var lastIdealVelocities = _mergeAndSync2[4];
+
+    for (var i = 0; i < unreadPropStyles.length; i++) {
+      var unreadPropStyle = unreadPropStyles[i].style;
+      var dirty = false;
+
+      for (var key in unreadPropStyle) {
+        if (!unreadPropStyle.hasOwnProperty(key)) {
+          continue;
+        }
+
+        var styleValue = unreadPropStyle[key];
+        if (typeof styleValue === 'number') {
+          if (!dirty) {
+            dirty = true;
+            currentStyles[i] = _extends({}, currentStyles[i]);
+            currentVelocities[i] = _extends({}, currentVelocities[i]);
+            lastIdealStyles[i] = _extends({}, lastIdealStyles[i]);
+            lastIdealVelocities[i] = _extends({}, lastIdealVelocities[i]);
+            mergedPropsStyles[i] = {
+              key: mergedPropsStyles[i].key,
+              data: mergedPropsStyles[i].data,
+              style: _extends({}, mergedPropsStyles[i].style)
+            };
+          }
+          currentStyles[i][key] = styleValue;
+          currentVelocities[i][key] = 0;
+          lastIdealStyles[i][key] = styleValue;
+          lastIdealVelocities[i][key] = 0;
+          mergedPropsStyles[i].style[key] = styleValue;
+        }
+      }
+    }
+
+    // unlike the other 2 components, we can't detect staleness and optionally
+    // opt out of setState here. each style object's data might contain new
+    // stuff we're not/cannot compare
+    this.setState({
+      currentStyles: currentStyles,
+      currentVelocities: currentVelocities,
+      mergedPropsStyles: mergedPropsStyles,
+      lastIdealStyles: lastIdealStyles,
+      lastIdealVelocities: lastIdealVelocities
+    });
+  },
+
+  startAnimationIfNecessary: function startAnimationIfNecessary() {
+    var _this = this;
+
+    // TODO: when config is {a: 10} and dest is {a: 10} do we raf once and
+    // call cb? No, otherwise accidental parent rerender causes cb trigger
+    this.animationID = _raf2['default'](function () {
+      var propStyles = _this.props.styles;
+      var destStyles = typeof propStyles === 'function' ? propStyles(rehydrateStyles(_this.state.mergedPropsStyles, _this.unreadPropStyles, _this.state.lastIdealStyles)) : propStyles;
+
+      // check if we need to animate in the first place
+      if (shouldStopAnimationAll(_this.state.currentStyles, destStyles, _this.state.currentVelocities, _this.state.mergedPropsStyles)) {
+        // no need to cancel animationID here; shouldn't have any in flight
+        _this.animationID = null;
+        _this.accumulatedTime = 0;
+        return;
+      }
+
+      var currentTime = _performanceNow2['default']();
+      var timeDelta = currentTime - _this.prevTime;
+      _this.prevTime = currentTime;
+      _this.accumulatedTime = _this.accumulatedTime + timeDelta;
+      // more than 10 frames? prolly switched browser tab. Restart
+      if (_this.accumulatedTime > msPerFrame * 10) {
+        _this.accumulatedTime = 0;
+      }
+
+      if (_this.accumulatedTime === 0) {
+        // no need to cancel animationID here; shouldn't have any in flight
+        _this.animationID = null;
+        _this.startAnimationIfNecessary();
+        return;
+      }
+
+      var currentFrameCompletion = (_this.accumulatedTime - Math.floor(_this.accumulatedTime / msPerFrame) * msPerFrame) / msPerFrame;
+      var framesToCatchUp = Math.floor(_this.accumulatedTime / msPerFrame);
+
+      var _mergeAndSync3 = mergeAndSync(
+      // $FlowFixMe
+      _this.props.willEnter,
+      // $FlowFixMe
+      _this.props.willLeave, _this.state.mergedPropsStyles, destStyles, _this.state.currentStyles, _this.state.currentVelocities, _this.state.lastIdealStyles, _this.state.lastIdealVelocities);
+
+      var newMergedPropsStyles = _mergeAndSync3[0];
+      var newCurrentStyles = _mergeAndSync3[1];
+      var newCurrentVelocities = _mergeAndSync3[2];
+      var newLastIdealStyles = _mergeAndSync3[3];
+      var newLastIdealVelocities = _mergeAndSync3[4];
+
+      for (var i = 0; i < newMergedPropsStyles.length; i++) {
+        var newMergedPropsStyle = newMergedPropsStyles[i].style;
+        var newCurrentStyle = {};
+        var newCurrentVelocity = {};
+        var newLastIdealStyle = {};
+        var newLastIdealVelocity = {};
+
+        for (var key in newMergedPropsStyle) {
+          if (!newMergedPropsStyle.hasOwnProperty(key)) {
+            continue;
+          }
+
+          var styleValue = newMergedPropsStyle[key];
+          if (typeof styleValue === 'number') {
+            newCurrentStyle[key] = styleValue;
+            newCurrentVelocity[key] = 0;
+            newLastIdealStyle[key] = styleValue;
+            newLastIdealVelocity[key] = 0;
+          } else {
+            var newLastIdealStyleValue = newLastIdealStyles[i][key];
+            var newLastIdealVelocityValue = newLastIdealVelocities[i][key];
+            for (var j = 0; j < framesToCatchUp; j++) {
+              var _stepper = _stepper4['default'](msPerFrame / 1000, newLastIdealStyleValue, newLastIdealVelocityValue, styleValue.val, styleValue.stiffness, styleValue.damping, styleValue.precision);
+
+              newLastIdealStyleValue = _stepper[0];
+              newLastIdealVelocityValue = _stepper[1];
+            }
+
+            var _stepper2 = _stepper4['default'](msPerFrame / 1000, newLastIdealStyleValue, newLastIdealVelocityValue, styleValue.val, styleValue.stiffness, styleValue.damping, styleValue.precision);
+
+            var nextIdealX = _stepper2[0];
+            var nextIdealV = _stepper2[1];
+
+            newCurrentStyle[key] = newLastIdealStyleValue + (nextIdealX - newLastIdealStyleValue) * currentFrameCompletion;
+            newCurrentVelocity[key] = newLastIdealVelocityValue + (nextIdealV - newLastIdealVelocityValue) * currentFrameCompletion;
+            newLastIdealStyle[key] = newLastIdealStyleValue;
+            newLastIdealVelocity[key] = newLastIdealVelocityValue;
+          }
+        }
+
+        newLastIdealStyles[i] = newLastIdealStyle;
+        newLastIdealVelocities[i] = newLastIdealVelocity;
+        newCurrentStyles[i] = newCurrentStyle;
+        newCurrentVelocities[i] = newCurrentVelocity;
+      }
+
+      _this.animationID = null;
+      // the amount we're looped over above
+      _this.accumulatedTime -= framesToCatchUp * msPerFrame;
+
+      _this.setState({
+        currentStyles: newCurrentStyles,
+        currentVelocities: newCurrentVelocities,
+        lastIdealStyles: newLastIdealStyles,
+        lastIdealVelocities: newLastIdealVelocities,
+        mergedPropsStyles: newMergedPropsStyles
+      });
+
+      _this.unreadPropStyles = null;
+
+      _this.startAnimationIfNecessary();
+    });
+  },
+
+  componentDidMount: function componentDidMount() {
+    this.prevTime = _performanceNow2['default']();
+    this.startAnimationIfNecessary();
+  },
+
+  componentWillReceiveProps: function componentWillReceiveProps(props) {
+    if (this.unreadPropStyles) {
+      // previous props haven't had the chance to be set yet; set them here
+      this.clearUnreadPropStyle(this.unreadPropStyles);
+    }
+
+    if (typeof props.styles === 'function') {
+      // $FlowFixMe
+      this.unreadPropStyles = props.styles(rehydrateStyles(this.state.mergedPropsStyles, this.unreadPropStyles, this.state.lastIdealStyles));
+    } else {
+      this.unreadPropStyles = props.styles;
+    }
+
+    if (this.animationID == null) {
+      this.prevTime = _performanceNow2['default']();
+      this.startAnimationIfNecessary();
+    }
+  },
+
+  componentWillUnmount: function componentWillUnmount() {
+    if (this.animationID != null) {
+      _raf2['default'].cancel(this.animationID);
+      this.animationID = null;
+    }
+  },
+
+  render: function render() {
+    var hydratedStyles = rehydrateStyles(this.state.mergedPropsStyles, this.unreadPropStyles, this.state.currentStyles);
+    var renderedChildren = this.props.children(hydratedStyles);
+    return renderedChildren && _react2['default'].Children.only(renderedChildren);
+  }
+});
+
+exports['default'] = TransitionMotion;
+module.exports = exports['default'];
+
+// list of styles, each containing interpolating values. Part of what's passed
+// to children function. Notice that this is
+// Array<ActualInterpolatingStyleObject>, without the wrapper that is {key: ...,
+// data: ... style: ActualInterpolatingStyleObject}. Only mergedPropsStyles
+// contains the key & data info (so that we only have a single source of truth
+// for these, and to save space). Check the comment for `rehydrateStyles` to
+// see how we regenerate the entirety of what's passed to children function
+
+// the array that keeps track of currently rendered stuff! Including stuff
+// that you've unmounted but that's still animating. This is where it lives
+},{"./mapToZero":287,"./mergeDiff":288,"./shouldStopAnimation":292,"./stepper":294,"./stripStyle":295,"performance-now":182,"raf":183,"react":502}],287:[function(require,module,exports){
+
+
+// currently used to initiate the velocity style object to 0
+'use strict';
+
+exports.__esModule = true;
+exports['default'] = mapToZero;
+
+function mapToZero(obj) {
+  var ret = {};
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      ret[key] = 0;
+    }
+  }
+  return ret;
+}
+
+module.exports = exports['default'];
+},{}],288:[function(require,module,exports){
+
+
+// core keys merging algorithm. If previous render's keys are [a, b], and the
+// next render's [c, b, d], what's the final merged keys and ordering?
+
+// - c and a must both be before b
+// - b before d
+// - ordering between a and c ambiguous
+
+// this reduces to merging two partially ordered lists (e.g. lists where not
+// every item has a definite ordering, like comparing a and c above). For the
+// ambiguous ordering we deterministically choose to place the next render's
+// item after the previous'; so c after a
+
+// this is called a topological sorting. Except the existing algorithms don't
+// work well with js bc of the amount of allocation, and isn't optimized for our
+// current use-case bc the runtime is linear in terms of edges (see wiki for
+// meaning), which is huge when two lists have many common elements
+'use strict';
+
+exports.__esModule = true;
+exports['default'] = mergeDiff;
+
+function mergeDiff(prev, next, onRemove) {
+  // bookkeeping for easier access of a key's index below. This is 2 allocations +
+  // potentially triggering chrome hash map mode for objs (so it might be faster
+
+  var prevKeyIndex = {};
+  for (var i = 0; i < prev.length; i++) {
+    prevKeyIndex[prev[i].key] = i;
+  }
+  var nextKeyIndex = {};
+  for (var i = 0; i < next.length; i++) {
+    nextKeyIndex[next[i].key] = i;
+  }
+
+  // first, an overly elaborate way of merging prev and next, eliminating
+  // duplicates (in terms of keys). If there's dupe, keep the item in next).
+  // This way of writing it saves allocations
+  var ret = [];
+  for (var i = 0; i < next.length; i++) {
+    ret[i] = next[i];
+  }
+  for (var i = 0; i < prev.length; i++) {
+    if (!nextKeyIndex.hasOwnProperty(prev[i].key)) {
+      // this is called my TM's `mergeAndSync`, which calls willLeave. We don't
+      // merge in keys that the user desires to kill
+      var fill = onRemove(i, prev[i]);
+      if (fill != null) {
+        ret.push(fill);
+      }
+    }
+  }
+
+  // now all the items all present. Core sorting logic to have the right order
+  return ret.sort(function (a, b) {
+    var nextOrderA = nextKeyIndex[a.key];
+    var nextOrderB = nextKeyIndex[b.key];
+    var prevOrderA = prevKeyIndex[a.key];
+    var prevOrderB = prevKeyIndex[b.key];
+
+    if (nextOrderA != null && nextOrderB != null) {
+      // both keys in next
+      return nextKeyIndex[a.key] - nextKeyIndex[b.key];
+    } else if (prevOrderA != null && prevOrderB != null) {
+      // both keys in prev
+      return prevKeyIndex[a.key] - prevKeyIndex[b.key];
+    } else if (nextOrderA != null) {
+      // key a in next, key b in prev
+
+      // how to determine the order between a and b? We find a "pivot" (term
+      // abuse), a key present in both prev and next, that is sandwiched between
+      // a and b. In the context of our above example, if we're comparing a and
+      // d, b's (the only) pivot
+      for (var i = 0; i < next.length; i++) {
+        var pivot = next[i].key;
+        if (!prevKeyIndex.hasOwnProperty(pivot)) {
+          continue;
+        }
+
+        if (nextOrderA < nextKeyIndex[pivot] && prevOrderB > prevKeyIndex[pivot]) {
+          return -1;
+        } else if (nextOrderA > nextKeyIndex[pivot] && prevOrderB < prevKeyIndex[pivot]) {
+          return 1;
+        }
+      }
+      // pluggable. default to: next bigger than prev
+      return 1;
+    }
+    // prevOrderA, nextOrderB
+    for (var i = 0; i < next.length; i++) {
+      var pivot = next[i].key;
+      if (!prevKeyIndex.hasOwnProperty(pivot)) {
+        continue;
+      }
+      if (nextOrderB < nextKeyIndex[pivot] && prevOrderA > prevKeyIndex[pivot]) {
+        return 1;
+      } else if (nextOrderB > nextKeyIndex[pivot] && prevOrderA < prevKeyIndex[pivot]) {
+        return -1;
+      }
+    }
+    // pluggable. default to: next bigger than prev
+    return -1;
+  });
+}
+
+module.exports = exports['default'];
+// to loop through and find a key's index each time), but I no longer care
+},{}],289:[function(require,module,exports){
+"use strict";
+
+exports.__esModule = true;
+exports["default"] = {
+  noWobble: { stiffness: 170, damping: 26 }, // the default, if nothing provided
+  gentle: { stiffness: 120, damping: 14 },
+  wobbly: { stiffness: 180, damping: 12 },
+  stiff: { stiffness: 210, damping: 20 }
+};
+module.exports = exports["default"];
+},{}],290:[function(require,module,exports){
+'use strict';
+
+exports.__esModule = true;
+
+function _interopRequire(obj) { return obj && obj.__esModule ? obj['default'] : obj; }
+
+var _Motion = require('./Motion');
+
+exports.Motion = _interopRequire(_Motion);
+
+var _StaggeredMotion = require('./StaggeredMotion');
+
+exports.StaggeredMotion = _interopRequire(_StaggeredMotion);
+
+var _TransitionMotion = require('./TransitionMotion');
+
+exports.TransitionMotion = _interopRequire(_TransitionMotion);
+
+var _spring = require('./spring');
+
+exports.spring = _interopRequire(_spring);
+
+var _presets = require('./presets');
+
+exports.presets = _interopRequire(_presets);
+
+// deprecated, dummy warning function
+
+var _reorderKeys = require('./reorderKeys');
+
+exports.reorderKeys = _interopRequire(_reorderKeys);
+},{"./Motion":284,"./StaggeredMotion":285,"./TransitionMotion":286,"./presets":289,"./reorderKeys":291,"./spring":293}],291:[function(require,module,exports){
+(function (process){
+'use strict';
+
+exports.__esModule = true;
+exports['default'] = reorderKeys;
+
+var hasWarned = false;
+
+function reorderKeys() {
+  if (process.env.NODE_ENV === 'development') {
+    if (!hasWarned) {
+      hasWarned = true;
+      console.error('`reorderKeys` has been removed, since it is no longer needed for TransitionMotion\'s new styles array API.');
+    }
+  }
+}
+
+module.exports = exports['default'];
+}).call(this,require('_process'))
+},{"_process":21}],292:[function(require,module,exports){
+
+
+// usage assumption: currentStyle values have already been rendered but it says
+// nothing of whether currentStyle is stale (see unreadPropStyle)
+'use strict';
+
+exports.__esModule = true;
+exports['default'] = shouldStopAnimation;
+
+function shouldStopAnimation(currentStyle, style, currentVelocity) {
+  for (var key in style) {
+    if (!style.hasOwnProperty(key)) {
+      continue;
+    }
+
+    if (currentVelocity[key] !== 0) {
+      return false;
+    }
+
+    var styleValue = typeof style[key] === 'number' ? style[key] : style[key].val;
+    // stepper will have already taken care of rounding precision errors, so
+    // won't have such thing as 0.9999 !=== 1
+    if (currentStyle[key] !== styleValue) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+module.exports = exports['default'];
+},{}],293:[function(require,module,exports){
+'use strict';
+
+exports.__esModule = true;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports['default'] = spring;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _presets = require('./presets');
+
+var _presets2 = _interopRequireDefault(_presets);
+
+var defaultConfig = _extends({}, _presets2['default'].noWobble, {
+  precision: 0.01
+});
+
+function spring(val, config) {
+  return _extends({}, defaultConfig, config, { val: val });
+}
+
+module.exports = exports['default'];
+},{"./presets":289}],294:[function(require,module,exports){
+
+
+// stepper is used a lot. Saves allocation to return the same array wrapper.
+// This is fine and danger-free against mutations because the callsite
+// immediately destructures it and gets the numbers inside without passing the
+"use strict";
+
+exports.__esModule = true;
+exports["default"] = stepper;
+
+var reusedTuple = [];
+
+function stepper(secondPerFrame, x, v, destX, k, b, precision) {
+  // Spring stiffness, in kg / s^2
+
+  // for animations, destX is really spring length (spring at rest). initial
+  // position is considered as the stretched/compressed position of a spring
+  var Fspring = -k * (x - destX);
+
+  // Damping, in kg / s
+  var Fdamper = -b * v;
+
+  // usually we put mass here, but for animation purposes, specifying mass is a
+  // bit redundant. you could simply adjust k and b accordingly
+  // let a = (Fspring + Fdamper) / mass;
+  var a = Fspring + Fdamper;
+
+  var newV = v + a * secondPerFrame;
+  var newX = x + newV * secondPerFrame;
+
+  if (Math.abs(newV) < precision && Math.abs(newX - destX) < precision) {
+    reusedTuple[0] = destX;
+    reusedTuple[1] = 0;
+    return reusedTuple;
+  }
+
+  reusedTuple[0] = newX;
+  reusedTuple[1] = newV;
+  return reusedTuple;
+}
+
+module.exports = exports["default"];
+// array reference around.
+},{}],295:[function(require,module,exports){
+
+// turn {x: {val: 1, stiffness: 1, damping: 2}, y: 2} generated by
+// `{x: spring(1, {stiffness: 1, damping: 2}), y: 2}` into {x: 1, y: 2}
+
+'use strict';
+
+exports.__esModule = true;
+exports['default'] = stripStyle;
+
+function stripStyle(style) {
+  var ret = {};
+  for (var key in style) {
+    if (!style.hasOwnProperty(key)) {
+      continue;
+    }
+    ret[key] = typeof style[key] === 'number' ? style[key] : style[key].val;
+  }
+  return ret;
+}
+
+module.exports = exports['default'];
+},{}],296:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -17821,7 +26762,7 @@ Modal.manager = modalManager;
 
 exports.default = Modal;
 module.exports = exports['default'];
-},{"./ModalManager":266,"./Portal":268,"./utils/addEventListener":272,"./utils/addFocusListener":273,"./utils/getContainer":276,"./utils/ownerDocument":279,"dom-helpers/activeElement":108,"dom-helpers/query/contains":118,"dom-helpers/util/inDOM":135,"react":428,"react-prop-types/lib/componentOrElement":282,"react-prop-types/lib/elementType":283,"warning":280}],266:[function(require,module,exports){
+},{"./ModalManager":297,"./Portal":299,"./utils/addEventListener":303,"./utils/addFocusListener":304,"./utils/getContainer":307,"./utils/ownerDocument":310,"dom-helpers/activeElement":123,"dom-helpers/query/contains":133,"dom-helpers/util/inDOM":150,"react":502,"react-prop-types/lib/componentOrElement":313,"react-prop-types/lib/elementType":314,"warning":311}],297:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -17987,7 +26928,7 @@ var ModalManager = function () {
 
 exports.default = ModalManager;
 module.exports = exports['default'];
-},{"./utils/isOverflowing":277,"./utils/manageAriaHidden":278,"dom-helpers/class":111,"dom-helpers/style":127,"dom-helpers/util/scrollbarSize":136}],267:[function(require,module,exports){
+},{"./utils/isOverflowing":308,"./utils/manageAriaHidden":309,"dom-helpers/class":126,"dom-helpers/style":142,"dom-helpers/util/scrollbarSize":151}],298:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -18216,7 +27157,7 @@ Overlay.propTypes = _extends({}, _Portal2.default.propTypes, _Position2.default.
 
 exports.default = Overlay;
 module.exports = exports['default'];
-},{"./Portal":268,"./Position":269,"./RootCloseWrapper":270,"react":428,"react-prop-types/lib/elementType":283}],268:[function(require,module,exports){
+},{"./Portal":299,"./Position":300,"./RootCloseWrapper":301,"react":502,"react-prop-types/lib/elementType":314}],299:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -18338,7 +27279,7 @@ var Portal = _react2.default.createClass({
 
 exports.default = Portal;
 module.exports = exports['default'];
-},{"./utils/getContainer":276,"./utils/ownerDocument":279,"react":428,"react-dom":264,"react-prop-types/lib/componentOrElement":282}],269:[function(require,module,exports){
+},{"./utils/getContainer":307,"./utils/ownerDocument":310,"react":502,"react-dom":283,"react-prop-types/lib/componentOrElement":313}],300:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -18550,7 +27491,7 @@ Position.defaultProps = {
 
 exports.default = Position;
 module.exports = exports['default'];
-},{"./utils/calculatePosition":274,"./utils/getContainer":276,"./utils/ownerDocument":279,"classnames":21,"react":428,"react-dom":264,"react-prop-types/lib/componentOrElement":282}],270:[function(require,module,exports){
+},{"./utils/calculatePosition":305,"./utils/getContainer":307,"./utils/ownerDocument":310,"classnames":22,"react":502,"react-dom":283,"react-prop-types/lib/componentOrElement":313}],301:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -18757,7 +27698,7 @@ RootCloseWrapper.defaultProps = {
   event: 'click'
 };
 module.exports = exports['default'];
-},{"./utils/addEventListener":272,"./utils/createChainedFunction":275,"./utils/ownerDocument":279,"react":428,"react-dom":264}],271:[function(require,module,exports){
+},{"./utils/addEventListener":303,"./utils/createChainedFunction":306,"./utils/ownerDocument":310,"react":502,"react-dom":283}],302:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19121,7 +28062,7 @@ Transition.defaultProps = {
 };
 
 exports.default = Transition;
-},{"classnames":21,"dom-helpers/events/on":116,"dom-helpers/transition/properties":129,"react":428,"react-dom":264}],272:[function(require,module,exports){
+},{"classnames":22,"dom-helpers/events/on":131,"dom-helpers/transition/properties":144,"react":502,"react-dom":283}],303:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19148,7 +28089,7 @@ var _off2 = _interopRequireDefault(_off);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = exports['default'];
-},{"dom-helpers/events/off":115,"dom-helpers/events/on":116}],273:[function(require,module,exports){
+},{"dom-helpers/events/off":130,"dom-helpers/events/on":131}],304:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19180,7 +28121,7 @@ function addFocusListener(handler) {
   return { remove: remove };
 }
 module.exports = exports['default'];
-},{}],274:[function(require,module,exports){
+},{}],305:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19310,7 +28251,7 @@ function calculatePosition(placement, overlayNode, target, container, padding) {
   return { positionLeft: positionLeft, positionTop: positionTop, arrowOffsetLeft: arrowOffsetLeft, arrowOffsetTop: arrowOffsetTop };
 }
 module.exports = exports['default'];
-},{"./ownerDocument":279,"dom-helpers/query/offset":120,"dom-helpers/query/position":122,"dom-helpers/query/scrollTop":125}],275:[function(require,module,exports){
+},{"./ownerDocument":310,"dom-helpers/query/offset":135,"dom-helpers/query/position":137,"dom-helpers/query/scrollTop":140}],306:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19354,7 +28295,7 @@ function createChainedFunction() {
 
 exports.default = createChainedFunction;
 module.exports = exports['default'];
-},{}],276:[function(require,module,exports){
+},{}],307:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19373,7 +28314,7 @@ function getContainer(container, defaultContainer) {
   return _reactDom2.default.findDOMNode(container) || defaultContainer;
 }
 module.exports = exports['default'];
-},{"react-dom":264}],277:[function(require,module,exports){
+},{"react-dom":283}],308:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19415,7 +28356,7 @@ function isOverflowing(container) {
   return win || isBody(container) ? bodyIsOverflowing(container) : container.scrollHeight > container.clientHeight;
 }
 module.exports = exports['default'];
-},{"dom-helpers/ownerDocument":117,"dom-helpers/query/isWindow":119}],278:[function(require,module,exports){
+},{"dom-helpers/ownerDocument":132,"dom-helpers/query/isWindow":134}],309:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19465,7 +28406,7 @@ function showSiblings(container, mountNode) {
     return ariaHidden(false, node);
   });
 }
-},{}],279:[function(require,module,exports){
+},{}],310:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19487,9 +28428,9 @@ var _ownerDocument2 = _interopRequireDefault(_ownerDocument);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = exports['default'];
-},{"dom-helpers/ownerDocument":117,"react-dom":264}],280:[function(require,module,exports){
-arguments[4][263][0].apply(exports,arguments)
-},{"_process":20,"dup":263}],281:[function(require,module,exports){
+},{"dom-helpers/ownerDocument":132,"react-dom":283}],311:[function(require,module,exports){
+arguments[4][282][0].apply(exports,arguments)
+},{"_process":21,"dup":282}],312:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -19529,7 +28470,7 @@ function all() {
 
   return (0, _createChainableTypeChecker2.default)(allPropTypes);
 }
-},{"./utils/createChainableTypeChecker":285}],282:[function(require,module,exports){
+},{"./utils/createChainableTypeChecker":316}],313:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -19562,7 +28503,7 @@ function validate(props, propName, componentName, location, propFullName) {
 }
 
 exports.default = (0, _createChainableTypeChecker2.default)(validate);
-},{"./utils/createChainableTypeChecker":285,"react":428}],283:[function(require,module,exports){
+},{"./utils/createChainableTypeChecker":316,"react":502}],314:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -19595,7 +28536,7 @@ function elementType(props, propName, componentName, location, propFullName) {
 }
 
 exports.default = (0, _createChainableTypeChecker2.default)(elementType);
-},{"./utils/createChainableTypeChecker":285,"react":428}],284:[function(require,module,exports){
+},{"./utils/createChainableTypeChecker":316,"react":502}],315:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -19616,7 +28557,7 @@ function isRequiredForA11y(validator) {
     return validator.apply(undefined, [props, propName, componentName, location, propFullName].concat(args));
   };
 }
-},{}],285:[function(require,module,exports){
+},{}],316:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -19657,7 +28598,6482 @@ function createChainableTypeChecker(validate) {
 
   return chainedCheckType;
 }
-},{}],286:[function(require,module,exports){
+},{}],317:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _table = require('./lib/table/table');
+
+Object.defineProperty(exports, 'Table', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_table).default;
+  }
+});
+
+var _treemap = require('./lib/treemap/treemap');
+
+Object.defineProperty(exports, 'Treemap', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_treemap).default;
+  }
+});
+
+var _xyPlot = require('./lib/plot/xy-plot');
+
+Object.defineProperty(exports, 'XYPlot', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_xyPlot).default;
+  }
+});
+
+var _lineSeries = require('./lib/plot/series/line-series');
+
+Object.defineProperty(exports, 'LineSeries', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_lineSeries).default;
+  }
+});
+
+var _verticalBarSeries = require('./lib/plot/series/vertical-bar-series');
+
+Object.defineProperty(exports, 'VerticalBarSeries', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_verticalBarSeries).default;
+  }
+});
+
+var _horizontalBarSeries = require('./lib/plot/series/horizontal-bar-series');
+
+Object.defineProperty(exports, 'HorizontalBarSeries', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_horizontalBarSeries).default;
+  }
+});
+
+var _markSeries = require('./lib/plot/series/mark-series');
+
+Object.defineProperty(exports, 'MarkSeries', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_markSeries).default;
+  }
+});
+
+var _heatmapSeries = require('./lib/plot/series/heatmap-series');
+
+Object.defineProperty(exports, 'HeatmapSeries', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_heatmapSeries).default;
+  }
+});
+
+var _areaSeries = require('./lib/plot/series/area-series');
+
+Object.defineProperty(exports, 'AreaSeries', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_areaSeries).default;
+  }
+});
+
+var _lineMarkSeries = require('./lib/plot/series/line-mark-series');
+
+Object.defineProperty(exports, 'LineMarkSeries', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_lineMarkSeries).default;
+  }
+});
+
+var _hint = require('./lib/plot/hint');
+
+Object.defineProperty(exports, 'Hint', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_hint).default;
+  }
+});
+
+var _crosshair = require('./lib/plot/crosshair');
+
+Object.defineProperty(exports, 'Crosshair', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_crosshair).default;
+  }
+});
+
+var _xAxis = require('./lib/plot/axis/x-axis');
+
+Object.defineProperty(exports, 'XAxis', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_xAxis).default;
+  }
+});
+
+var _yAxis = require('./lib/plot/axis/y-axis');
+
+Object.defineProperty(exports, 'YAxis', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_yAxis).default;
+  }
+});
+
+var _verticalGridLines = require('./lib/plot/vertical-grid-lines');
+
+Object.defineProperty(exports, 'VerticalGridLines', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_verticalGridLines).default;
+  }
+});
+
+var _horizontalGridLines = require('./lib/plot/horizontal-grid-lines');
+
+Object.defineProperty(exports, 'HorizontalGridLines', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_horizontalGridLines).default;
+  }
+});
+
+var _radialChart = require('./lib/radial-chart/radial-chart');
+
+Object.defineProperty(exports, 'RadialChart', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_radialChart).default;
+  }
+});
+
+var _discreteColorLegend = require('./lib/legends/discrete-color-legend');
+
+Object.defineProperty(exports, 'DiscreteColorLegend', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_discreteColorLegend).default;
+  }
+});
+
+var _searchableDiscreteColorLegend = require('./lib/legends/searchable-discrete-color-legend');
+
+Object.defineProperty(exports, 'SearchableDiscreteColorLegend', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_searchableDiscreteColorLegend).default;
+  }
+});
+
+var _continuousColorLegend = require('./lib/legends/continuous-color-legend');
+
+Object.defineProperty(exports, 'ContinuousColorLegend', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_continuousColorLegend).default;
+  }
+});
+
+var _continuousSizeLegend = require('./lib/legends/continuous-size-legend');
+
+Object.defineProperty(exports, 'ContinuousSizeLegend', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_continuousSizeLegend).default;
+  }
+});
+
+var _makeVisFlexible = require('./lib/make-vis-flexible');
+
+Object.defineProperty(exports, 'makeWidthFlexible', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_makeVisFlexible).default;
+  }
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./lib/legends/continuous-color-legend":319,"./lib/legends/continuous-size-legend":320,"./lib/legends/discrete-color-legend":322,"./lib/legends/searchable-discrete-color-legend":323,"./lib/make-vis-flexible":324,"./lib/plot/axis/x-axis":329,"./lib/plot/axis/y-axis":330,"./lib/plot/crosshair":331,"./lib/plot/hint":333,"./lib/plot/horizontal-grid-lines":334,"./lib/plot/series/area-series":336,"./lib/plot/series/heatmap-series":338,"./lib/plot/series/horizontal-bar-series":339,"./lib/plot/series/line-mark-series":340,"./lib/plot/series/line-series":341,"./lib/plot/series/mark-series":342,"./lib/plot/series/vertical-bar-series":343,"./lib/plot/vertical-grid-lines":344,"./lib/plot/xy-plot":345,"./lib/radial-chart/radial-chart":347,"./lib/table/table":348,"./lib/treemap/treemap":350}],318:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _d3Interpolate = require('d3-interpolate');
+
+var _reactMotion = require('react-motion');
+
+var _pureRenderComponent = require('./pure-render-component');
+
+var _pureRenderComponent2 = _interopRequireDefault(_pureRenderComponent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var propTypes = {
+  animatedProps: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string).isRequired,
+  onStart: _react2.default.PropTypes.func,
+  onEnd: _react2.default.PropTypes.func,
+  stiffness: _react2.default.PropTypes.number,
+  damping: _react2.default.PropTypes.number,
+  precision: _react2.default.PropTypes.number
+};
+
+var Animation = function (_PureRenderComponent) {
+  _inherits(Animation, _PureRenderComponent);
+
+  function Animation(props) {
+    _classCallCheck(this, Animation);
+
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Animation).call(this, props));
+
+    _this._updateInterpolator(props);
+    _this._renderChildren = _this._renderChildren.bind(_this);
+    _this._motionEndHandler = _this._motionEndHandler.bind(_this);
+    return _this;
+  }
+
+  _createClass(Animation, [{
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(props) {
+      this._updateInterpolator(this.props, props);
+      if (props.onStart) {
+        props.onStart();
+      }
+    }
+
+    /**
+     * Update the interpolator function and assign it to this._interpolator.
+     * @param {Object} oldProps Old props.
+     * @param {Object} newProps New props.
+     * @private
+     */
+
+  }, {
+    key: '_updateInterpolator',
+    value: function _updateInterpolator(oldProps, newProps) {
+      this._interpolator = (0, _d3Interpolate.interpolate)(this._extractAnimatedPropValues(oldProps), newProps ? this._extractAnimatedPropValues(newProps) : null);
+    }
+
+    /**
+     * Extract the animated props from the entire props object.
+     * @param {Object} props Props.
+     * @returns {Object} Object of animated props.
+     * @private
+     */
+
+  }, {
+    key: '_extractAnimatedPropValues',
+    value: function _extractAnimatedPropValues(props) {
+      var animatedProps = props.animatedProps;
+
+      var otherProps = _objectWithoutProperties(props, ['animatedProps']);
+
+      return animatedProps.reduce(function (result, animatedPropName) {
+        if (otherProps.hasOwnProperty(animatedPropName)) {
+          result[animatedPropName] = otherProps[animatedPropName];
+        }
+        return result;
+      }, {});
+    }
+
+    /**
+     * Render the child into the parent.
+     * @param {Number} i Number generated by the spring.
+     * @returns {React.Component} Rendered react element.
+     * @private
+     */
+
+  }, {
+    key: '_renderChildren',
+    value: function _renderChildren(_ref) {
+      var i = _ref.i;
+      var children = this.props.children;
+
+      var interpolator = this._interpolator;
+      var child = _react2.default.Children.only(children);
+      var interpolatedProps = interpolator ? interpolator(i) : interpolator;
+
+      return _react2.default.cloneElement(child, _extends({}, child.props, interpolatedProps, {
+        // enforce re-rendering
+        _animation: Math.random()
+      }));
+    }
+  }, {
+    key: '_motionEndHandler',
+    value: function _motionEndHandler() {
+      if (this.props.onEnd) {
+        this.props.onEnd();
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var defaultStyle = { i: 0 };
+      var style = { i: (0, _reactMotion.spring)(1) };
+      // In order to make Motion re-run animations each time, the random key is
+      // always passed.
+      // TODO: find a better solution for the spring.
+      var key = Math.random();
+      return _react2.default.createElement(
+        _reactMotion.Motion,
+        _extends({ defaultStyle: defaultStyle, style: style, key: key }, { onRest: this._motionEndHandler }),
+        this._renderChildren
+      );
+    }
+  }]);
+
+  return Animation;
+}(_pureRenderComponent2.default);
+
+Animation.propTypes = propTypes;
+Animation.displayName = 'Animation';
+
+exports.default = Animation;
+},{"./pure-render-component":346,"d3-interpolate":114,"react":502,"react-motion":290}],319:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _theme = require('../theme');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var propTypes = {
+  startColor: _react2.default.PropTypes.string,
+  midColor: _react2.default.PropTypes.string,
+  endColor: _react2.default.PropTypes.string,
+  startTitle: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.number, _react2.default.PropTypes.string]).isRequired,
+  midTitle: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.number, _react2.default.PropTypes.string]),
+  endTitle: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.number, _react2.default.PropTypes.string]).isRequired,
+  height: _react2.default.PropTypes.number,
+  width: _react2.default.PropTypes.number
+};
+
+var defaultProps = {
+  startColor: _theme.CONTINUOUS_COLOR_RANGE[0],
+  endColor: _theme.CONTINUOUS_COLOR_RANGE[1]
+};
+
+function ContinuousColorLegend(_ref) {
+  var startColor = _ref.startColor;
+  var midColor = _ref.midColor;
+  var endColor = _ref.endColor;
+  var startTitle = _ref.startTitle;
+  var midTitle = _ref.midTitle;
+  var endTitle = _ref.endTitle;
+  var height = _ref.height;
+  var width = _ref.width;
+
+  var colors = [startColor];
+  if (midColor) {
+    colors.push(midColor);
+  }
+  colors.push(endColor);
+  return _react2.default.createElement(
+    'div',
+    { className: 'rv-continuous-color-legend', style: { width: width, height: height } },
+    _react2.default.createElement('div', {
+      className: 'rv-gradient',
+      style: { background: 'linear-gradient(to right, ' + colors.join(',') + ')' } }),
+    _react2.default.createElement(
+      'div',
+      { className: 'rv-legend-titles' },
+      _react2.default.createElement(
+        'span',
+        { className: 'rv-legend-titles__left' },
+        startTitle
+      ),
+      _react2.default.createElement(
+        'span',
+        { className: 'rv-legend-titles__right' },
+        endTitle
+      ),
+      midTitle ? _react2.default.createElement(
+        'span',
+        { className: 'rv-legend-titles__center' },
+        midTitle
+      ) : null
+    )
+  );
+}
+
+ContinuousColorLegend.displayName = 'ContinuousColorLegend';
+ContinuousColorLegend.propTypes = propTypes;
+ContinuousColorLegend.defaultProps = defaultProps;
+
+exports.default = ContinuousColorLegend;
+},{"../theme":349,"react":502}],320:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var propTypes = {
+  startTitle: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.number, _react2.default.PropTypes.string]).isRequired,
+  endTitle: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.number, _react2.default.PropTypes.string]).isRequired,
+  startSize: _react2.default.PropTypes.number,
+  endSize: _react2.default.PropTypes.number,
+  circlesTotal: _react2.default.PropTypes.number,
+  height: _react2.default.PropTypes.number,
+  width: _react2.default.PropTypes.number
+}; // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var defaultProps = {
+  startSize: 2,
+  endSize: 20,
+  circlesTotal: 10
+};
+
+function ContinuousSizeLegend(_ref) {
+  var startTitle = _ref.startTitle;
+  var endTitle = _ref.endTitle;
+  var startSize = _ref.startSize;
+  var endSize = _ref.endSize;
+  var circlesTotal = _ref.circlesTotal;
+  var height = _ref.height;
+  var width = _ref.width;
+
+  var circles = [];
+  var step = (endSize - startSize) / (circlesTotal - 1);
+
+  for (var i = 0; i < circlesTotal; i++) {
+    var size = step * i + startSize;
+    circles.push(_react2.default.createElement('div', { key: i, className: 'rv-bubble', style: {
+        width: size,
+        height: size,
+        borderRadius: size / 2
+      } }));
+    // Add the separator in order to justify the content (otherwise the tags
+    // will be stacked together without any margins around).
+    circles.push(' ');
+  }
+  return _react2.default.createElement(
+    'div',
+    { className: 'rv-continuous-size-legend', style: { width: width, height: height } },
+    _react2.default.createElement(
+      'div',
+      { className: 'rv-bubbles', style: { height: endSize } },
+      circles,
+      _react2.default.createElement('div', { className: 'rv-spacer' })
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'rv-legend-titles' },
+      _react2.default.createElement(
+        'span',
+        { className: 'rv-legend-titles__left' },
+        startTitle
+      ),
+      _react2.default.createElement(
+        'span',
+        { className: 'rv-legend-titles__right' },
+        endTitle
+      )
+    )
+  );
+}
+
+ContinuousSizeLegend.displayName = 'ContinuousSizeLegend';
+ContinuousSizeLegend.propTypes = propTypes;
+ContinuousSizeLegend.defaultProps = defaultProps;
+
+exports.default = ContinuousSizeLegend;
+},{"react":502}],321:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var propTypes = {
+  title: _react2.default.PropTypes.string.isRequired,
+  color: _react2.default.PropTypes.string.isRequired,
+  disabled: _react2.default.PropTypes.bool,
+  onClick: _react2.default.PropTypes.func,
+  orientation: _react2.default.PropTypes.oneOf(['vertical', 'horizontal']).isRequired
+}; // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var defaultProps = {
+  disabled: false
+};
+
+function DiscreteColorLegendItem(_ref) {
+  var onClick = _ref.onClick;
+  var title = _ref.title;
+  var color = _ref.color;
+  var disabled = _ref.disabled;
+  var orientation = _ref.orientation;
+
+  var className = 'rv-discrete-color-legend-item ' + orientation;
+  if (disabled) {
+    className += ' disabled';
+  }
+  if (onClick) {
+    className += ' clickable';
+  }
+  return _react2.default.createElement(
+    'div',
+    { className: className, onClick: onClick },
+    _react2.default.createElement('span', {
+      className: 'rv-discrete-color-legend-item__color',
+      style: disabled ? null : { background: color } }),
+    _react2.default.createElement(
+      'span',
+      { className: 'rv-discrete-color-legend-item__title' },
+      title
+    )
+  );
+}
+
+DiscreteColorLegendItem.propTypes = propTypes;
+DiscreteColorLegendItem.defaultProps = defaultProps;
+DiscreteColorLegendItem.displayName = 'DiscreteColorLegendItem';
+
+exports.default = DiscreteColorLegendItem;
+},{"react":502}],322:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _discreteColorLegendItem = require('./discrete-color-legend-item');
+
+var _discreteColorLegendItem2 = _interopRequireDefault(_discreteColorLegendItem);
+
+var _theme = require('../theme');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var propTypes = {
+  items: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.oneOfType([_react2.default.PropTypes.shape({
+    title: _react2.default.PropTypes.string.isRequired,
+    color: _react2.default.PropTypes.string,
+    disabled: _react2.default.PropTypes.bool
+  }), _react2.default.PropTypes.string.isRequired])).isRequired,
+  onItemClick: _react2.default.PropTypes.func,
+  height: _react2.default.PropTypes.number,
+  width: _react2.default.PropTypes.number,
+  orientation: _react2.default.PropTypes.oneOf(['vertical', 'horizontal'])
+};
+
+var defaultProps = {
+  colors: _theme.DISCRETE_COLOR_RANGE,
+  orientation: 'vertical'
+};
+
+function fillItemsWithDefaults(items) {
+  return items.map(function (item, i) {
+    return {
+      title: item.title ? item.title : item,
+      color: item.color ? item.color : _theme.DISCRETE_COLOR_RANGE[i % _theme.DISCRETE_COLOR_RANGE.length],
+      disabled: Boolean(item.disabled)
+    };
+  });
+}
+
+function DiscreteColorLegend(_ref) {
+  var initialItems = _ref.items;
+  var width = _ref.width;
+  var height = _ref.height;
+  var onItemClick = _ref.onItemClick;
+  var orientation = _ref.orientation;
+
+  var updatedItems = fillItemsWithDefaults(initialItems);
+  return _react2.default.createElement(
+    'div',
+    {
+      className: 'rv-discrete-color-legend ' + orientation,
+      style: { width: width, height: height } },
+    updatedItems.map(function (item, i) {
+      return _react2.default.createElement(_discreteColorLegendItem2.default, _extends({}, item, {
+        orientation: orientation,
+        key: i,
+        onClick: onItemClick ? function () {
+          return onItemClick(initialItems[i], i);
+        } : null }));
+    })
+  );
+}
+
+DiscreteColorLegend.displayName = 'DiscreteColorLegendItem';
+DiscreteColorLegend.propTypes = propTypes;
+DiscreteColorLegend.defaultProps = defaultProps;
+
+exports.default = DiscreteColorLegend;
+},{"../theme":349,"./discrete-color-legend-item":321,"react":502}],323:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _discreteColorLegend = require('./discrete-color-legend');
+
+var _discreteColorLegend2 = _interopRequireDefault(_discreteColorLegend);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var propTypes = _extends({}, _discreteColorLegend2.default.propTypes, {
+  searchText: _react2.default.PropTypes.string,
+  onSearchChange: _react2.default.PropTypes.func,
+  searchPlaceholder: _react2.default.PropTypes.string,
+  searchFn: _react2.default.PropTypes.func
+});
+
+var defaultProps = {
+  searchText: '',
+  searchFn: function searchFn(items, s) {
+    return items.filter(function (item) {
+      return (item.title || item).toLowerCase().indexOf(s) !== -1;
+    });
+  }
+};
+
+function SearchableDiscreteColorLegend(props) {
+  var items = props.items;
+  var onItemClick = props.onItemClick;
+  var searchFn = props.searchFn;
+  var onSearchChange = props.onSearchChange;
+  var searchText = props.searchText;
+  var searchPlaceholder = props.searchPlaceholder;
+  var width = props.width;
+  var height = props.height;
+
+  var onChange = onSearchChange ? function (_ref) {
+    var value = _ref.target.value;
+    return onSearchChange(value);
+  } : null;
+  var filteredItems = searchFn(items, searchText);
+  return _react2.default.createElement(
+    'div',
+    { className: 'rv-search-wrapper', style: { width: width, height: height } },
+    _react2.default.createElement(
+      'form',
+      { className: 'rv-search-wrapper__form' },
+      _react2.default.createElement('input', {
+        type: 'search',
+        placeholder: searchPlaceholder,
+        className: 'rv-search-wrapper__form__input',
+        value: searchText,
+        onChange: onChange })
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'rv-search-wrapper__contents' },
+      _react2.default.createElement(_discreteColorLegend2.default, {
+        items: filteredItems,
+        onItemClick: onItemClick })
+    )
+  );
+}
+
+SearchableDiscreteColorLegend.propTypes = propTypes;
+SearchableDiscreteColorLegend.defaultProps = defaultProps;
+SearchableDiscreteColorLegend.displayName = 'SearchableDiscreteColorLegend';
+
+exports.default = SearchableDiscreteColorLegend;
+},{"./discrete-color-legend":322,"react":502}],324:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+exports.default = makeVisFlexible;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactUtils = require('./utils/react-utils');
+
+var _window = require('global/window');
+
+var _window2 = _interopRequireDefault(_window);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var CONTAINER_REF = 'container';
+
+// As a performance enhancement, we want to only listen once
+var resizeSubscribers = [];
+var DEBOUNCE_DURATION = 100;
+var timeoutId = null;
+
+/**
+ * Calls each subscriber, debounced to the
+ */
+function debounceEmitResize() {
+  _window2.default.clearTimeout(timeoutId);
+  timeoutId = _window2.default.setTimeout(emitResize, DEBOUNCE_DURATION);
+}
+
+/**
+ * Calls each subscriber once syncronously.
+ */
+function emitResize() {
+  resizeSubscribers.forEach(function (cb) {
+    return cb();
+  });
+}
+
+/**
+ * Add the given callback to the list of subscribers to be caled when the
+ * window resizes. Returns a function that, when called, removes the given
+ * callback from the list of subscribers. This function is also resposible for
+ * adding and removing the resize listener on `window`.
+ *
+ * @param {Function} cb - Subscriber callback function
+ * @returns {Function} Unsubscribe function
+ */
+function subscribeToDebouncedResize(cb) {
+  resizeSubscribers.push(cb);
+
+  // if we go from zero to one Flexible components instances, add the listener
+  if (resizeSubscribers.length === 1) {
+    _window2.default.addEventListener('resize', debounceEmitResize);
+  }
+  return function unsubscribe() {
+    removeSubscriber(cb);
+
+    // if we have no Flexible components, remove the listener
+    if (resizeSubscribers.length === 0) {
+      _window2.default.clearTimeout(timeoutId);
+      _window2.default.removeEventListener('resize', debounceEmitResize);
+    }
+  };
+}
+
+/**
+ * Helper for removing the given callback from the list of subscribers.
+ *
+ * @param {Function} cb - Subscriber callback function
+ */
+function removeSubscriber(cb) {
+  var index = resizeSubscribers.indexOf(cb);
+  if (index > -1) {
+    resizeSubscribers.splice(index, 1);
+  }
+}
+
+/**
+ * Add the ability to stretch the visualization on window resize.
+ * @param {*} Component React class for the child component.
+ * @returns {*} Flexible component.
+ */
+function makeVisFlexible(Component) {
+
+  var ResultClass = function (_React$Component) {
+    _inherits(ResultClass, _React$Component);
+
+    _createClass(ResultClass, null, [{
+      key: 'propTypes',
+      get: function get() {
+        var _Component$propTypes = Component.propTypes;
+        var width = _Component$propTypes.width;
+
+        var otherPropTypes = _objectWithoutProperties(_Component$propTypes, ['width']);
+
+        return otherPropTypes;
+      }
+    }]);
+
+    function ResultClass(props) {
+      _classCallCheck(this, ResultClass);
+
+      var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ResultClass).call(this, props));
+
+      _this.state = {
+        width: 0
+      };
+      _this._onResize = _this._onResize.bind(_this);
+      return _this;
+    }
+
+    /**
+     * Get the width of the container and assign the width.
+     * @private
+     */
+
+
+    _createClass(ResultClass, [{
+      key: '_onResize',
+      value: function _onResize() {
+        var containerElement = (0, _reactUtils.getDOMNode)(this.refs[CONTAINER_REF]);
+        var offsetWidth = containerElement.offsetWidth;
+        if (this.state.width !== offsetWidth) {
+          this.setState({
+            width: offsetWidth
+          });
+        }
+      }
+    }, {
+      key: 'componentDidMount',
+      value: function componentDidMount() {
+        this._onResize();
+        this.cancelSubscription = subscribeToDebouncedResize(this._onResize);
+      }
+    }, {
+      key: 'componentWillReceiveProps',
+      value: function componentWillReceiveProps() {
+        this._onResize();
+      }
+    }, {
+      key: 'componentWillUnmount',
+      value: function componentWillUnmount() {
+        this.cancelSubscription();
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        var width = this.state.width;
+
+        return _react2.default.createElement(
+          'div',
+          {
+            ref: CONTAINER_REF },
+          _react2.default.createElement(Component, _extends({
+            width: width
+          }, this.props))
+        );
+      }
+    }]);
+
+    return ResultClass;
+  }(_react2.default.Component);
+
+  ResultClass.displayName = 'Flexible' + Component.displayName;
+
+  return ResultClass;
+}
+},{"./utils/react-utils":355,"global/window":178,"react":502}],325:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _axisUtils = require('../../utils/axis-utils');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var LEFT = _axisUtils.ORIENTATION.LEFT;
+var RIGHT = _axisUtils.ORIENTATION.RIGHT;
+var TOP = _axisUtils.ORIENTATION.TOP;
+var BOTTOM = _axisUtils.ORIENTATION.BOTTOM;
+
+
+var propTypes = {
+  width: _react2.default.PropTypes.number.isRequired,
+  height: _react2.default.PropTypes.number.isRequired,
+  orientation: _react2.default.PropTypes.oneOf([LEFT, RIGHT, TOP, BOTTOM]).isRequired
+};
+
+function AxisLine(_ref) {
+  var orientation = _ref.orientation;
+  var width = _ref.width;
+  var height = _ref.height;
+
+  var lineProps = void 0;
+  if (orientation === LEFT) {
+    lineProps = {
+      x1: width,
+      x2: width,
+      y1: 0,
+      y2: height
+    };
+  } else if (orientation === RIGHT) {
+    lineProps = {
+      x1: 0,
+      x2: 0,
+      y1: 0,
+      y2: height
+    };
+  } else if (orientation === TOP) {
+    lineProps = {
+      x1: 0,
+      x2: width,
+      y1: height,
+      y2: height
+    };
+  } else {
+    lineProps = {
+      x1: 0,
+      x2: width,
+      y1: 0,
+      y2: 0
+    };
+  }
+  return _react2.default.createElement('line', _extends({}, lineProps, { className: 'rv-xy-plot__axis__line' }));
+}
+
+AxisLine.displayName = 'AxisLine';
+AxisLine.propTypes = propTypes;
+
+exports.default = AxisLine;
+},{"../../utils/axis-utils":352,"react":502}],326:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _axisUtils = require('../../utils/axis-utils');
+
+var _scalesUtils = require('../../utils/scales-utils');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var LEFT = _axisUtils.ORIENTATION.LEFT;
+var RIGHT = _axisUtils.ORIENTATION.RIGHT;
+var TOP = _axisUtils.ORIENTATION.TOP;
+var BOTTOM = _axisUtils.ORIENTATION.BOTTOM;
+
+
+var propTypes = {
+  width: _react2.default.PropTypes.number.isRequired,
+  height: _react2.default.PropTypes.number.isRequired,
+  orientation: _react2.default.PropTypes.oneOf([LEFT, RIGHT, TOP, BOTTOM]).isRequired
+};
+
+function _getTickFormatFn(scale, tickTotal, tickFormat) {
+  return !tickFormat ? scale.tickFormat ? scale.tickFormat(tickTotal) : function (v) {
+    return v;
+  } : tickFormat;
+}
+
+var AxisTicks = function (_React$Component) {
+  _inherits(AxisTicks, _React$Component);
+
+  function AxisTicks() {
+    _classCallCheck(this, AxisTicks);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(AxisTicks).apply(this, arguments));
+  }
+
+  _createClass(AxisTicks, [{
+    key: '_isAxisVertical',
+
+
+    /**
+     * Gets if the axis is vertical.
+     * @returns {boolean} True if vertical.
+     * @private
+     */
+    value: function _isAxisVertical() {
+      var orientation = this.props.orientation;
+
+      return orientation === LEFT || orientation === RIGHT;
+    }
+
+    /**
+     * Check if axis ticks should be mirrored (for the right and top positions.
+     * @returns {boolean} True if mirrored.
+     * @private
+     */
+
+  }, {
+    key: '_areTicksWrapped',
+    value: function _areTicksWrapped() {
+      var orientation = this.props.orientation;
+
+      return orientation === LEFT || orientation === TOP;
+    }
+  }, {
+    key: '_getTickContainerPropsGetterFn',
+    value: function _getTickContainerPropsGetterFn() {
+      if (this._isAxisVertical()) {
+        return function (pos) {
+          return { transform: 'translate(0, ' + pos + ')' };
+        };
+      }
+      return function (pos) {
+        return { transform: 'translate(' + pos + ', 0)' };
+      };
+    }
+
+    /**
+     * Get hte props of the tick line.
+     * @returns {Object} Props.
+     * @private
+     */
+
+  }, {
+    key: '_getTickLineProps',
+    value: function _getTickLineProps() {
+      var _ref;
+
+      var _props = this.props;
+      var tickSize = _props.tickSize;
+      var _props$tickSizeOuter = _props.tickSizeOuter;
+      var tickSizeOuter = _props$tickSizeOuter === undefined ? tickSize : _props$tickSizeOuter;
+      var _props$tickSizeInner = _props.tickSizeInner;
+      var tickSizeInner = _props$tickSizeInner === undefined ? tickSize : _props$tickSizeInner;
+
+      var isVertical = this._isAxisVertical();
+      var tickXAttr = isVertical ? 'y' : 'x';
+      var tickYAttr = isVertical ? 'x' : 'y';
+      var wrap = this._areTicksWrapped() ? -1 : 1;
+      return _ref = {}, _defineProperty(_ref, tickXAttr + '1', 0), _defineProperty(_ref, tickXAttr + '2', 0), _defineProperty(_ref, tickYAttr + '1', -wrap * tickSizeOuter), _defineProperty(_ref, tickYAttr + '2', wrap * tickSizeInner), _ref;
+    }
+
+    /**
+     * Get attributes for the label of the tick.
+     * @returns {Object} Object with properties.
+     * @private
+     */
+
+  }, {
+    key: '_getTickLabelProps',
+    value: function _getTickLabelProps() {
+      var _props2 = this.props;
+      var orientation = _props2.orientation;
+      var tickLabelAngle = _props2.tickLabelAngle;
+      var tickSize = _props2.tickSize;
+      var _props2$tickSizeOuter = _props2.tickSizeOuter;
+      var tickSizeOuter = _props2$tickSizeOuter === undefined ? tickSize : _props2$tickSizeOuter;
+      var _props2$tickPadding = _props2.tickPadding;
+      var tickPadding = _props2$tickPadding === undefined ? tickSize : _props2$tickPadding;
+
+      // Assign the text orientation inside the label of the tick mark.
+
+      var textAnchor = void 0;
+      if (orientation === LEFT || orientation === BOTTOM && tickLabelAngle) {
+        textAnchor = 'end';
+      } else if (orientation === RIGHT || orientation === TOP && tickLabelAngle) {
+        textAnchor = 'start';
+      } else {
+        textAnchor = 'middle';
+      }
+
+      // The label's position is translated to the given padding and then the
+      // label is rotated to the given angle.
+      var isVertical = this._isAxisVertical();
+      var wrap = this._areTicksWrapped() ? -1 : 1;
+
+      var labelOffset = wrap * (tickSizeOuter + tickPadding);
+      var transform = (isVertical ? 'translate(' + labelOffset + ', 0)' : 'translate(0, ' + labelOffset + ')') + (tickLabelAngle ? ' rotate(' + tickLabelAngle + ')' : '');
+
+      // Set the vertical offset of the label according to the position of
+      // the axis.
+      var dy = orientation === TOP || tickLabelAngle ? '0' : orientation === BOTTOM ? '0.72em' : '0.32em';
+
+      return {
+        textAnchor: textAnchor,
+        dy: dy,
+        transform: transform
+      };
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props3 = this.props;
+      var attr = _props3.attr;
+      var orientation = _props3.orientation;
+      var width = _props3.width;
+      var height = _props3.height;
+      var tickFormat = _props3.tickFormat;
+      var tickTotal = _props3.tickTotal;
+      var tickValues = _props3.tickValues;
+
+
+      var x = orientation === LEFT ? width : 0;
+      var y = orientation === TOP ? height : 0;
+
+      var scale = (0, _scalesUtils.getAttributeScale)(this.props, attr);
+
+      var values = (0, _axisUtils.getTickValues)(scale, tickTotal, tickValues);
+      var tickFormatFn = _getTickFormatFn(scale, tickTotal, tickFormat);
+
+      var translateFn = this._getTickContainerPropsGetterFn();
+      var pathProps = this._getTickLineProps();
+      var textProps = this._getTickLabelProps();
+
+      var ticks = values.map(function (v, i) {
+        var pos = scale(v);
+        var text = tickFormatFn(v);
+
+        return _react2.default.createElement(
+          'g',
+          _extends({ key: i }, translateFn(pos, 0), { className: 'rv-xy-plot__axis__tick' }),
+          _react2.default.createElement('line', _extends({}, pathProps, { className: 'rv-xy-plot__axis__tick__line' })),
+          _react2.default.createElement(
+            'text',
+            _extends({}, textProps, { className: 'rv-xy-plot__axis__tick__text' }),
+            text
+          )
+        );
+      });
+
+      return _react2.default.createElement(
+        'g',
+        {
+          transform: 'translate(' + x + ', ' + y + ')',
+          className: 'rv-xy-plot__axis__ticks' },
+        ticks
+      );
+    }
+  }]);
+
+  return AxisTicks;
+}(_react2.default.Component);
+
+AxisTicks.displayName = 'AxisTicks';
+AxisTicks.propTypes = propTypes;
+AxisTicks.requiresSVG = true;
+
+exports.default = AxisTicks;
+},{"../../utils/axis-utils":352,"../../utils/scales-utils":356,"react":502}],327:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _axisUtils = require('../../utils/axis-utils');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var LEFT = _axisUtils.ORIENTATION.LEFT;
+var RIGHT = _axisUtils.ORIENTATION.RIGHT;
+var TOP = _axisUtils.ORIENTATION.TOP;
+var BOTTOM = _axisUtils.ORIENTATION.BOTTOM;
+
+
+var propTypes = {
+  width: _react2.default.PropTypes.number.isRequired,
+  height: _react2.default.PropTypes.number.isRequired,
+  orientation: _react2.default.PropTypes.oneOf([LEFT, RIGHT, TOP, BOTTOM]).isRequired,
+  title: _react2.default.PropTypes.string.isRequired
+};
+
+function AxisTitle(_ref) {
+  var orientation = _ref.orientation;
+  var width = _ref.width;
+  var height = _ref.height;
+  var title = _ref.title;
+
+  var x = orientation === LEFT ? width : 0;
+  var y = orientation === TOP ? height : 0;
+  var style = void 0;
+  if (orientation === LEFT) {
+    style = {
+      transform: 'translate(1em, 0) rotate(-90deg)',
+      textAnchor: 'end'
+    };
+  } else if (orientation === RIGHT) {
+    style = {
+      transform: 'translate(-0.5em, ' + height + 'px) rotate(-90deg)',
+      textAnchor: 'start'
+    };
+  } else if (orientation === BOTTOM) {
+    style = {
+      transform: 'translate(' + width + 'px, -6px)',
+      textAnchor: 'end'
+    };
+  } else {
+    style = {
+      transform: 'translate(0px, 1em)'
+    };
+  }
+  return _react2.default.createElement(
+    'g',
+    { transform: 'translate(' + x + ', ' + y + ')', className: 'rv-xy-plot__axis__title' },
+    _react2.default.createElement(
+      'g',
+      { style: style },
+      _react2.default.createElement(
+        'text',
+        null,
+        title
+      )
+    )
+  );
+}
+
+AxisTitle.displayName = 'AxisTitle';
+AxisTitle.propTypes = propTypes;
+
+exports.default = AxisTitle;
+},{"../../utils/axis-utils":352,"react":502}],328:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _animation = require('../../animation');
+
+var _animation2 = _interopRequireDefault(_animation);
+
+var _pureRenderComponent = require('../../pure-render-component');
+
+var _pureRenderComponent2 = _interopRequireDefault(_pureRenderComponent);
+
+var _axisUtils = require('../../utils/axis-utils');
+
+var _axisLine = require('./axis-line');
+
+var _axisLine2 = _interopRequireDefault(_axisLine);
+
+var _axisTicks = require('./axis-ticks');
+
+var _axisTicks2 = _interopRequireDefault(_axisTicks);
+
+var _axisTitle = require('./axis-title');
+
+var _axisTitle2 = _interopRequireDefault(_axisTitle);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var animatedProps = ['xRange', 'yRange', 'xDomain', 'yDomain', 'width', 'height', 'marginLeft', 'marginTop', 'marginRight', 'marginBottom', 'tickSize', 'tickTotal', 'tickSizeInner', 'tickSizeOuter'];
+
+var LEFT = _axisUtils.ORIENTATION.LEFT;
+var RIGHT = _axisUtils.ORIENTATION.RIGHT;
+var TOP = _axisUtils.ORIENTATION.TOP;
+var BOTTOM = _axisUtils.ORIENTATION.BOTTOM;
+
+
+var propTypes = {
+  orientation: _react2.default.PropTypes.oneOf([LEFT, RIGHT, TOP, BOTTOM]),
+  attr: _react2.default.PropTypes.string.isRequired,
+  width: _react2.default.PropTypes.number,
+  height: _react2.default.PropTypes.number,
+  top: _react2.default.PropTypes.number,
+  left: _react2.default.PropTypes.number,
+  title: _react2.default.PropTypes.string,
+
+  tickLabelAngle: _react2.default.PropTypes.number,
+  tickSize: _react2.default.PropTypes.number,
+  tickSizeInner: _react2.default.PropTypes.number,
+  tickSizeOuter: _react2.default.PropTypes.number,
+  tickPadding: _react2.default.PropTypes.number,
+  tickValues: _react2.default.PropTypes.array,
+  tickFormat: _react2.default.PropTypes.func,
+  tickTotal: _react2.default.PropTypes.number,
+
+  // Not expected to be used by the users.
+  // TODO: Add underscore to these properties later.
+  marginTop: _react2.default.PropTypes.number,
+  marginBottom: _react2.default.PropTypes.number,
+  marginLeft: _react2.default.PropTypes.number,
+  marginRight: _react2.default.PropTypes.number,
+  innerWidth: _react2.default.PropTypes.number,
+  innerHeight: _react2.default.PropTypes.number
+};
+
+var defaultProps = {
+  tickSize: 6,
+  tickPadding: 8,
+  orientation: BOTTOM
+};
+
+var Axis = function (_PureRenderComponent) {
+  _inherits(Axis, _PureRenderComponent);
+
+  function Axis() {
+    _classCallCheck(this, Axis);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Axis).apply(this, arguments));
+  }
+
+  _createClass(Axis, [{
+    key: '_getDefaultAxisProps',
+
+
+    /**
+     * Define the default values depending on the data passed from the outside.
+     * @returns {*} Object of default properties.
+     * @private
+     */
+    value: function _getDefaultAxisProps() {
+      var _props = this.props;
+      var innerWidth = _props.innerWidth;
+      var innerHeight = _props.innerHeight;
+      var marginTop = _props.marginTop;
+      var marginBottom = _props.marginBottom;
+      var marginLeft = _props.marginLeft;
+      var marginRight = _props.marginRight;
+      var orientation = _props.orientation;
+
+      if (orientation === BOTTOM) {
+        return {
+          tickTotal: (0, _axisUtils.getTicksTotalFromSize)(innerWidth),
+          top: innerHeight + marginTop,
+          left: marginLeft,
+          width: innerWidth,
+          height: marginBottom
+        };
+      } else if (orientation === TOP) {
+        return {
+          tickTotal: (0, _axisUtils.getTicksTotalFromSize)(innerWidth),
+          top: 0,
+          left: marginLeft,
+          width: innerWidth,
+          height: marginTop
+        };
+      } else if (orientation === LEFT) {
+        return {
+          tickTotal: (0, _axisUtils.getTicksTotalFromSize)(innerHeight),
+          top: marginTop,
+          left: 0,
+          width: marginLeft,
+          height: innerHeight
+        };
+      }
+      return {
+        tickTotal: (0, _axisUtils.getTicksTotalFromSize)(innerHeight),
+        top: marginTop,
+        left: marginLeft + innerWidth,
+        width: marginRight,
+        height: innerHeight
+      };
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var animation = this.props.animation;
+
+
+      if (animation) {
+        return _react2.default.createElement(
+          _animation2.default,
+          _extends({}, this.props, { animatedProps: animatedProps }),
+          _react2.default.createElement(Axis, _extends({}, this.props, { animation: null }))
+        );
+      }
+
+      var props = _extends({}, this._getDefaultAxisProps(), this.props);
+
+      var left = props.left;
+      var top = props.top;
+      var width = props.width;
+      var height = props.height;
+      var orientation = props.orientation;
+      var title = props.title;
+
+
+      return _react2.default.createElement(
+        'g',
+        {
+          transform: 'translate(' + left + ',' + top + ')',
+          className: 'rv-xy-plot__axis' },
+        _react2.default.createElement(_axisLine2.default, {
+          height: height,
+          width: width,
+          orientation: orientation }),
+        _react2.default.createElement(_axisTicks2.default, props),
+        title ? _react2.default.createElement(_axisTitle2.default, {
+          title: title,
+          height: height,
+          width: width,
+          orientation: orientation }) : null
+      );
+    }
+  }]);
+
+  return Axis;
+}(_pureRenderComponent2.default);
+
+Axis.displayName = 'Axis';
+Axis.propTypes = propTypes;
+Axis.defaultProps = defaultProps;
+Axis.requiresSVG = true;
+
+exports.default = Axis;
+},{"../../animation":318,"../../pure-render-component":346,"../../utils/axis-utils":352,"./axis-line":325,"./axis-ticks":326,"./axis-title":327,"react":502}],329:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _axis = require('./axis');
+
+var _axis2 = _interopRequireDefault(_axis);
+
+var _axisUtils = require('../../utils/axis-utils');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var TOP = _axisUtils.ORIENTATION.TOP;
+var BOTTOM = _axisUtils.ORIENTATION.BOTTOM;
+
+
+var propTypes = _extends({}, _axis2.default.propTypes, {
+  orientation: _react2.default.PropTypes.oneOf([TOP, BOTTOM])
+});
+
+var defaultProps = {
+  orientation: BOTTOM,
+  attr: 'x'
+};
+
+function XAxis(props) {
+  return _react2.default.createElement(_axis2.default, props);
+}
+
+XAxis.displayName = 'XAxis';
+XAxis.propTypes = propTypes;
+XAxis.defaultProps = defaultProps;
+XAxis.requiresSVG = true;
+
+exports.default = XAxis;
+},{"../../utils/axis-utils":352,"./axis":328,"react":502}],330:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _axis = require('./axis');
+
+var _axis2 = _interopRequireDefault(_axis);
+
+var _axisUtils = require('../../utils/axis-utils');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var LEFT = _axisUtils.ORIENTATION.LEFT;
+var RIGHT = _axisUtils.ORIENTATION.RIGHT;
+
+
+var propTypes = _extends({}, _axis2.default.propTypes, {
+  orientation: _react2.default.PropTypes.oneOf([LEFT, RIGHT])
+});
+
+var defaultProps = {
+  orientation: LEFT,
+  attr: 'y'
+};
+
+function YAxis(props) {
+  return _react2.default.createElement(_axis2.default, props);
+}
+
+YAxis.displayName = 'YAxis';
+YAxis.propTypes = propTypes;
+YAxis.defaultProps = defaultProps;
+YAxis.requiresSVG = true;
+
+exports.default = YAxis;
+},{"../../utils/axis-utils":352,"./axis":328,"react":502}],331:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _pureRenderComponent = require('../pure-render-component');
+
+var _pureRenderComponent2 = _interopRequireDefault(_pureRenderComponent);
+
+var _scalesUtils = require('../utils/scales-utils');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+/**
+ * Format title by detault.
+ * @param {Array} values List of values.
+ * @returns {*} Formatted value or undefined.
+ */
+function defaultTitleFormat(values) {
+  var value = getFirstNonEmptyValue(values);
+  if (value) {
+    return {
+      title: 'x',
+      value: value.x
+    };
+  }
+}
+
+/**
+ * Format items by default.
+ * @param {Array} values Array of values.
+ * @returns {*} Formatted list of items.
+ */
+function defaultItemsFormat(values) {
+  return values.map(function (v, i) {
+    if (v) {
+      return { value: v.y, title: i };
+    }
+  });
+}
+
+/**
+ * Get the first non-empty item from an array.
+ * @param {Array} values Array of values.
+ * @returns {*} First non-empty value or undefined.
+ */
+function getFirstNonEmptyValue(values) {
+  return (values || []).find(function (v) {
+    return Boolean(v);
+  });
+}
+
+var Crosshair = function (_PureRenderComponent) {
+  _inherits(Crosshair, _PureRenderComponent);
+
+  function Crosshair() {
+    _classCallCheck(this, Crosshair);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Crosshair).apply(this, arguments));
+  }
+
+  _createClass(Crosshair, [{
+    key: '_renderCrosshairTitle',
+
+
+    /**
+     * Render crosshair title.
+     * @returns {*} Container with the crosshair title.
+     * @private
+     */
+    value: function _renderCrosshairTitle() {
+      var _props = this.props;
+      var values = _props.values;
+      var titleFormat = _props.titleFormat;
+
+      var titleItem = titleFormat(values);
+      if (!titleItem) {
+        return null;
+      }
+      return _react2.default.createElement(
+        'div',
+        { className: 'rv-crosshair__title', key: 'title' },
+        _react2.default.createElement(
+          'span',
+          { className: 'rv-crosshair__title__title' },
+          titleItem.title
+        ),
+        ': ',
+        _react2.default.createElement(
+          'span',
+          { className: 'rv-crosshair__title__value' },
+          titleItem.value
+        )
+      );
+    }
+
+    /**
+     * Render crosshair items (title + value for each series).
+     * @returns {*} Array of React classes with the crosshair values.
+     * @private
+     */
+
+  }, {
+    key: '_renderCrosshairItems',
+    value: function _renderCrosshairItems() {
+      var _props2 = this.props;
+      var values = _props2.values;
+      var itemsFormat = _props2.itemsFormat;
+
+      var items = itemsFormat(values);
+      if (!items) {
+        return null;
+      }
+      return items.filter(function (i) {
+        return i;
+      }).map(function renderValue(item, i) {
+        return _react2.default.createElement(
+          'div',
+          { className: 'rv-crosshair__item', key: 'item' + i },
+          _react2.default.createElement(
+            'span',
+            { className: 'rv-crosshair__item__title' },
+            item.title
+          ),
+          ': ',
+          _react2.default.createElement(
+            'span',
+            { className: 'rv-crosshair__item__value' },
+            item.value
+          )
+        );
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props3 = this.props;
+      var children = _props3.children;
+      var values = _props3.values;
+      var marginTop = _props3.marginTop;
+      var marginLeft = _props3.marginLeft;
+      var innerWidth = _props3.innerWidth;
+      var innerHeight = _props3.innerHeight;
+
+      var value = getFirstNonEmptyValue(values);
+      if (!value) {
+        return null;
+      }
+      var x = (0, _scalesUtils.getAttributeFunctor)(this.props, 'x');
+      var innerLeft = x(value);
+
+      var orientation = innerLeft > innerWidth / 2 ? 'left' : 'right';
+      var left = marginLeft + innerLeft;
+      var top = marginTop;
+      var innerClassName = 'rv-crosshair__inner rv-crosshair__inner--' + orientation;
+
+      return _react2.default.createElement(
+        'div',
+        {
+          className: 'rv-crosshair',
+          style: { left: left + 'px', top: top + 'px' } },
+        _react2.default.createElement('div', {
+          className: 'rv-crosshair__line',
+          style: { height: innerHeight + 'px' } }),
+        _react2.default.createElement(
+          'div',
+          { className: innerClassName },
+          children ? children : _react2.default.createElement(
+            'div',
+            { className: 'rv-crosshair__inner__content' },
+            _react2.default.createElement(
+              'div',
+              null,
+              this._renderCrosshairTitle(),
+              this._renderCrosshairItems()
+            )
+          )
+        )
+      );
+    }
+  }], [{
+    key: 'propTypes',
+    get: function get() {
+      return {
+        values: _react2.default.PropTypes.array,
+        series: _react2.default.PropTypes.object,
+        innerWidth: _react2.default.PropTypes.number,
+        innerHeight: _react2.default.PropTypes.number,
+        marginLeft: _react2.default.PropTypes.number,
+        marginTop: _react2.default.PropTypes.number,
+        itemsFormat: _react2.default.PropTypes.func,
+        titleFormat: _react2.default.PropTypes.func
+      };
+    }
+  }, {
+    key: 'defaultProps',
+    get: function get() {
+      return {
+        titleFormat: defaultTitleFormat,
+        itemsFormat: defaultItemsFormat
+      };
+    }
+  }]);
+
+  return Crosshair;
+}(_pureRenderComponent2.default);
+
+Crosshair.displayName = 'Crosshair';
+
+exports.default = Crosshair;
+},{"../pure-render-component":346,"../utils/scales-utils":356,"react":502}],332:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _pureRenderComponent = require('../pure-render-component');
+
+var _pureRenderComponent2 = _interopRequireDefault(_pureRenderComponent);
+
+var _scalesUtils = require('../utils/scales-utils');
+
+var _animation = require('../animation');
+
+var _animation2 = _interopRequireDefault(_animation);
+
+var _axisUtils = require('../utils/axis-utils');
+
+var _animationUtils = require('../utils/animation-utils');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var VERTICAL = _axisUtils.DIRECTION.VERTICAL;
+var HORIZONTAL = _axisUtils.DIRECTION.HORIZONTAL;
+
+
+var propTypes = {
+  direction: _react2.default.PropTypes.oneOf([VERTICAL, HORIZONTAL]),
+  attr: _react2.default.PropTypes.string.isRequired,
+  width: _react2.default.PropTypes.number,
+  height: _react2.default.PropTypes.number,
+  top: _react2.default.PropTypes.number,
+  left: _react2.default.PropTypes.number,
+
+  tickValues: _react2.default.PropTypes.array,
+  tickTotal: _react2.default.PropTypes.number,
+
+  animation: _animationUtils.AnimationPropType,
+
+  // Not expected to be used by the users.
+  // TODO: Add underscore to these properties later.
+  marginTop: _react2.default.PropTypes.number,
+  marginBottom: _react2.default.PropTypes.number,
+  marginLeft: _react2.default.PropTypes.number,
+  marginRight: _react2.default.PropTypes.number,
+  innerWidth: _react2.default.PropTypes.number,
+  innerHeight: _react2.default.PropTypes.number
+};
+
+var defaultProps = {
+  direction: VERTICAL
+};
+
+var animatedProps = ['xRange', 'yRange', 'xDomain', 'yDomain', 'width', 'height', 'marginLeft', 'marginTop', 'marginRight', 'marginBottom', 'tickTotal'];
+
+var GridLines = function (_PureRenderComponent) {
+  _inherits(GridLines, _PureRenderComponent);
+
+  function GridLines() {
+    _classCallCheck(this, GridLines);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(GridLines).apply(this, arguments));
+  }
+
+  _createClass(GridLines, [{
+    key: '_getDefaultProps',
+    value: function _getDefaultProps() {
+      var _props = this.props;
+      var innerWidth = _props.innerWidth;
+      var innerHeight = _props.innerHeight;
+      var marginTop = _props.marginTop;
+      var marginLeft = _props.marginLeft;
+      var direction = _props.direction;
+
+      return {
+        left: marginLeft,
+        top: marginTop,
+        width: innerWidth,
+        height: innerHeight,
+        tickTotal: (0, _axisUtils.getTicksTotalFromSize)(direction === VERTICAL ? innerWidth : innerHeight)
+      };
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var animation = this.props.animation;
+
+      if (animation) {
+        return _react2.default.createElement(
+          _animation2.default,
+          _extends({}, this.props, { animatedProps: animatedProps }),
+          _react2.default.createElement(GridLines, _extends({}, this.props, { animation: null }))
+        );
+      }
+
+      var props = _extends({}, this._getDefaultProps(), this.props);
+
+      var attr = props.attr;
+      var direction = props.direction;
+      var width = props.width;
+      var height = props.height;
+      var tickTotal = props.tickTotal;
+      var tickValues = props.tickValues;
+      var top = props.top;
+      var left = props.left;
+
+      var isVertical = direction === VERTICAL;
+      var tickXAttr = isVertical ? 'y' : 'x';
+      var tickYAttr = isVertical ? 'x' : 'y';
+      var length = isVertical ? height : width;
+
+      var scale = (0, _scalesUtils.getAttributeScale)(props, attr);
+      var values = (0, _axisUtils.getTickValues)(scale, tickTotal, tickValues);
+
+      return _react2.default.createElement(
+        'g',
+        {
+          transform: 'translate(' + left + ',' + top + ')',
+          className: 'rv-xy-plot__grid-lines' },
+        values.map(function (v, i) {
+          var _pathProps;
+
+          var pos = scale(v);
+          var pathProps = (_pathProps = {}, _defineProperty(_pathProps, tickYAttr + '1', pos), _defineProperty(_pathProps, tickYAttr + '2', pos), _defineProperty(_pathProps, tickXAttr + '1', 0), _defineProperty(_pathProps, tickXAttr + '2', length), _pathProps);
+          return _react2.default.createElement('line', _extends({}, pathProps, {
+            key: i,
+            className: 'rv-xy-plot__grid-lines__line' }));
+        })
+      );
+    }
+  }]);
+
+  return GridLines;
+}(_pureRenderComponent2.default);
+
+GridLines.displayName = 'GridLines';
+GridLines.defaultProps = defaultProps;
+GridLines.propTypes = propTypes;
+GridLines.requiresSVG = true;
+
+exports.default = GridLines;
+},{"../animation":318,"../pure-render-component":346,"../utils/animation-utils":351,"../utils/axis-utils":352,"../utils/scales-utils":356,"react":502}],333:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _pureRenderComponent = require('../pure-render-component');
+
+var _pureRenderComponent2 = _interopRequireDefault(_pureRenderComponent);
+
+var _scalesUtils = require('../utils/scales-utils');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var ORIENTATION_AUTO = 'auto';
+var ORIENTATION_TOPLEFT = 'topleft';
+var ORIENTATION_BOTTOMLEFT = 'bottomleft';
+var ORIENTATION_TOPRIGHT = 'topright';
+var ORIENTATION_BOTTOMRIGHT = 'bottomright';
+
+/**
+ * Default format function for the value.
+ * @param {Object} value Value.
+ * @returns {Array} title-value pairs.
+ */
+function defaultFormat(value) {
+  return Object.keys(value).map(function getProp(key) {
+    return { title: key, value: value[key] };
+  });
+}
+
+var Hint = function (_PureRenderComponent) {
+  _inherits(Hint, _PureRenderComponent);
+
+  function Hint() {
+    _classCallCheck(this, Hint);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Hint).apply(this, arguments));
+  }
+
+  _createClass(Hint, [{
+    key: '_getCSSRight',
+
+
+    /**
+     * Get the right coordinate of the hint.
+     * @param {number} x X.
+     * @returns {{right: *}} Mixin.
+     * @private
+     */
+    value: function _getCSSRight(x) {
+      var _props = this.props;
+      var innerWidth = _props.innerWidth;
+      var marginRight = _props.marginRight;
+
+      return {
+        right: marginRight + innerWidth - x + 'px'
+      };
+    }
+
+    /**
+     * Get the left coordinate of the hint.
+     * @param {number} x X.
+     * @returns {{left: *}} Mixin.
+     * @private
+     */
+
+  }, {
+    key: '_getCSSLeft',
+    value: function _getCSSLeft(x) {
+      var marginLeft = this.props.marginLeft;
+
+      return {
+        left: marginLeft + x + 'px'
+      };
+    }
+
+    /**
+     * Get the bottom coordinate of the hint.
+     * @param {number} y Y.
+     * @returns {{bottom: *}} Mixin.
+     * @private
+     */
+
+  }, {
+    key: '_getCSSBottom',
+    value: function _getCSSBottom(y) {
+      var _props2 = this.props;
+      var innerHeight = _props2.innerHeight;
+      var marginBottom = _props2.marginBottom;
+
+      return {
+        bottom: marginBottom + innerHeight - y + 'px'
+      };
+    }
+
+    /**
+     * Get the top coordinate of the hint.
+     * @param {number} y Y.
+     * @returns {{top: *}} Mixin.
+     * @private
+     */
+
+  }, {
+    key: '_getCSSTop',
+    value: function _getCSSTop(y) {
+      var marginTop = this.props.marginTop;
+
+      return {
+        top: marginTop + y + 'px'
+      };
+    }
+
+    /**
+     * Convert the "automatic" orientation to the real one depending on the values
+     * of x and y.
+     * @param {number} x X value.
+     * @param {number} y Y value.
+     * @returns {string} Orientation.
+     * @private
+     */
+
+  }, {
+    key: '_getOrientationFromAuto',
+    value: function _getOrientationFromAuto(x, y) {
+      var _props3 = this.props;
+      var innerWidth = _props3.innerWidth;
+      var innerHeight = _props3.innerHeight;
+
+      if (x > innerWidth / 2) {
+        if (y > innerHeight / 2) {
+          return ORIENTATION_TOPLEFT;
+        }
+        return ORIENTATION_BOTTOMLEFT;
+      }
+      if (y > innerHeight / 2) {
+        return ORIENTATION_TOPRIGHT;
+      }
+      return ORIENTATION_BOTTOMRIGHT;
+    }
+
+    /**
+     * Get a CSS mixin for a proper positioning of the element.
+     * @param {string} orientation Orientation.
+     * @param {number} x X position.
+     * @param {number} y Y position.
+     * @returns {Object} Object, that may contain `left` or `right, `top` or
+     * `bottom` properties.
+     * @private
+     */
+
+  }, {
+    key: '_getOrientationStyle',
+    value: function _getOrientationStyle(orientation, x, y) {
+      var xCSS = void 0;
+      var yCSS = void 0;
+
+      if (orientation === ORIENTATION_BOTTOMLEFT || orientation === ORIENTATION_BOTTOMRIGHT) {
+        yCSS = this._getCSSTop(y);
+      } else {
+        yCSS = this._getCSSBottom(y);
+      }
+      if (orientation === ORIENTATION_TOPLEFT || orientation === ORIENTATION_BOTTOMLEFT) {
+        xCSS = this._getCSSRight(x);
+      } else {
+        xCSS = this._getCSSLeft(x);
+      }
+
+      return _extends({}, xCSS, yCSS);
+    }
+
+    /**
+     * Get the class name from orientation value.
+     * @param {string} orientation Orientation.
+     * @returns {string} Class name.
+     * @private
+     */
+
+  }, {
+    key: '_getOrientationClassName',
+    value: function _getOrientationClassName(orientation) {
+      return 'rv-hint--orientation-' + orientation;
+    }
+
+    /**
+     * Get the position for the hint and the appropriate class name.
+     * @returns {{style: Object, className: string}} Style and className for the
+     * hint.
+     * @private
+     */
+
+  }, {
+    key: '_getPositionInfo',
+    value: function _getPositionInfo() {
+      var _props4 = this.props;
+      var value = _props4.value;
+      var initialOrientation = _props4.orientation;
+
+
+      var x = (0, _scalesUtils.getAttributeFunctor)(this.props, 'x')(value);
+      var y = (0, _scalesUtils.getAttributeFunctor)(this.props, 'y')(value);
+
+      var orientation = initialOrientation === ORIENTATION_AUTO ? this._getOrientationFromAuto(x, y) : initialOrientation;
+
+      return {
+        style: this._getOrientationStyle(orientation, x, y),
+        className: this._getOrientationClassName(orientation)
+      };
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props5 = this.props;
+      var value = _props5.value;
+      var format = _props5.format;
+      var children = _props5.children;
+
+      var _getPositionInfo2 = this._getPositionInfo();
+
+      var style = _getPositionInfo2.style;
+      var className = _getPositionInfo2.className;
+
+      return _react2.default.createElement(
+        'div',
+        {
+          className: 'rv-hint ' + className,
+          style: _extends({}, style, {
+            position: 'absolute'
+          }) },
+        children ? children : _react2.default.createElement(
+          'div',
+          { className: 'rv-hint__content' },
+          format(value).map(function (formattedProp, i) {
+            return _react2.default.createElement(
+              'div',
+              { key: 'rv-hint' + i },
+              _react2.default.createElement(
+                'span',
+                { className: 'rv-hint__title' },
+                formattedProp.title
+              ),
+              ': ',
+              _react2.default.createElement(
+                'span',
+                { className: 'rv-hint__value' },
+                formattedProp.value
+              )
+            );
+          })
+        )
+      );
+    }
+  }], [{
+    key: 'propTypes',
+    get: function get() {
+      return {
+        marginTop: _react2.default.PropTypes.number,
+        marginLeft: _react2.default.PropTypes.number,
+        innerWidth: _react2.default.PropTypes.number,
+        innerHeight: _react2.default.PropTypes.number,
+        scales: _react2.default.PropTypes.object,
+        value: _react2.default.PropTypes.object,
+        format: _react2.default.PropTypes.func,
+        orientation: _react2.default.PropTypes.oneOf([ORIENTATION_AUTO, ORIENTATION_BOTTOMLEFT, ORIENTATION_BOTTOMRIGHT, ORIENTATION_TOPLEFT, ORIENTATION_TOPRIGHT])
+      };
+    }
+  }, {
+    key: 'defaultProps',
+    get: function get() {
+      return {
+        format: defaultFormat,
+        orientation: ORIENTATION_AUTO
+      };
+    }
+  }]);
+
+  return Hint;
+}(_pureRenderComponent2.default);
+
+Hint.displayName = 'Hint';
+
+exports.default = Hint;
+},{"../pure-render-component":346,"../utils/scales-utils":356,"react":502}],334:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _gridLines = require('./grid-lines');
+
+var _gridLines2 = _interopRequireDefault(_gridLines);
+
+var _axisUtils = require('../utils/axis-utils');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var HORIZONTAL = _axisUtils.DIRECTION.HORIZONTAL;
+
+
+var propTypes = _extends({}, _gridLines2.default.propTypes, {
+  direction: _react2.default.PropTypes.oneOf([HORIZONTAL])
+});
+
+var defaultProps = {
+  direction: HORIZONTAL,
+  attr: 'y'
+};
+
+function HorizontalGridLines(props) {
+  return _react2.default.createElement(_gridLines2.default, props);
+}
+
+HorizontalGridLines.displayName = 'HorizontalGridLines';
+HorizontalGridLines.propTypes = propTypes;
+HorizontalGridLines.defaultProps = defaultProps;
+HorizontalGridLines.requiresSVG = true;
+
+exports.default = HorizontalGridLines;
+},{"../utils/axis-utils":352,"./grid-lines":332,"react":502}],335:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _pureRenderComponent = require('../../pure-render-component');
+
+var _pureRenderComponent2 = _interopRequireDefault(_pureRenderComponent);
+
+var _scalesUtils = require('../../utils/scales-utils');
+
+var _animationUtils = require('../../utils/animation-utils');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var propTypes = _extends({}, (0, _scalesUtils.getScalePropTypesByAttribute)('x'), (0, _scalesUtils.getScalePropTypesByAttribute)('y'), (0, _scalesUtils.getScalePropTypesByAttribute)('size'), (0, _scalesUtils.getScalePropTypesByAttribute)('opacity'), (0, _scalesUtils.getScalePropTypesByAttribute)('color'), {
+  width: _react2.default.PropTypes.number,
+  height: _react2.default.PropTypes.number,
+  data: _react2.default.PropTypes.array,
+  onValueMouseOver: _react2.default.PropTypes.func,
+  onValueMouseOut: _react2.default.PropTypes.func,
+  onValueClick: _react2.default.PropTypes.func,
+  onSeriesMouseOver: _react2.default.PropTypes.func,
+  onSeriesMouseOut: _react2.default.PropTypes.func,
+  onSeriesClick: _react2.default.PropTypes.func,
+  onNearestX: _react2.default.PropTypes.func,
+  animation: _animationUtils.AnimationPropType
+});
+
+var AbstractSeries = function (_PureRenderComponent) {
+  _inherits(AbstractSeries, _PureRenderComponent);
+
+  function AbstractSeries(props) {
+    _classCallCheck(this, AbstractSeries);
+
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AbstractSeries).call(this, props));
+
+    _this._seriesMouseOverHandler = _this._seriesMouseOverHandler.bind(_this);
+    _this._valueMouseOverHandler = _this._valueMouseOverHandler.bind(_this);
+    _this._seriesMouseOutHandler = _this._seriesMouseOutHandler.bind(_this);
+    _this._valueMouseOutHandler = _this._valueMouseOutHandler.bind(_this);
+    _this._seriesClickHandler = _this._seriesClickHandler.bind(_this);
+    _this._valueClickHandler = _this._valueClickHandler.bind(_this);
+    return _this;
+  }
+
+  /**
+   * Mouse over handler for the specific series' value.
+   * @param {Object} d Value object
+   * @param {Object} event Event.
+   * @protected
+   */
+
+
+  _createClass(AbstractSeries, [{
+    key: '_valueMouseOverHandler',
+    value: function _valueMouseOverHandler(d, event) {
+      var _props = this.props;
+      var onValueMouseOver = _props.onValueMouseOver;
+      var onSeriesMouseOver = _props.onSeriesMouseOver;
+
+      if (onValueMouseOver) {
+        onValueMouseOver(d, { event: event });
+      }
+      if (onSeriesMouseOver) {
+        onSeriesMouseOver({ event: event });
+      }
+    }
+
+    /**
+     * Mouse over handler for the entire series.
+     * @param {Object} event Event.
+     * @protected
+     */
+
+  }, {
+    key: '_seriesMouseOverHandler',
+    value: function _seriesMouseOverHandler(event) {
+      var onSeriesMouseOver = this.props.onSeriesMouseOver;
+
+      if (onSeriesMouseOver) {
+        onSeriesMouseOver({ event: event });
+      }
+    }
+
+    /**
+     * Mouse out handler for the specific series' value.
+     * @param {Object} d Value object
+     * @param {Object} event Event.
+     * @protected
+     */
+
+  }, {
+    key: '_valueMouseOutHandler',
+    value: function _valueMouseOutHandler(d, event) {
+      var _props2 = this.props;
+      var onValueMouseOut = _props2.onValueMouseOut;
+      var onSeriesMouseOut = _props2.onSeriesMouseOut;
+
+      if (onValueMouseOut) {
+        onValueMouseOut(d, { event: event });
+      }
+      if (onSeriesMouseOut) {
+        onSeriesMouseOut({ event: event });
+      }
+    }
+
+    /**
+     * Mouse out handler for the entire series.
+     * @param {Object} event Event.
+     * @protected
+     */
+
+  }, {
+    key: '_seriesMouseOutHandler',
+    value: function _seriesMouseOutHandler(event) {
+      var onSeriesMouseOut = this.props.onSeriesMouseOut;
+
+      if (onSeriesMouseOut) {
+        onSeriesMouseOut({ event: event });
+      }
+    }
+
+    /**
+     * Click handler for the specific series' value.
+     * @param {Object} d Value object
+     * @param {Object} event Event.
+     * @protected
+     */
+
+  }, {
+    key: '_valueClickHandler',
+    value: function _valueClickHandler(d, event) {
+      var _props3 = this.props;
+      var onValueClick = _props3.onValueClick;
+      var onSeriesClick = _props3.onSeriesClick;
+
+      if (onValueClick) {
+        onValueClick(d, { event: event });
+      }
+      if (onSeriesClick) {
+        onSeriesClick({ event: event });
+      }
+    }
+
+    /**
+     * Click handler for the entire series.
+     * @param {Object} event Event.
+     * @protected
+     */
+
+  }, {
+    key: '_seriesClickHandler',
+    value: function _seriesClickHandler(event) {
+      var onSeriesClick = this.props.onSeriesClick;
+
+      if (onSeriesClick) {
+        onSeriesClick({ event: event });
+      }
+    }
+
+    /**
+     * Tells the rest of the world that it requires SVG to work.
+     * @returns {boolean} Result.
+     */
+
+  }, {
+    key: '_getAttributeFunctor',
+
+
+    /**
+     * Get attribute functor.
+     * @param {string} attr Attribute name
+     * @returns {*} Functor.
+     * @protected
+     */
+    value: function _getAttributeFunctor(attr) {
+      return (0, _scalesUtils.getAttributeFunctor)(this.props, attr);
+    }
+
+    /**
+     * Get the attr0 functor.
+     * @param {string} attr Attribute name.
+     * @returns {*} Functor.
+     * @private
+     */
+
+  }, {
+    key: '_getAttr0Functor',
+    value: function _getAttr0Functor(attr) {
+      return (0, _scalesUtils.getAttr0Functor)(this.props, attr);
+    }
+
+    /**
+     * Get the attribute value if it is available.
+     * @param {string} attr Attribute name.
+     * @returns {*} Attribute value if available, fallback value or undefined
+     * otherwise.
+     * @protected
+     */
+
+  }, {
+    key: '_getAttributeValue',
+    value: function _getAttributeValue(attr) {
+      return (0, _scalesUtils.getAttributeValue)(this.props, attr);
+    }
+
+    /**
+     * Get the scale object distance by the attribute from the list of properties.
+     * @param {string} attr Attribute name.
+     * @returns {number} Scale distance.
+     * @protected
+     */
+
+  }, {
+    key: '_getScaleDistance',
+    value: function _getScaleDistance(attr) {
+      var scaleObject = (0, _scalesUtils.getScaleObjectFromProps)(this.props, attr);
+      return scaleObject ? scaleObject.distance : 0;
+    }
+  }, {
+    key: '_getXCoordinateInContainer',
+    value: function _getXCoordinateInContainer(event) {
+      var _props$marginLeft = this.props.marginLeft;
+      var marginLeft = _props$marginLeft === undefined ? 0 : _props$marginLeft;
+      var clientX = event.nativeEvent.clientX;
+      var currentTarget = event.currentTarget;
+
+      var rect = currentTarget.getBoundingClientRect();
+      return clientX - rect.left - currentTarget.clientLeft - marginLeft;
+    }
+  }, {
+    key: 'onParentMouseMove',
+    value: function onParentMouseMove(event) {
+      var _props4 = this.props;
+      var onNearestX = _props4.onNearestX;
+      var data = _props4.data;
+
+      if (!onNearestX || !data) {
+        return;
+      }
+      var minDistance = Number.POSITIVE_INFINITY;
+      var value = null;
+      var valueIndex = null;
+
+      var coordinate = this._getXCoordinateInContainer(event);
+      var xScaleFn = this._getAttributeFunctor('x');
+
+      data.forEach(function (item, i) {
+        var currentCoordinate = xScaleFn(item);
+        var newDistance = Math.abs(coordinate - currentCoordinate);
+        if (newDistance < minDistance) {
+          minDistance = newDistance;
+          value = item;
+          valueIndex = i;
+        }
+      });
+      if (!value) {
+        return;
+      }
+      onNearestX(value, {
+        innerX: xScaleFn(value),
+        index: valueIndex,
+        event: event.nativeEvent
+      });
+    }
+  }], [{
+    key: 'getParentConfig',
+
+
+    /**
+     * Get a default config for the parent.
+     * @returns {Object} Empty config.
+     */
+    value: function getParentConfig() {
+      return {};
+    }
+  }, {
+    key: 'requiresSVG',
+    get: function get() {
+      return true;
+    }
+  }]);
+
+  return AbstractSeries;
+}(_pureRenderComponent2.default);
+
+AbstractSeries.displayName = 'AbstractSeries';
+AbstractSeries.propTypes = propTypes;
+
+exports.default = AbstractSeries;
+},{"../../pure-render-component":346,"../../utils/animation-utils":351,"../../utils/scales-utils":356,"react":502}],336:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _d3Shape = require('d3-shape');
+
+var d3Shape = _interopRequireWildcard(_d3Shape);
+
+var _abstractSeries = require('./abstract-series');
+
+var _abstractSeries2 = _interopRequireDefault(_abstractSeries);
+
+var _animation = require('../../animation');
+
+var _animation2 = _interopRequireDefault(_animation);
+
+var _theme = require('../../theme');
+
+var _seriesUtils = require('../../utils/series-utils');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var AreaSeries = function (_AbstractSeries) {
+  _inherits(AreaSeries, _AbstractSeries);
+
+  function AreaSeries() {
+    _classCallCheck(this, AreaSeries);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(AreaSeries).apply(this, arguments));
+  }
+
+  _createClass(AreaSeries, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props;
+      var data = _props.data;
+      var animation = _props.animation;
+
+      if (!data) {
+        return null;
+      }
+      if (animation) {
+        return _react2.default.createElement(
+          _animation2.default,
+          _extends({}, this.props, { animatedProps: _seriesUtils.ANIMATED_SERIES_PROPS }),
+          _react2.default.createElement(AreaSeries, _extends({}, this.props, { animation: null }))
+        );
+      }
+
+      var _props2 = this.props;
+      var marginLeft = _props2.marginLeft;
+      var marginTop = _props2.marginTop;
+
+
+      var x = this._getAttributeFunctor('x');
+      var y = this._getAttributeFunctor('y');
+      var y0 = this._getAttr0Functor('y');
+      var stroke = this._getAttributeValue('stroke') || this._getAttributeValue('color');
+      var fill = this._getAttributeValue('fill') || this._getAttributeValue('color');
+      var opacity = this._getAttributeValue('opacity') || _theme.DEFAULT_OPACITY;
+      var line = d3Shape.area().x(x).y0(y0).y1(y);
+      var d = line(data);
+
+      return _react2.default.createElement('path', {
+        d: d,
+        className: 'rv-xy-plot__series rv-xy-plot__series--line',
+        transform: 'translate(' + marginLeft + ',' + marginTop + ')',
+        onMouseOver: this._seriesMouseOverHandler,
+        onMouseOut: this._seriesMouseOutHandler,
+        onClick: this._seriesClickHandler,
+        style: {
+          opacity: opacity,
+          stroke: stroke,
+          fill: fill
+        } });
+    }
+  }]);
+
+  return AreaSeries;
+}(_abstractSeries2.default);
+
+AreaSeries.displayName = 'AreaSeries';
+
+exports.default = AreaSeries;
+},{"../../animation":318,"../../theme":349,"../../utils/series-utils":357,"./abstract-series":335,"d3-shape":117,"react":502}],337:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _abstractSeries = require('./abstract-series');
+
+var _abstractSeries2 = _interopRequireDefault(_abstractSeries);
+
+var _animation = require('../../animation');
+
+var _animation2 = _interopRequireDefault(_animation);
+
+var _seriesUtils = require('../../utils/series-utils');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var BarSeries = function (_AbstractSeries) {
+  _inherits(BarSeries, _AbstractSeries);
+
+  function BarSeries() {
+    _classCallCheck(this, BarSeries);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(BarSeries).apply(this, arguments));
+  }
+
+  _createClass(BarSeries, [{
+    key: '_getScackParams',
+    value: function _getScackParams() {
+      var _props = this.props;
+      var _stackBy = _props._stackBy;
+      var valuePosAttr = _props.valuePosAttr;
+      var _props2 = this.props;
+      var _props2$sameTypeTotal = _props2.sameTypeTotal;
+      var sameTypeTotal = _props2$sameTypeTotal === undefined ? 1 : _props2$sameTypeTotal;
+      var _props2$sameTypeIndex = _props2.sameTypeIndex;
+      var sameTypeIndex = _props2$sameTypeIndex === undefined ? 0 : _props2$sameTypeIndex;
+
+      if (_stackBy === valuePosAttr) {
+        sameTypeTotal = 1;
+        sameTypeIndex = 0;
+      }
+      return { sameTypeTotal: sameTypeTotal, sameTypeIndex: sameTypeIndex };
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props3 = this.props;
+      var data = _props3.data;
+      var marginLeft = _props3.marginLeft;
+      var marginTop = _props3.marginTop;
+      var animation = _props3.animation;
+      var lineSizeAttr = _props3.lineSizeAttr;
+      var valuePosAttr = _props3.valuePosAttr;
+      var linePosAttr = _props3.linePosAttr;
+      var valueSizeAttr = _props3.valueSizeAttr;
+
+
+      if (!data) {
+        return null;
+      }
+
+      if (animation) {
+        return _react2.default.createElement(
+          _animation2.default,
+          _extends({}, this.props, { animatedProps: _seriesUtils.ANIMATED_SERIES_PROPS }),
+          _react2.default.createElement(BarSeries, _extends({}, this.props, { animation: null }))
+        );
+      }
+
+      var _getScackParams2 = this._getScackParams();
+
+      var sameTypeTotal = _getScackParams2.sameTypeTotal;
+      var sameTypeIndex = _getScackParams2.sameTypeIndex;
+
+
+      var distance = this._getScaleDistance(linePosAttr);
+      var lineFunctor = this._getAttributeFunctor(linePosAttr);
+      var valueFunctor = this._getAttributeFunctor(valuePosAttr);
+      var value0Functor = this._getAttr0Functor(valuePosAttr);
+      var fillFunctor = this._getAttributeFunctor('fill') || this._getAttributeFunctor('color');
+      var strokeFunctor = this._getAttributeFunctor('stroke') || this._getAttributeFunctor('color');
+      var opacityFunctor = this._getAttributeFunctor('opacity');
+
+      var itemSize = distance / 2 * 0.85;
+
+      return _react2.default.createElement(
+        'g',
+        {
+          className: 'rv-xy-plot__series rv-xy-plot__series--bar',
+          ref: 'container',
+          transform: 'translate(' + marginLeft + ',' + marginTop + ')' },
+        data.map(function (d, i) {
+          var _attrs;
+
+          var attrs = (_attrs = {
+            style: {
+              opacity: opacityFunctor && opacityFunctor(d),
+              stroke: strokeFunctor && strokeFunctor(d),
+              fill: fillFunctor && fillFunctor(d)
+            }
+          }, _defineProperty(_attrs, linePosAttr, lineFunctor(d) - itemSize + itemSize * 2 / sameTypeTotal * sameTypeIndex), _defineProperty(_attrs, lineSizeAttr, itemSize * 2 / sameTypeTotal), _defineProperty(_attrs, valuePosAttr, Math.min(value0Functor(d), valueFunctor(d))), _defineProperty(_attrs, valueSizeAttr, Math.abs(-value0Functor(d) + valueFunctor(d))), _defineProperty(_attrs, 'onClick', function onClick(e) {
+            return _this2._valueClickHandler(d, e);
+          }), _defineProperty(_attrs, 'onMouseOver', function onMouseOver(e) {
+            return _this2._valueMouseOverHandler(d, e);
+          }), _defineProperty(_attrs, 'onMouseOut', function onMouseOut(e) {
+            return _this2._valueMouseOutHandler(d, e);
+          }), _defineProperty(_attrs, 'key', i), _attrs);
+          return _react2.default.createElement('rect', attrs);
+        })
+      );
+    }
+  }], [{
+    key: 'propTypes',
+    get: function get() {
+      return _extends({}, _abstractSeries2.default.propTypes, {
+        linePosAttr: _react2.default.PropTypes.string,
+        valuePosAttr: _react2.default.PropTypes.string,
+        lineSizeAttr: _react2.default.PropTypes.string,
+        valueSizeAttr: _react2.default.PropTypes.string
+      });
+    }
+  }]);
+
+  return BarSeries;
+}(_abstractSeries2.default);
+
+BarSeries.displayName = 'BarSeries';
+
+exports.default = BarSeries;
+},{"../../animation":318,"../../utils/series-utils":357,"./abstract-series":335,"react":502}],338:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _abstractSeries = require('./abstract-series');
+
+var _abstractSeries2 = _interopRequireDefault(_abstractSeries);
+
+var _animation = require('../../animation');
+
+var _animation2 = _interopRequireDefault(_animation);
+
+var _seriesUtils = require('../../utils/series-utils');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var HeatmapSeries = function (_AbstractSeries) {
+  _inherits(HeatmapSeries, _AbstractSeries);
+
+  function HeatmapSeries() {
+    _classCallCheck(this, HeatmapSeries);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(HeatmapSeries).apply(this, arguments));
+  }
+
+  _createClass(HeatmapSeries, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props;
+      var data = _props.data;
+      var marginLeft = _props.marginLeft;
+      var marginTop = _props.marginTop;
+      var animation = _props.animation;
+
+      if (!data) {
+        return null;
+      }
+      if (animation) {
+        return _react2.default.createElement(
+          _animation2.default,
+          _extends({}, this.props, { animatedProps: _seriesUtils.ANIMATED_SERIES_PROPS }),
+          _react2.default.createElement(HeatmapSeries, _extends({}, this.props, { animation: null }))
+        );
+      }
+      var xFunctor = this._getAttributeFunctor('x');
+      var yFunctor = this._getAttributeFunctor('y');
+      var opacityFunctor = this._getAttributeFunctor('opacity');
+      var fillFunctor = this._getAttributeFunctor('fill') || this._getAttributeFunctor('color');
+      var strokeFunctor = this._getAttributeFunctor('stroke') || this._getAttributeFunctor('color');
+      var xDistance = this._getScaleDistance('x');
+      var yDistance = this._getScaleDistance('y');
+      return _react2.default.createElement(
+        'g',
+        {
+          className: 'rv-xy-plot__series rv-xy-plot__series--heatmap',
+          ref: 'container',
+          transform: 'translate(' + marginLeft + ',' + marginTop + ')' },
+        data.map(function (d, i) {
+          var attrs = {
+            style: {
+              stroke: strokeFunctor && strokeFunctor(d),
+              fill: fillFunctor && fillFunctor(d),
+              opacity: opacityFunctor && opacityFunctor(d)
+            },
+            x: xFunctor(d) - xDistance / 2,
+            y: yFunctor(d) - yDistance / 2,
+            width: xDistance,
+            height: yDistance,
+            key: i,
+            onClick: function onClick(e) {
+              return _this2._valueClickHandler(d, e);
+            },
+            onMouseOver: function onMouseOver(e) {
+              return _this2._valueMouseOverHandler(d, e);
+            },
+            onMouseOut: function onMouseOut(e) {
+              return _this2._valueMouseOutHandler(d, e);
+            }
+          };
+          return _react2.default.createElement('rect', attrs);
+        })
+      );
+    }
+  }], [{
+    key: 'getParentConfig',
+    value: function getParentConfig(attr) {
+      var isDomainAdjustmentNeeded = attr === 'x' || attr === 'y';
+      return { isDomainAdjustmentNeeded: isDomainAdjustmentNeeded };
+    }
+  }]);
+
+  return HeatmapSeries;
+}(_abstractSeries2.default);
+
+HeatmapSeries.displayName = 'HeatmapSeries';
+
+exports.default = HeatmapSeries;
+},{"../../animation":318,"../../utils/series-utils":357,"./abstract-series":335,"react":502}],339:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _abstractSeries = require('./abstract-series');
+
+var _abstractSeries2 = _interopRequireDefault(_abstractSeries);
+
+var _barSeries = require('./bar-series');
+
+var _barSeries2 = _interopRequireDefault(_barSeries);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var HorizontalBarSeries = function (_AbstractSeries) {
+  _inherits(HorizontalBarSeries, _AbstractSeries);
+
+  function HorizontalBarSeries() {
+    _classCallCheck(this, HorizontalBarSeries);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(HorizontalBarSeries).apply(this, arguments));
+  }
+
+  _createClass(HorizontalBarSeries, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(_barSeries2.default, _extends({}, this.props, {
+        linePosAttr: 'y',
+        valuePosAttr: 'x',
+        lineSizeAttr: 'height',
+        valueSizeAttr: 'width'
+      }));
+    }
+  }], [{
+    key: 'getParentConfig',
+    value: function getParentConfig(attr) {
+      var isDomainAdjustmentNeeded = attr === 'y';
+      var zeroBaseValue = attr === 'x';
+      return {
+        isDomainAdjustmentNeeded: isDomainAdjustmentNeeded,
+        zeroBaseValue: zeroBaseValue
+      };
+    }
+  }]);
+
+  return HorizontalBarSeries;
+}(_abstractSeries2.default);
+
+HorizontalBarSeries.displayName = 'HorizontalBarSeries';
+
+exports.default = HorizontalBarSeries;
+},{"./abstract-series":335,"./bar-series":337,"react":502}],340:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _abstractSeries = require('./abstract-series');
+
+var _abstractSeries2 = _interopRequireDefault(_abstractSeries);
+
+var _lineSeries = require('./line-series');
+
+var _lineSeries2 = _interopRequireDefault(_lineSeries);
+
+var _markSeries = require('./mark-series');
+
+var _markSeries2 = _interopRequireDefault(_markSeries);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var LineMarkSeries = function (_AbstractSeries) {
+  _inherits(LineMarkSeries, _AbstractSeries);
+
+  function LineMarkSeries() {
+    _classCallCheck(this, LineMarkSeries);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(LineMarkSeries).apply(this, arguments));
+  }
+
+  _createClass(LineMarkSeries, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'g',
+        { className: 'rv-xy-plot__series rv-xy-plot__series--linemark' },
+        _react2.default.createElement(_lineSeries2.default, this.props),
+        _react2.default.createElement(_markSeries2.default, this.props)
+      );
+    }
+  }], [{
+    key: 'defaultProps',
+    get: function get() {
+      return _lineSeries2.default.defaultProps;
+    }
+  }]);
+
+  return LineMarkSeries;
+}(_abstractSeries2.default);
+
+LineMarkSeries.displayName = 'LineMarkSeries';
+
+exports.default = LineMarkSeries;
+},{"./abstract-series":335,"./line-series":341,"./mark-series":342,"react":502}],341:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _d3Shape = require('d3-shape');
+
+var d3Shape = _interopRequireWildcard(_d3Shape);
+
+var _abstractSeries = require('./abstract-series');
+
+var _abstractSeries2 = _interopRequireDefault(_abstractSeries);
+
+var _animation = require('../../animation');
+
+var _animation2 = _interopRequireDefault(_animation);
+
+var _theme = require('../../theme');
+
+var _seriesUtils = require('../../utils/series-utils');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var STROKE_STYLES = {
+  dashed: '6, 2',
+  solid: null
+};
+
+var defaultProps = {
+  strokeStyle: 'solid',
+  opacity: 1
+};
+
+var propTypes = _extends({}, _abstractSeries2.default.propTypes, {
+  strokeStyle: _react2.default.PropTypes.oneOf(Object.keys(STROKE_STYLES))
+});
+
+var LineSeries = function (_AbstractSeries) {
+  _inherits(LineSeries, _AbstractSeries);
+
+  function LineSeries() {
+    _classCallCheck(this, LineSeries);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(LineSeries).apply(this, arguments));
+  }
+
+  _createClass(LineSeries, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props;
+      var data = _props.data;
+      var animation = _props.animation;
+
+      if (!data) {
+        return null;
+      }
+      if (animation) {
+        return _react2.default.createElement(
+          _animation2.default,
+          _extends({}, this.props, { animatedProps: _seriesUtils.ANIMATED_SERIES_PROPS }),
+          _react2.default.createElement(LineSeries, _extends({}, this.props, { animation: null }))
+        );
+      }
+
+      var _props2 = this.props;
+      var strokeStyle = _props2.strokeStyle;
+      var strokeWidth = _props2.strokeWidth;
+      var marginLeft = _props2.marginLeft;
+      var marginTop = _props2.marginTop;
+
+
+      var x = this._getAttributeFunctor('x');
+      var y = this._getAttributeFunctor('y');
+      var stroke = this._getAttributeValue('stroke') || this._getAttributeValue('color');
+      var opacity = this._getAttributeValue('opacity') || _theme.DEFAULT_OPACITY;
+      var line = d3Shape.line().x(x).y(y);
+      var d = line(data);
+
+      return _react2.default.createElement('path', {
+        d: d,
+        className: 'rv-xy-plot__series rv-xy-plot__series--line',
+        transform: 'translate(' + marginLeft + ',' + marginTop + ')',
+        onMouseOver: this._seriesMouseOverHandler,
+        onMouseOut: this._seriesMouseOutHandler,
+        onClick: this._seriesClickHandler,
+        style: {
+          opacity: opacity,
+          strokeDasharray: STROKE_STYLES[strokeStyle],
+          strokeWidth: strokeWidth,
+          stroke: stroke
+        } });
+    }
+  }]);
+
+  return LineSeries;
+}(_abstractSeries2.default);
+
+LineSeries.displayName = 'LineSeries';
+LineSeries.defaultProps = defaultProps;
+LineSeries.propTypes = propTypes;
+
+exports.default = LineSeries;
+},{"../../animation":318,"../../theme":349,"../../utils/series-utils":357,"./abstract-series":335,"d3-shape":117,"react":502}],342:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _abstractSeries = require('./abstract-series');
+
+var _abstractSeries2 = _interopRequireDefault(_abstractSeries);
+
+var _animation = require('../../animation');
+
+var _animation2 = _interopRequireDefault(_animation);
+
+var _seriesUtils = require('../../utils/series-utils');
+
+var _theme = require('../../theme');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var MarkSeries = function (_AbstractSeries) {
+  _inherits(MarkSeries, _AbstractSeries);
+
+  function MarkSeries() {
+    _classCallCheck(this, MarkSeries);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(MarkSeries).apply(this, arguments));
+  }
+
+  _createClass(MarkSeries, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props;
+      var data = _props.data;
+      var marginLeft = _props.marginLeft;
+      var marginTop = _props.marginTop;
+      var animation = _props.animation;
+
+      if (!data) {
+        return null;
+      }
+      if (animation) {
+        return _react2.default.createElement(
+          _animation2.default,
+          _extends({}, this.props, { animatedProps: _seriesUtils.ANIMATED_SERIES_PROPS }),
+          _react2.default.createElement(MarkSeries, _extends({}, this.props, { animation: null }))
+        );
+      }
+
+      var sizeFunctor = this._getAttributeFunctor('size');
+      var opacityFunctor = this._getAttributeFunctor('opacity');
+      var fillFunctor = this._getAttributeFunctor('fill') || this._getAttributeFunctor('color');
+      var strokeFunctor = this._getAttributeFunctor('stroke') || this._getAttributeFunctor('color');
+      var xFunctor = this._getAttributeFunctor('x');
+      var yFunctor = this._getAttributeFunctor('y');
+
+      return _react2.default.createElement(
+        'g',
+        { className: 'rv-xy-plot__series rv-xy-plot__series--mark',
+          ref: 'container',
+          transform: 'translate(' + marginLeft + ',' + marginTop + ')' },
+        data.map(function (d, i) {
+          var attrs = {
+            r: sizeFunctor ? sizeFunctor(d) : _theme.DEFAULT_SIZE,
+            cx: xFunctor(d),
+            cy: yFunctor(d),
+            style: {
+              opacity: opacityFunctor ? opacityFunctor(d) : _theme.DEFAULT_OPACITY,
+              stroke: strokeFunctor && strokeFunctor(d),
+              fill: fillFunctor && fillFunctor(d)
+            },
+            key: i,
+            onClick: function onClick(e) {
+              return _this2._valueClickHandler(d, e);
+            },
+            onMouseOver: function onMouseOver(e) {
+              return _this2._valueMouseOverHandler(d, e);
+            },
+            onMouseOut: function onMouseOut(e) {
+              return _this2._valueMouseOutHandler(d, e);
+            }
+          };
+          return _react2.default.createElement('circle', attrs);
+        })
+      );
+    }
+  }]);
+
+  return MarkSeries;
+}(_abstractSeries2.default);
+
+MarkSeries.displayName = 'MarkSeries';
+
+exports.default = MarkSeries;
+},{"../../animation":318,"../../theme":349,"../../utils/series-utils":357,"./abstract-series":335,"react":502}],343:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _abstractSeries = require('./abstract-series');
+
+var _abstractSeries2 = _interopRequireDefault(_abstractSeries);
+
+var _barSeries = require('./bar-series');
+
+var _barSeries2 = _interopRequireDefault(_barSeries);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var VerticalBarSeries = function (_AbstractSeries) {
+  _inherits(VerticalBarSeries, _AbstractSeries);
+
+  function VerticalBarSeries() {
+    _classCallCheck(this, VerticalBarSeries);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(VerticalBarSeries).apply(this, arguments));
+  }
+
+  _createClass(VerticalBarSeries, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(_barSeries2.default, _extends({}, this.props, {
+        linePosAttr: 'x',
+        valuePosAttr: 'y',
+        lineSizeAttr: 'width',
+        valueSizeAttr: 'height'
+      }));
+    }
+  }], [{
+    key: 'getParentConfig',
+    value: function getParentConfig(attr) {
+      var isDomainAdjustmentNeeded = attr === 'x';
+      var zeroBaseValue = attr === 'y';
+      return {
+        isDomainAdjustmentNeeded: isDomainAdjustmentNeeded,
+        zeroBaseValue: zeroBaseValue
+      };
+    }
+  }]);
+
+  return VerticalBarSeries;
+}(_abstractSeries2.default);
+
+VerticalBarSeries.displayName = 'VerticalBarSeries';
+
+exports.default = VerticalBarSeries;
+},{"./abstract-series":335,"./bar-series":337,"react":502}],344:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _gridLines = require('./grid-lines');
+
+var _gridLines2 = _interopRequireDefault(_gridLines);
+
+var _axisUtils = require('../utils/axis-utils');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var VERTICAL = _axisUtils.DIRECTION.VERTICAL;
+
+
+var propTypes = _extends({}, _gridLines2.default.propTypes, {
+  direction: _react2.default.PropTypes.oneOf([VERTICAL])
+});
+
+var defaultProps = {
+  direction: VERTICAL,
+  attr: 'x'
+};
+
+function VerticalGridLines(props) {
+  return _react2.default.createElement(_gridLines2.default, props);
+}
+
+VerticalGridLines.displayName = 'VerticalGridLines';
+VerticalGridLines.propTypes = propTypes;
+VerticalGridLines.defaultProps = defaultProps;
+VerticalGridLines.requiresSVG = true;
+
+exports.default = VerticalGridLines;
+},{"../utils/axis-utils":352,"./grid-lines":332,"react":502}],345:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _deepEqual = require('deep-equal');
+
+var _deepEqual2 = _interopRequireDefault(_deepEqual);
+
+var _scalesUtils = require('../utils/scales-utils');
+
+var _seriesUtils = require('../utils/series-utils');
+
+var _chartUtils = require('../utils/chart-utils');
+
+var _animationUtils = require('../utils/animation-utils');
+
+var _theme = require('../theme');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var ATTRIBUTES = ['x', 'y', 'color', 'fill', 'stroke', 'opacity', 'size'];
+
+var DEFAULT_MARGINS = {
+  left: 40,
+  right: 10,
+  top: 10,
+  bottom: 40
+};
+
+var XYPlot = function (_React$Component) {
+  _inherits(XYPlot, _React$Component);
+
+  _createClass(XYPlot, null, [{
+    key: 'propTypes',
+    get: function get() {
+      return {
+        width: _react2.default.PropTypes.number.isRequired,
+        height: _react2.default.PropTypes.number.isRequired,
+        margin: _chartUtils.MarginPropType,
+        onMouseLeave: _react2.default.PropTypes.func,
+        onMouseMove: _react2.default.PropTypes.func,
+        onMouseEnter: _react2.default.PropTypes.func,
+        animation: _animationUtils.AnimationPropType,
+        stackBy: _react2.default.PropTypes.oneOf(ATTRIBUTES)
+      };
+    }
+  }]);
+
+  function XYPlot(props) {
+    _classCallCheck(this, XYPlot);
+
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(XYPlot).call(this, props));
+
+    _this._mouseLeaveHandler = _this._mouseLeaveHandler.bind(_this);
+    _this._mouseEnterHandler = _this._mouseEnterHandler.bind(_this);
+    _this._mouseMoveHandler = _this._mouseMoveHandler.bind(_this);
+    var stackBy = props.stackBy;
+
+    var children = (0, _seriesUtils.getSeriesChildren)(props.children);
+    var data = (0, _seriesUtils.getStackedData)(children, stackBy);
+    _this.state = {
+      scaleMixins: _this._getScaleMixins(data, props),
+      data: data
+    };
+    return _this;
+  }
+
+  _createClass(XYPlot, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var children = (0, _seriesUtils.getSeriesChildren)(nextProps.children);
+      var nextData = (0, _seriesUtils.getStackedData)(children, nextProps.stackBy);
+      var scaleMixins = this.state.scaleMixins;
+
+      var nextScaleMixins = this._getScaleMixins(nextData, nextProps);
+      if (!(0, _deepEqual2.default)(nextScaleMixins, scaleMixins)) {
+        this.setState({
+          scaleMixins: nextScaleMixins,
+          data: nextData
+        });
+      }
+    }
+
+    /**
+     * Trigger movement-related callbacks if they are available.
+     * @param {React.SyntheticEvent} event Mouse move event.
+     * @private
+     */
+
+  }, {
+    key: '_mouseMoveHandler',
+    value: function _mouseMoveHandler(event) {
+      var _this2 = this;
+
+      var _props = this.props;
+      var onMouseMove = _props.onMouseMove;
+      var children = _props.children;
+
+      if (onMouseMove) {
+        onMouseMove(event);
+      }
+      var seriesChildren = (0, _seriesUtils.getSeriesChildren)(children);
+      seriesChildren.forEach(function (child, index) {
+        var component = _this2.refs['series' + index];
+        if (component && component.onParentMouseMove) {
+          component.onParentMouseMove(event);
+        }
+      });
+    }
+
+    /**
+     * Trigger onMouseLeave handler if it was passed in props.
+     * @param {Event} event Native event.
+     * @private
+     */
+
+  }, {
+    key: '_mouseLeaveHandler',
+    value: function _mouseLeaveHandler(event) {
+      var onMouseLeave = this.props.onMouseLeave;
+
+      if (onMouseLeave) {
+        onMouseLeave({ event: event });
+      }
+    }
+
+    /**
+     * Trigger onMouseEnter handler if it was passed in props.
+     * @param {Event} event Native event.
+     * @private
+     */
+
+  }, {
+    key: '_mouseEnterHandler',
+    value: function _mouseEnterHandler(event) {
+      var onMouseEnter = this.props.onMouseEnter;
+
+      if (onMouseEnter) {
+        onMouseEnter({ event: event });
+      }
+    }
+
+    /**
+     * Get the list of scale-related settings that should be applied by default.
+     * @param {Object} props Object of props.
+     * @returns {Object} Defaults.
+     * @private
+     */
+
+  }, {
+    key: '_getDefaultScaleProps',
+    value: function _getDefaultScaleProps(props) {
+      var _getInnerDimensions = (0, _chartUtils.getInnerDimensions)(props, DEFAULT_MARGINS);
+
+      var innerWidth = _getInnerDimensions.innerWidth;
+      var innerHeight = _getInnerDimensions.innerHeight;
+
+      return {
+        xRange: [0, innerWidth],
+        yRange: [innerHeight, 0],
+        colorRange: _theme.CONTINUOUS_COLOR_RANGE,
+        opacityRange: _theme.OPACITY_RANGE,
+        sizeRange: _theme.SIZE_RANGE
+      };
+    }
+
+    /**
+     * Get the map of scales from the props, apply defaults to them and then pass
+     * them further.
+     * @param {Object} data Array of all data.
+     * @param {Object} props Props of the component.
+     * @returns {Object} Map of scale-related props.
+     * @private
+     */
+
+  }, {
+    key: '_getScaleMixins',
+    value: function _getScaleMixins(data, props) {
+      var _ref;
+
+      var filteredData = data.filter(function (d) {
+        return d;
+      });
+      var allData = (_ref = []).concat.apply(_ref, _toConsumableArray(filteredData));
+
+      var defaultScaleProps = this._getDefaultScaleProps(props);
+      var userScaleProps = (0, _scalesUtils.extractScalePropsFromProps)(props, ATTRIBUTES);
+      var missingScaleProps = (0, _scalesUtils.getMissingScaleProps)(_extends({}, defaultScaleProps, userScaleProps), allData, ATTRIBUTES);
+      var children = (0, _seriesUtils.getSeriesChildren)(props.children);
+      var zeroBaseProps = {};
+      var adjustBy = new Set();
+      var adjustWhat = new Set();
+      children.forEach(function (child, index) {
+        if (!child || !data[index]) {
+          return;
+        }
+        ATTRIBUTES.forEach(function (attr) {
+          var _child$type$getParent = child.type.getParentConfig(attr, child.props);
+
+          var isDomainAdjustmentNeeded = _child$type$getParent.isDomainAdjustmentNeeded;
+          var zeroBaseValue = _child$type$getParent.zeroBaseValue;
+
+          if (isDomainAdjustmentNeeded) {
+            adjustBy.add(attr);
+            adjustWhat.add(index);
+          }
+          if (zeroBaseValue) {
+            zeroBaseProps[attr + 'BaseValue'] = 0;
+          }
+        });
+      });
+      return _extends({}, defaultScaleProps, zeroBaseProps, missingScaleProps, userScaleProps, {
+        _allData: data,
+        _adjustBy: Array.from(adjustBy),
+        _adjustWhat: Array.from(adjustWhat),
+        _stackBy: props.stackBy
+      });
+    }
+
+    /**
+     * Checks if the plot is empty or not.
+     * Currently checks the data only.
+     * @returns {boolean} True for empty.
+     * @private
+     */
+
+  }, {
+    key: '_isPlotEmpty',
+    value: function _isPlotEmpty() {
+      var data = this.state.data;
+
+      return !data || !data.length || !data.some(function (series) {
+        return series && series.some(function (d) {
+          return d;
+        });
+      });
+    }
+
+    /**
+     * Prepare the child components (including series) for rendering.
+     * @returns {Array} Array of child components.
+     * @private
+     */
+
+  }, {
+    key: '_getClonedChildComponents',
+    value: function _getClonedChildComponents() {
+      var animation = this.props.animation;
+      var _state = this.state;
+      var scaleMixins = _state.scaleMixins;
+      var data = _state.data;
+
+      var dimensions = (0, _chartUtils.getInnerDimensions)(this.props, DEFAULT_MARGINS);
+      var children = _react2.default.Children.toArray(this.props.children);
+      var seriesProps = (0, _seriesUtils.getSeriesPropsFromChildren)(children);
+      return children.map(function (child, index) {
+        var dataProps = null;
+        if (seriesProps[index]) {
+          // Get the index of the series in the list of props and retrieve
+          // the data property from it.
+          var seriesIndex = seriesProps[index].seriesIndex;
+
+          dataProps = { data: data[seriesIndex] };
+        }
+        return _react2.default.cloneElement(child, _extends({}, dimensions, {
+          animation: animation
+        }, seriesProps[index], scaleMixins, child.props, dataProps));
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props2 = this.props;
+      var width = _props2.width;
+      var height = _props2.height;
+
+
+      if (this._isPlotEmpty()) {
+        return _react2.default.createElement('div', {
+          className: 'rv-xy-plot',
+          style: {
+            width: width + 'px',
+            height: height + 'px'
+          } });
+      }
+      var components = this._getClonedChildComponents();
+
+      return _react2.default.createElement(
+        'div',
+        {
+          style: {
+            width: width + 'px',
+            height: height + 'px'
+          },
+          className: 'rv-xy-plot' },
+        _react2.default.createElement(
+          'svg',
+          {
+            className: 'rv-xy-plot__inner',
+            width: width,
+            height: height,
+            onMouseMove: this._mouseMoveHandler,
+            onMouseLeave: this._mouseLeaveHandler,
+            onMouseEnter: this._mouseEnterHandler },
+          components.filter(function (c) {
+            return c && c.type.requiresSVG;
+          })
+        ),
+        components.filter(function (c) {
+          return c && !c.type.requiresSVG;
+        })
+      );
+    }
+  }]);
+
+  return XYPlot;
+}(_react2.default.Component);
+
+XYPlot.displayName = 'XYPlot';
+
+exports.default = XYPlot;
+},{"../theme":349,"../utils/animation-utils":351,"../utils/chart-utils":353,"../utils/scales-utils":356,"../utils/series-utils":357,"deep-equal":120,"react":502}],346:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactAddonsShallowCompare = require('react-addons-shallow-compare');
+
+var _reactAddonsShallowCompare2 = _interopRequireDefault(_reactAddonsShallowCompare);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var PureRenderComponent = function (_React$Component) {
+  _inherits(PureRenderComponent, _React$Component);
+
+  function PureRenderComponent(props) {
+    _classCallCheck(this, PureRenderComponent);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(PureRenderComponent).call(this, props));
+  }
+
+  _createClass(PureRenderComponent, [{
+    key: 'shouldComponentUpdate',
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      return (0, _reactAddonsShallowCompare2.default)(this, nextProps, nextState);
+    }
+  }]);
+
+  return PureRenderComponent;
+}(_react2.default.Component);
+
+exports.default = PureRenderComponent;
+},{"react":502,"react-addons-shallow-compare":184}],347:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _deepEqual = require('deep-equal');
+
+var _deepEqual2 = _interopRequireDefault(_deepEqual);
+
+var _d3Shape = require('d3-shape');
+
+var d3Shape = _interopRequireWildcard(_d3Shape);
+
+var _animation = require('../animation');
+
+var _animation2 = _interopRequireDefault(_animation);
+
+var _scalesUtils = require('../utils/scales-utils');
+
+var _chartUtils = require('../utils/chart-utils');
+
+var _animationUtils = require('../utils/animation-utils');
+
+var _theme = require('../theme');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ATTRIBUTES = ['angle', 'radius', 'innerRadius', 'color', 'opacity', 'fill', 'stroke'];
+
+var ANIMATED_PROPS = ['angleDomain', 'angleRange', 'angle', 'radiusDomain', 'radiusRange', 'radius', 'innerRadiusDomain', 'innerRadiusRange', 'innerRadius', 'colorDomain', 'colorRange', 'color', 'opacityDomain', 'opacityRange', 'opacity', 'fillDomain', 'fillRange', 'fill', 'strokeDomain', 'strokeRange', 'stroke', 'data'];
+
+var DEFAULT_MARGINS = {
+  left: 10,
+  right: 10,
+  top: 10,
+  bottom: 10
+};
+
+/**
+ * Walk through the data and assign color property to the data points if it
+ * doesn't exist.
+ * @param {Array} data Array of data.
+ * @returns {Array} New array of data points.
+ */
+function assignColorsToData(data) {
+  return data.map(function (d, color) {
+    return _extends({ color: color }, d);
+  });
+}
+
+var RadialChart = function (_React$Component) {
+  _inherits(RadialChart, _React$Component);
+
+  _createClass(RadialChart, null, [{
+    key: 'propTypes',
+    get: function get() {
+      return {
+        width: _react2.default.PropTypes.number.isRequired,
+        height: _react2.default.PropTypes.number.isRequired,
+        margin: _chartUtils.MarginPropType,
+        animation: _animationUtils.AnimationPropType,
+        onSectionMouseOver: _react2.default.PropTypes.func,
+        onSectionMouseOut: _react2.default.PropTypes.func,
+        onSectionClick: _react2.default.PropTypes.func
+      };
+    }
+  }]);
+
+  function RadialChart(props) {
+    _classCallCheck(this, RadialChart);
+
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(RadialChart).call(this, props));
+
+    var data = assignColorsToData(props.data);
+    var scaleProps = _this._getAllScaleProps(props, data);
+    var arc = _this._getArcFromProps(scaleProps);
+    _this.state = { scaleProps: scaleProps, data: data, arc: arc };
+    _this._sectionMouseOut = _this._sectionMouseOut.bind(_this);
+    _this._sectionMouseOver = _this._sectionMouseOver.bind(_this);
+    _this._sectionClick = _this._sectionClick.bind(_this);
+    _this._arc = null;
+    return _this;
+  }
+
+  _createClass(RadialChart, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var nextData = assignColorsToData(nextProps.data);
+      var scaleProps = this.state.scaleProps;
+
+      var nextscaleProps = this._getAllScaleProps(nextProps, nextData);
+      if (!(0, _deepEqual2.default)(nextscaleProps, scaleProps)) {
+        this.setState({
+          scaleProps: nextscaleProps,
+          data: nextData,
+          arc: this._getArcFromProps(scaleProps)
+        });
+      }
+    }
+
+    /**
+     * Triggers a callback on a section if the callback is set.
+     * @param {function} handler Callback function.
+     * @param {Object} d Data point of the arc.
+     * @param {Object} event Event.
+     * @private
+     */
+
+  }, {
+    key: '_triggerSectionHandler',
+    value: function _triggerSectionHandler(handler, d, event) {
+      if (handler) {
+        var _arc$centroid = this._arc.centroid(d);
+
+        var _arc$centroid2 = _slicedToArray(_arc$centroid, 2);
+
+        var x = _arc$centroid2[0];
+        var y = _arc$centroid2[1];
+
+        handler(d.data, { event: event, x: x, y: y });
+      }
+    }
+
+    /**
+     * `mouseover` handler for the section.
+     * @param {Object} d Data point.
+     * @param {Object} event Event.
+     * @private
+     */
+
+  }, {
+    key: '_sectionMouseOver',
+    value: function _sectionMouseOver(d, event) {
+      var onSectionMouseOver = this.props.onSectionMouseOver;
+
+      this._triggerSectionHandler(onSectionMouseOver, d, event);
+    }
+
+    /**
+     * `mouseout` handler for the section.
+     * @param {Object} d Data point.
+     * @param {Object} event Event.
+     * @private
+     */
+
+  }, {
+    key: '_sectionMouseOut',
+    value: function _sectionMouseOut(d, event) {
+      var onSectionMouseOut = this.props.onSectionMouseOut;
+
+      this._triggerSectionHandler(onSectionMouseOut, d, event);
+    }
+
+    /**
+     * `click` handler for the section.
+     * @param {Object} d Data point.
+     * @param {Object} event Event.
+     * @private
+     */
+
+  }, {
+    key: '_sectionClick',
+    value: function _sectionClick(d, event) {
+      var onSectionClick = this.props.onSectionClick;
+
+      this._triggerSectionHandler(onSectionClick, d, event);
+    }
+
+    /**
+     * Get the list of scale-related settings that should be applied by default.
+     * @param {Object} props Object of props.
+     * @returns {Object} Defaults.
+     * @private
+     */
+
+  }, {
+    key: '_getDefaultScaleProps',
+    value: function _getDefaultScaleProps(props) {
+      var _getInnerDimensions = (0, _chartUtils.getInnerDimensions)(props, DEFAULT_MARGINS);
+
+      var innerWidth = _getInnerDimensions.innerWidth;
+      var innerHeight = _getInnerDimensions.innerHeight;
+
+      var radius = Math.min(innerWidth / 2, innerHeight / 2);
+      return {
+        radiusRange: [0, radius],
+        _radiusValue: radius,
+        opacityRange: _theme.OPACITY_RANGE,
+        _opacityValue: 1,
+        colorRange: _theme.DISCRETE_COLOR_RANGE,
+        colorType: 'category'
+      };
+    }
+
+    /**
+     * Get the map of scales from the props.
+     * @param {Object} props Props.
+     * @param {Array} data Array of all data.
+     * @returns {Object} Map of scales.
+     * @private
+     */
+
+  }, {
+    key: '_getAllScaleProps',
+    value: function _getAllScaleProps(props, data) {
+      var defaultScaleProps = this._getDefaultScaleProps(props);
+      var userScaleProps = (0, _scalesUtils.extractScalePropsFromProps)(props, ATTRIBUTES);
+      var missingScaleProps = (0, _scalesUtils.getMissingScaleProps)(_extends({}, defaultScaleProps, userScaleProps), data, ATTRIBUTES);
+
+      return _extends({}, defaultScaleProps, userScaleProps, missingScaleProps, {
+        _allData: [],
+        _adjustBy: [],
+        _adjustWhat: []
+      });
+    }
+
+    /**
+     * Get attribute functor.
+     * @param {string} attr Attribute name.
+     * @returns {*} Functor.
+     * @protected
+     */
+
+  }, {
+    key: '_getAttributeFunctor',
+    value: function _getAttributeFunctor(attr) {
+      return (0, _scalesUtils.getAttributeFunctor)(this.state.scaleProps, attr);
+    }
+
+    /**
+     * Extract the arc function from the props.
+     * @param {Object} scaleProps Scale props.
+     * @returns {function} Arc function, null if radius is missing.
+     * @private
+     */
+
+  }, {
+    key: '_getArcFromProps',
+    value: function _getArcFromProps(scaleProps) {
+      var radiusFunctor = (0, _scalesUtils.getAttributeFunctor)(scaleProps, 'radius');
+      var innerRadiusFunctor = (0, _scalesUtils.getAttributeFunctor)(scaleProps, 'innerRadius');
+      if (!radiusFunctor) {
+        return null;
+      }
+      return d3Shape.arc().outerRadius(radiusFunctor).innerRadius(innerRadiusFunctor);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props;
+      var width = _props.width;
+      var height = _props.height;
+      var animation = _props.animation;
+
+      if (animation) {
+        return _react2.default.createElement(
+          _animation2.default,
+          _extends({}, this.props, { animatedProps: ANIMATED_PROPS }),
+          _react2.default.createElement(RadialChart, _extends({}, this.props, { animation: null }))
+        );
+      }
+
+      var _state = this.state;
+      var data = _state.data;
+      var arc = _state.arc;
+
+      if (!data || !arc) {
+        return null;
+      }
+
+      var _getInnerDimensions2 = (0, _chartUtils.getInnerDimensions)(this.props, DEFAULT_MARGINS);
+
+      var innerWidth = _getInnerDimensions2.innerWidth;
+      var innerHeight = _getInnerDimensions2.innerHeight;
+
+      var opacityFunctor = this._getAttributeFunctor('opacity');
+      var fillFunctor = this._getAttributeFunctor('fill') || this._getAttributeFunctor('color');
+      var strokeFunctor = this._getAttributeFunctor('stroke') || this._getAttributeFunctor('color');
+
+      var pie = d3Shape.pie().sort(null).value(function (d) {
+        return d.angle;
+      });
+      var pieData = pie(data);
+
+      return _react2.default.createElement(
+        'div',
+        {
+          style: {
+            width: width + 'px',
+            height: height + 'px'
+          },
+          className: 'rv-radial-chart' },
+        _react2.default.createElement(
+          'svg',
+          {
+            width: width,
+            height: height,
+            className: 'rv-radial-chart__svg' },
+          _react2.default.createElement(
+            'g',
+            {
+              className: 'rv-radial-chart__series--pie',
+              transform: 'translate(' + innerWidth / 2 + ',' + innerHeight / 2 + ')',
+              ref: 'container' },
+            data.map(function (d, i) {
+              return _react2.default.createElement('path', {
+                d: arc(pieData[i]),
+                style: {
+                  opacity: opacityFunctor && opacityFunctor(d),
+                  stroke: strokeFunctor && strokeFunctor(d),
+                  fill: fillFunctor && fillFunctor(d)
+                },
+                onMouseOver: function onMouseOver(e) {
+                  return _this2._sectionMouseOut(d, e);
+                },
+                onMouseOut: function onMouseOut(e) {
+                  return _this2._sectionMouseOut(d, e);
+                },
+                onClick: function onClick(e) {
+                  return _this2._sectionClick(d, e);
+                },
+                key: i
+              });
+            })
+          )
+        )
+      );
+    }
+  }]);
+
+  return RadialChart;
+}(_react2.default.Component);
+
+RadialChart.displayName = 'RadialChart';
+
+exports.default = RadialChart;
+},{"../animation":318,"../theme":349,"../utils/animation-utils":351,"../utils/chart-utils":353,"../utils/scales-utils":356,"d3-shape":117,"deep-equal":120,"react":502}],348:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactUtils = require('../utils/react-utils');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var HEADER_REF = 'headerRef';
+var DATA_REF = 'dataRef';
+
+var Table = function (_React$Component) {
+  _inherits(Table, _React$Component);
+
+  _createClass(Table, null, [{
+    key: 'propTypes',
+    get: function get() {
+      return {
+        header: _react2.default.PropTypes.array.isRequired,
+        data: _react2.default.PropTypes.array.isRequired,
+        width: _react2.default.PropTypes.number.isRequired,
+        height: _react2.default.PropTypes.number.isRequired,
+        cellHeight: _react2.default.PropTypes.number,
+        cellWidth: _react2.default.PropTypes.number
+      };
+    }
+  }, {
+    key: 'defaultProps',
+    get: function get() {
+      return {
+        cellHeight: 32,
+        cellWidth: 100
+      };
+    }
+  }]);
+
+  function Table(props) {
+    _classCallCheck(this, Table);
+
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Table).call(this, props));
+
+    _this._updateHeaderPosition = _this._updateHeaderPosition.bind(_this);
+    _this._renderHeaderCell = _this._renderHeaderCell.bind(_this);
+    _this._renderDataRow = _this._renderDataRow.bind(_this);
+    return _this;
+  }
+
+  /**
+   * Get the width of the data block.
+   * @returns {number} Width in pixels.
+   * @private
+   */
+
+
+  _createClass(Table, [{
+    key: '_getDataBlockWidth',
+    value: function _getDataBlockWidth() {
+      var _props = this.props;
+      var header = _props.header;
+      var cellWidth = _props.cellWidth;
+
+      return header.length * cellWidth;
+    }
+
+    /**
+     * Get the height of the data block.
+     * @returns {number} Height of the data block in pixels.
+     * @private
+     */
+
+  }, {
+    key: '_getDataBlockHeight',
+    value: function _getDataBlockHeight() {
+      var _props2 = this.props;
+      var data = _props2.data;
+      var cellHeight = _props2.cellHeight;
+
+      return data.length * cellHeight;
+    }
+
+    /**
+     * Render a single cell of the header.
+     * @param {Object} cell Cell.
+     * @param {Number} index Index of the header cell.
+     * @returns {React.Component} Rendered cell.
+     * @private
+     */
+
+  }, {
+    key: '_renderHeaderCell',
+    value: function _renderHeaderCell(cell, index) {
+      var _props3 = this.props;
+      var cellWidth = _props3.cellWidth;
+      var cellHeight = _props3.cellHeight;
+
+      var cellContent = void 0;
+      if (cell instanceof Object) {
+        cellContent = cell;
+      } else {
+        cellContent = _react2.default.createElement(
+          'div',
+          {
+            className: 'rv-table__header__cell__content' },
+          cell
+        );
+      }
+      return _react2.default.createElement(
+        'div',
+        {
+          className: 'rv-table__header__cell',
+          key: index,
+          style: {
+            top: 0,
+            left: index * cellWidth + 'px',
+            width: cellWidth + 'px',
+            height: cellHeight + 'px',
+            lineHeight: cellHeight + 'px'
+          } },
+        cellContent
+      );
+    }
+
+    /**
+     * Render the table header.
+     * @returns {*} Table header.
+     * @private
+     */
+
+  }, {
+    key: '_renderHeader',
+    value: function _renderHeader() {
+      var header = this.props.header;
+
+      if (!header) {
+        return null;
+      }
+      return _react2.default.createElement(
+        'div',
+        {
+          className: 'rv-table__header',
+          ref: HEADER_REF,
+          style: { width: this._getDataBlockWidth() + 'px' } },
+        header.map(this._renderHeaderCell)
+      );
+    }
+
+    /**
+     * Set the position of the header according to the scroll position of data.
+     * @private
+     */
+
+  }, {
+    key: '_updateHeaderPosition',
+    value: function _updateHeaderPosition() {
+      var headerElement = (0, _reactUtils.getDOMNode)(this.refs[HEADER_REF]);
+      var dataElement = (0, _reactUtils.getDOMNode)(this.refs[DATA_REF]);
+      headerElement.style.left = -dataElement.scrollLeft + 'px';
+    }
+
+    /**
+     * Render the data row.
+     * @param {Array} row Row of data.
+     * @param {number} rowIndex Index of the row.
+     * @returns {React.Component} Rendered row.
+     * @private
+     */
+
+  }, {
+    key: '_renderDataRow',
+    value: function _renderDataRow(row, rowIndex) {
+      var _props4 = this.props;
+      var cellHeight = _props4.cellHeight;
+      var cellWidth = _props4.cellWidth;
+
+      var cellIndex = 0;
+      return row.map(function (cell, columnIndex) {
+        var isHtml = cell instanceof Object;
+        return _react2.default.createElement(
+          'div',
+          {
+            className: 'rv-table__data__cell',
+            key: cellIndex++,
+            style: {
+              top: rowIndex * cellHeight + 'px',
+              left: columnIndex * cellWidth + 'px',
+              width: cellWidth + 'px',
+              height: cellHeight + 'px',
+              lineHeight: cellHeight + 'px'
+            } },
+          isHtml ? cell : _react2.default.createElement(
+            'div',
+            {
+              className: 'rv-table__data__cell__content' },
+            cell
+          )
+        );
+      });
+    }
+
+    /**
+     * Render all the data for an array.
+     * @returns {React.Component} Rendered data.
+     * @private
+     */
+
+  }, {
+    key: '_renderData',
+    value: function _renderData() {
+      var _props5 = this.props;
+      var data = _props5.data;
+      var cellHeight = _props5.cellHeight;
+
+
+      var outerHeight = this.props.height - cellHeight;
+      var outerWidth = this.props.width;
+      var innerWidth = this._getDataBlockWidth();
+      var innerHeight = this._getDataBlockHeight();
+
+      return _react2.default.createElement(
+        'div',
+        {
+          className: 'rv-table__data',
+          style: {
+            height: outerHeight + 'px',
+            width: outerWidth + 'px',
+            marginTop: cellHeight + 'px'
+          },
+          ref: DATA_REF,
+          onScroll: this._updateHeaderPosition },
+        _react2.default.createElement(
+          'div',
+          {
+            className: 'rv-table__data-inner',
+            style: {
+              height: innerHeight + 'px',
+              width: innerWidth + 'px'
+            } },
+          data.map(this._renderDataRow)
+        )
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props6 = this.props;
+      var height = _props6.height;
+      var width = _props6.width;
+
+      return _react2.default.createElement(
+        'div',
+        {
+          className: 'rv-table',
+          style: {
+            height: height + 'px',
+            width: width + 'px'
+          } },
+        this._renderHeader(),
+        this._renderData()
+      );
+    }
+  }]);
+
+  return Table;
+}(_react2.default.Component);
+
+Table.displayName = 'Table';
+
+exports.default = Table;
+},{"../utils/react-utils":355,"react":502}],349:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var DISCRETE_COLOR_RANGE = exports.DISCRETE_COLOR_RANGE = ['#12939A', '#79C7E3', '#1A3177', '#FF9833', '#EF5D28'];
+
+var CONTINUOUS_COLOR_RANGE = exports.CONTINUOUS_COLOR_RANGE = ['#EF5D28', '#FF9833'];
+
+var SIZE_RANGE = exports.SIZE_RANGE = [1, 10];
+
+var OPACITY_RANGE = exports.OPACITY_RANGE = [0.1, 1];
+
+var DEFAULT_OPACITY = exports.DEFAULT_OPACITY = 1;
+
+var DEFAULT_SIZE = exports.DEFAULT_SIZE = 5;
+
+var DEFAULT_COLOR = exports.DEFAULT_COLOR = DISCRETE_COLOR_RANGE[0];
+
+var DEFAULT_TICK_SIZE = exports.DEFAULT_TICK_SIZE = 7;
+},{}],350:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _d3Hierarchy = require('d3-hierarchy');
+
+var d3Hierarchy = _interopRequireWildcard(_d3Hierarchy);
+
+var _d3Color = require('d3-color');
+
+var d3Color = _interopRequireWildcard(_d3Color);
+
+var _animationUtils = require('../utils/animation-utils');
+
+var _animation = require('../animation');
+
+var _animation2 = _interopRequireDefault(_animation);
+
+var _scalesUtils = require('../utils/scales-utils');
+
+var _theme = require('../theme');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var TREEMAP_TILE_MODES = {
+  squarify: d3Hierarchy.treemapSquarify,
+  slice: d3Hierarchy.treemapSlice,
+  dice: d3Hierarchy.treemapDice,
+  slicedice: d3Hierarchy.treemapSliceDice
+};
+
+function getFontColorFromBackground(background) {
+  if (background) {
+    return d3Color.hsl(background).l > 0.57 ? '#222' : '#fff';
+  }
+  return null;
+}
+
+var ATTRIBUTES = ['opacity', 'color'];
+var ANIMATED_PROPS = ['colorRange', 'colorDomain', 'color', 'opacityRange', 'opacityDomain', 'opacity'];
+
+var Treemap = function (_React$Component) {
+  _inherits(Treemap, _React$Component);
+
+  _createClass(Treemap, null, [{
+    key: 'propTypes',
+    get: function get() {
+      return {
+        width: _react2.default.PropTypes.number.isRequired,
+        height: _react2.default.PropTypes.number.isRequired,
+        data: _react2.default.PropTypes.object.isRequired,
+        mode: _react2.default.PropTypes.oneOf(Object.keys(TREEMAP_TILE_MODES)),
+        padding: _react2.default.PropTypes.number.isRequired,
+        animation: _animationUtils.AnimationPropType
+      };
+    }
+  }, {
+    key: 'defaultProps',
+    get: function get() {
+      return {
+        mode: 'squarify',
+        padding: 1,
+        data: {
+          children: []
+        },
+        colorRange: _theme.CONTINUOUS_COLOR_RANGE,
+        _colorValue: _theme.DEFAULT_COLOR,
+        opacityRange: _theme.OPACITY_RANGE,
+        _opacityValue: 1
+      };
+    }
+  }]);
+
+  function Treemap(props) {
+    _classCallCheck(this, Treemap);
+
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Treemap).call(this, props));
+
+    _this._renderLeaf = _this._renderLeaf.bind(_this);
+    _this.state = { scales: _this._getScaleFns(props) };
+    return _this;
+  }
+
+  _createClass(Treemap, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(props) {
+      this.setState({ scales: this._getScaleFns(props) });
+    }
+
+    /**
+     * Get the map of scale functions from the given props.
+     * @param {Object} props Props for the component.
+     * @returns {Object} Map of scale functions.
+     * @private
+     */
+
+  }, {
+    key: '_getScaleFns',
+    value: function _getScaleFns(props) {
+      var data = props.data;
+
+      var allData = data.children || [];
+
+      // Adding _allData property to the object to reuse the existing
+      // getAttributeFunctor function.
+      var compatibleProps = _extends({}, props, (0, _scalesUtils.getMissingScaleProps)(props, allData, ATTRIBUTES), {
+        _allData: allData
+      });
+      return {
+        opacity: (0, _scalesUtils.getAttributeFunctor)(compatibleProps, 'opacity'),
+        color: (0, _scalesUtils.getAttributeFunctor)(compatibleProps, 'color')
+      };
+    }
+
+    /**
+     * Create the list of nodes to render.
+     * @returns {Array} Array of nodes.
+     * @private
+     */
+
+  }, {
+    key: '_getNodesToRender',
+    value: function _getNodesToRender() {
+      var _props = this.props;
+      var data = _props.data;
+      var height = _props.height;
+      var width = _props.width;
+      var mode = _props.mode;
+      var padding = _props.padding;
+
+
+      if (data) {
+        var tileFn = TREEMAP_TILE_MODES[mode];
+        return d3Hierarchy.treemap(tileFn).tile(d3Hierarchy.treemapSquarify).size([width, height]).padding(padding)(d3Hierarchy.hierarchy(data).sort(function (a, b) {
+          return a.size - b.size;
+        }).sum(function (d) {
+          return d.size;
+        })).descendants();
+      }
+      return [];
+    }
+  }, {
+    key: '_renderLeaf',
+    value: function _renderLeaf(node, i) {
+      if (!i) {
+        return null;
+      }
+      var scales = this.state.scales;
+
+
+      var background = scales.color(node);
+      var opacity = scales.opacity(node);
+      var color = getFontColorFromBackground(background);
+      var x0 = node.x0;
+      var x1 = node.x1;
+      var y0 = node.y0;
+      var y1 = node.y1;
+      var title = node.data.title;
+
+      return _react2.default.createElement(
+        'div',
+        {
+          key: i,
+          className: 'rv-treemap__leaf',
+          style: {
+            top: y0 + 'px',
+            left: x0 + 'px',
+            width: x1 - x0 + 'px',
+            height: y1 - y0 + 'px',
+            background: background,
+            opacity: opacity,
+            color: color
+          } },
+        _react2.default.createElement(
+          'div',
+          { className: 'rv-treemap__leaf__content' },
+          title
+        )
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props2 = this.props;
+      var width = _props2.width;
+      var height = _props2.height;
+      var animation = _props2.animation;
+
+      var nodes = this._getNodesToRender();
+      if (animation) {
+        return _react2.default.createElement(
+          _animation2.default,
+          _extends({}, this.props, { animatedProps: ANIMATED_PROPS }),
+          _react2.default.createElement(Treemap, _extends({}, this.props, { animation: null }))
+        );
+      }
+      return _react2.default.createElement(
+        'div',
+        {
+          className: 'rv-treemap',
+          style: {
+            width: width + 'px',
+            height: height + 'px'
+          } },
+        nodes.map(this._renderLeaf)
+      );
+    }
+  }]);
+
+  return Treemap;
+}(_react2.default.Component);
+
+Treemap.displayName = 'Treemap';
+
+exports.default = Treemap;
+},{"../animation":318,"../theme":349,"../utils/animation-utils":351,"../utils/scales-utils":356,"d3-color":111,"d3-hierarchy":113,"react":502}],351:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.AnimationPropType = undefined;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _animation = require('../animation');
+
+var _animation2 = _interopRequireDefault(_animation);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Property type for the animation.
+ */
+// Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var AnimationPropType = exports.AnimationPropType = _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.shape(_animation2.default.propTypes), _react2.default.PropTypes.oneOf([true])]);
+},{"../animation":318,"react":502}],352:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getTicksTotalFromSize = getTicksTotalFromSize;
+exports.getTickValues = getTickValues;
+// Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+var ORIENTATION = exports.ORIENTATION = {
+  TOP: 'top',
+  LEFT: 'left',
+  RIGHT: 'right',
+  BOTTOM: 'bottom'
+};
+
+var DIRECTION = exports.DIRECTION = {
+  VERTICAL: 'vertical',
+  HORIZONTAL: 'horizontal'
+};
+
+/**
+ * Get total amount of ticks from a given size in pixels.
+ * @param {number} size Size of the axis in pixels.
+ * @returns {number} Total amount of ticks.
+ */
+function getTicksTotalFromSize(size) {
+  if (size < 700) {
+    if (size > 300) {
+      return 10;
+    }
+    return 5;
+  }
+  return 20;
+}
+
+/**
+ * Get the tick values from a given d3 scale.
+ * @param {d3.scale} scale Scale function.
+ * @param {number} tickTotal Total number of ticks
+ * @param {Array} tickValues Array of tick values if they exist.
+ * @returns {Array} Array of tick values.
+ */
+function getTickValues(scale, tickTotal, tickValues) {
+  return !tickValues ? scale.ticks ? scale.ticks(tickTotal) : scale.domain() : tickValues;
+}
+},{}],353:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MarginPropType = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+exports.getInnerDimensions = getInnerDimensions;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Get the dimensions of the component for the future use.
+ * @param {Object} props Props.
+ * @param {Object} defaultMargins Object with default margins.
+ * @returns {Object} Dimensions of the component.
+ */
+function getInnerDimensions(props, defaultMargins) {
+  var margin = props.margin;
+  var width = props.width;
+  var height = props.height;
+
+  var marginProps = _extends({}, defaultMargins, typeof margin === 'number' ? {
+    left: margin,
+    right: margin,
+    top: margin,
+    bottom: margin
+  } : margin);
+  var _marginProps$left = marginProps.left;
+  var marginLeft = _marginProps$left === undefined ? 0 : _marginProps$left;
+  var _marginProps$top = marginProps.top;
+  var marginTop = _marginProps$top === undefined ? 0 : _marginProps$top;
+  var _marginProps$right = marginProps.right;
+  var marginRight = _marginProps$right === undefined ? 0 : _marginProps$right;
+  var _marginProps$bottom = marginProps.bottom;
+  var marginBottom = _marginProps$bottom === undefined ? 0 : _marginProps$bottom;
+
+  return {
+    marginLeft: marginLeft,
+    marginTop: marginTop,
+    marginRight: marginRight,
+    marginBottom: marginBottom,
+    innerHeight: height - marginBottom - marginTop,
+    innerWidth: width - marginLeft - marginRight
+  };
+}
+
+var MarginPropType = exports.MarginPropType = _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.shape({
+  left: _react2.default.PropTypes.number,
+  top: _react2.default.PropTypes.number,
+  right: _react2.default.PropTypes.number,
+  bottom: _react2.default.PropTypes.number
+}), _react2.default.PropTypes.number]);
+},{"react":502}],354:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getObjectValueAccessor = getObjectValueAccessor;
+exports.getUniquePropertyValues = getUniquePropertyValues;
+exports.addValueToArray = addValueToArray;
+// Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+/**
+ * Get the value accessor function that gets a property from an object.
+ * @param {string} propertyName Property name.
+ * @returns {Function} Value accessor.
+ */
+function getObjectValueAccessor(propertyName) {
+  return function (obj) {
+    return obj[propertyName];
+  };
+}
+
+/**
+ * Get unique property values from an array.
+ * @param {Array} arr Array of data.
+ * @param {string} propertyName Prop name.
+ * @returns {Array} Array of unique values.
+ */
+function getUniquePropertyValues(arr, propertyName) {
+  var setOfValues = new Set(arr.map(getObjectValueAccessor(propertyName)));
+  return Array.from(setOfValues);
+}
+
+/**
+ * Add zero to the domain.
+ * @param {Array} arr Add zero to the domain.
+ * @param {Number} value Add zero to domain.
+ * @returns {Array} Adjusted domain.
+ */
+function addValueToArray(arr, value) {
+  var result = [].concat(arr);
+  if (result[0] > value) {
+    result[0] = value;
+  }
+  if (result[result.length - 1] < value) {
+    result[result.length - 1] = value;
+  }
+  return result;
+}
+},{}],355:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }(); // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+exports.getDOMNode = getDOMNode;
+exports.isReactDOMSupported = isReactDOMSupported;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _React$version$split = _react2.default.version.split('.');
+
+var _React$version$split2 = _slicedToArray(_React$version$split, 2);
+
+var major = _React$version$split2[0];
+var minor = _React$version$split2[1];
+
+var versionHigherThanThirteen = Number(minor) > 13 || Number(major) > 13;
+
+/**
+ * Support React 0.13 and greater where refs are React components, not DOM
+ * nodes.
+ * @param {*} ref React's ref.
+ * @returns {Element} DOM element.
+ */
+function getDOMNode(ref) {
+  if (!isReactDOMSupported()) {
+    return ref && ref.getDOMNode();
+  }
+  return ref;
+}
+
+function isReactDOMSupported() {
+  return versionHigherThanThirteen;
+}
+},{"react":502}],356:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _SCALE_FUNCTIONS;
+
+exports._getSmallestDistanceIndex = _getSmallestDistanceIndex;
+exports.getDomainByAttr = getDomainByAttr;
+exports.getScaleObjectFromProps = getScaleObjectFromProps;
+exports.getAttributeScale = getAttributeScale;
+exports.getAttributeFunctor = getAttributeFunctor;
+exports.getAttr0Functor = getAttr0Functor;
+exports.getAttributeValue = getAttributeValue;
+exports.getScalePropTypesByAttribute = getScalePropTypesByAttribute;
+exports.extractScalePropsFromProps = extractScalePropsFromProps;
+exports.getMissingScaleProps = getMissingScaleProps;
+
+var _d3Scale = require('d3-scale');
+
+var d3Scale = _interopRequireWildcard(_d3Scale);
+
+var _d3Array = require('d3-array');
+
+var d3Array = _interopRequireWildcard(_d3Array);
+
+var _d3Collection = require('d3-collection');
+
+var d3Collection = _interopRequireWildcard(_d3Collection);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _warning = require('warning');
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _dataUtils = require('./data-utils');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; } // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+/**
+ * Linear scale name.
+ * @type {string}
+ * @const
+ */
+var LINEAR_SCALE_TYPE = 'linear';
+
+/**
+ * Ordinal scale name.
+ * @type {string}
+ * @const
+ */
+var ORDINAL_SCALE_TYPE = 'ordinal';
+
+/**
+ * Category scale.
+ * @type {string}
+ * @const
+ */
+var CATEGORY_SCALE_TYPE = 'category';
+
+/**
+ * Log scale name.
+ * @type {string}
+ * @const
+ */
+var LOG_SCALE_TYPE = 'log';
+
+/**
+ * Time scale name.
+ * @type {string}
+ * @const
+ */
+var TIME_SCALE_TYPE = 'time';
+
+/**
+ * Time UTC scale name.
+ * @type {string}
+ * @const
+ */
+var TIME_UTC_SCALE_TYPE = 'time-utc';
+
+/**
+ * Scale functions that are supported in the library.
+ * @type {Object}
+ * @const
+ */
+var SCALE_FUNCTIONS = (_SCALE_FUNCTIONS = {}, _defineProperty(_SCALE_FUNCTIONS, LINEAR_SCALE_TYPE, d3Scale.scaleLinear), _defineProperty(_SCALE_FUNCTIONS, ORDINAL_SCALE_TYPE, d3Scale.scalePoint), _defineProperty(_SCALE_FUNCTIONS, CATEGORY_SCALE_TYPE, d3Scale.scaleOrdinal), _defineProperty(_SCALE_FUNCTIONS, LOG_SCALE_TYPE, d3Scale.scaleLog), _defineProperty(_SCALE_FUNCTIONS, TIME_SCALE_TYPE, d3Scale.scaleTime), _defineProperty(_SCALE_FUNCTIONS, TIME_UTC_SCALE_TYPE, d3Scale.scaleUtc), _SCALE_FUNCTIONS);
+
+/**
+ * Find the smallest distance between the values on a given scale and return
+ * the index of the element, where the smallest distance was found.
+ * It returns the first occurrence of i where
+ * `scale(value[i]) - scale(value[i - 1])` is minimal
+ * @param {Array} values Array of values.
+ * @param {Object} scaleObject Scale object.
+ * @returns {number} Index of an element where the smallest distance was found.
+ * @private
+ */
+function _getSmallestDistanceIndex(values, scaleObject) {
+  var scaleFn = _getScaleFnFromScaleObject(scaleObject);
+  var result = 0;
+  if (scaleFn) {
+    var nextValue = void 0;
+    var currentValue = scaleFn(values[0]);
+    var distance = Infinity;
+    var nextDistance = void 0;
+
+    for (var i = 1; i < values.length; i++) {
+      nextValue = scaleFn(values[i]);
+      nextDistance = Math.abs(nextValue - currentValue);
+      if (nextDistance < distance) {
+        distance = nextDistance;
+        result = i;
+      }
+      currentValue = nextValue;
+    }
+  }
+  return result;
+}
+
+/**
+ * Crate a scale function from the scale object.
+ * @param {Object} scaleObject Scale object.
+ * @returns {*} Scale function.
+ * @private
+ */
+function _getScaleFnFromScaleObject(scaleObject) {
+  if (!scaleObject) {
+    return null;
+  }
+  var type = scaleObject.type;
+  var domain = scaleObject.domain;
+  var range = scaleObject.range;
+
+  var scale = SCALE_FUNCTIONS[type]().domain(domain).range(range);
+  if (type === ORDINAL_SCALE_TYPE) {
+    scale.padding(0.5);
+  }
+  return scale;
+}
+
+/**
+ * Get the domain from the array of data.
+ * @param {Array} allData All data.
+ * @param {string} attr Property name.
+ * @param {string} type Scale type.
+ * @returns {Array} Domain.
+ * @private
+ */
+function getDomainByAttr(allData, attr, type) {
+  var domain = void 0;
+  var attr0 = attr + '0';
+
+  // Collect both attr and available attr0 values from the array of data.
+  var values = allData.reduce(function (data, d) {
+    var value = d[attr];
+    var value0 = d[attr0];
+    if (_isDefined(value)) {
+      data.push(value);
+    }
+    if (_isDefined(value0)) {
+      data.push(value0);
+    }
+    return data;
+  }, []);
+
+  if (!values.length) {
+    return [];
+  }
+
+  // Create proper domain depending on the type of the scale.
+  if (type !== ORDINAL_SCALE_TYPE && type !== CATEGORY_SCALE_TYPE) {
+    domain = d3Array.extent(values);
+  } else {
+    domain = d3Collection.set(values).values();
+  }
+  return domain;
+}
+
+/**
+ * Create custom scale object from the value. When the scale is created from
+ * this object, it should return the same value all time.
+ * @param {string} attr Attribute.
+ * @param {*} value Value.
+ * @returns {Object} Custom scale object.
+ * @private
+ */
+function _createScaleObjectForValue(attr, value) {
+  if (typeof value === 'undefined') {
+    return null;
+  }
+  return {
+    type: 'category',
+    range: [value],
+    domain: [],
+    distance: 0,
+    attr: attr,
+    baseValue: undefined,
+    isValue: true
+  };
+}
+
+/**
+ * Create a regular scale object for a further use from the existing parameters.
+ * @param {Array} domain Domain.
+ * @param {Array} range Range.
+ * @param {string} type Type.
+ * @param {number} distance Distance.
+ * @param {string} attr Attribute.
+ * @param {number} baseValue Base value.
+ * @returns {Object} Scale object.
+ * @private
+ */
+function _createScaleObjectForFunction(domain, range, type, distance, attr, baseValue) {
+  return {
+    domain: domain,
+    range: range,
+    type: type,
+    distance: distance,
+    attr: attr,
+    baseValue: baseValue,
+    isValue: false
+  };
+}
+
+/**
+ * Get scale object from props. E. g. object like {xRange, xDomain, xDistance,
+ * xType} is transformed into {range, domain, distance, type}.
+ * @param {Object} props Props.
+ * @param {string} attr Attribute.
+ * @returns {*} Null or an object with the scale.
+ * @private
+ */
+function _collectScaleObjectFromProps(props, attr) {
+  var value = props[attr];
+  var fallbackValue = props['_' + attr + 'Value'];
+  var range = props[attr + 'Range'];
+  var _props$ = props[attr + 'Distance'];
+  var distance = _props$ === undefined ? 0 : _props$;
+  var baseValue = props[attr + 'BaseValue'];
+  var _props$2 = props[attr + 'Type'];
+  var type = _props$2 === undefined ? LINEAR_SCALE_TYPE : _props$2;
+  var domain = props[attr + 'Domain'];
+
+  // Return value-based scale if the value is assigned.
+
+  if (typeof value !== 'undefined') {
+    return _createScaleObjectForValue(attr, value);
+  }
+
+  // Pick up the domain from the properties and create a new one if it's not
+  // available.
+  if (typeof baseValue !== 'undefined') {
+    domain = (0, _dataUtils.addValueToArray)(domain, baseValue);
+  }
+
+  // Make sure that the minimum necessary properties exist.
+  if (!range || !domain || !domain.length) {
+    // Try to use the fallback value if it is available.
+    return _createScaleObjectForValue(attr, fallbackValue);
+  }
+
+  return _createScaleObjectForFunction(domain, range, type, distance, attr, baseValue);
+}
+
+/**
+ * Compute left domain adjustment for the given values.
+ * @param {Array} values Array of values.
+ * @returns {number} Domain adjustment.
+ * @private
+ */
+function _computeLeftDomainAdjustment(values) {
+  if (values.length > 1) {
+    return (values[1] - values[0]) / 2;
+  }
+  if (values.length === 1) {
+    return values[0] - 0.5;
+  }
+  return 0;
+}
+
+/**
+ * Compute right domain adjustment for the given values.
+ * @param {Array} values Array of values.
+ * @returns {number} Domain adjustment.
+ * @private
+ */
+function _computeRightDomainAdjustment(values) {
+  if (values.length > 1) {
+    return (values[values.length - 1] - values[values.length - 2]) / 2;
+  }
+  if (values.length === 1) {
+    return values[0] - 0.5;
+  }
+  return 0;
+}
+
+/**
+ * Compute distance for the given values.
+ * @param {Array} values Array of values.
+ * @param {Array} domain Domain.
+ * @param {number} bestDistIndex Index of a best distance found.
+ * @param {function} scaleFn Scale function.
+ * @returns {number} Domain adjustment.
+ * @private
+ */
+function _computeScaleDistance(values, domain, bestDistIndex, scaleFn) {
+  if (values.length > 1) {
+    // Avoid zero indexes.
+    var i = Math.max(bestDistIndex, 1);
+    return Math.abs(scaleFn(values[i]) - scaleFn(values[i - 1]));
+  }
+  if (values.length === 1) {
+    return Math.abs(scaleFn(domain[1]) - scaleFn(domain[0]));
+  }
+  return 0;
+}
+
+/**
+ * Get the distance, the smallest and the largest value of the domain.
+ * @param {Array} data Array of data for the single series.
+ * @param {Object} scaleObject Scale object.
+ * @returns {{domain0: number, domainN: number, distance: number}} Resuylt.
+ * @private
+ */
+function _getScaleDistanceAndAdjustedDomain(data, scaleObject) {
+  var attr = scaleObject.attr;
+  var domain = scaleObject.domain;
+
+  var values = (0, _dataUtils.getUniquePropertyValues)(data, attr);
+  var index = _getSmallestDistanceIndex(values, scaleObject);
+
+  var adjustedDomain = [].concat(domain);
+
+  adjustedDomain[0] -= _computeLeftDomainAdjustment(values);
+  adjustedDomain[domain.length - 1] += _computeRightDomainAdjustment(values);
+  // Fix log scale if it's too small.
+  if (scaleObject.type === LOG_SCALE_TYPE && domain[0] <= 0) {
+    adjustedDomain[0] = Math.min(domain[1] / 10, 1);
+  }
+
+  var adjustedScaleFn = _getScaleFnFromScaleObject(_extends({}, scaleObject, {
+    domain: adjustedDomain
+  }));
+
+  var distance = _computeScaleDistance(values, adjustedDomain, index, adjustedScaleFn);
+
+  return {
+    domain0: adjustedDomain[0],
+    domainN: adjustedDomain[adjustedDomain.length - 1],
+    distance: distance
+  };
+}
+
+/**
+ * Returns true if scale adjustments are possible for a given scale.
+ * @param {Object} props Props.
+ * @param {Object} scaleObject Scale object.
+ * @returns {boolean} True if scale adjustments possible.
+ * @private
+ */
+function _isScaleAdjustmentPossible(props, scaleObject) {
+  var attr = scaleObject.attr;
+  var _props$_adjustBy = props._adjustBy;
+  var adjustBy = _props$_adjustBy === undefined ? [] : _props$_adjustBy;
+  var _props$_adjustWhat = props._adjustWhat;
+  var adjustWhat = _props$_adjustWhat === undefined ? [] : _props$_adjustWhat;
+
+  // The scale cannot be adjusted if there's no attributes to adjust, no
+  // suitable values
+
+  return adjustWhat.length && adjustBy.length && adjustBy.indexOf(attr) !== -1;
+}
+
+/**
+ * Adjust continuous scales (e.g. 'linear', 'log' and 'time') by adding the
+ * space from the left and right of them and by computing the best distance.
+ * @param {Object} props Props.
+ * @param {Object} scaleObject Scale object.
+ * @returns {*} Scale object with adjustments.
+ * @private
+ */
+function _adjustContinuousScale(props, scaleObject) {
+  var allSeriesData = props._allData;
+  var _props$_adjustWhat2 = props._adjustWhat;
+  var adjustWhat = _props$_adjustWhat2 === undefined ? [] : _props$_adjustWhat2;
+
+  // Assign the initial values.
+
+  var domainLength = scaleObject.domain.length;
+  var domain = scaleObject.domain;
+
+  var scaleDomain0 = domain[0];
+  var scaleDomainN = domain[domainLength - 1];
+  var scaleDistance = scaleObject.distance;
+
+  // Find the smallest left position of the domain, the largest right position
+  // of the domain and the best distance for them.
+  allSeriesData.forEach(function (data, index) {
+    if (adjustWhat.indexOf(index) === -1) {
+      return;
+    }
+    if (data && data.length) {
+      var _getScaleDistanceAndA = _getScaleDistanceAndAdjustedDomain(data, scaleObject);
+
+      var domain0 = _getScaleDistanceAndA.domain0;
+      var domainN = _getScaleDistanceAndA.domainN;
+      var distance = _getScaleDistanceAndA.distance;
+
+      scaleDomain0 = Math.min(scaleDomain0, domain0);
+      scaleDomainN = Math.max(scaleDomainN, domainN);
+      scaleDistance = Math.max(scaleDistance, distance);
+    }
+  });
+
+  scaleObject.domain = [scaleDomain0].concat(_toConsumableArray(domain.slice(1, -1)), [scaleDomainN]);
+
+  scaleObject.distance = scaleDistance;
+
+  return scaleObject;
+}
+
+/**
+ * Get an adjusted scale. Suitable for 'category' and 'ordinal' scales.
+ * @param {Object} scaleObject Scale object.
+ * @returns {*} Scale object with adjustments.
+ * @private
+ */
+function _adjustCategoricalScale(scaleObject) {
+  var scaleFn = _getScaleFnFromScaleObject(scaleObject);
+  var domain = scaleObject.domain;
+  var range = scaleObject.range;
+
+  if (domain.length > 1) {
+    scaleObject.distance = scaleFn(domain[1]) - scaleFn(domain[0]);
+  } else {
+    scaleObject.distance = range[1] - range[0];
+  }
+  return scaleObject;
+}
+
+/**
+ * Retrieve a scale object or a value from the properties passed.
+ * @param {Object} props Object of props.
+ * @param {string} attr Attribute.
+ * @returns {*} Scale object, value or null.
+ */
+function getScaleObjectFromProps(props, attr) {
+  // Create the initial scale object.
+  var scaleObject = _collectScaleObjectFromProps(props, attr);
+
+  if (!scaleObject) {
+    return null;
+  }
+
+  // Make sure if it's possible to add space to the scale object. If not,
+  // return the object immediately.
+  if (!_isScaleAdjustmentPossible(props, scaleObject)) {
+    return scaleObject;
+  }
+
+  var type = scaleObject.type;
+  // Depending on what type the scale is, apply different adjustments. Distances
+  // for the ordinal and category scales are even, equal domains cannot be
+  // adjusted.
+
+  if (type === ORDINAL_SCALE_TYPE || type === CATEGORY_SCALE_TYPE) {
+    return _adjustCategoricalScale(scaleObject);
+  }
+  return _adjustContinuousScale(props, scaleObject);
+}
+
+/**
+ * Get d3 scale for a given prop.
+ * @param {Object} props Props.
+ * @param {string} attr Attribute.
+ * @returns {function} d3 scale function.
+ */
+function getAttributeScale(props, attr) {
+  var scaleObject = getScaleObjectFromProps(props, attr);
+  return _getScaleFnFromScaleObject(scaleObject);
+}
+
+/**
+ * Get the value of `attr` from the object.
+ * @param {Object} d Object.
+ * @param {string} attr Attribute.
+ * @returns {*} Value of the point.
+ * @private
+ */
+function _getAttrValue(d, attr) {
+  return d.data ? d.data[attr] : d[attr];
+}
+
+function _isDefined(value) {
+  return typeof value !== 'undefined';
+}
+
+/**
+ * Get prop functor (either a value or a function) for a given attribute.
+ * @param {Object} props Series props.
+ * @param {string} attr Property name.
+ * @returns {*} Function or value.
+ */
+function getAttributeFunctor(props, attr) {
+  var scaleObject = getScaleObjectFromProps(props, attr);
+  if (scaleObject) {
+    var _ret = function () {
+      var scaleFn = _getScaleFnFromScaleObject(scaleObject);
+      return {
+        v: function v(d) {
+          return scaleFn(_getAttrValue(d, attr));
+        }
+      };
+    }();
+
+    if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+  }
+  return null;
+}
+
+/**
+ * Get the functor which extracts value form [attr]0 property. Use baseValue if
+ * no attr0 property for a given object is defined. Fall back to domain[0] if no
+ * base value is available.
+ * @param {Object} props Object of props.
+ * @param {string} attr Attribute name.
+ * @returns {*} Function which returns value or null if no values available.
+ */
+function getAttr0Functor(props, attr) {
+  var scaleObject = getScaleObjectFromProps(props, attr);
+  if (scaleObject) {
+    var _ret2 = function () {
+      var attr0 = attr + '0';
+      var domain = scaleObject.domain;
+      var _scaleObject$baseValu = scaleObject.baseValue;
+      var baseValue = _scaleObject$baseValu === undefined ? domain[0] : _scaleObject$baseValu;
+
+      var scaleFn = _getScaleFnFromScaleObject(scaleObject);
+      return {
+        v: function v(d) {
+          var value = _getAttrValue(d, attr0);
+          return scaleFn(_isDefined(value) ? value : baseValue);
+        }
+      };
+    }();
+
+    if ((typeof _ret2 === 'undefined' ? 'undefined' : _typeof(_ret2)) === "object") return _ret2.v;
+  }
+  return null;
+}
+
+/**
+ * Tries to get the string|number value of the attr and falls back to
+ * a fallback property in case if the value is a scale.
+ * @param {Object} props Series props.
+ * @param {string} attr Property name.
+ * @returns {*} Function or value.
+ */
+function getAttributeValue(props, attr) {
+  var scaleObject = getScaleObjectFromProps(props, attr);
+  if (scaleObject) {
+    if (!scaleObject.isValue) {
+      (0, _warning2.default)(false, 'Cannot use data defined ' + attr + ' for this series' + 'type. Using fallback value instead.');
+    }
+    return scaleObject.range[0];
+  }
+  return null;
+}
+
+/**
+ * Get prop types by the attribute.
+ * @param {string} attr Attribute.
+ * @returns {Object} Object of xDomain, xRange, xType, xDistance and _xValue,
+ * where x is an attribute passed to the function.
+ */
+function getScalePropTypesByAttribute(attr) {
+  var _ref;
+
+  return _ref = {}, _defineProperty(_ref, '_' + attr + 'Value', _react2.default.PropTypes.any), _defineProperty(_ref, attr + 'Domain', _react2.default.PropTypes.array), _defineProperty(_ref, attr + 'Range', _react2.default.PropTypes.array), _defineProperty(_ref, attr + 'Type', _react2.default.PropTypes.oneOf(Object.keys(SCALE_FUNCTIONS))), _defineProperty(_ref, attr + 'Distance', _react2.default.PropTypes.number), _defineProperty(_ref, attr + 'BaseValue', _react2.default.PropTypes.any), _ref;
+}
+
+/**
+ * Extract the list of scale properties from the entire props object.
+ * @param {Object} props Props.
+ * @param {Array<String>} attributes Array of attributes for the given
+ * components (for instance, `['x', 'y', 'color']`).
+ * @returns {Object} Collected props.
+ */
+function extractScalePropsFromProps(props, attributes) {
+  var result = {};
+  Object.keys(props).forEach(function (key) {
+    var attr = attributes.find(function (a) {
+      return key.indexOf(a) === 0 || key.indexOf('_' + a) === 0;
+    });
+    if (!attr) {
+      return;
+    }
+    result[key] = props[key];
+  });
+  return result;
+}
+
+/**
+ * Extract the missing scale props from the given data and return them as
+ * an object.
+ * @param {Object} props Props.
+ * @param {Array} data Array of all data.
+ * @param {Array<String>} attributes Array of attributes for the given
+ * components (for instance, `['x', 'y', 'color']`).
+ * @returns {Object} Collected props.
+ */
+function getMissingScaleProps(props, data, attributes) {
+  var result = {};
+  // Make sure that the domain is set and pass the domain as well.
+  attributes.forEach(function (attr) {
+    if (!props[attr + 'Domain']) {
+      result[attr + 'Domain'] = getDomainByAttr(data, attr, props[attr + 'Type']);
+    }
+  });
+  return result;
+}
+},{"./data-utils":354,"d3-array":109,"d3-collection":110,"d3-scale":116,"react":502,"warning":506}],357:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ANIMATED_SERIES_PROPS = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+exports.isSeriesChild = isSeriesChild;
+exports.getSeriesChildren = getSeriesChildren;
+exports.getStackedData = getStackedData;
+exports.getSeriesPropsFromChildren = getSeriesPropsFromChildren;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _abstractSeries = require('../plot/series/abstract-series');
+
+var _abstractSeries2 = _interopRequireDefault(_abstractSeries);
+
+var _theme = require('../theme');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/**
+ * Check if the component is series or not.
+ * @param {React.Component} child Component.
+ * @returns {boolean} True if the child is series, false otherwise.
+ */
+function isSeriesChild(child) {
+  var prototype = child.type.prototype;
+
+  return prototype instanceof _abstractSeries2.default;
+}
+
+/**
+ * Get all series from the 'children' object of the component.
+ * @param {Object} children Children.
+ * @returns {Array} Array of children.
+ */
+function getSeriesChildren(children) {
+  return _react2.default.Children.toArray(children).filter(function (child) {
+    return child && isSeriesChild(child);
+  });
+}
+
+/**
+ * Collect the map of repetitions of the series type for all children.
+ * @param {Array} children Array of children.
+ * @returns {{}} Map of repetitions where sameTypeTotal is the total amount and
+ * sameTypeIndex is always 0.
+ */
+function collectSeriesTypesInfo(children) {
+  var result = {};
+  children.filter(isSeriesChild).forEach(function (child) {
+    var displayName = child.type.displayName;
+
+    if (!result[displayName]) {
+      result[displayName] = {
+        sameTypeTotal: 0,
+        sameTypeIndex: 0
+      };
+    }
+    result[displayName].sameTypeTotal++;
+  });
+  return result;
+}
+
+/**
+ * Collect the stacked data for all children in use. If the children don't have
+ * the data (e.g. the child is invalid series or something else), then the child
+ * is skipped.
+ * Each next value of attr is equal to the previous value plus the difference
+ * between attr0 and attr.
+ * @param {Array} children Array of children.
+ * @param {string} attr Attribute.
+ * @returns {Array} New array of children for the series.
+ */
+function getStackedData(children, attr) {
+  var childData = [];
+  var prevIndex = -1;
+  children.forEach(function (child, childIndex) {
+    // Skip the children that are not series (e.g. don't have any data).
+    if (!child) {
+      childData.push(null);
+      return;
+    }
+    var data = child.props.data;
+
+    if (!attr || !data || !data.length) {
+      childData.push(data);
+      return;
+    }
+    var attr0 = attr + '0';
+    childData.push(data.map(function (d, dIndex) {
+      var _extends2;
+
+      // In case if it's the first series don't try to override any values.
+      if (prevIndex < 0) {
+        return _extends({}, d);
+      }
+      // In case if the series is not the first, try to get the attr0 values
+      // from the previous series.
+      var prevD = childData[prevIndex][dIndex];
+      return _extends({}, d, (_extends2 = {}, _defineProperty(_extends2, attr0, prevD[attr]), _defineProperty(_extends2, attr, prevD[attr] + d[attr] - (d[attr0] || 0)), _extends2));
+    }));
+    prevIndex = childIndex;
+  });
+  return childData;
+}
+
+/**
+ * Get the list of series props for a child.
+ * @param {Array} children Array of all children.
+ * @returns {Array} Array of series props for each child. If a child is not a
+ * series, than it's undefined.
+ */
+function getSeriesPropsFromChildren(children) {
+  var result = [];
+  var seriesTypesInfo = collectSeriesTypesInfo(children);
+  var seriesIndex = 0;
+  var _opacityValue = _theme.DEFAULT_OPACITY;
+  children.forEach(function (child) {
+    var props = void 0;
+    if (isSeriesChild(child)) {
+      var seriesTypeInfo = seriesTypesInfo[child.type.displayName];
+      var _colorValue = _theme.DISCRETE_COLOR_RANGE[seriesIndex % _theme.DISCRETE_COLOR_RANGE.length];
+      props = _extends({}, seriesTypeInfo, {
+        seriesIndex: seriesIndex,
+        ref: 'series' + seriesIndex,
+        _colorValue: _colorValue,
+        _opacityValue: _opacityValue
+      });
+      seriesTypeInfo.sameTypeIndex++;
+      seriesIndex++;
+    }
+    result.push(props);
+  });
+  return result;
+}
+
+var ANIMATED_SERIES_PROPS = exports.ANIMATED_SERIES_PROPS = ['xRange', 'xDomain', 'x', 'yRange', 'yDomain', 'y', 'colorRange', 'colorDomain', 'color', 'opacityRange', 'opacityDomain', 'opacity', 'strokeRange', 'strokeDomain', 'stroke', 'fillRange', 'fillDomain', 'fill', 'width', 'height', 'marginLeft', 'marginTop', 'marginRight', 'marginBottom', 'data'];
+},{"../plot/series/abstract-series":335,"../theme":349,"react":502}],358:[function(require,module,exports){
+// Copyright (c) 2016 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+module.exports = require('./dist/index');
+
+},{"./dist/index":317}],359:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -19682,7 +35098,7 @@ var AutoFocusUtils = {
 };
 
 module.exports = AutoFocusUtils;
-},{"./ReactDOMComponentTree":327,"fbjs/lib/focusNode":146}],287:[function(require,module,exports){
+},{"./ReactDOMComponentTree":400,"fbjs/lib/focusNode":161}],360:[function(require,module,exports){
 /**
  * Copyright 2013-present Facebook, Inc.
  * All rights reserved.
@@ -20073,7 +35489,7 @@ var BeforeInputEventPlugin = {
 };
 
 module.exports = BeforeInputEventPlugin;
-},{"./EventConstants":301,"./EventPropagators":305,"./FallbackCompositionState":306,"./SyntheticCompositionEvent":384,"./SyntheticInputEvent":388,"fbjs/lib/ExecutionEnvironment":138,"fbjs/lib/keyOf":156}],288:[function(require,module,exports){
+},{"./EventConstants":374,"./EventPropagators":378,"./FallbackCompositionState":379,"./SyntheticCompositionEvent":457,"./SyntheticInputEvent":461,"fbjs/lib/ExecutionEnvironment":153,"fbjs/lib/keyOf":171}],361:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -20222,7 +35638,7 @@ var CSSProperty = {
 };
 
 module.exports = CSSProperty;
-},{}],289:[function(require,module,exports){
+},{}],362:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -20430,7 +35846,7 @@ var CSSPropertyOperations = {
 
 module.exports = CSSPropertyOperations;
 }).call(this,require('_process'))
-},{"./CSSProperty":288,"./ReactInstrumentation":357,"./dangerousStyleValue":402,"_process":20,"fbjs/lib/ExecutionEnvironment":138,"fbjs/lib/camelizeStyleName":140,"fbjs/lib/hyphenateStyleName":151,"fbjs/lib/memoizeStringOnly":157,"fbjs/lib/warning":161}],290:[function(require,module,exports){
+},{"./CSSProperty":361,"./ReactInstrumentation":430,"./dangerousStyleValue":475,"_process":21,"fbjs/lib/ExecutionEnvironment":153,"fbjs/lib/camelizeStyleName":155,"fbjs/lib/hyphenateStyleName":166,"fbjs/lib/memoizeStringOnly":172,"fbjs/lib/warning":176}],363:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -20539,7 +35955,7 @@ PooledClass.addPoolingTo(CallbackQueue);
 
 module.exports = CallbackQueue;
 }).call(this,require('_process'))
-},{"./PooledClass":310,"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152,"object-assign":165}],291:[function(require,module,exports){
+},{"./PooledClass":383,"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167,"object-assign":181}],364:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -20865,7 +36281,7 @@ var ChangeEventPlugin = {
 };
 
 module.exports = ChangeEventPlugin;
-},{"./EventConstants":301,"./EventPluginHub":302,"./EventPropagators":305,"./ReactDOMComponentTree":327,"./ReactUpdates":377,"./SyntheticEvent":386,"./getEventTarget":410,"./isEventSupported":417,"./isTextInputElement":418,"fbjs/lib/ExecutionEnvironment":138,"fbjs/lib/keyOf":156}],292:[function(require,module,exports){
+},{"./EventConstants":374,"./EventPluginHub":375,"./EventPropagators":378,"./ReactDOMComponentTree":400,"./ReactUpdates":450,"./SyntheticEvent":459,"./getEventTarget":483,"./isEventSupported":490,"./isTextInputElement":491,"fbjs/lib/ExecutionEnvironment":153,"fbjs/lib/keyOf":171}],365:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -21062,7 +36478,7 @@ var DOMChildrenOperations = {
 
 module.exports = DOMChildrenOperations;
 }).call(this,require('_process'))
-},{"./DOMLazyTree":293,"./Danger":297,"./ReactDOMComponentTree":327,"./ReactInstrumentation":357,"./ReactMultiChildUpdateTypes":362,"./createMicrosoftUnsafeLocalFunction":401,"./setInnerHTML":423,"./setTextContent":424,"_process":20}],293:[function(require,module,exports){
+},{"./DOMLazyTree":366,"./Danger":370,"./ReactDOMComponentTree":400,"./ReactInstrumentation":430,"./ReactMultiChildUpdateTypes":435,"./createMicrosoftUnsafeLocalFunction":474,"./setInnerHTML":496,"./setTextContent":497,"_process":21}],366:[function(require,module,exports){
 /**
  * Copyright 2015-present, Facebook, Inc.
  * All rights reserved.
@@ -21181,7 +36597,7 @@ DOMLazyTree.queueHTML = queueHTML;
 DOMLazyTree.queueText = queueText;
 
 module.exports = DOMLazyTree;
-},{"./DOMNamespaces":294,"./createMicrosoftUnsafeLocalFunction":401,"./setInnerHTML":423,"./setTextContent":424}],294:[function(require,module,exports){
+},{"./DOMNamespaces":367,"./createMicrosoftUnsafeLocalFunction":474,"./setInnerHTML":496,"./setTextContent":497}],367:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -21202,7 +36618,7 @@ var DOMNamespaces = {
 };
 
 module.exports = DOMNamespaces;
-},{}],295:[function(require,module,exports){
+},{}],368:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -21411,7 +36827,7 @@ var DOMProperty = {
 
 module.exports = DOMProperty;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152}],296:[function(require,module,exports){
+},{"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167}],369:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -21635,7 +37051,7 @@ var DOMPropertyOperations = {
 
 module.exports = DOMPropertyOperations;
 }).call(this,require('_process'))
-},{"./DOMProperty":295,"./ReactDOMComponentTree":327,"./ReactInstrumentation":357,"./quoteAttributeValueForBrowser":420,"_process":20,"fbjs/lib/warning":161}],297:[function(require,module,exports){
+},{"./DOMProperty":368,"./ReactDOMComponentTree":400,"./ReactInstrumentation":430,"./quoteAttributeValueForBrowser":493,"_process":21,"fbjs/lib/warning":176}],370:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -21686,7 +37102,7 @@ var Danger = {
 
 module.exports = Danger;
 }).call(this,require('_process'))
-},{"./DOMLazyTree":293,"./reactProdInvariant":421,"_process":20,"fbjs/lib/ExecutionEnvironment":138,"fbjs/lib/createNodesFromMarkup":143,"fbjs/lib/emptyFunction":144,"fbjs/lib/invariant":152}],298:[function(require,module,exports){
+},{"./DOMLazyTree":366,"./reactProdInvariant":494,"_process":21,"fbjs/lib/ExecutionEnvironment":153,"fbjs/lib/createNodesFromMarkup":158,"fbjs/lib/emptyFunction":159,"fbjs/lib/invariant":167}],371:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -21714,7 +37130,7 @@ var keyOf = require('fbjs/lib/keyOf');
 var DefaultEventPluginOrder = [keyOf({ ResponderEventPlugin: null }), keyOf({ SimpleEventPlugin: null }), keyOf({ TapEventPlugin: null }), keyOf({ EnterLeaveEventPlugin: null }), keyOf({ ChangeEventPlugin: null }), keyOf({ SelectEventPlugin: null }), keyOf({ BeforeInputEventPlugin: null })];
 
 module.exports = DefaultEventPluginOrder;
-},{"fbjs/lib/keyOf":156}],299:[function(require,module,exports){
+},{"fbjs/lib/keyOf":171}],372:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -21765,7 +37181,7 @@ var DisabledInputUtils = {
 };
 
 module.exports = DisabledInputUtils;
-},{}],300:[function(require,module,exports){
+},{}],373:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -21871,7 +37287,7 @@ var EnterLeaveEventPlugin = {
 };
 
 module.exports = EnterLeaveEventPlugin;
-},{"./EventConstants":301,"./EventPropagators":305,"./ReactDOMComponentTree":327,"./SyntheticMouseEvent":390,"fbjs/lib/keyOf":156}],301:[function(require,module,exports){
+},{"./EventConstants":374,"./EventPropagators":378,"./ReactDOMComponentTree":400,"./SyntheticMouseEvent":463,"fbjs/lib/keyOf":171}],374:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -21969,7 +37385,7 @@ var EventConstants = {
 };
 
 module.exports = EventConstants;
-},{"fbjs/lib/keyMirror":155}],302:[function(require,module,exports){
+},{"fbjs/lib/keyMirror":170}],375:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -22223,7 +37639,7 @@ var EventPluginHub = {
 
 module.exports = EventPluginHub;
 }).call(this,require('_process'))
-},{"./EventPluginRegistry":303,"./EventPluginUtils":304,"./ReactErrorUtils":348,"./accumulateInto":397,"./forEachAccumulated":406,"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152}],303:[function(require,module,exports){
+},{"./EventPluginRegistry":376,"./EventPluginUtils":377,"./ReactErrorUtils":421,"./accumulateInto":470,"./forEachAccumulated":479,"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167}],376:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -22473,7 +37889,7 @@ var EventPluginRegistry = {
 
 module.exports = EventPluginRegistry;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152}],304:[function(require,module,exports){
+},{"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167}],377:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -22705,7 +38121,7 @@ var EventPluginUtils = {
 
 module.exports = EventPluginUtils;
 }).call(this,require('_process'))
-},{"./EventConstants":301,"./ReactErrorUtils":348,"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152,"fbjs/lib/warning":161}],305:[function(require,module,exports){
+},{"./EventConstants":374,"./ReactErrorUtils":421,"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167,"fbjs/lib/warning":176}],378:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -22845,7 +38261,7 @@ var EventPropagators = {
 
 module.exports = EventPropagators;
 }).call(this,require('_process'))
-},{"./EventConstants":301,"./EventPluginHub":302,"./EventPluginUtils":304,"./accumulateInto":397,"./forEachAccumulated":406,"_process":20,"fbjs/lib/warning":161}],306:[function(require,module,exports){
+},{"./EventConstants":374,"./EventPluginHub":375,"./EventPluginUtils":377,"./accumulateInto":470,"./forEachAccumulated":479,"_process":21,"fbjs/lib/warning":176}],379:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -22941,7 +38357,7 @@ _assign(FallbackCompositionState.prototype, {
 PooledClass.addPoolingTo(FallbackCompositionState);
 
 module.exports = FallbackCompositionState;
-},{"./PooledClass":310,"./getTextContentAccessor":414,"object-assign":165}],307:[function(require,module,exports){
+},{"./PooledClass":383,"./getTextContentAccessor":487,"object-assign":181}],380:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -23154,7 +38570,7 @@ var HTMLDOMPropertyConfig = {
 };
 
 module.exports = HTMLDOMPropertyConfig;
-},{"./DOMProperty":295}],308:[function(require,module,exports){
+},{"./DOMProperty":368}],381:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -23214,7 +38630,7 @@ var KeyEscapeUtils = {
 };
 
 module.exports = KeyEscapeUtils;
-},{}],309:[function(require,module,exports){
+},{}],382:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -23353,7 +38769,7 @@ var LinkedValueUtils = {
 
 module.exports = LinkedValueUtils;
 }).call(this,require('_process'))
-},{"./ReactPropTypeLocations":367,"./ReactPropTypes":368,"./ReactPropTypesSecret":369,"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152,"fbjs/lib/warning":161}],310:[function(require,module,exports){
+},{"./ReactPropTypeLocations":440,"./ReactPropTypes":441,"./ReactPropTypesSecret":442,"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167,"fbjs/lib/warning":176}],383:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -23477,7 +38893,7 @@ var PooledClass = {
 
 module.exports = PooledClass;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152}],311:[function(require,module,exports){
+},{"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167}],384:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -23569,7 +38985,7 @@ var React = {
 
 module.exports = React;
 }).call(this,require('_process'))
-},{"./ReactChildren":314,"./ReactClass":316,"./ReactComponent":317,"./ReactDOMFactories":330,"./ReactElement":345,"./ReactElementValidator":346,"./ReactPropTypes":368,"./ReactPureComponent":370,"./ReactVersion":378,"./onlyChild":419,"_process":20,"fbjs/lib/warning":161,"object-assign":165}],312:[function(require,module,exports){
+},{"./ReactChildren":387,"./ReactClass":389,"./ReactComponent":390,"./ReactDOMFactories":403,"./ReactElement":418,"./ReactElementValidator":419,"./ReactPropTypes":441,"./ReactPureComponent":443,"./ReactVersion":451,"./onlyChild":492,"_process":21,"fbjs/lib/warning":176,"object-assign":181}],385:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -23900,7 +39316,7 @@ var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
 });
 
 module.exports = ReactBrowserEventEmitter;
-},{"./EventConstants":301,"./EventPluginRegistry":303,"./ReactEventEmitterMixin":349,"./ViewportMetrics":396,"./getVendorPrefixedEventName":415,"./isEventSupported":417,"object-assign":165}],313:[function(require,module,exports){
+},{"./EventConstants":374,"./EventPluginRegistry":376,"./ReactEventEmitterMixin":422,"./ViewportMetrics":469,"./getVendorPrefixedEventName":488,"./isEventSupported":490,"object-assign":181}],386:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -24057,7 +39473,7 @@ var ReactChildReconciler = {
 
 module.exports = ReactChildReconciler;
 }).call(this,require('_process'))
-},{"./KeyEscapeUtils":308,"./ReactComponentTreeHook":320,"./ReactReconciler":372,"./instantiateReactComponent":416,"./shouldUpdateReactComponent":425,"./traverseAllChildren":426,"_process":20,"fbjs/lib/warning":161}],314:[function(require,module,exports){
+},{"./KeyEscapeUtils":381,"./ReactComponentTreeHook":393,"./ReactReconciler":445,"./instantiateReactComponent":489,"./shouldUpdateReactComponent":499,"./traverseAllChildren":500,"_process":21,"fbjs/lib/warning":176}],387:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -24249,7 +39665,7 @@ var ReactChildren = {
 };
 
 module.exports = ReactChildren;
-},{"./PooledClass":310,"./ReactElement":345,"./traverseAllChildren":426,"fbjs/lib/emptyFunction":144}],315:[function(require,module,exports){
+},{"./PooledClass":383,"./ReactElement":418,"./traverseAllChildren":500,"fbjs/lib/emptyFunction":159}],388:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -24306,7 +39722,7 @@ var ReactChildrenMutationWarningHook = {
 
 module.exports = ReactChildrenMutationWarningHook;
 }).call(this,require('_process'))
-},{"./ReactComponentTreeHook":320,"_process":20,"fbjs/lib/warning":161}],316:[function(require,module,exports){
+},{"./ReactComponentTreeHook":393,"_process":21,"fbjs/lib/warning":176}],389:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -25041,7 +40457,7 @@ var ReactClass = {
 
 module.exports = ReactClass;
 }).call(this,require('_process'))
-},{"./ReactComponent":317,"./ReactElement":345,"./ReactNoopUpdateQueue":364,"./ReactPropTypeLocationNames":366,"./ReactPropTypeLocations":367,"./reactProdInvariant":421,"_process":20,"fbjs/lib/emptyObject":145,"fbjs/lib/invariant":152,"fbjs/lib/keyMirror":155,"fbjs/lib/keyOf":156,"fbjs/lib/warning":161,"object-assign":165}],317:[function(require,module,exports){
+},{"./ReactComponent":390,"./ReactElement":418,"./ReactNoopUpdateQueue":437,"./ReactPropTypeLocationNames":439,"./ReactPropTypeLocations":440,"./reactProdInvariant":494,"_process":21,"fbjs/lib/emptyObject":160,"fbjs/lib/invariant":167,"fbjs/lib/keyMirror":170,"fbjs/lib/keyOf":171,"fbjs/lib/warning":176,"object-assign":181}],390:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -25162,7 +40578,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = ReactComponent;
 }).call(this,require('_process'))
-},{"./ReactNoopUpdateQueue":364,"./canDefineProperty":399,"./reactProdInvariant":421,"_process":20,"fbjs/lib/emptyObject":145,"fbjs/lib/invariant":152,"fbjs/lib/warning":161}],318:[function(require,module,exports){
+},{"./ReactNoopUpdateQueue":437,"./canDefineProperty":472,"./reactProdInvariant":494,"_process":21,"fbjs/lib/emptyObject":160,"fbjs/lib/invariant":167,"fbjs/lib/warning":176}],391:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -25193,7 +40609,7 @@ var ReactComponentBrowserEnvironment = {
 };
 
 module.exports = ReactComponentBrowserEnvironment;
-},{"./DOMChildrenOperations":292,"./ReactDOMIDOperations":332}],319:[function(require,module,exports){
+},{"./DOMChildrenOperations":365,"./ReactDOMIDOperations":405}],392:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -25241,7 +40657,7 @@ var ReactComponentEnvironment = {
 
 module.exports = ReactComponentEnvironment;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152}],320:[function(require,module,exports){
+},{"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167}],393:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2016-present, Facebook, Inc.
@@ -25586,7 +41002,7 @@ var ReactComponentTreeHook = {
 
 module.exports = ReactComponentTreeHook;
 }).call(this,require('_process'))
-},{"./ReactCurrentOwner":322,"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152,"fbjs/lib/warning":161}],321:[function(require,module,exports){
+},{"./ReactCurrentOwner":395,"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167,"fbjs/lib/warning":176}],394:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -26493,7 +41909,7 @@ var ReactCompositeComponent = {
 
 module.exports = ReactCompositeComponent;
 }).call(this,require('_process'))
-},{"./ReactComponentEnvironment":319,"./ReactCurrentOwner":322,"./ReactElement":345,"./ReactErrorUtils":348,"./ReactInstanceMap":356,"./ReactInstrumentation":357,"./ReactNodeTypes":363,"./ReactPropTypeLocations":367,"./ReactReconciler":372,"./checkReactTypeSpec":400,"./reactProdInvariant":421,"./shouldUpdateReactComponent":425,"_process":20,"fbjs/lib/emptyObject":145,"fbjs/lib/invariant":152,"fbjs/lib/shallowEqual":160,"fbjs/lib/warning":161,"object-assign":165}],322:[function(require,module,exports){
+},{"./ReactComponentEnvironment":392,"./ReactCurrentOwner":395,"./ReactElement":418,"./ReactErrorUtils":421,"./ReactInstanceMap":429,"./ReactInstrumentation":430,"./ReactNodeTypes":436,"./ReactPropTypeLocations":440,"./ReactReconciler":445,"./checkReactTypeSpec":473,"./reactProdInvariant":494,"./shouldUpdateReactComponent":499,"_process":21,"fbjs/lib/emptyObject":160,"fbjs/lib/invariant":167,"fbjs/lib/shallowEqual":175,"fbjs/lib/warning":176,"object-assign":181}],395:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -26525,7 +41941,7 @@ var ReactCurrentOwner = {
 };
 
 module.exports = ReactCurrentOwner;
-},{}],323:[function(require,module,exports){
+},{}],396:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -26638,7 +42054,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = ReactDOM;
 }).call(this,require('_process'))
-},{"./ReactDOMComponentTree":327,"./ReactDOMNullInputValuePropHook":334,"./ReactDOMUnknownPropertyHook":341,"./ReactDefaultInjection":344,"./ReactInstrumentation":357,"./ReactMount":360,"./ReactReconciler":372,"./ReactUpdates":377,"./ReactVersion":378,"./findDOMNode":404,"./getHostComponentFromComposite":411,"./renderSubtreeIntoContainer":422,"_process":20,"fbjs/lib/ExecutionEnvironment":138,"fbjs/lib/warning":161}],324:[function(require,module,exports){
+},{"./ReactDOMComponentTree":400,"./ReactDOMNullInputValuePropHook":407,"./ReactDOMUnknownPropertyHook":414,"./ReactDefaultInjection":417,"./ReactInstrumentation":430,"./ReactMount":433,"./ReactReconciler":445,"./ReactUpdates":450,"./ReactVersion":451,"./findDOMNode":477,"./getHostComponentFromComposite":484,"./renderSubtreeIntoContainer":495,"_process":21,"fbjs/lib/ExecutionEnvironment":153,"fbjs/lib/warning":176}],397:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -26663,7 +42079,7 @@ var ReactDOMButton = {
 };
 
 module.exports = ReactDOMButton;
-},{"./DisabledInputUtils":299}],325:[function(require,module,exports){
+},{"./DisabledInputUtils":372}],398:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -27672,7 +43088,7 @@ _assign(ReactDOMComponent.prototype, ReactDOMComponent.Mixin, ReactMultiChild.Mi
 
 module.exports = ReactDOMComponent;
 }).call(this,require('_process'))
-},{"./AutoFocusUtils":286,"./CSSPropertyOperations":289,"./DOMLazyTree":293,"./DOMNamespaces":294,"./DOMProperty":295,"./DOMPropertyOperations":296,"./EventConstants":301,"./EventPluginHub":302,"./EventPluginRegistry":303,"./ReactBrowserEventEmitter":312,"./ReactDOMButton":324,"./ReactDOMComponentFlags":326,"./ReactDOMComponentTree":327,"./ReactDOMInput":333,"./ReactDOMOption":335,"./ReactDOMSelect":336,"./ReactDOMTextarea":339,"./ReactInstrumentation":357,"./ReactMultiChild":361,"./ReactServerRenderingTransaction":374,"./escapeTextContentForBrowser":403,"./isEventSupported":417,"./reactProdInvariant":421,"./validateDOMNesting":427,"_process":20,"fbjs/lib/emptyFunction":144,"fbjs/lib/invariant":152,"fbjs/lib/keyOf":156,"fbjs/lib/shallowEqual":160,"fbjs/lib/warning":161,"object-assign":165}],326:[function(require,module,exports){
+},{"./AutoFocusUtils":359,"./CSSPropertyOperations":362,"./DOMLazyTree":366,"./DOMNamespaces":367,"./DOMProperty":368,"./DOMPropertyOperations":369,"./EventConstants":374,"./EventPluginHub":375,"./EventPluginRegistry":376,"./ReactBrowserEventEmitter":385,"./ReactDOMButton":397,"./ReactDOMComponentFlags":399,"./ReactDOMComponentTree":400,"./ReactDOMInput":406,"./ReactDOMOption":408,"./ReactDOMSelect":409,"./ReactDOMTextarea":412,"./ReactInstrumentation":430,"./ReactMultiChild":434,"./ReactServerRenderingTransaction":447,"./escapeTextContentForBrowser":476,"./isEventSupported":490,"./reactProdInvariant":494,"./validateDOMNesting":501,"_process":21,"fbjs/lib/emptyFunction":159,"fbjs/lib/invariant":167,"fbjs/lib/keyOf":171,"fbjs/lib/shallowEqual":175,"fbjs/lib/warning":176,"object-assign":181}],399:[function(require,module,exports){
 /**
  * Copyright 2015-present, Facebook, Inc.
  * All rights reserved.
@@ -27691,7 +43107,7 @@ var ReactDOMComponentFlags = {
 };
 
 module.exports = ReactDOMComponentFlags;
-},{}],327:[function(require,module,exports){
+},{}],400:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -27882,7 +43298,7 @@ var ReactDOMComponentTree = {
 
 module.exports = ReactDOMComponentTree;
 }).call(this,require('_process'))
-},{"./DOMProperty":295,"./ReactDOMComponentFlags":326,"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152}],328:[function(require,module,exports){
+},{"./DOMProperty":368,"./ReactDOMComponentFlags":399,"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167}],401:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -27918,7 +43334,7 @@ function ReactDOMContainerInfo(topLevelWrapper, node) {
 
 module.exports = ReactDOMContainerInfo;
 }).call(this,require('_process'))
-},{"./validateDOMNesting":427,"_process":20}],329:[function(require,module,exports){
+},{"./validateDOMNesting":501,"_process":21}],402:[function(require,module,exports){
 /**
  * Copyright 2014-present, Facebook, Inc.
  * All rights reserved.
@@ -27979,7 +43395,7 @@ _assign(ReactDOMEmptyComponent.prototype, {
 });
 
 module.exports = ReactDOMEmptyComponent;
-},{"./DOMLazyTree":293,"./ReactDOMComponentTree":327,"object-assign":165}],330:[function(require,module,exports){
+},{"./DOMLazyTree":366,"./ReactDOMComponentTree":400,"object-assign":181}],403:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -28152,7 +43568,7 @@ var ReactDOMFactories = {
 
 module.exports = ReactDOMFactories;
 }).call(this,require('_process'))
-},{"./ReactElement":345,"./ReactElementValidator":346,"_process":20}],331:[function(require,module,exports){
+},{"./ReactElement":418,"./ReactElementValidator":419,"_process":21}],404:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -28171,7 +43587,7 @@ var ReactDOMFeatureFlags = {
 };
 
 module.exports = ReactDOMFeatureFlags;
-},{}],332:[function(require,module,exports){
+},{}],405:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -28206,7 +43622,7 @@ var ReactDOMIDOperations = {
 };
 
 module.exports = ReactDOMIDOperations;
-},{"./DOMChildrenOperations":292,"./ReactDOMComponentTree":327}],333:[function(require,module,exports){
+},{"./DOMChildrenOperations":365,"./ReactDOMComponentTree":400}],406:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -28478,7 +43894,7 @@ function _handleChange(event) {
 
 module.exports = ReactDOMInput;
 }).call(this,require('_process'))
-},{"./DOMPropertyOperations":296,"./DisabledInputUtils":299,"./LinkedValueUtils":309,"./ReactDOMComponentTree":327,"./ReactUpdates":377,"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152,"fbjs/lib/warning":161,"object-assign":165}],334:[function(require,module,exports){
+},{"./DOMPropertyOperations":369,"./DisabledInputUtils":372,"./LinkedValueUtils":382,"./ReactDOMComponentTree":400,"./ReactUpdates":450,"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167,"fbjs/lib/warning":176,"object-assign":181}],407:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -28524,7 +43940,7 @@ var ReactDOMNullInputValuePropHook = {
 
 module.exports = ReactDOMNullInputValuePropHook;
 }).call(this,require('_process'))
-},{"./ReactComponentTreeHook":320,"_process":20,"fbjs/lib/warning":161}],335:[function(require,module,exports){
+},{"./ReactComponentTreeHook":393,"_process":21,"fbjs/lib/warning":176}],408:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -28650,7 +44066,7 @@ var ReactDOMOption = {
 
 module.exports = ReactDOMOption;
 }).call(this,require('_process'))
-},{"./ReactChildren":314,"./ReactDOMComponentTree":327,"./ReactDOMSelect":336,"_process":20,"fbjs/lib/warning":161,"object-assign":165}],336:[function(require,module,exports){
+},{"./ReactChildren":387,"./ReactDOMComponentTree":400,"./ReactDOMSelect":409,"_process":21,"fbjs/lib/warning":176,"object-assign":181}],409:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -28854,7 +44270,7 @@ function _handleChange(event) {
 
 module.exports = ReactDOMSelect;
 }).call(this,require('_process'))
-},{"./DisabledInputUtils":299,"./LinkedValueUtils":309,"./ReactDOMComponentTree":327,"./ReactUpdates":377,"_process":20,"fbjs/lib/warning":161,"object-assign":165}],337:[function(require,module,exports){
+},{"./DisabledInputUtils":372,"./LinkedValueUtils":382,"./ReactDOMComponentTree":400,"./ReactUpdates":450,"_process":21,"fbjs/lib/warning":176,"object-assign":181}],410:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -29067,7 +44483,7 @@ var ReactDOMSelection = {
 };
 
 module.exports = ReactDOMSelection;
-},{"./getNodeForCharacterOffset":413,"./getTextContentAccessor":414,"fbjs/lib/ExecutionEnvironment":138}],338:[function(require,module,exports){
+},{"./getNodeForCharacterOffset":486,"./getTextContentAccessor":487,"fbjs/lib/ExecutionEnvironment":153}],411:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -29234,7 +44650,7 @@ _assign(ReactDOMTextComponent.prototype, {
 
 module.exports = ReactDOMTextComponent;
 }).call(this,require('_process'))
-},{"./DOMChildrenOperations":292,"./DOMLazyTree":293,"./ReactDOMComponentTree":327,"./escapeTextContentForBrowser":403,"./reactProdInvariant":421,"./validateDOMNesting":427,"_process":20,"fbjs/lib/invariant":152,"object-assign":165}],339:[function(require,module,exports){
+},{"./DOMChildrenOperations":365,"./DOMLazyTree":366,"./ReactDOMComponentTree":400,"./escapeTextContentForBrowser":476,"./reactProdInvariant":494,"./validateDOMNesting":501,"_process":21,"fbjs/lib/invariant":167,"object-assign":181}],412:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -29392,7 +44808,7 @@ function _handleChange(event) {
 
 module.exports = ReactDOMTextarea;
 }).call(this,require('_process'))
-},{"./DisabledInputUtils":299,"./LinkedValueUtils":309,"./ReactDOMComponentTree":327,"./ReactUpdates":377,"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152,"fbjs/lib/warning":161,"object-assign":165}],340:[function(require,module,exports){
+},{"./DisabledInputUtils":372,"./LinkedValueUtils":382,"./ReactDOMComponentTree":400,"./ReactUpdates":450,"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167,"fbjs/lib/warning":176,"object-assign":181}],413:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015-present, Facebook, Inc.
@@ -29531,7 +44947,7 @@ module.exports = {
   traverseEnterLeave: traverseEnterLeave
 };
 }).call(this,require('_process'))
-},{"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152}],341:[function(require,module,exports){
+},{"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167}],414:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -29646,7 +45062,7 @@ var ReactDOMUnknownPropertyHook = {
 
 module.exports = ReactDOMUnknownPropertyHook;
 }).call(this,require('_process'))
-},{"./DOMProperty":295,"./EventPluginRegistry":303,"./ReactComponentTreeHook":320,"_process":20,"fbjs/lib/warning":161}],342:[function(require,module,exports){
+},{"./DOMProperty":368,"./EventPluginRegistry":376,"./ReactComponentTreeHook":393,"_process":21,"fbjs/lib/warning":176}],415:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2016-present, Facebook, Inc.
@@ -29950,7 +45366,7 @@ if (/[?&]react_perf\b/.test(url)) {
 
 module.exports = ReactDebugTool;
 }).call(this,require('_process'))
-},{"./ReactChildrenMutationWarningHook":315,"./ReactComponentTreeHook":320,"./ReactHostOperationHistoryHook":353,"./ReactInvalidSetStateWarningHook":358,"_process":20,"fbjs/lib/ExecutionEnvironment":138,"fbjs/lib/performanceNow":159,"fbjs/lib/warning":161}],343:[function(require,module,exports){
+},{"./ReactChildrenMutationWarningHook":388,"./ReactComponentTreeHook":393,"./ReactHostOperationHistoryHook":426,"./ReactInvalidSetStateWarningHook":431,"_process":21,"fbjs/lib/ExecutionEnvironment":153,"fbjs/lib/performanceNow":174,"fbjs/lib/warning":176}],416:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -30019,7 +45435,7 @@ var ReactDefaultBatchingStrategy = {
 };
 
 module.exports = ReactDefaultBatchingStrategy;
-},{"./ReactUpdates":377,"./Transaction":395,"fbjs/lib/emptyFunction":144,"object-assign":165}],344:[function(require,module,exports){
+},{"./ReactUpdates":450,"./Transaction":468,"fbjs/lib/emptyFunction":159,"object-assign":181}],417:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -30104,7 +45520,7 @@ function inject() {
 module.exports = {
   inject: inject
 };
-},{"./BeforeInputEventPlugin":287,"./ChangeEventPlugin":291,"./DefaultEventPluginOrder":298,"./EnterLeaveEventPlugin":300,"./HTMLDOMPropertyConfig":307,"./ReactComponentBrowserEnvironment":318,"./ReactDOMComponent":325,"./ReactDOMComponentTree":327,"./ReactDOMEmptyComponent":329,"./ReactDOMTextComponent":338,"./ReactDOMTreeTraversal":340,"./ReactDefaultBatchingStrategy":343,"./ReactEventListener":350,"./ReactInjection":354,"./ReactReconcileTransaction":371,"./SVGDOMPropertyConfig":379,"./SelectEventPlugin":380,"./SimpleEventPlugin":381}],345:[function(require,module,exports){
+},{"./BeforeInputEventPlugin":360,"./ChangeEventPlugin":364,"./DefaultEventPluginOrder":371,"./EnterLeaveEventPlugin":373,"./HTMLDOMPropertyConfig":380,"./ReactComponentBrowserEnvironment":391,"./ReactDOMComponent":398,"./ReactDOMComponentTree":400,"./ReactDOMEmptyComponent":402,"./ReactDOMTextComponent":411,"./ReactDOMTreeTraversal":413,"./ReactDefaultBatchingStrategy":416,"./ReactEventListener":423,"./ReactInjection":427,"./ReactReconcileTransaction":444,"./SVGDOMPropertyConfig":452,"./SelectEventPlugin":453,"./SimpleEventPlugin":454}],418:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -30455,7 +45871,7 @@ ReactElement.REACT_ELEMENT_TYPE = REACT_ELEMENT_TYPE;
 
 module.exports = ReactElement;
 }).call(this,require('_process'))
-},{"./ReactCurrentOwner":322,"./canDefineProperty":399,"_process":20,"fbjs/lib/warning":161,"object-assign":165}],346:[function(require,module,exports){
+},{"./ReactCurrentOwner":395,"./canDefineProperty":472,"_process":21,"fbjs/lib/warning":176,"object-assign":181}],419:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -30686,7 +46102,7 @@ var ReactElementValidator = {
 
 module.exports = ReactElementValidator;
 }).call(this,require('_process'))
-},{"./ReactComponentTreeHook":320,"./ReactCurrentOwner":322,"./ReactElement":345,"./ReactPropTypeLocations":367,"./canDefineProperty":399,"./checkReactTypeSpec":400,"./getIteratorFn":412,"_process":20,"fbjs/lib/warning":161}],347:[function(require,module,exports){
+},{"./ReactComponentTreeHook":393,"./ReactCurrentOwner":395,"./ReactElement":418,"./ReactPropTypeLocations":440,"./canDefineProperty":472,"./checkReactTypeSpec":473,"./getIteratorFn":485,"_process":21,"fbjs/lib/warning":176}],420:[function(require,module,exports){
 /**
  * Copyright 2014-present, Facebook, Inc.
  * All rights reserved.
@@ -30717,7 +46133,7 @@ var ReactEmptyComponent = {
 ReactEmptyComponent.injection = ReactEmptyComponentInjection;
 
 module.exports = ReactEmptyComponent;
-},{}],348:[function(require,module,exports){
+},{}],421:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -30796,7 +46212,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = ReactErrorUtils;
 }).call(this,require('_process'))
-},{"_process":20}],349:[function(require,module,exports){
+},{"_process":21}],422:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -30830,7 +46246,7 @@ var ReactEventEmitterMixin = {
 };
 
 module.exports = ReactEventEmitterMixin;
-},{"./EventPluginHub":302}],350:[function(require,module,exports){
+},{"./EventPluginHub":375}],423:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -30988,7 +46404,7 @@ var ReactEventListener = {
 };
 
 module.exports = ReactEventListener;
-},{"./PooledClass":310,"./ReactDOMComponentTree":327,"./ReactUpdates":377,"./getEventTarget":410,"fbjs/lib/EventListener":137,"fbjs/lib/ExecutionEnvironment":138,"fbjs/lib/getUnboundedScrollPosition":149,"object-assign":165}],351:[function(require,module,exports){
+},{"./PooledClass":383,"./ReactDOMComponentTree":400,"./ReactUpdates":450,"./getEventTarget":483,"fbjs/lib/EventListener":152,"fbjs/lib/ExecutionEnvironment":153,"fbjs/lib/getUnboundedScrollPosition":164,"object-assign":181}],424:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -31011,7 +46427,7 @@ var ReactFeatureFlags = {
 };
 
 module.exports = ReactFeatureFlags;
-},{}],352:[function(require,module,exports){
+},{}],425:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -31090,7 +46506,7 @@ var ReactHostComponent = {
 
 module.exports = ReactHostComponent;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152,"object-assign":165}],353:[function(require,module,exports){
+},{"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167,"object-assign":181}],426:[function(require,module,exports){
 /**
  * Copyright 2016-present, Facebook, Inc.
  * All rights reserved.
@@ -31128,7 +46544,7 @@ var ReactHostOperationHistoryHook = {
 };
 
 module.exports = ReactHostOperationHistoryHook;
-},{}],354:[function(require,module,exports){
+},{}],427:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -31165,7 +46581,7 @@ var ReactInjection = {
 };
 
 module.exports = ReactInjection;
-},{"./DOMProperty":295,"./EventPluginHub":302,"./EventPluginUtils":304,"./ReactBrowserEventEmitter":312,"./ReactClass":316,"./ReactComponentEnvironment":319,"./ReactEmptyComponent":347,"./ReactHostComponent":352,"./ReactUpdates":377}],355:[function(require,module,exports){
+},{"./DOMProperty":368,"./EventPluginHub":375,"./EventPluginUtils":377,"./ReactBrowserEventEmitter":385,"./ReactClass":389,"./ReactComponentEnvironment":392,"./ReactEmptyComponent":420,"./ReactHostComponent":425,"./ReactUpdates":450}],428:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -31290,7 +46706,7 @@ var ReactInputSelection = {
 };
 
 module.exports = ReactInputSelection;
-},{"./ReactDOMSelection":337,"fbjs/lib/containsNode":141,"fbjs/lib/focusNode":146,"fbjs/lib/getActiveElement":147}],356:[function(require,module,exports){
+},{"./ReactDOMSelection":410,"fbjs/lib/containsNode":156,"fbjs/lib/focusNode":161,"fbjs/lib/getActiveElement":162}],429:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -31339,7 +46755,7 @@ var ReactInstanceMap = {
 };
 
 module.exports = ReactInstanceMap;
-},{}],357:[function(require,module,exports){
+},{}],430:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2016-present, Facebook, Inc.
@@ -31363,7 +46779,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = { debugTool: debugTool };
 }).call(this,require('_process'))
-},{"./ReactDebugTool":342,"_process":20}],358:[function(require,module,exports){
+},{"./ReactDebugTool":415,"_process":21}],431:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2016-present, Facebook, Inc.
@@ -31402,7 +46818,7 @@ var ReactInvalidSetStateWarningHook = {
 
 module.exports = ReactInvalidSetStateWarningHook;
 }).call(this,require('_process'))
-},{"_process":20,"fbjs/lib/warning":161}],359:[function(require,module,exports){
+},{"_process":21,"fbjs/lib/warning":176}],432:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -31453,7 +46869,7 @@ var ReactMarkupChecksum = {
 };
 
 module.exports = ReactMarkupChecksum;
-},{"./adler32":398}],360:[function(require,module,exports){
+},{"./adler32":471}],433:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -31990,7 +47406,7 @@ var ReactMount = {
 
 module.exports = ReactMount;
 }).call(this,require('_process'))
-},{"./DOMLazyTree":293,"./DOMProperty":295,"./ReactBrowserEventEmitter":312,"./ReactCurrentOwner":322,"./ReactDOMComponentTree":327,"./ReactDOMContainerInfo":328,"./ReactDOMFeatureFlags":331,"./ReactElement":345,"./ReactFeatureFlags":351,"./ReactInstanceMap":356,"./ReactInstrumentation":357,"./ReactMarkupChecksum":359,"./ReactReconciler":372,"./ReactUpdateQueue":376,"./ReactUpdates":377,"./instantiateReactComponent":416,"./reactProdInvariant":421,"./setInnerHTML":423,"./shouldUpdateReactComponent":425,"_process":20,"fbjs/lib/emptyObject":145,"fbjs/lib/invariant":152,"fbjs/lib/warning":161}],361:[function(require,module,exports){
+},{"./DOMLazyTree":366,"./DOMProperty":368,"./ReactBrowserEventEmitter":385,"./ReactCurrentOwner":395,"./ReactDOMComponentTree":400,"./ReactDOMContainerInfo":401,"./ReactDOMFeatureFlags":404,"./ReactElement":418,"./ReactFeatureFlags":424,"./ReactInstanceMap":429,"./ReactInstrumentation":430,"./ReactMarkupChecksum":432,"./ReactReconciler":445,"./ReactUpdateQueue":449,"./ReactUpdates":450,"./instantiateReactComponent":489,"./reactProdInvariant":494,"./setInnerHTML":496,"./shouldUpdateReactComponent":499,"_process":21,"fbjs/lib/emptyObject":160,"fbjs/lib/invariant":167,"fbjs/lib/warning":176}],434:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -32444,7 +47860,7 @@ var ReactMultiChild = {
 
 module.exports = ReactMultiChild;
 }).call(this,require('_process'))
-},{"./ReactChildReconciler":313,"./ReactComponentEnvironment":319,"./ReactCurrentOwner":322,"./ReactInstanceMap":356,"./ReactInstrumentation":357,"./ReactMultiChildUpdateTypes":362,"./ReactReconciler":372,"./flattenChildren":405,"./reactProdInvariant":421,"_process":20,"fbjs/lib/emptyFunction":144,"fbjs/lib/invariant":152}],362:[function(require,module,exports){
+},{"./ReactChildReconciler":386,"./ReactComponentEnvironment":392,"./ReactCurrentOwner":395,"./ReactInstanceMap":429,"./ReactInstrumentation":430,"./ReactMultiChildUpdateTypes":435,"./ReactReconciler":445,"./flattenChildren":478,"./reactProdInvariant":494,"_process":21,"fbjs/lib/emptyFunction":159,"fbjs/lib/invariant":167}],435:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -32477,7 +47893,7 @@ var ReactMultiChildUpdateTypes = keyMirror({
 });
 
 module.exports = ReactMultiChildUpdateTypes;
-},{"fbjs/lib/keyMirror":155}],363:[function(require,module,exports){
+},{"fbjs/lib/keyMirror":170}],436:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -32520,7 +47936,7 @@ var ReactNodeTypes = {
 
 module.exports = ReactNodeTypes;
 }).call(this,require('_process'))
-},{"./ReactElement":345,"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152}],364:[function(require,module,exports){
+},{"./ReactElement":418,"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167}],437:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015-present, Facebook, Inc.
@@ -32619,7 +48035,7 @@ var ReactNoopUpdateQueue = {
 
 module.exports = ReactNoopUpdateQueue;
 }).call(this,require('_process'))
-},{"_process":20,"fbjs/lib/warning":161}],365:[function(require,module,exports){
+},{"_process":21,"fbjs/lib/warning":176}],438:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -32716,7 +48132,7 @@ var ReactOwner = {
 
 module.exports = ReactOwner;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152}],366:[function(require,module,exports){
+},{"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167}],439:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -32743,7 +48159,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = ReactPropTypeLocationNames;
 }).call(this,require('_process'))
-},{"_process":20}],367:[function(require,module,exports){
+},{"_process":21}],440:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -32766,7 +48182,7 @@ var ReactPropTypeLocations = keyMirror({
 });
 
 module.exports = ReactPropTypeLocations;
-},{"fbjs/lib/keyMirror":155}],368:[function(require,module,exports){
+},{"fbjs/lib/keyMirror":170}],441:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -33200,7 +48616,7 @@ function getClassName(propValue) {
 
 module.exports = ReactPropTypes;
 }).call(this,require('_process'))
-},{"./ReactElement":345,"./ReactPropTypeLocationNames":366,"./ReactPropTypesSecret":369,"./getIteratorFn":412,"_process":20,"fbjs/lib/emptyFunction":144,"fbjs/lib/warning":161}],369:[function(require,module,exports){
+},{"./ReactElement":418,"./ReactPropTypeLocationNames":439,"./ReactPropTypesSecret":442,"./getIteratorFn":485,"_process":21,"fbjs/lib/emptyFunction":159,"fbjs/lib/warning":176}],442:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -33217,7 +48633,7 @@ module.exports = ReactPropTypes;
 var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 module.exports = ReactPropTypesSecret;
-},{}],370:[function(require,module,exports){
+},{}],443:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -33260,7 +48676,7 @@ _assign(ReactPureComponent.prototype, ReactComponent.prototype);
 ReactPureComponent.prototype.isPureReactComponent = true;
 
 module.exports = ReactPureComponent;
-},{"./ReactComponent":317,"./ReactNoopUpdateQueue":364,"fbjs/lib/emptyObject":145,"object-assign":165}],371:[function(require,module,exports){
+},{"./ReactComponent":390,"./ReactNoopUpdateQueue":437,"fbjs/lib/emptyObject":160,"object-assign":181}],444:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -33441,7 +48857,7 @@ PooledClass.addPoolingTo(ReactReconcileTransaction);
 
 module.exports = ReactReconcileTransaction;
 }).call(this,require('_process'))
-},{"./CallbackQueue":290,"./PooledClass":310,"./ReactBrowserEventEmitter":312,"./ReactInputSelection":355,"./ReactInstrumentation":357,"./ReactUpdateQueue":376,"./Transaction":395,"_process":20,"object-assign":165}],372:[function(require,module,exports){
+},{"./CallbackQueue":363,"./PooledClass":383,"./ReactBrowserEventEmitter":385,"./ReactInputSelection":428,"./ReactInstrumentation":430,"./ReactUpdateQueue":449,"./Transaction":468,"_process":21,"object-assign":181}],445:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -33612,7 +49028,7 @@ var ReactReconciler = {
 
 module.exports = ReactReconciler;
 }).call(this,require('_process'))
-},{"./ReactInstrumentation":357,"./ReactRef":373,"_process":20,"fbjs/lib/warning":161}],373:[function(require,module,exports){
+},{"./ReactInstrumentation":430,"./ReactRef":446,"_process":21,"fbjs/lib/warning":176}],446:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -33693,7 +49109,7 @@ ReactRef.detachRefs = function (instance, element) {
 };
 
 module.exports = ReactRef;
-},{"./ReactOwner":365}],374:[function(require,module,exports){
+},{"./ReactOwner":438}],447:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -33786,7 +49202,7 @@ PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 
 module.exports = ReactServerRenderingTransaction;
 }).call(this,require('_process'))
-},{"./PooledClass":310,"./ReactInstrumentation":357,"./ReactServerUpdateQueue":375,"./Transaction":395,"_process":20,"object-assign":165}],375:[function(require,module,exports){
+},{"./PooledClass":383,"./ReactInstrumentation":430,"./ReactServerUpdateQueue":448,"./Transaction":468,"_process":21,"object-assign":181}],448:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015-present, Facebook, Inc.
@@ -33930,7 +49346,7 @@ var ReactServerUpdateQueue = function () {
 
 module.exports = ReactServerUpdateQueue;
 }).call(this,require('_process'))
-},{"./ReactUpdateQueue":376,"./Transaction":395,"_process":20,"fbjs/lib/warning":161}],376:[function(require,module,exports){
+},{"./ReactUpdateQueue":449,"./Transaction":468,"_process":21,"fbjs/lib/warning":176}],449:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015-present, Facebook, Inc.
@@ -34159,7 +49575,7 @@ var ReactUpdateQueue = {
 
 module.exports = ReactUpdateQueue;
 }).call(this,require('_process'))
-},{"./ReactCurrentOwner":322,"./ReactInstanceMap":356,"./ReactInstrumentation":357,"./ReactUpdates":377,"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152,"fbjs/lib/warning":161}],377:[function(require,module,exports){
+},{"./ReactCurrentOwner":395,"./ReactInstanceMap":429,"./ReactInstrumentation":430,"./ReactUpdates":450,"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167,"fbjs/lib/warning":176}],450:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -34413,7 +49829,7 @@ var ReactUpdates = {
 
 module.exports = ReactUpdates;
 }).call(this,require('_process'))
-},{"./CallbackQueue":290,"./PooledClass":310,"./ReactFeatureFlags":351,"./ReactReconciler":372,"./Transaction":395,"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152,"object-assign":165}],378:[function(require,module,exports){
+},{"./CallbackQueue":363,"./PooledClass":383,"./ReactFeatureFlags":424,"./ReactReconciler":445,"./Transaction":468,"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167,"object-assign":181}],451:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -34428,7 +49844,7 @@ module.exports = ReactUpdates;
 'use strict';
 
 module.exports = '15.3.2';
-},{}],379:[function(require,module,exports){
+},{}],452:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -34731,7 +50147,7 @@ Object.keys(ATTRS).forEach(function (key) {
 });
 
 module.exports = SVGDOMPropertyConfig;
-},{}],380:[function(require,module,exports){
+},{}],453:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -34928,7 +50344,7 @@ var SelectEventPlugin = {
 };
 
 module.exports = SelectEventPlugin;
-},{"./EventConstants":301,"./EventPropagators":305,"./ReactDOMComponentTree":327,"./ReactInputSelection":355,"./SyntheticEvent":386,"./isTextInputElement":418,"fbjs/lib/ExecutionEnvironment":138,"fbjs/lib/getActiveElement":147,"fbjs/lib/keyOf":156,"fbjs/lib/shallowEqual":160}],381:[function(require,module,exports){
+},{"./EventConstants":374,"./EventPropagators":378,"./ReactDOMComponentTree":400,"./ReactInputSelection":428,"./SyntheticEvent":459,"./isTextInputElement":491,"fbjs/lib/ExecutionEnvironment":153,"fbjs/lib/getActiveElement":162,"fbjs/lib/keyOf":171,"fbjs/lib/shallowEqual":175}],454:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -35566,7 +50982,7 @@ var SimpleEventPlugin = {
 
 module.exports = SimpleEventPlugin;
 }).call(this,require('_process'))
-},{"./EventConstants":301,"./EventPropagators":305,"./ReactDOMComponentTree":327,"./SyntheticAnimationEvent":382,"./SyntheticClipboardEvent":383,"./SyntheticDragEvent":385,"./SyntheticEvent":386,"./SyntheticFocusEvent":387,"./SyntheticKeyboardEvent":389,"./SyntheticMouseEvent":390,"./SyntheticTouchEvent":391,"./SyntheticTransitionEvent":392,"./SyntheticUIEvent":393,"./SyntheticWheelEvent":394,"./getEventCharCode":407,"./reactProdInvariant":421,"_process":20,"fbjs/lib/EventListener":137,"fbjs/lib/emptyFunction":144,"fbjs/lib/invariant":152,"fbjs/lib/keyOf":156}],382:[function(require,module,exports){
+},{"./EventConstants":374,"./EventPropagators":378,"./ReactDOMComponentTree":400,"./SyntheticAnimationEvent":455,"./SyntheticClipboardEvent":456,"./SyntheticDragEvent":458,"./SyntheticEvent":459,"./SyntheticFocusEvent":460,"./SyntheticKeyboardEvent":462,"./SyntheticMouseEvent":463,"./SyntheticTouchEvent":464,"./SyntheticTransitionEvent":465,"./SyntheticUIEvent":466,"./SyntheticWheelEvent":467,"./getEventCharCode":480,"./reactProdInvariant":494,"_process":21,"fbjs/lib/EventListener":152,"fbjs/lib/emptyFunction":159,"fbjs/lib/invariant":167,"fbjs/lib/keyOf":171}],455:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -35606,7 +51022,7 @@ function SyntheticAnimationEvent(dispatchConfig, dispatchMarker, nativeEvent, na
 SyntheticEvent.augmentClass(SyntheticAnimationEvent, AnimationEventInterface);
 
 module.exports = SyntheticAnimationEvent;
-},{"./SyntheticEvent":386}],383:[function(require,module,exports){
+},{"./SyntheticEvent":459}],456:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -35645,7 +51061,7 @@ function SyntheticClipboardEvent(dispatchConfig, dispatchMarker, nativeEvent, na
 SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 
 module.exports = SyntheticClipboardEvent;
-},{"./SyntheticEvent":386}],384:[function(require,module,exports){
+},{"./SyntheticEvent":459}],457:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -35682,7 +51098,7 @@ function SyntheticCompositionEvent(dispatchConfig, dispatchMarker, nativeEvent, 
 SyntheticEvent.augmentClass(SyntheticCompositionEvent, CompositionEventInterface);
 
 module.exports = SyntheticCompositionEvent;
-},{"./SyntheticEvent":386}],385:[function(require,module,exports){
+},{"./SyntheticEvent":459}],458:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -35719,7 +51135,7 @@ function SyntheticDragEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeE
 SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 
 module.exports = SyntheticDragEvent;
-},{"./SyntheticMouseEvent":390}],386:[function(require,module,exports){
+},{"./SyntheticMouseEvent":463}],459:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -35990,7 +51406,7 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
   }
 }
 }).call(this,require('_process'))
-},{"./PooledClass":310,"_process":20,"fbjs/lib/emptyFunction":144,"fbjs/lib/warning":161,"object-assign":165}],387:[function(require,module,exports){
+},{"./PooledClass":383,"_process":21,"fbjs/lib/emptyFunction":159,"fbjs/lib/warning":176,"object-assign":181}],460:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -36027,7 +51443,7 @@ function SyntheticFocusEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 
 module.exports = SyntheticFocusEvent;
-},{"./SyntheticUIEvent":393}],388:[function(require,module,exports){
+},{"./SyntheticUIEvent":466}],461:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -36065,7 +51481,7 @@ function SyntheticInputEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticEvent.augmentClass(SyntheticInputEvent, InputEventInterface);
 
 module.exports = SyntheticInputEvent;
-},{"./SyntheticEvent":386}],389:[function(require,module,exports){
+},{"./SyntheticEvent":459}],462:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -36150,7 +51566,7 @@ function SyntheticKeyboardEvent(dispatchConfig, dispatchMarker, nativeEvent, nat
 SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 
 module.exports = SyntheticKeyboardEvent;
-},{"./SyntheticUIEvent":393,"./getEventCharCode":407,"./getEventKey":408,"./getEventModifierState":409}],390:[function(require,module,exports){
+},{"./SyntheticUIEvent":466,"./getEventCharCode":480,"./getEventKey":481,"./getEventModifierState":482}],463:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -36223,7 +51639,7 @@ function SyntheticMouseEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 
 module.exports = SyntheticMouseEvent;
-},{"./SyntheticUIEvent":393,"./ViewportMetrics":396,"./getEventModifierState":409}],391:[function(require,module,exports){
+},{"./SyntheticUIEvent":466,"./ViewportMetrics":469,"./getEventModifierState":482}],464:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -36269,7 +51685,7 @@ function SyntheticTouchEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 
 module.exports = SyntheticTouchEvent;
-},{"./SyntheticUIEvent":393,"./getEventModifierState":409}],392:[function(require,module,exports){
+},{"./SyntheticUIEvent":466,"./getEventModifierState":482}],465:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -36309,7 +51725,7 @@ function SyntheticTransitionEvent(dispatchConfig, dispatchMarker, nativeEvent, n
 SyntheticEvent.augmentClass(SyntheticTransitionEvent, TransitionEventInterface);
 
 module.exports = SyntheticTransitionEvent;
-},{"./SyntheticEvent":386}],393:[function(require,module,exports){
+},{"./SyntheticEvent":459}],466:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -36369,7 +51785,7 @@ function SyntheticUIEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEve
 SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 
 module.exports = SyntheticUIEvent;
-},{"./SyntheticEvent":386,"./getEventTarget":410}],394:[function(require,module,exports){
+},{"./SyntheticEvent":459,"./getEventTarget":483}],467:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -36424,7 +51840,7 @@ function SyntheticWheelEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 
 module.exports = SyntheticWheelEvent;
-},{"./SyntheticMouseEvent":390}],395:[function(require,module,exports){
+},{"./SyntheticMouseEvent":463}],468:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -36660,7 +52076,7 @@ var Transaction = {
 
 module.exports = Transaction;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152}],396:[function(require,module,exports){
+},{"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167}],469:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -36688,7 +52104,7 @@ var ViewportMetrics = {
 };
 
 module.exports = ViewportMetrics;
-},{}],397:[function(require,module,exports){
+},{}],470:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -36749,7 +52165,7 @@ function accumulateInto(current, next) {
 
 module.exports = accumulateInto;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152}],398:[function(require,module,exports){
+},{"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167}],471:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -36794,7 +52210,7 @@ function adler32(data) {
 }
 
 module.exports = adler32;
-},{}],399:[function(require,module,exports){
+},{}],472:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -36821,7 +52237,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = canDefineProperty;
 }).call(this,require('_process'))
-},{"_process":20}],400:[function(require,module,exports){
+},{"_process":21}],473:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -36911,7 +52327,7 @@ function checkReactTypeSpec(typeSpecs, values, location, componentName, element,
 
 module.exports = checkReactTypeSpec;
 }).call(this,require('_process'))
-},{"./ReactComponentTreeHook":320,"./ReactPropTypeLocationNames":366,"./ReactPropTypesSecret":369,"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152,"fbjs/lib/warning":161}],401:[function(require,module,exports){
+},{"./ReactComponentTreeHook":393,"./ReactPropTypeLocationNames":439,"./ReactPropTypesSecret":442,"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167,"fbjs/lib/warning":176}],474:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -36944,7 +52360,7 @@ var createMicrosoftUnsafeLocalFunction = function (func) {
 };
 
 module.exports = createMicrosoftUnsafeLocalFunction;
-},{}],402:[function(require,module,exports){
+},{}],475:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -37026,7 +52442,7 @@ function dangerousStyleValue(name, value, component) {
 
 module.exports = dangerousStyleValue;
 }).call(this,require('_process'))
-},{"./CSSProperty":288,"_process":20,"fbjs/lib/warning":161}],403:[function(require,module,exports){
+},{"./CSSProperty":361,"_process":21,"fbjs/lib/warning":176}],476:[function(require,module,exports){
 /**
  * Copyright 2016-present, Facebook, Inc.
  * All rights reserved.
@@ -37150,7 +52566,7 @@ function escapeTextContentForBrowser(text) {
 }
 
 module.exports = escapeTextContentForBrowser;
-},{}],404:[function(require,module,exports){
+},{}],477:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -37213,7 +52629,7 @@ function findDOMNode(componentOrElement) {
 
 module.exports = findDOMNode;
 }).call(this,require('_process'))
-},{"./ReactCurrentOwner":322,"./ReactDOMComponentTree":327,"./ReactInstanceMap":356,"./getHostComponentFromComposite":411,"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152,"fbjs/lib/warning":161}],405:[function(require,module,exports){
+},{"./ReactCurrentOwner":395,"./ReactDOMComponentTree":400,"./ReactInstanceMap":429,"./getHostComponentFromComposite":484,"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167,"fbjs/lib/warning":176}],478:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -37292,7 +52708,7 @@ function flattenChildren(children, selfDebugID) {
 
 module.exports = flattenChildren;
 }).call(this,require('_process'))
-},{"./KeyEscapeUtils":308,"./ReactComponentTreeHook":320,"./traverseAllChildren":426,"_process":20,"fbjs/lib/warning":161}],406:[function(require,module,exports){
+},{"./KeyEscapeUtils":381,"./ReactComponentTreeHook":393,"./traverseAllChildren":500,"_process":21,"fbjs/lib/warning":176}],479:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -37324,7 +52740,7 @@ function forEachAccumulated(arr, cb, scope) {
 }
 
 module.exports = forEachAccumulated;
-},{}],407:[function(require,module,exports){
+},{}],480:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -37375,7 +52791,7 @@ function getEventCharCode(nativeEvent) {
 }
 
 module.exports = getEventCharCode;
-},{}],408:[function(require,module,exports){
+},{}],481:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -37478,7 +52894,7 @@ function getEventKey(nativeEvent) {
 }
 
 module.exports = getEventKey;
-},{"./getEventCharCode":407}],409:[function(require,module,exports){
+},{"./getEventCharCode":480}],482:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -37522,7 +52938,7 @@ function getEventModifierState(nativeEvent) {
 }
 
 module.exports = getEventModifierState;
-},{}],410:[function(require,module,exports){
+},{}],483:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -37558,7 +52974,7 @@ function getEventTarget(nativeEvent) {
 }
 
 module.exports = getEventTarget;
-},{}],411:[function(require,module,exports){
+},{}],484:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -37589,7 +53005,7 @@ function getHostComponentFromComposite(inst) {
 }
 
 module.exports = getHostComponentFromComposite;
-},{"./ReactNodeTypes":363}],412:[function(require,module,exports){
+},{"./ReactNodeTypes":436}],485:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -37631,7 +53047,7 @@ function getIteratorFn(maybeIterable) {
 }
 
 module.exports = getIteratorFn;
-},{}],413:[function(require,module,exports){
+},{}],486:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -37706,7 +53122,7 @@ function getNodeForCharacterOffset(root, offset) {
 }
 
 module.exports = getNodeForCharacterOffset;
-},{}],414:[function(require,module,exports){
+},{}],487:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -37740,7 +53156,7 @@ function getTextContentAccessor() {
 }
 
 module.exports = getTextContentAccessor;
-},{"fbjs/lib/ExecutionEnvironment":138}],415:[function(require,module,exports){
+},{"fbjs/lib/ExecutionEnvironment":153}],488:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -37842,7 +53258,7 @@ function getVendorPrefixedEventName(eventName) {
 }
 
 module.exports = getVendorPrefixedEventName;
-},{"fbjs/lib/ExecutionEnvironment":138}],416:[function(require,module,exports){
+},{"fbjs/lib/ExecutionEnvironment":153}],489:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -37964,7 +53380,7 @@ function instantiateReactComponent(node, shouldHaveDebugID) {
 
 module.exports = instantiateReactComponent;
 }).call(this,require('_process'))
-},{"./ReactCompositeComponent":321,"./ReactEmptyComponent":347,"./ReactHostComponent":352,"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152,"fbjs/lib/warning":161,"object-assign":165}],417:[function(require,module,exports){
+},{"./ReactCompositeComponent":394,"./ReactEmptyComponent":420,"./ReactHostComponent":425,"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167,"fbjs/lib/warning":176,"object-assign":181}],490:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -38025,7 +53441,7 @@ function isEventSupported(eventNameSuffix, capture) {
 }
 
 module.exports = isEventSupported;
-},{"fbjs/lib/ExecutionEnvironment":138}],418:[function(require,module,exports){
+},{"fbjs/lib/ExecutionEnvironment":153}],491:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -38077,7 +53493,7 @@ function isTextInputElement(elem) {
 }
 
 module.exports = isTextInputElement;
-},{}],419:[function(require,module,exports){
+},{}],492:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -38118,7 +53534,7 @@ function onlyChild(children) {
 
 module.exports = onlyChild;
 }).call(this,require('_process'))
-},{"./ReactElement":345,"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152}],420:[function(require,module,exports){
+},{"./ReactElement":418,"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167}],493:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -38145,7 +53561,7 @@ function quoteAttributeValueForBrowser(value) {
 }
 
 module.exports = quoteAttributeValueForBrowser;
-},{"./escapeTextContentForBrowser":403}],421:[function(require,module,exports){
+},{"./escapeTextContentForBrowser":476}],494:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -38185,7 +53601,7 @@ function reactProdInvariant(code) {
 }
 
 module.exports = reactProdInvariant;
-},{}],422:[function(require,module,exports){
+},{}],495:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -38202,7 +53618,7 @@ module.exports = reactProdInvariant;
 var ReactMount = require('./ReactMount');
 
 module.exports = ReactMount.renderSubtreeIntoContainer;
-},{"./ReactMount":360}],423:[function(require,module,exports){
+},{"./ReactMount":433}],496:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -38301,7 +53717,7 @@ if (ExecutionEnvironment.canUseDOM) {
 }
 
 module.exports = setInnerHTML;
-},{"./DOMNamespaces":294,"./createMicrosoftUnsafeLocalFunction":401,"fbjs/lib/ExecutionEnvironment":138}],424:[function(require,module,exports){
+},{"./DOMNamespaces":367,"./createMicrosoftUnsafeLocalFunction":474,"fbjs/lib/ExecutionEnvironment":153}],497:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -38350,7 +53766,33 @@ if (ExecutionEnvironment.canUseDOM) {
 }
 
 module.exports = setTextContent;
-},{"./escapeTextContentForBrowser":403,"./setInnerHTML":423,"fbjs/lib/ExecutionEnvironment":138}],425:[function(require,module,exports){
+},{"./escapeTextContentForBrowser":476,"./setInnerHTML":496,"fbjs/lib/ExecutionEnvironment":153}],498:[function(require,module,exports){
+/**
+ * Copyright 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+* @providesModule shallowCompare
+*/
+
+'use strict';
+
+var shallowEqual = require('fbjs/lib/shallowEqual');
+
+/**
+ * Does a shallow comparison for props and state.
+ * See ReactComponentWithPureRenderMixin
+ * See also https://facebook.github.io/react/docs/shallow-compare.html
+ */
+function shallowCompare(instance, nextProps, nextState) {
+  return !shallowEqual(instance.props, nextProps) || !shallowEqual(instance.state, nextState);
+}
+
+module.exports = shallowCompare;
+},{"fbjs/lib/shallowEqual":175}],499:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -38393,7 +53835,7 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 }
 
 module.exports = shouldUpdateReactComponent;
-},{}],426:[function(require,module,exports){
+},{}],500:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -38563,7 +54005,7 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 }).call(this,require('_process'))
-},{"./KeyEscapeUtils":308,"./ReactCurrentOwner":322,"./ReactElement":345,"./getIteratorFn":412,"./reactProdInvariant":421,"_process":20,"fbjs/lib/invariant":152,"fbjs/lib/warning":161}],427:[function(require,module,exports){
+},{"./KeyEscapeUtils":381,"./ReactCurrentOwner":395,"./ReactElement":418,"./getIteratorFn":485,"./reactProdInvariant":494,"_process":21,"fbjs/lib/invariant":167,"fbjs/lib/warning":176}],501:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015-present, Facebook, Inc.
@@ -38948,12 +54390,12 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = validateDOMNesting;
 }).call(this,require('_process'))
-},{"_process":20,"fbjs/lib/emptyFunction":144,"fbjs/lib/warning":161,"object-assign":165}],428:[function(require,module,exports){
+},{"_process":21,"fbjs/lib/emptyFunction":159,"fbjs/lib/warning":176,"object-assign":181}],502:[function(require,module,exports){
 'use strict';
 
 module.exports = require('./lib/React');
 
-},{"./lib/React":311}],429:[function(require,module,exports){
+},{"./lib/React":384}],503:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -39118,7 +54560,7 @@ function createUncontrollable(mixins, set) {
   }
 }
 module.exports = exports['default'];
-},{"./utils":431,"invariant":163,"react":428}],430:[function(require,module,exports){
+},{"./utils":505,"invariant":179,"react":502}],504:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -39150,7 +54592,7 @@ function set(component, propName, handler, value, args) {
 
 exports.default = (0, _createUncontrollable2.default)([mixin], set);
 module.exports = exports['default'];
-},{"./createUncontrollable":429}],431:[function(require,module,exports){
+},{"./createUncontrollable":503}],505:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -39269,4 +54711,6 @@ function isReactComponent(component) {
   return !!(component && component.prototype && component.prototype.isReactComponent);
 }
 }).call(this,require('_process'))
-},{"_process":20,"invariant":163,"react":428}]},{},[2]);
+},{"_process":21,"invariant":179,"react":502}],506:[function(require,module,exports){
+arguments[4][282][0].apply(exports,arguments)
+},{"_process":21,"dup":282}]},{},[1]);

@@ -21,7 +21,7 @@
 import React from 'react';
 import { Grid, Row, Col, Image, Button, Panel, Label, Glyphicon, utils } from 'react-bootstrap';
 
-class List extends React.Component {
+class ItemList extends React.Component {
   constructor (props) {
       super(props);
       this.state = {
@@ -239,7 +239,7 @@ class List extends React.Component {
   }
 }
 
-List.propTypes = {
+ItemList.propTypes = {
     serviceUrl: React.PropTypes.string, // https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E4%BF%9D%E8%82%B2%E5%9C%9223%E5%8C%BA/FeatureServer/0
     headerField: React.PropTypes.string, // '施設名'
     typeLabelField: React.PropTypes.string, // '種別'
@@ -250,7 +250,7 @@ List.propTypes = {
     mapUrl: React.PropTypes.string
 };
 
-List.defaultProps = {
+ItemList.defaultProps = {
     serviceUrl: 'https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E4%BF%9D%E8%82%B2%E5%9C%9223%E5%8C%BA/FeatureServer/0',
     headerField: '施設名',
     typeLabelField: '種別',
@@ -261,6 +261,6 @@ List.defaultProps = {
     mapUrl: 'https://bl.ocks.org/ynunokawa/raw/43ab2f03c4d2f29e3d5ebd3dadb1932d/'
 };
 
-List.displayName = 'List';
+ItemList.displayName = 'ItemList';
 
-export default List;
+export default ItemList;

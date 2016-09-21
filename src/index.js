@@ -18,5 +18,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-export {default as ArcGISWebMap} from './lib/webmap/WebMap';
-export {default as List} from './lib/list/List';
+export {default as ArcGISWebMap} from './lib/map/ArcGISWebMap';
+export {default as DonutChart} from './lib/viz/DonutChart';
+export {default as ItemList} from './lib/ui/list/ItemList';
