@@ -20,45 +20,54 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import document from 'global/document';
+import { Navbar, Nav, NavItem, Grid, Row, Col } from 'react-bootstrap';
+import document from 'global/document';
 
 import List from './list/List';
-//import {isReactDOMSupported} from '../lib/utils/react-utils';
+import { isReactDOMSupported } from '../lib/utils/react-utils';
 
 const examples = (
   <main>
-    <header>
-      <div className="header-contents">
-        <a className="header-logo" href="#">Hackathon Starter Kit</a>
-        <nav>
-          <li><a href="#map-components">Map</a></li>
-          <li><a href="#ui-components">UI</a></li>
-        </nav>
-      </div>
-    </header>
-    <article id="map-components">
-      <h1>Esri Leaflet Map Components</h1>
-      <section>
-        <h3>FeatureLayer</h3>
-        <p>Comming soon...</p>
-      </section>
-      <section>
-        <h3>WebMap</h3>
-        <p>Comming soon...</p>
-      </section>
-    </article>
-    <article id="ui-components">
-      <h1>UI Components</h1>
-      <section>
-        <h3>List</h3>
-        <p>Access to ArcGIS Feature Service</p>
-        <List />
-      </section>
-      <section>
-        <h3>Comming soon...</h3>
-        <p>Comming soon...</p>
-      </section>
-    </article>
+  <Navbar>
+    <Navbar.Header>
+      <Navbar.Brand>
+        <a href="#">React ArcGIS Boilerplate</a>
+      </Navbar.Brand>
+    </Navbar.Header>
+    <Nav>
+      <NavItem eventKey={1} href="#map-components">Map</NavItem>
+      <NavItem eventKey={2} href="#ui-components">UI</NavItem>
+    </Nav>
+  </Navbar>
+  <Grid>
+    <Row>
+      <Col xs={12} md={12}>
+        <article id="map-components">
+          <h1>Esri Leaflet Map Components</h1>
+          <section>
+            <h3>FeatureLayer</h3>
+            <p>Comming soon...</p>
+          </section>
+          <section>
+            <h3>WebMap</h3>
+            <p>Comming soon...</p>
+          </section>
+        </article>
+        <article id="ui-components">
+          <h1>UI Components</h1>
+          <section>
+            <h3>List</h3>
+            <p>Access to ArcGIS Feature Service</p>
+            <List />
+          </section>
+          <section>
+            <h3>Comming soon...</h3>
+            <p>Comming soon...</p>
+          </section>
+        </article>
+      </Col>
+    </Row>
+  </Grid>
   </main>
 );
 

@@ -19,9 +19,7 @@
 // THE SOFTWARE.
 
 import React from 'react';
-import {Grid, Row, Col, Image, Button, Panel, Label, Glyphicon, utils} from 'react-bootstrap';
-
-import {query} from 'esri-leaflet';
+import { Grid, Row, Col, Image, Button, Panel, Label, Glyphicon, utils } from 'react-bootstrap';
 
 class List extends React.Component {
   constructor (props) {
@@ -36,11 +34,14 @@ class List extends React.Component {
       };
   }
 
-  updateData () {
+  updateData (nextParams) {
     console.log('update!');
-    const params = this.getQueryFromUrl();
-    const query = query({ url: this.props.serviceUrl });
-    switch (params.relationship){
+    let params = this.getQueryFromUrl();
+    if (nextParams) {
+      params = nextParams;
+    }
+    const query = L.esri.query({ url: this.props.serviceUrl });
+    switch (String(params.relationship)){
     case '0':
         break;
     case '1':
@@ -71,7 +72,7 @@ class List extends React.Component {
   }
 
   getQueryFromUrl () {
-    const params = {
+    let params = {
         data: [],
         relationship: 0,
         geometry: null,
@@ -113,10 +114,33 @@ class List extends React.Component {
   }
 
   componentDidMount () {
-    window.onhashchange = function() {
-        this.updateData();
-    }.bind(this);
     this.updateData();
+    window.onhashchange = function() {
+        if (location.hash !== '') {
+          this.updateData();
+        }
+    }.bind(this);
+
+    // Demo Script
+    let demoParams = {
+      data: [],
+      relationship: 5, // 0: none, 1: within, 2: contains, 3: intersects, 4: overlap, 5: nearby
+      geometry: null, // for Spatial Query
+      latlng: [35.73876392000045, 139.66248358600058], // for Spatial Query (only nearby)
+      distance: 550, // for Spatial Query (only nearby)
+      where: '1=1'
+    };
+    this.updateData(demoParams);
+    let count = 0;
+    setInterval(function () {
+      count += 1;
+      if (count === 3) {
+        count = 0;
+        demoParams.distance = 550;
+      }
+      demoParams.distance += count * 100;
+      this.updateData(demoParams);
+    }.bind(this), 5000);
   }
 
   render () {
@@ -129,17 +153,19 @@ class List extends React.Component {
         const typeLabel = f.properties[this.props.typeLabelField];
         const info = f.properties[this.props.mainInfoField];
 
-        const otherLabel = this.props.otherLabelFields.map(function (field) {
+        const otherLabel = this.props.otherLabelFields.map(function (field, i) {
             const label = f.properties[field];
+            const key = field + i;
             return (
-                <Label>{label}</Label> 
+                <Label key={key}>{label}</Label>
             );
         });
 
-        const subcontents = this.props.infoFields.map(function (infoField) {
+        const subcontents = this.props.infoFields.map(function (infoField, i) {
             const info = f.properties[infoField];
+            const key = infoField + i;
             return (
-                <p className="list-panel-subcontents">{infoField}: {info}</p>
+                <p key={key} className="list-panel-subcontents">{infoField}: {info}</p>
             );
         });
 
@@ -168,7 +194,7 @@ class List extends React.Component {
         );
 
         return (
-            <Col xs={12} sm={6} md={4}>
+            <Col xs={12} sm={6} md={4} key={title}>
                 <style type="text/css">{`
                 .panel-custom {
                     border-color: #f5646a;
@@ -185,7 +211,7 @@ class List extends React.Component {
                     border-color: #f58264;
                 }
                 `}</style>
-                <Panel header={title} bsStyle="custom" key={title}>
+                <Panel header={title} bsStyle="custom">
                     {contentsLayout}
                     <style type="text/css">{`
                     .list-panel-footer {
@@ -229,9 +255,9 @@ List.defaultProps = {
     headerField: '施設名',
     typeLabelField: '種別',
     otherLabelFields: ['対象年齢', '運営主体'],
-    mainInfoField: ['定員'],
+    mainInfoField: '定員',
     infoFields: ['郵便番号', '住所'],
-    sortField: ['定員'],
+    sortField: '定員',
     mapUrl: 'https://bl.ocks.org/ynunokawa/raw/43ab2f03c4d2f29e3d5ebd3dadb1932d/'
 };
 
