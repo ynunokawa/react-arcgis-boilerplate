@@ -50,7 +50,11 @@ const examples = (
         <article id="map-components">
           <h1>Map Components</h1>
           <section>
-            <h3><code>&lt;ArcGISWebMap /&gt;</code></h3>
+            <h3>
+              <a href="https://github.com/ynunokawa/react-arcgis-boilerplate/blob/master/src/lib/map/ArcGISWebMap.js">
+                <code>&lt;ArcGISWebMap /&gt;</code>
+              </a>
+            </h3>
             <p>Display <a href="http://www.arcgis.com/home/webmap/viewer.html?webmap=55e02e777274468c90745fde6641faf4" target="_brank">ArcGIS Web Map</a> on Leaflet Map</p>
             <ArcGISWebMap />
           </section>
@@ -58,7 +62,11 @@ const examples = (
         <article id="viz-components">
           <h1>Viz Components</h1>
           <section>
-            <h3><code>&lt;DonutChart /&gt;</code></h3>
+            <h3>
+              <a href="https://github.com/ynunokawa/react-arcgis-boilerplate/blob/master/src/viz/DonutChart.js">
+                <code>&lt;DonutChart /&gt;</code>
+              </a>
+            </h3>
             <p>Display percentage in the total for a property with Query API of ArcGIS Feature Service</p>
             <DonutChart />
           </section>
@@ -66,12 +74,20 @@ const examples = (
         <article id="ui-components">
           <h1>UI Components</h1>
           <section>
-            <h3><code>&lt;ListGroups /&gt;</code></h3>
+            <h3>
+              <a href="https://github.com/ynunokawa/react-arcgis-boilerplate/blob/master/src/lib/ui/list/ListGroups.js">
+                <code>&lt;ListGroups /&gt;</code>
+              </a>
+            </h3>
             <p>Display properties with Query API of ArcGIS Feature Service</p>
             <ListGroups />
           </section>
           <section>
-            <h3><code>&lt;ItemList /&gt;</code></h3>
+            <h3>
+              <a href="https://github.com/ynunokawa/react-arcgis-boilerplate/blob/master/src/lib/ui/list/ItemList.js">
+                <code>&lt;ItemList /&gt;</code>
+              </a>
+            </h3>
             <p>Display properties with Query API of ArcGIS Feature Service</p>
             <ItemList />
           </section>

@@ -63,12 +63,17 @@ class ListGroups extends React.Component {
         break;
     }
     query.where(params.where);
+    query.orderBy(this.props.sortField, 'DESC');
     query.run(function (error, featureCollection, response) {
     console.log('Found ' + featureCollection.features.length + ' features');
     const typeField = this.props.typeField;
     const nameField = this.props.nameField;
     const labelField = this.props.labelField;
-    const sortField = this.props.sortField;
+
+    Object.keys(params.listGroupsData).map(function (k) {
+      params.listGroupsData[k] = [];
+    });
+
     params.data = featureCollection.features;
     params.data.map(function (f) {
       if (!(f.properties[typeField] in params.listGroupsData)) {
@@ -76,9 +81,7 @@ class ListGroups extends React.Component {
       }
       params.listGroupsData[f.properties[typeField]].push({ name: f.properties[nameField], label: f.properties[labelField]});
     });
-    params.data = featureCollection.features.sort(function (a, b) {
-        return b.properties[sortField] - a.properties[sortField];
-    });
+
     this.setState(params);
     }, this);
   }
@@ -152,12 +155,39 @@ class ListGroups extends React.Component {
 
     const listGroupsData = this.state.listGroupsData;
 
-    const listGroups = Object.keys(listGroupsData).map(function (k) {
-      console.log(k);
-      const listGroupItems = listGroupsData[k].map(function (d, i) {
-        if (i === 0) {
+    const listGroups = this.state.types.map(function (t, i) {
+      const k = t + i;
+      const listGroupHeader = (
+        <ListGroupItem href="#" bsStyle="custom">{t}</ListGroupItem>
+      );
+
+      let listGroupItems;
+      if (t in listGroupsData) {
+        listGroupItems = listGroupsData[t].map(function (d, index) {
+          const key = d.name + index;
           return (
-            <main>
+            <ListGroupItem href="#" key={key}>
+              {d.name}
+              <Badge>{d.label}</Badge>
+            </ListGroupItem>
+          );
+        });
+      }
+
+      return (
+        <Col xs={12} sm={6} md={4} key={k}>
+          <ListGroup>
+            {listGroupHeader}
+            {listGroupItems}
+          </ListGroup>
+        </Col>
+      );
+    });
+    console.log(listGroups);
+
+    return (
+        <Grid>
+          <Row>
             <style type="text/css">{`
             .list-group-item-custom {
                 background-color: #f5646a;
@@ -170,36 +200,10 @@ class ListGroups extends React.Component {
                 opacity: 0.8;
             }
             .badge {
-                background-color: #fff;
-                color: #f5646a;
+                background-color: #f5646a;
+                color: #fff;
             }
             `}</style>
-            <ListGroupItem href="#" bsStyle="custom">
-              {k}
-              <Badge>{d.label}</Badge>
-            </ListGroupItem>
-            <ListGroupItem href="#">{d.name}</ListGroupItem>
-            </main>
-          );
-        } else {
-          return (
-            <ListGroupItem href="#">{d.name}</ListGroupItem>
-          );
-        }
-      });
-      return (
-        <Col xs={12} sm={6} md={4}>
-          <ListGroup>
-            {listGroupItems}
-          </ListGroup>
-        </Col>
-      );
-    });
-    console.log(listGroups);
-
-    return (
-        <Grid>
-          <Row>
             {listGroups}
           </Row>
         </Grid>

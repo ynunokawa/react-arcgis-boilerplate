@@ -103,9 +103,13 @@ var examples = _react2.default.createElement(
               'h3',
               null,
               _react2.default.createElement(
-                'code',
-                null,
-                '<ArcGISWebMap />'
+                'a',
+                { href: 'https://github.com/ynunokawa/react-arcgis-boilerplate/blob/master/src/lib/map/ArcGISWebMap.js' },
+                _react2.default.createElement(
+                  'code',
+                  null,
+                  '<ArcGISWebMap />'
+                )
               )
             ),
             _react2.default.createElement(
@@ -137,9 +141,13 @@ var examples = _react2.default.createElement(
               'h3',
               null,
               _react2.default.createElement(
-                'code',
-                null,
-                '<DonutChart />'
+                'a',
+                { href: 'https://github.com/ynunokawa/react-arcgis-boilerplate/blob/master/src/viz/DonutChart.js' },
+                _react2.default.createElement(
+                  'code',
+                  null,
+                  '<DonutChart />'
+                )
               )
             ),
             _react2.default.createElement(
@@ -165,9 +173,13 @@ var examples = _react2.default.createElement(
               'h3',
               null,
               _react2.default.createElement(
-                'code',
-                null,
-                '<ListGroups />'
+                'a',
+                { href: 'https://github.com/ynunokawa/react-arcgis-boilerplate/blob/master/src/lib/ui/list/ListGroups.js' },
+                _react2.default.createElement(
+                  'code',
+                  null,
+                  '<ListGroups />'
+                )
               )
             ),
             _react2.default.createElement(
@@ -184,9 +196,13 @@ var examples = _react2.default.createElement(
               'h3',
               null,
               _react2.default.createElement(
-                'code',
-                null,
-                '<ItemList />'
+                'a',
+                { href: 'https://github.com/ynunokawa/react-arcgis-boilerplate/blob/master/src/lib/ui/list/ItemList.js' },
+                _react2.default.createElement(
+                  'code',
+                  null,
+                  '<ItemList />'
+                )
               )
             ),
             _react2.default.createElement(
@@ -735,12 +751,17 @@ var ListGroups = function (_React$Component) {
           break;
       }
       query.where(params.where);
+      query.orderBy(this.props.sortField, 'DESC');
       query.run(function (error, featureCollection, response) {
         console.log('Found ' + featureCollection.features.length + ' features');
         var typeField = this.props.typeField;
         var nameField = this.props.nameField;
         var labelField = this.props.labelField;
-        var sortField = this.props.sortField;
+
+        Object.keys(params.listGroupsData).map(function (k) {
+          params.listGroupsData[k] = [];
+        });
+
         params.data = featureCollection.features;
         params.data.map(function (f) {
           if (!(f.properties[typeField] in params.listGroupsData)) {
@@ -748,9 +769,7 @@ var ListGroups = function (_React$Component) {
           }
           params.listGroupsData[f.properties[typeField]].push({ name: f.properties[nameField], label: f.properties[labelField] });
         });
-        params.data = featureCollection.features.sort(function (a, b) {
-          return b.properties[sortField] - a.properties[sortField];
-        });
+
         this.setState(params);
       }, this);
     }
@@ -827,48 +846,38 @@ var ListGroups = function (_React$Component) {
 
       var listGroupsData = this.state.listGroupsData;
 
-      var listGroups = Object.keys(listGroupsData).map(function (k) {
-        console.log(k);
-        var listGroupItems = listGroupsData[k].map(function (d, i) {
-          if (i === 0) {
-            return _react2.default.createElement(
-              'main',
-              null,
-              _react2.default.createElement(
-                'style',
-                { type: 'text/css' },
-                '\n            .list-group-item-custom {\n                background-color: #f5646a;\n                color: #fff !important;\n                border-color: #f5646a;\n                font-weight: bold;\n            }\n            .list-group-item-custom:hover {\n                background-color: #f5646a !important;\n                opacity: 0.8;\n            }\n            .badge {\n                background-color: #fff;\n                color: #f5646a;\n            }\n            '
-              ),
-              _react2.default.createElement(
-                _reactBootstrap.ListGroupItem,
-                { href: '#', bsStyle: 'custom' },
-                k,
-                _react2.default.createElement(
-                  _reactBootstrap.Badge,
-                  null,
-                  d.label
-                )
-              ),
-              _react2.default.createElement(
-                _reactBootstrap.ListGroupItem,
-                { href: '#' },
-                d.name
-              )
-            );
-          } else {
+      var listGroups = this.state.types.map(function (t, i) {
+        var k = t + i;
+        var listGroupHeader = _react2.default.createElement(
+          _reactBootstrap.ListGroupItem,
+          { href: '#', bsStyle: 'custom' },
+          t
+        );
+
+        var listGroupItems = void 0;
+        if (t in listGroupsData) {
+          listGroupItems = listGroupsData[t].map(function (d, index) {
+            var key = d.name + index;
             return _react2.default.createElement(
               _reactBootstrap.ListGroupItem,
-              { href: '#' },
-              d.name
+              { href: '#', key: key },
+              d.name,
+              _react2.default.createElement(
+                _reactBootstrap.Badge,
+                null,
+                d.label
+              )
             );
-          }
-        });
+          });
+        }
+
         return _react2.default.createElement(
           _reactBootstrap.Col,
-          { xs: 12, sm: 6, md: 4 },
+          { xs: 12, sm: 6, md: 4, key: k },
           _react2.default.createElement(
             _reactBootstrap.ListGroup,
             null,
+            listGroupHeader,
             listGroupItems
           )
         );
@@ -881,6 +890,11 @@ var ListGroups = function (_React$Component) {
         _react2.default.createElement(
           _reactBootstrap.Row,
           null,
+          _react2.default.createElement(
+            'style',
+            { type: 'text/css' },
+            '\n            .list-group-item-custom {\n                background-color: #f5646a;\n                color: #fff !important;\n                border-color: #f5646a;\n                font-weight: bold;\n            }\n            .list-group-item-custom:hover {\n                background-color: #f5646a !important;\n                opacity: 0.8;\n            }\n            .badge {\n                background-color: #f5646a;\n                color: #fff;\n            }\n            '
+          ),
           listGroups
         )
       );
