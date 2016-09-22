@@ -20,4 +20,5 @@
 
 export {default as ArcGISWebMap} from './lib/map/ArcGISWebMap';
 export {default as DonutChart} from './lib/viz/DonutChart';
+export {default as ListGroups} from './lib/ui/list/ListGroups';
 export {default as ItemList} from './lib/ui/list/ItemList';

@@ -25,6 +25,7 @@ import document from 'global/document';
 
 import ArcGISWebMap from './map/ArcGISWebMap';
 import DonutChart from './viz/DonutChart';
+import ListGroups from './ui/list/ListGroups';
 import ItemList from './ui/list/ItemList';
 import { isReactDOMSupported } from '../lib/utils/react-utils';
 
@@ -64,6 +65,11 @@ const examples = (
         </article>
         <article id="ui-components">
           <h1>UI Components</h1>
+          <section>
+            <h3><code>&lt;ListGroups /&gt;</code></h3>
+            <p>Display properties with Query API of ArcGIS Feature Service</p>
+            <ListGroups />
+          </section>
           <section>
             <h3><code>&lt;ItemList /&gt;</code></h3>
             <p>Display properties with Query API of ArcGIS Feature Service</p>
