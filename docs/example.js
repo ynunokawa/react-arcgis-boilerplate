@@ -60,22 +60,26 @@ var examples = _react2.default.createElement(
       )
     ),
     _react2.default.createElement(
-      _reactBootstrap.Nav,
+      _reactBootstrap.Navbar.Collapse,
       null,
       _react2.default.createElement(
-        _reactBootstrap.NavItem,
-        { eventKey: 1, href: '#map-components' },
-        'Map'
-      ),
-      _react2.default.createElement(
-        _reactBootstrap.NavItem,
-        { eventKey: 2, href: '#viz-components' },
-        'Viz'
-      ),
-      _react2.default.createElement(
-        _reactBootstrap.NavItem,
-        { eventKey: 3, href: '#ui-components' },
-        'UI'
+        _reactBootstrap.Nav,
+        null,
+        _react2.default.createElement(
+          _reactBootstrap.NavItem,
+          { eventKey: 1, href: '#map-components' },
+          'Map'
+        ),
+        _react2.default.createElement(
+          _reactBootstrap.NavItem,
+          { eventKey: 2, href: '#viz-components' },
+          'Viz'
+        ),
+        _react2.default.createElement(
+          _reactBootstrap.NavItem,
+          { eventKey: 3, href: '#ui-components' },
+          'UI'
+        )
       )
     )
   ),

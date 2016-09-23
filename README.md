@@ -6,11 +6,13 @@ IN PROGRESS..
 
 ```
 npm i react-arcgis-boilerplate
+npm run start
 ```
 
 ```js
 import { ArcGISWebMap, DonutChart, ItemList } from 'react-arcgis-boilerplate';
 ```
+
 ### Mapping
 
 mostly use [Leaflet](http://leafletjs.com/) and [Esri Leaflet](http://esri.github.io/esri-leaflet/) as the basis for mapping components.

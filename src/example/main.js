@@ -38,11 +38,13 @@ const examples = (
         <a href="#">React ArcGIS Boilerplate</a>
       </Navbar.Brand>
     </Navbar.Header>
-    <Nav>
-      <NavItem eventKey={1} href="#map-components">Map</NavItem>
-      <NavItem eventKey={2} href="#viz-components">Viz</NavItem>
-      <NavItem eventKey={3} href="#ui-components">UI</NavItem>
-    </Nav>
+    <Navbar.Collapse>
+      <Nav>
+        <NavItem eventKey={1} href="#map-components">Map</NavItem>
+        <NavItem eventKey={2} href="#viz-components">Viz</NavItem>
+        <NavItem eventKey={3} href="#ui-components">UI</NavItem>
+      </Nav>
+    </Navbar.Collapse>
   </Navbar>
   <Grid>
     <Row>
