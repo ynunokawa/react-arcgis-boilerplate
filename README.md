@@ -15,7 +15,7 @@ import { ArcGISWebMap, DonutChart, ItemList } from 'react-arcgis-boilerplate';
 
 mostly use [Leaflet](http://leafletjs.com/) and [Esri Leaflet](http://esri.github.io/esri-leaflet/) as the basis for mapping components.
 
-#### [`<ArcGISWebMap />`](https://bl.ocks.org/ynunokawa/raw/43ab2f03c4d2f29e3d5ebd3dadb1932d/)
+#### [`<ArcGISWebMap />`](https://github.com/ynunokawa/react-arcgis-boilerplate/blob/master/src/lib/map/ArcGISWebMap.js)
 
 built with [`ynunokawa/L.esri.WebMap`](https://github.com/uber/react-vis).
 
@@ -32,8 +32,8 @@ mostly use [D3](https://d3js.org/) and [Uber react-vis](https://github.com/uber/
 ```xml
 <DonutChart
   serviceUrl={"https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E4%BF%9D%E8%82%B2%E5%9C%9223%E5%8C%BA/FeatureServer/0"}
-  field={"市区町村='練馬区'"}
-  where={"種別"}
+  field={"種別"}
+  where={"市区町村='練馬区'"}
 />
 ```
 
