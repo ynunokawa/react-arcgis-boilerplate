@@ -5,6 +5,7 @@
   "author": "Yusuke Nunokawa <ynunokawa.dev@gmail.com>",
   "description": "React components using Leaflet.js and ArcGIS for rapid development.",
   "keywords": [
+    "arcgis",
     "leaflet",
     "d3",
     "react",
@@ -69,6 +70,7 @@
     "build-js": "babel src -d dist --copy-files",
     "build-js-example": "npm run build-js -- --source-maps inline",
     "build-docs": "(node-sass src/example/main.scss docs/example.css) & (browserify -t brfs ./dist/example/main.js > docs/example.js)",
+    "build-dev-docs": "npm run build && (node-sass src/example/main.scss _docs/example.css) & (browserify -t brfs ./dist/example/main.js > _docs/example.js)",
     "build-css": "node-sass src/main.scss main.css",
     "build-css-example": "node-sass src/example/*.scss -o dist/example/",
     "build-example": "npm run build-css-example && npm run build-js-example",
