@@ -8,7 +8,7 @@ IN PROGRESS..
 npm i react-arcgis-boilerplate
 ```
 
-```
+```js
 import { ArcGISWebMap, DonutChart, ItemList } from 'react-arcgis-boilerplate';
 ```
 ### Mapping
